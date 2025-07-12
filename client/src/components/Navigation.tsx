@@ -1,16 +1,24 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useScrollAnimation } from '../hooks/useScrollAnimation';
+import { Link, useLocation } from 'wouter';
 
 const Navigation = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isServicesOpen, setIsServicesOpen] = useState(false);
   const { isScrolled } = useScrollAnimation();
+  const [location] = useLocation();
+  const isHomePage = location === '/';
 
   const handleSmoothScroll = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
     e.preventDefault();
-    const target = document.querySelector(href);
-    if (target) {
-      target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    if (isHomePage) {
+      const target = document.querySelector(href);
+      if (target) {
+        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    } else {
+      window.location.href = '/' + href;
     }
     setIsMobileMenuOpen(false);
   };
@@ -42,20 +50,47 @@ const Navigation = () => {
             animate={{ opacity: 1, x: 0 }}
             className="hidden md:flex items-center space-x-8"
           >
-            <a
-              href="#home"
-              onClick={(e) => handleSmoothScroll(e, '#home')}
-              className="text-white hover:text-luxury-gold transition-colors duration-300 font-inter"
-            >
+            <Link href="/" className="text-white hover:text-luxury-gold transition-colors duration-300 font-inter">
               Home
-            </a>
-            <a
-              href="#services"
-              onClick={(e) => handleSmoothScroll(e, '#services')}
-              className="text-white hover:text-luxury-gold transition-colors duration-300 font-inter"
-            >
-              Services
-            </a>
+            </Link>
+            
+            {/* Services Dropdown */}
+            <div className="relative group">
+              <button
+                className="text-white hover:text-luxury-gold transition-colors duration-300 font-inter flex items-center"
+                onMouseEnter={() => setIsServicesOpen(true)}
+                onMouseLeave={() => setIsServicesOpen(false)}
+              >
+                Services
+                <i className="fas fa-chevron-down ml-1 text-xs"></i>
+              </button>
+              <AnimatePresence>
+                {isServicesOpen && (
+                  <motion.div
+                    initial={{ opacity: 0, y: -10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -10 }}
+                    className="absolute top-full left-0 mt-2 w-64 bg-white rounded-lg shadow-xl overflow-hidden"
+                    onMouseEnter={() => setIsServicesOpen(true)}
+                    onMouseLeave={() => setIsServicesOpen(false)}
+                  >
+                    <Link href="/wedding-photography" className="block px-4 py-3 text-charcoal hover:bg-ocean-blue hover:text-white transition-colors">
+                      <i className="fas fa-heart mr-2"></i>
+                      Wedding & Elopement
+                    </Link>
+                    <Link href="/real-estate-photography" className="block px-4 py-3 text-charcoal hover:bg-ocean-blue hover:text-white transition-colors">
+                      <i className="fas fa-home mr-2"></i>
+                      Real Estate Photography
+                    </Link>
+                    <Link href="/family-photography" className="block px-4 py-3 text-charcoal hover:bg-ocean-blue hover:text-white transition-colors">
+                      <i className="fas fa-users mr-2"></i>
+                      Family & Portraits
+                    </Link>
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </div>
+
             <a
               href="#portfolio"
               onClick={(e) => handleSmoothScroll(e, '#portfolio')}
@@ -111,13 +146,18 @@ const Navigation = () => {
               >
                 Home
               </a>
-              <a
-                href="#services"
-                onClick={(e) => handleSmoothScroll(e, '#services')}
-                className="block text-white hover:text-luxury-gold transition-colors duration-300 font-inter"
-              >
-                Services
-              </a>
+              <div className="space-y-2">
+                <p className="text-white/70 text-sm font-inter">Services</p>
+                <Link href="/wedding-photography" className="block text-white hover:text-luxury-gold transition-colors duration-300 font-inter pl-4">
+                  Wedding & Elopement
+                </Link>
+                <Link href="/real-estate-photography" className="block text-white hover:text-luxury-gold transition-colors duration-300 font-inter pl-4">
+                  Real Estate Photography
+                </Link>
+                <Link href="/family-photography" className="block text-white hover:text-luxury-gold transition-colors duration-300 font-inter pl-4">
+                  Family & Portraits
+                </Link>
+              </div>
               <a
                 href="#portfolio"
                 onClick={(e) => handleSmoothScroll(e, '#portfolio')}

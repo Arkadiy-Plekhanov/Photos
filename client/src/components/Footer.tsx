@@ -1,26 +1,27 @@
 import { motion } from 'framer-motion';
+import { Link } from 'wouter';
 
 const Footer = () => {
   const footerLinks = {
     services: [
-      { name: 'Wedding Photography', href: '#services' },
-      { name: 'Real Estate Photography', href: '#services' },
-      { name: 'Family Portraits', href: '#services' },
-      { name: 'Commercial Photography', href: '#services' },
-      { name: 'Drone Photography', href: '#services' },
+      { name: 'Wedding Photography', href: '/wedding-photography', type: 'link' },
+      { name: 'Real Estate Photography', href: '/real-estate-photography', type: 'link' },
+      { name: 'Family Portraits', href: '/family-photography', type: 'link' },
+      { name: 'Commercial Photography', href: '/#services', type: 'scroll' },
+      { name: 'Drone Photography', href: '/#services', type: 'scroll' },
     ],
     company: [
-      { name: 'About Us', href: '#about' },
-      { name: 'Portfolio', href: '#portfolio' },
-      { name: 'Blog', href: '#blog' },
-      { name: 'Contact', href: '#contact' },
-      { name: 'FAQ', href: '#faq' },
+      { name: 'About Us', href: '/about', type: 'link' },
+      { name: 'Portfolio', href: '/portfolio', type: 'link' },
+      { name: 'Blog', href: '/blog', type: 'link' },
+      { name: 'Contact', href: '/#contact', type: 'scroll' },
+      { name: 'FAQ', href: '/faq', type: 'link' },
     ],
     legal: [
-      { name: 'Privacy Policy', href: '#privacy' },
-      { name: 'Terms of Service', href: '#terms' },
-      { name: 'Cookie Policy', href: '#cookies' },
-      { name: 'Licensing', href: '#licensing' },
+      { name: 'Privacy Policy', href: '#privacy', type: 'anchor' },
+      { name: 'Terms of Service', href: '#terms', type: 'anchor' },
+      { name: 'Cookie Policy', href: '#cookies', type: 'anchor' },
+      { name: 'Licensing', href: '#licensing', type: 'anchor' },
     ],
   };
 
@@ -79,13 +80,19 @@ const Footer = () => {
             <ul className="space-y-2 font-inter text-gray-300">
               {footerLinks.services.map((link, index) => (
                 <li key={index}>
-                  <a
-                    href={link.href}
-                    onClick={(e) => handleSmoothScroll(e, link.href)}
-                    className="hover:text-luxury-gold transition-colors"
-                  >
-                    {link.name}
-                  </a>
+                  {link.type === 'link' ? (
+                    <Link href={link.href} className="hover:text-luxury-gold transition-colors">
+                      {link.name}
+                    </Link>
+                  ) : (
+                    <a
+                      href={link.href}
+                      onClick={(e) => handleSmoothScroll(e, link.href)}
+                      className="hover:text-luxury-gold transition-colors"
+                    >
+                      {link.name}
+                    </a>
+                  )}
                 </li>
               ))}
             </ul>
@@ -101,13 +108,19 @@ const Footer = () => {
             <ul className="space-y-2 font-inter text-gray-300">
               {footerLinks.company.map((link, index) => (
                 <li key={index}>
-                  <a
-                    href={link.href}
-                    onClick={(e) => handleSmoothScroll(e, link.href)}
-                    className="hover:text-luxury-gold transition-colors"
-                  >
-                    {link.name}
-                  </a>
+                  {link.type === 'link' ? (
+                    <Link href={link.href} className="hover:text-luxury-gold transition-colors">
+                      {link.name}
+                    </Link>
+                  ) : (
+                    <a
+                      href={link.href}
+                      onClick={(e) => handleSmoothScroll(e, link.href)}
+                      className="hover:text-luxury-gold transition-colors"
+                    >
+                      {link.name}
+                    </a>
+                  )}
                 </li>
               ))}
             </ul>

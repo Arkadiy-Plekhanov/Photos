@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion';
 import { useIntersectionObserver } from '../hooks/useIntersectionObserver';
 import type { Service } from '../types';
+import { Link } from 'wouter';
 
 const ServicesSection = () => {
   const { ref, isIntersecting } = useIntersectionObserver();
@@ -11,21 +12,21 @@ const ServicesSection = () => {
       title: 'Wedding Photography',
       description: 'Capturing your love story in paradise with cinematic elegance and artistic vision',
       image: 'https://images.unsplash.com/photo-1583939003579-730e3918a45a?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&h=600',
-      link: '#contact',
+      link: '/wedding-photography',
     },
     {
       id: 'real-estate',
       title: 'Real Estate Photography',
       description: 'Showcasing properties with professional architectural photography that sells',
       image: 'https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&h=600',
-      link: '#contact',
+      link: '/real-estate-photography',
     },
     {
       id: 'family',
       title: 'Family Portraits',
       description: 'Cherishing your island memories with authentic family photography',
       image: 'https://images.unsplash.com/photo-1511895426328-dc8714191300?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&h=600',
-      link: '#contact',
+      link: '/family-photography',
     },
   ];
 
@@ -74,13 +75,12 @@ const ServicesSection = () => {
               <div className="absolute bottom-0 left-0 right-0 p-6 text-white">
                 <h3 className="text-2xl font-playfair font-bold mb-2">{service.title}</h3>
                 <p className="font-inter opacity-90 mb-4">{service.description}</p>
-                <a
+                <Link
                   href={service.link}
-                  onClick={(e) => handleSmoothScroll(e, service.link)}
                   className="inline-flex items-center font-inter font-semibold hover:text-luxury-gold transition-colors"
                 >
                   Learn More <i className="fas fa-arrow-right ml-2"></i>
-                </a>
+                </Link>
               </div>
             </motion.div>
           ))}
