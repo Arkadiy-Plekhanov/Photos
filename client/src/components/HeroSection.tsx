@@ -31,8 +31,8 @@ const HeroSection = () => {
   return (
     <section
       id="home"
-      className="relative h-screen flex items-center justify-center overflow-hidden"
-      style={{ aspectRatio: '16/9', minHeight: '100vh' }}
+      className="relative h-screen flex items-center justify-center overflow-hidden pt-16"
+      style={{ minHeight: '100vh' }}
     >
       {/* Background Image Carousel - Stunning Wedding Photography */}
       {heroImages.map((image, index) => (
@@ -55,7 +55,7 @@ const HeroSection = () => {
       <div className="absolute inset-0 bg-gradient-to-b from-ocean-blue/40 via-transparent to-ocean-blue/60" />
 
       {/* Content */}
-      <div className="relative z-10 text-center text-white px-6 max-w-6xl mx-auto">
+      <div className="relative z-10 text-center text-white px-4 sm:px-6 max-w-6xl mx-auto">
         <motion.div
           initial={{ opacity: 0, scale: 0.9 }}
           animate={{ opacity: 1, scale: 1 }}
@@ -73,11 +73,11 @@ const HeroSection = () => {
           initial={{ opacity: 0, y: 50 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1, delay: 0.4 }}
-          className="text-5xl md:text-7xl lg:text-8xl font-playfair font-bold mb-6 leading-tight"
+          className="text-3xl sm:text-4xl md:text-6xl lg:text-7xl xl:text-8xl font-playfair font-bold mb-4 sm:mb-6 leading-tight"
         >
           Capturing{' '}
           <span className="gradient-text block md:inline">Love Stories</span>
-          <span className="block text-4xl md:text-5xl lg:text-6xl font-dancing mt-2 text-luxury-gold">
+          <span className="block text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-dancing mt-1 sm:mt-2 text-luxury-gold">
             in Paradise
           </span>
         </motion.h1>
@@ -86,7 +86,7 @@ const HeroSection = () => {
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.8 }}
-          className="text-lg md:text-xl font-inter mb-8 opacity-95 max-w-3xl mx-auto leading-relaxed"
+          className="text-base sm:text-lg md:text-xl font-inter mb-6 sm:mb-8 opacity-95 max-w-3xl mx-auto leading-relaxed"
         >
           From intimate beach ceremonies to grand resort celebrations, we create cinematic wedding photography that captures the magic of your special day in Honolulu's most breathtaking locations.
         </motion.p>
@@ -100,7 +100,7 @@ const HeroSection = () => {
           <a
             href="#portfolio"
             onClick={(e) => handleSmoothScroll(e, '#portfolio')}
-            className="bg-luxury-gold text-ocean-blue px-8 py-4 rounded-full font-inter font-semibold hover:bg-sunset-orange transition-all duration-300 hover-scale shadow-2xl"
+            className="bg-luxury-gold text-ocean-blue px-6 sm:px-8 py-3 sm:py-4 rounded-full font-inter font-semibold hover:bg-sunset-orange transition-all duration-300 hover-scale shadow-2xl text-sm sm:text-base"
           >
             <i className="fas fa-images mr-2"></i>
             View Wedding Gallery
@@ -108,7 +108,7 @@ const HeroSection = () => {
           <a
             href="#contact"
             onClick={(e) => handleSmoothScroll(e, '#contact')}
-            className="border-2 border-white/80 text-white px-8 py-4 rounded-full font-inter font-semibold hover:bg-white hover:text-ocean-blue transition-all duration-300 hover-scale backdrop-blur-sm"
+            className="border-2 border-white/80 text-white px-6 sm:px-8 py-3 sm:py-4 rounded-full font-inter font-semibold hover:bg-white hover:text-ocean-blue transition-all duration-300 hover-scale backdrop-blur-sm text-sm sm:text-base"
           >
             <i className="fas fa-calendar-alt mr-2"></i>
             Book Your Date
