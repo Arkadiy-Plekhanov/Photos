@@ -39,16 +39,6 @@ function App() {
       <TooltipProvider>
         <Toaster />
         <Router />
-        {/* WhatsApp Floating Button */}
-        <a
-          href="https://wa.me/18085551234?text=Hi%20Arcadia%20Photography!%20I'm%20interested%20in%20your%20services."
-          target="_blank"
-          rel="noopener noreferrer"
-          className="whatsapp-float"
-          aria-label="Chat on WhatsApp"
-        >
-          <i className="fab fa-whatsapp" style={{ lineHeight: '60px' }}></i>
-        </a>
       </TooltipProvider>
     </QueryClientProvider>
   );
