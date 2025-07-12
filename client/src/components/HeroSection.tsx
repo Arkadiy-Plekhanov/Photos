@@ -97,20 +97,20 @@ const HeroSection = () => {
           className="flex flex-col sm:flex-row gap-4 justify-center items-center"
         >
           <a
+            href="#contact"
+            onClick={(e) => handleSmoothScroll(e, '#contact')}
+            className="bg-luxury-gold text-ocean-blue px-8 py-4 rounded-full font-inter font-semibold hover:bg-sunset-orange transition-all duration-300 shadow-2xl animate-pulse-subtle"
+          >
+            <i className="fas fa-calendar-check mr-2"></i>
+            Book Now - Limited 2024 Dates
+          </a>
+          <a
             href="#portfolio"
             onClick={(e) => handleSmoothScroll(e, '#portfolio')}
-            className="bg-luxury-gold text-ocean-blue px-8 py-4 rounded-full font-inter font-semibold hover:bg-sunset-orange transition-all duration-300 hover-scale shadow-2xl"
+            className="border-2 border-white/80 text-white px-8 py-4 rounded-full font-inter font-semibold hover:bg-white hover:text-ocean-blue transition-all duration-300 hover-scale backdrop-blur-sm"
           >
             <i className="fas fa-images mr-2"></i>
             View Wedding Gallery
-          </a>
-          <a
-            href="#contact"
-            onClick={(e) => handleSmoothScroll(e, '#contact')}
-            className="border-2 border-white/80 text-white px-8 py-4 rounded-full font-inter font-semibold hover:bg-white hover:text-ocean-blue transition-all duration-300 hover-scale backdrop-blur-sm"
-          >
-            <i className="fas fa-calendar-alt mr-2"></i>
-            Book Your Date
           </a>
         </motion.div>
 
