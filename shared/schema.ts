@@ -32,9 +32,9 @@ export const bookings = pgTable("bookings", {
   eventDate: varchar("event_date", { length: 20 }),
   message: text("message"),
   amount: decimal("amount", { precision: 10, scale: 2 }).notNull(),
-  stripePaymentIntentId: varchar("stripe_payment_intent_id", { length: 255 }),
-  paymentStatus: varchar("payment_status", { length: 20 }).notNull().default("pending"),
-  bookingStatus: varchar("booking_status", { length: 20 }).notNull().default("pending"),
+  stripePaymentIntentId: varchar("stripe_payment_intent_id", { length: 500 }),
+  paymentStatus: varchar("payment_status", { length: 50 }).notNull().default("pending"),
+  bookingStatus: varchar("booking_status", { length: 50 }).notNull().default("pending"),
   createdAt: timestamp("created_at").defaultNow().notNull(),
   updatedAt: timestamp("updated_at").defaultNow().notNull(),
 });
