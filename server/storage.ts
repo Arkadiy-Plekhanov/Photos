@@ -53,6 +53,7 @@ export class MemStorage implements IStorage {
       id,
       status: "pending",
       submittedAt: new Date(),
+      eventDate: submission.eventDate || null,
     };
     this.contactSubmissions.set(id, contactSubmission);
     return contactSubmission;

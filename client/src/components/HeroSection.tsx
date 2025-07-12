@@ -1,6 +1,25 @@
 import { motion } from 'framer-motion';
+import { useState, useEffect } from 'react';
 
 const HeroSection = () => {
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  
+  const heroImages = [
+    'https://images.unsplash.com/photo-1606800052052-a08af7148866?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80',
+    'https://images.unsplash.com/photo-1583939003579-730e3918a45a?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80',
+    'https://images.unsplash.com/photo-1519741497674-611481863552?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80'
+  ];
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentImageIndex((prevIndex) => 
+        prevIndex === heroImages.length - 1 ? 0 : prevIndex + 1
+      );
+    }, 5000);
+
+    return () => clearInterval(interval);
+  }, [heroImages.length]);
+
   const handleSmoothScroll = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
     e.preventDefault();
     const target = document.querySelector(href);
@@ -14,67 +33,103 @@ const HeroSection = () => {
       id="home"
       className="relative h-screen flex items-center justify-center overflow-hidden"
     >
-      {/* Background Image */}
-      <div
-        className="absolute inset-0 parallax-bg"
-        style={{
-          backgroundImage: `url('https://images.unsplash.com/photo-1544551763-46a013bb70d5?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80')`,
-        }}
-      />
+      {/* Background Image Carousel - Stunning Wedding Photography */}
+      {heroImages.map((image, index) => (
+        <motion.div
+          key={index}
+          className="absolute inset-0 parallax-bg"
+          style={{
+            backgroundImage: `url('${image}')`,
+          }}
+          initial={{ opacity: 0, scale: 1.1 }}
+          animate={{ 
+            opacity: index === currentImageIndex ? 1 : 0,
+            scale: index === currentImageIndex ? 1 : 1.1
+          }}
+          transition={{ duration: 1.5, ease: "easeInOut" }}
+        />
+      ))}
 
-      {/* Overlay */}
-      <div className="absolute inset-0 hero-overlay" />
+      {/* Enhanced Overlay */}
+      <div className="absolute inset-0 bg-gradient-to-b from-ocean-blue/40 via-transparent to-ocean-blue/60" />
 
       {/* Content */}
       <div className="relative z-10 text-center text-white px-6 max-w-6xl mx-auto">
+        <motion.div
+          initial={{ opacity: 0, scale: 0.9 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 1.2, delay: 0.2 }}
+          className="mb-6"
+        >
+          <div className="inline-block bg-luxury-gold/20 backdrop-blur-sm px-6 py-2 rounded-full mb-4">
+            <span className="text-luxury-gold font-inter font-semibold">
+              ✨ Award-Winning Wedding Photography
+            </span>
+          </div>
+        </motion.div>
+
         <motion.h1
-          initial={{ opacity: 0, y: 30 }}
+          initial={{ opacity: 0, y: 50 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          className="text-5xl md:text-7xl lg:text-8xl font-playfair font-bold mb-6"
+          transition={{ duration: 1, delay: 0.4 }}
+          className="text-5xl md:text-7xl lg:text-8xl font-playfair font-bold mb-6 leading-tight"
         >
           Capturing{' '}
-          <span className="gradient-text">Oahu's Beauty</span>
+          <span className="gradient-text block md:inline">Love Stories</span>
+          <span className="block text-4xl md:text-5xl lg:text-6xl font-dancing mt-2 text-luxury-gold">
+            in Paradise
+          </span>
         </motion.h1>
 
         <motion.p
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.3 }}
-          className="text-xl md:text-2xl font-dancing mb-4"
+          transition={{ duration: 0.8, delay: 0.8 }}
+          className="text-lg md:text-xl font-inter mb-8 opacity-95 max-w-3xl mx-auto leading-relaxed"
         >
-          Where Stories Meet Paradise
-        </motion.p>
-
-        <motion.p
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.6 }}
-          className="text-lg md:text-xl font-inter mb-8 opacity-90"
-        >
-          Professional Wedding, Real Estate & Family Photography in Honolulu
+          From intimate beach ceremonies to grand resort celebrations, we create cinematic wedding photography that captures the magic of your special day in Honolulu's most breathtaking locations.
         </motion.p>
 
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.9 }}
-          className="flex flex-col sm:flex-row gap-4 justify-center"
+          transition={{ duration: 0.8, delay: 1 }}
+          className="flex flex-col sm:flex-row gap-4 justify-center items-center"
         >
           <a
             href="#portfolio"
             onClick={(e) => handleSmoothScroll(e, '#portfolio')}
-            className="bg-luxury-gold text-ocean-blue px-8 py-4 rounded-full font-inter font-semibold hover:bg-sunset-orange transition-all duration-300 hover-scale"
+            className="bg-luxury-gold text-ocean-blue px-8 py-4 rounded-full font-inter font-semibold hover:bg-sunset-orange transition-all duration-300 hover-scale shadow-2xl"
           >
-            View Portfolio
+            <i className="fas fa-images mr-2"></i>
+            View Wedding Gallery
           </a>
           <a
             href="#contact"
             onClick={(e) => handleSmoothScroll(e, '#contact')}
-            className="border-2 border-white text-white px-8 py-4 rounded-full font-inter font-semibold hover:bg-white hover:text-ocean-blue transition-all duration-300 hover-scale"
+            className="border-2 border-white/80 text-white px-8 py-4 rounded-full font-inter font-semibold hover:bg-white hover:text-ocean-blue transition-all duration-300 hover-scale backdrop-blur-sm"
           >
-            Inquire Now
+            <i className="fas fa-calendar-alt mr-2"></i>
+            Book Your Date
           </a>
+        </motion.div>
+
+        {/* Image Indicators */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 1, delay: 1.2 }}
+          className="flex justify-center gap-2 mt-8"
+        >
+          {heroImages.map((_, index) => (
+            <button
+              key={index}
+              onClick={() => setCurrentImageIndex(index)}
+              className={`w-3 h-3 rounded-full transition-all duration-300 ${
+                index === currentImageIndex ? 'bg-luxury-gold' : 'bg-white/50'
+              }`}
+            />
+          ))}
         </motion.div>
       </div>
 
@@ -82,7 +137,7 @@ const HeroSection = () => {
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
-        transition={{ duration: 1, delay: 1.2 }}
+        transition={{ duration: 1, delay: 1.4 }}
         className="absolute bottom-8 left-1/2 transform -translate-x-1/2 text-white animate-bounce"
       >
         <i className="fas fa-chevron-down text-2xl"></i>

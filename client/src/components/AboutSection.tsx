@@ -32,7 +32,7 @@ const AboutSection = () => {
               About <span className="gradient-text">Arcadia Photography</span>
             </h2>
             <p className="text-lg font-inter text-gray-600 mb-6 leading-relaxed">
-              Founded in the heart of Honolulu, Arcadia Photography has been capturing the essence of paradise for over a decade. Our passion lies in creating timeless images that tell your unique story against the breathtaking backdrop of Oahu.
+              Founded in the heart of Honolulu, Arcadia Photography has been capturing the essence of paradise for over a decade. Our passion lies in creating timeless images that tell your unique story against the breathtaking backdrop of Hawaii.
             </p>
             <p className="text-lg font-inter text-gray-600 mb-6 leading-relaxed">
               From intimate elopements on secluded beaches to luxury real estate showcases, we bring an artistic eye and technical expertise to every project. Our approach is collaborative, ensuring that your vision comes to life in every frame.

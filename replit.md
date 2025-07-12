@@ -2,7 +2,7 @@
 
 ## Overview
 
-This is a modern, responsive photography website built for Arcadia Photography, a Oahu-based photography service specializing in weddings, real estate, and family portraits. The application features a sleek single-page design with smooth animations, contact form functionality, and a professional portfolio showcase.
+This is a modern, responsive photography website built for Arcadia Photography, a Honolulu-based photography service specializing in weddings, real estate, and family portraits. The application features a sleek single-page design with smooth animations, contact form functionality, and a professional portfolio showcase with emphasis on stunning wedding photography.
 
 ## User Preferences
 

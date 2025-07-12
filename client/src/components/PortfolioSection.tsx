@@ -10,27 +10,27 @@ const PortfolioSection = () => {
   const portfolioItems: PortfolioItem[] = [
     {
       id: '1',
-      title: 'Beach Wedding First Dance',
+      title: 'Romantic Beach Wedding Ceremony',
       category: 'wedding',
       image: 'https://images.unsplash.com/photo-1583939003579-730e3918a45a?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=600&h=400',
     },
     {
       id: '2',
-      title: 'Luxury Kitchen Design',
-      category: 'real-estate',
-      image: 'https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=600&h=400',
+      title: 'Sunset Wedding Silhouette',
+      category: 'wedding',
+      image: 'https://images.unsplash.com/photo-1606800052052-a08af7148866?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=600&h=400',
     },
     {
       id: '3',
-      title: 'Family Beach Portraits',
-      category: 'family',
-      image: 'https://images.unsplash.com/photo-1476703993599-0035a21b17a9?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=600&h=400',
+      title: 'Intimate Wedding Vows',
+      category: 'wedding',
+      image: 'https://images.unsplash.com/photo-1519741497674-611481863552?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=600&h=400',
     },
     {
       id: '4',
-      title: 'Sunset Wedding Walk',
-      category: 'wedding',
-      image: 'https://images.unsplash.com/photo-1606800052052-a08af7148866?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=600&h=400',
+      title: 'Luxury Kitchen Design',
+      category: 'real-estate',
+      image: 'https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=600&h=400',
     },
     {
       id: '5',
@@ -40,9 +40,9 @@ const PortfolioSection = () => {
     },
     {
       id: '6',
-      title: 'Multi-Generation Family',
+      title: 'Family Beach Portraits',
       category: 'family',
-      image: 'https://images.unsplash.com/photo-1609902726285-00668009f004?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=600&h=400',
+      image: 'https://images.unsplash.com/photo-1476703993599-0035a21b17a9?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=600&h=400',
     },
   ];
 
@@ -78,7 +78,7 @@ const PortfolioSection = () => {
             Our <span className="gradient-text">Portfolio</span>
           </h2>
           <p className="text-xl font-inter text-gray-600 max-w-3xl mx-auto mb-8">
-            A curated collection of our finest work capturing the beauty of Oahu
+            A curated collection of our finest work capturing the beauty of Honolulu
           </p>
 
           {/* Filter Buttons */}
@@ -101,7 +101,7 @@ const PortfolioSection = () => {
 
         {/* Gallery Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          <AnimatePresence mode="wait">
+          <AnimatePresence>
             {filteredItems.map((item, index) => (
               <motion.div
                 key={item.id}
@@ -118,6 +118,9 @@ const PortfolioSection = () => {
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-ocean-blue/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
                   <i className="fas fa-search-plus text-white text-2xl"></i>
+                </div>
+                <div className="absolute bottom-0 left-0 right-0 p-4 text-white">
+                  <h3 className="text-lg font-playfair font-bold">{item.title}</h3>
                 </div>
               </motion.div>
             ))}

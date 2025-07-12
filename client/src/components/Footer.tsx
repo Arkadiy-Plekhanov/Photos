@@ -53,7 +53,7 @@ const Footer = () => {
               <span className="text-2xl font-playfair font-bold">Arcadia Photography</span>
             </div>
             <p className="text-gray-300 font-inter mb-4">
-              Creating timeless memories in the heart of paradise. Professional photography services across Oahu, Hawaii.
+              Creating timeless memories in the heart of paradise. Professional photography services across Honolulu, Hawaii.
             </p>
             <div className="flex space-x-4">
               {socialLinks.map((social, index) => (

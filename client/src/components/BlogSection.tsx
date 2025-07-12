@@ -8,17 +8,17 @@ const BlogSection = () => {
   const blogPosts: BlogPost[] = [
     {
       id: '1',
-      title: 'Best Oahu Wedding Venues for Your Elopement',
-      excerpt: 'Discover the most romantic and picturesque wedding venues across Oahu, from secluded beaches to luxury resorts, perfect for your intimate ceremony.',
+      title: 'Best Honolulu Wedding Venues for Your Elopement',
+      excerpt: 'Discover the most romantic and picturesque wedding venues across Honolulu, from secluded beaches to luxury resorts, perfect for your intimate ceremony.',
       image: 'https://images.unsplash.com/photo-1519225421980-715cb0215aed?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=600&h=300',
       date: 'March 15, 2024',
       readTime: '5 min read',
-      slug: 'best-oahu-wedding-venues',
+      slug: 'best-honolulu-wedding-venues',
     },
     {
       id: '2',
       title: 'Tips for Preparing Your Home for Real Estate Photos',
-      excerpt: 'Learn the essential steps to prepare your property for professional photography, ensuring maximum appeal and faster sales in the competitive Oahu market.',
+      excerpt: 'Learn the essential steps to prepare your property for professional photography, ensuring maximum appeal and faster sales in the competitive Honolulu market.',
       image: 'https://images.unsplash.com/photo-1586023492125-27b2c045efd7?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=600&h=300',
       date: 'March 10, 2024',
       readTime: '7 min read',
@@ -26,12 +26,12 @@ const BlogSection = () => {
     },
     {
       id: '3',
-      title: 'Top 5 Scenic Spots for Family Photos in Oahu',
-      excerpt: 'Explore the most beautiful and family-friendly locations across Oahu for capturing memorable portraits, from hidden beaches to iconic landmarks.',
+      title: 'Top 5 Scenic Spots for Family Photos in Honolulu',
+      excerpt: 'Explore the most beautiful and family-friendly locations across Honolulu for capturing memorable portraits, from hidden beaches to iconic landmarks.',
       image: 'https://images.unsplash.com/photo-1559827260-dc66d52bef19?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=600&h=300',
       date: 'March 5, 2024',
       readTime: '6 min read',
-      slug: 'scenic-family-photo-spots-oahu',
+      slug: 'scenic-family-photo-spots-honolulu',
     },
   ];
 

@@ -289,7 +289,7 @@ const ContactSection = () => {
                 <div className="flex items-center">
                   <i className="fas fa-map-marker-alt text-luxury-gold text-xl w-6"></i>
                   <span className="text-white font-inter ml-4">
-                    Honolulu, Oahu, Hawaii
+                    Honolulu, Hawaii
                   </span>
                 </div>
 

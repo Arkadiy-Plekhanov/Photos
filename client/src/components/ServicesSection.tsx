@@ -9,14 +9,14 @@ const ServicesSection = () => {
     {
       id: 'wedding',
       title: 'Wedding Photography',
-      description: 'Capturing your love story in paradise with cinematic elegance',
-      image: 'https://images.unsplash.com/photo-1519741497674-611481863552?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&h=600',
+      description: 'Capturing your love story in paradise with cinematic elegance and artistic vision',
+      image: 'https://images.unsplash.com/photo-1583939003579-730e3918a45a?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&h=600',
       link: '#contact',
     },
     {
       id: 'real-estate',
       title: 'Real Estate Photography',
-      description: 'Showcasing properties with professional architectural photography',
+      description: 'Showcasing properties with professional architectural photography that sells',
       image: 'https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&h=600',
       link: '#contact',
     },
@@ -50,7 +50,7 @@ const ServicesSection = () => {
             Our <span className="gradient-text">Services</span>
           </h2>
           <p className="text-xl font-inter text-gray-600 max-w-3xl mx-auto">
-            Specializing in capturing life's most precious moments against the stunning backdrop of Oahu
+            Specializing in capturing life's most precious moments against the stunning backdrop of Honolulu
           </p>
         </motion.div>
 
