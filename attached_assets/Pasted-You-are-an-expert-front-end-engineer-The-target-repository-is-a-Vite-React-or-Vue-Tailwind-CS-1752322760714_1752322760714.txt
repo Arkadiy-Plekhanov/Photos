@@ -1,0 +1,65 @@
+You are an expert front‑end engineer. The target repository is a Vite + React (or Vue) + Tailwind CSS project for a photography portfolio website. Apply the following nine enhancements to the codebase:
+
+1. **Hero image preload & stable layout**  
+   - Insert `<link rel="preload" as="image" href="/path/to/hero.jpg">` into `<head>`.  
+   - Ensure the hero `<img>` or background container has explicit `width`/`height` or `aspect-ratio` CSS to prevent layout shifts.
+
+2. **CSS Masonry gallery with hover effect**  
+   - Convert the gallery container to CSS Grid:  
+     ```css
+     .gallery {
+       display: grid;
+       grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+       grid-auto-rows: 8px;
+       gap: 8px;
+     }
+     .gallery img {
+       grid-row: span var(--row-span);
+     }
+     ```  
+   - Add a hover transform and semi‑transparent overlay using Tailwind or plain CSS: scale up images by 1.02 and fade in a dark overlay.
+
+3. **Smooth scrolling & anchor links**  
+   - In global CSS add:  
+     ```css
+     html { scroll-behavior: smooth; }
+     ```  
+   - Ensure “Back to gallery” / “Contact me” buttons use anchor links (`href="#gallery"`) to scroll smoothly.
+
+4. **Sticky header with progress bar**  
+   - Make the `<header>` `position: sticky; top: 0; z-index: 50;`.  
+   - Implement a thin progress bar at the top that fills as the user scrolls (using a few lines of vanilla JS or React hook).
+
+5. **Responsive spacing with Tailwind utilities**  
+   - Replace hard‑coded px margins/paddings with responsive classes like `px-4 md:px-8 lg:px-16`, `py-6 sm:py-8` on all containers.
+
+6. **Consistent typography scale**  
+   - In `tailwind.config.js`, define:  
+     ```js
+     theme: {
+       fontSize: {
+         sm: ['0.875rem', '1.5'],
+         base: ['1rem', '1.75'],
+         lg: ['1.125rem', '1.75'],
+         xl: ['1.25rem', '1.75'],
+       }
+     }
+     ```  
+   - Apply these classes (`text-base`, `text-lg`, etc.) consistently across headings and paragraphs.
+
+7. **Image size reservation & placeholders**  
+   - Ensure every `<img>` has `width` and `height` attributes or `aspect-ratio` CSS.  
+   - Add a blurred low‑res placeholder or CSS spinner until the full image loads.
+
+8. **Purge unused Tailwind classes**  
+   - In `tailwind.config.js`, set:  
+     ```js
+     purge: ['./src/**/*.html', './src/**/*.jsx', './src/**/*.tsx'],
+     ```  
+   - Run the build to strip out unused CSS.
+
+9. **Favicon and theme-color + loading indicator**  
+   - Add `<link rel="icon" href="/favicon.ico">` and `<meta name="theme-color" content="#000000">` in `<head>`.  
+   - Install and configure NProgress (or similar) to show a top progress bar on route changes or page loads.
+
+Generate the exact code changes (file diffs or updated code snippets) needed to implement each item. Output should be ready to commit.  

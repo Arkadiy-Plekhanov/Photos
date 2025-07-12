@@ -32,6 +32,7 @@ const HeroSection = () => {
     <section
       id="home"
       className="relative h-screen flex items-center justify-center overflow-hidden"
+      style={{ aspectRatio: '16/9', minHeight: '100vh' }}
     >
       {/* Background Image Carousel - Stunning Wedding Photography */}
       {heroImages.map((image, index) => (

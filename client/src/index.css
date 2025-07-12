@@ -4,6 +4,54 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Global Smooth Scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Gallery Masonry Grid Enhancement */
+.gallery-masonry {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  grid-auto-rows: 8px;
+  gap: 12px;
+}
+
+.gallery-masonry img {
+  grid-row: span var(--row-span);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.gallery-masonry img:hover {
+  transform: scale(1.02);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+}
+
+/* Scroll Progress Bar */
+.scroll-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, #D4AF37, #FF6B35);
+  transform-origin: 0%;
+  z-index: 999;
+}
+
+/* Image Placeholders */
+.image-placeholder {
+  background: linear-gradient(45deg, #f0f0f0, #e0e0e0);
+  background-size: 200% 200%;
+  animation: shimmer 2s infinite;
+}
+
+@keyframes shimmer {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
 :root {
   --background: hsl(0, 0%, 98%);
   --foreground: hsl(0, 0%, 20%);

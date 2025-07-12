@@ -66,8 +66,8 @@ const PortfolioSection = () => {
   };
 
   return (
-    <section id="portfolio" className="py-20 bg-gray-50" ref={ref}>
-      <div className="container mx-auto px-6">
+    <section id="portfolio" className="py-12 sm:py-16 lg:py-20 bg-gray-50" ref={ref}>
+      <div className="container mx-auto px-4 md:px-8 lg:px-16">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={isIntersecting ? { opacity: 1, y: 0 } : {}}

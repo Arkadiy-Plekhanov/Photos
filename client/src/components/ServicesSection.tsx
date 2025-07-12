@@ -39,8 +39,8 @@ const ServicesSection = () => {
   };
 
   return (
-    <section id="services" className="py-20 bg-white" ref={ref}>
-      <div className="container mx-auto px-6">
+    <section id="services" className="py-12 sm:py-16 lg:py-20 bg-white" ref={ref}>
+      <div className="container mx-auto px-4 md:px-8 lg:px-16">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={isIntersecting ? { opacity: 1, y: 0 } : {}}
@@ -68,6 +68,9 @@ const ServicesSection = () => {
                 src={service.image}
                 alt={service.title}
                 className="w-full h-80 object-cover transition-transform duration-500 group-hover:scale-110"
+                width={800}
+                height={600}
+                style={{ aspectRatio: '4/3' }}
               />
 
               <div className="absolute inset-0 bg-gradient-to-t from-ocean-blue via-transparent to-transparent opacity-80"></div>

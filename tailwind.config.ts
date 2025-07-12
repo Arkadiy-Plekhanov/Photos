@@ -4,6 +4,16 @@ export default {
   darkMode: ["class"],
   content: ["./client/index.html", "./client/src/**/*.{js,jsx,ts,tsx}"],
   theme: {
+    fontSize: {
+      sm: ['0.875rem', '1.5'],
+      base: ['1rem', '1.75'],
+      lg: ['1.125rem', '1.75'],
+      xl: ['1.25rem', '1.75'],
+      '2xl': ['1.5rem', '1.5'],
+      '3xl': ['1.875rem', '1.3'],
+      '4xl': ['2.25rem', '1.2'],
+      '5xl': ['3rem', '1.1'],
+    },
     extend: {
       borderRadius: {
         lg: "var(--radius)",
