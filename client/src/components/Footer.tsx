@@ -18,10 +18,10 @@ const Footer = () => {
       { name: 'FAQ', href: '/faq', type: 'link' },
     ],
     legal: [
-      { name: 'Privacy Policy', href: '#privacy', type: 'anchor' },
-      { name: 'Terms of Service', href: '#terms', type: 'anchor' },
-      { name: 'Cookie Policy', href: '#cookies', type: 'anchor' },
-      { name: 'Licensing', href: '#licensing', type: 'anchor' },
+      { name: 'Privacy Policy', href: '/privacy', type: 'link' },
+      { name: 'Terms of Service', href: '/terms', type: 'link' },
+      { name: 'Cookie Policy', href: '/privacy#cookies', type: 'scroll' },
+      { name: 'Licensing', href: '/terms#licensing', type: 'scroll' },
     ],
   };
 
@@ -33,9 +33,22 @@ const Footer = () => {
 
   const handleSmoothScroll = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
     e.preventDefault();
-    const target = document.querySelector(href);
-    if (target) {
-      target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    // Handle navigation to home page sections
+    if (href.startsWith('/#')) {
+      const sectionId = href.substring(2);
+      window.location.href = '/';
+      // Use setTimeout to allow page to load before scrolling
+      setTimeout(() => {
+        const target = document.getElementById(sectionId);
+        if (target) {
+          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      }, 100);
+    } else if (href.startsWith('#')) {
+      const target = document.querySelector(href);
+      if (target) {
+        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
     }
   };
 
@@ -136,12 +149,19 @@ const Footer = () => {
             <ul className="space-y-2 font-inter text-gray-300">
               {footerLinks.legal.map((link, index) => (
                 <li key={index}>
-                  <a
-                    href={link.href}
-                    className="hover:text-luxury-gold transition-colors"
-                  >
-                    {link.name}
-                  </a>
+                  {link.type === 'link' ? (
+                    <Link href={link.href} className="hover:text-luxury-gold transition-colors">
+                      {link.name}
+                    </Link>
+                  ) : (
+                    <a
+                      href={link.href}
+                      onClick={(e) => handleSmoothScroll(e, link.href)}
+                      className="hover:text-luxury-gold transition-colors"
+                    >
+                      {link.name}
+                    </a>
+                  )}
                 </li>
               ))}
             </ul>
