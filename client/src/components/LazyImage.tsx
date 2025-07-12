@@ -65,6 +65,7 @@ export const LazyImage = ({
     onError?.();
   };
 
+  // Generate LQIP (Low Quality Image Placeholder) with Base64 blur
   const placeholderSrc = blurDataURL || `data:image/svg+xml;base64,${btoa(
     `<svg width="${width || 400}" height="${height || 300}" xmlns="http://www.w3.org/2000/svg">
       <defs>

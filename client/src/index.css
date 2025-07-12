@@ -4,6 +4,37 @@
 @tailwind components;
 @tailwind utilities;
 
+/* CSS Variables for Theming */
+:root {
+  --color-primary: #1a365d;
+  --color-secondary: #D4AF37;
+  --color-accent: #FF6B35;
+  --color-background: #ffffff;
+  --color-surface: #f8fafc;
+  --color-text: #1a202c;
+  --color-text-muted: #718096;
+  --color-border: #e2e8f0;
+}
+
+.dark {
+  --color-primary: #2d3748;
+  --color-secondary: #D4AF37;
+  --color-accent: #FF6B35;
+  --color-background: #1a202c;
+  --color-surface: #2d3748;
+  --color-text: #f7fafc;
+  --color-text-muted: #a0aec0;
+  --color-border: #4a5568;
+}
+
+/* Custom colors using CSS variables */
+.bg-primary { background-color: var(--color-primary); }
+.bg-secondary { background-color: var(--color-secondary); }
+.bg-accent { background-color: var(--color-accent); }
+.text-primary { color: var(--color-primary); }
+.text-secondary { color: var(--color-secondary); }
+.text-accent { color: var(--color-accent); }
+
 /* Global Smooth Scrolling */
 html {
   scroll-behavior: smooth;

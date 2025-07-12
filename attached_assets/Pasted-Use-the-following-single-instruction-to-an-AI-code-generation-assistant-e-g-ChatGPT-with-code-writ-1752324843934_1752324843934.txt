@@ -1,0 +1,47 @@
+Use the following single instruction to an AI code-generation assistant (e.g. ChatGPT with code-writing capabilities) to implement all nine advanced UI/UX “peaks” in your Vite+React (or Vue) + Tailwind CSS photography portfolio project:
+
+```
+You are an expert frontend engineer. The codebase is a Vite + React (or Vue) + Tailwind CSS project living at our GitHub repo root. Implement the nine advanced improvements below, producing ready-to-commit diffs or file contents for each. Do not add any new features beyond these; focus only on improving the existing site structure, performance, accessibility, theming, and SEO.  
+
+1. PWA & Offline Caching  
+   • Create a `manifest.json` with app name, icons, background and theme colors.  
+   • Register a Service Worker (e.g. Workbox) to precache the hero image, CSS, fonts, and gallery assets.  
+   • Ensure the site is installable on desktop and mobile.
+
+2. Critical CSS & Font-Display  
+   • Extract critical “above the fold” CSS into an inline `<style>` in `<head>`.  
+   • Load the rest of Tailwind CSS asynchronously via `<link rel="stylesheet" media="print" onload="this.media='all'">`.  
+   • For all custom fonts (`@font-face`), add `font-display: swap`, and `<link rel="preconnect" href="https://fonts.gstatic.com">`.
+
+3. Retina / High-DPI Image Support  
+   • In your image-optimization pipeline or build, generate 1x, 2x, and 3x versions of each photo (e.g. `hero@1x.jpg`, `hero@2x.jpg`).  
+   • In each `<img>` or `<picture>`, add a responsive `srcset` attribute listing all resolutions so Retina/4K displays load the right file.
+
+4. Skeleton Loading & LQIP Placeholders  
+   • For each gallery image, implement a low-quality placeholder (Base64-encoded tiny blur) or a CSS skeleton box until the full image finishes loading.  
+   • Ensure layout doesn’t shift when the real image replaces the placeholder.
+
+5. Intersection Observer Reveal Animations  
+   • Use the Intersection Observer API to lazily animate each section or gallery item on scroll (e.g. fade-in, slide-up).  
+   • Only trigger animations when elements enter the viewport.
+
+6. JSON-LD Schema.org Markup  
+   • Insert a `<script type="application/ld+json">` in `<head>` defining a `PhotoGallery` object: name, description, and an array of image URLs.  
+   • Validate that the markup follows Schema.org and can produce rich snippets.
+
+7. CSS Variables Theming & Dark Mode  
+   • Refactor your color definitions into CSS custom properties (`--color-primary`, `--color-accent`, etc.) at `:root`.  
+   • Implement a dark-mode toggle by switching a `dark` class on `<html>`, with alternate variable values under `.dark { ... }`.  
+   • Ensure Tailwind utilities respect the CSS variables for colors and backgrounds.
+
+8. Code-Splitting & Dynamic Imports  
+   • Convert the gallery component and the hero section (or any large UI modules) into lazily loaded chunks using `React.lazy`/`Suspense` or Vue’s `defineAsyncComponent`.  
+   • Ensure initial bundle size is minimized and non-critical code loads on demand.
+
+9. Accessibility Audit & Keyboard Navigation  
+   • Run an axe-core audit; fix all critical issues (color contrast, missing `alt`, labels, landmarks).  
+   • Add appropriate `role="img"` and `aria-label` attributes to gallery images.  
+   • Make the gallery lightbox navigable by keyboard (arrow keys to switch images, Esc to close), and ensure focus outlines are visible.
+
+Produce exact code diffs or full updated files implementing each step, ready for review and commit.  
+```

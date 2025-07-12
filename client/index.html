@@ -19,13 +19,44 @@
     <link rel="icon" href="/favicon.ico" />
     <meta name="theme-color" content="#1a365d" />
     
-    <!-- Google Fonts -->
+    <!-- PWA Manifest -->
+    <link rel="manifest" href="/manifest.json" />
+    
+    <!-- Apple Touch Icon -->
+    <link rel="apple-touch-icon" href="/icon-192.png" />
+    
+    <!-- Google Fonts with font-display swap -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&family=Dancing+Script:wght@400;500;600;700&display=swap" rel="stylesheet" />
     
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    
+    <!-- JSON-LD Schema.org Markup -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "PhotoGallery",
+      "name": "Arcadia Photography - Premium Wedding Photography Hawaii",
+      "description": "Professional wedding, real estate, and family photography services in Honolulu, Oahu, Hawaii. Capturing love stories in paradise with luxury photography experiences.",
+      "url": "https://arcadiaphotography.com",
+      "image": [
+        "https://images.unsplash.com/photo-1606800052052-a08af7148866?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80",
+        "https://images.unsplash.com/photo-1583939003579-730e3918a45a?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80",
+        "https://images.unsplash.com/photo-1519741497674-611481863552?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80"
+      ],
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Honolulu",
+        "addressRegion": "HI",
+        "addressCountry": "US"
+      },
+      "telephone": "+1-808-555-0123",
+      "priceRange": "$$$",
+      "openingHours": "Mo-Su 09:00-18:00"
+    }
+    </script>
   </head>
   <body>
     <div id="root"></div>

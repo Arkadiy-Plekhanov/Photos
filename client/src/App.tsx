@@ -4,6 +4,8 @@ import { QueryClientProvider } from "@tanstack/react-query";
 import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import ScrollProgress from "@/components/ScrollProgress";
+import DarkModeToggle from "@/components/DarkModeToggle";
+import { useServiceWorker } from "@/hooks/useServiceWorker";
 import NotFound from "@/pages/not-found";
 import Home from "@/pages/Home";
 import WeddingPage from "@/pages/WeddingPage";
@@ -39,10 +41,13 @@ function Router() {
 }
 
 function App() {
+  useServiceWorker();
+
   return (
     <QueryClientProvider client={queryClient}>
       <TooltipProvider>
         <ScrollProgress />
+        <DarkModeToggle />
         <Toaster />
         <Router />
       </TooltipProvider>

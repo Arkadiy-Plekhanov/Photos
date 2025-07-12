@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useIntersectionObserver } from '../hooks/useIntersectionObserver';
+import AccessibleGallery from './AccessibleGallery';
 import type { PortfolioItem } from '../types';
 
 const PortfolioSection = () => {
@@ -13,36 +14,42 @@ const PortfolioSection = () => {
       title: 'Romantic Beach Wedding Ceremony',
       category: 'wedding',
       image: 'https://images.unsplash.com/photo-1583939003579-730e3918a45a?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=600&h=400',
+      description: 'Capturing the intimate moments of a beach wedding ceremony at sunset in Honolulu.'
     },
     {
       id: '2',
       title: 'Sunset Wedding Silhouette',
       category: 'wedding',
       image: 'https://images.unsplash.com/photo-1606800052052-a08af7148866?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=600&h=400',
+      description: 'Dramatic silhouette photography showcasing the romance of golden hour in Hawaii.'
     },
     {
       id: '3',
       title: 'Intimate Wedding Vows',
       category: 'wedding',
       image: 'https://images.unsplash.com/photo-1519741497674-611481863552?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=600&h=400',
+      description: 'Emotional documentary-style photography of wedding vows exchange.'
     },
     {
       id: '4',
       title: 'Luxury Kitchen Design',
       category: 'real-estate',
       image: 'https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=600&h=400',
+      description: 'Professional architectural photography showcasing modern kitchen design.'
     },
     {
       id: '5',
       title: 'Ocean View Property',
       category: 'real-estate',
       image: 'https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=600&h=400',
+      description: 'Stunning ocean view property photography highlighting Hawaii\'s natural beauty.'
     },
     {
       id: '6',
       title: 'Family Beach Portraits',
       category: 'family',
       image: 'https://images.unsplash.com/photo-1476703993599-0035a21b17a9?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=600&h=400',
+      description: 'Joyful family portrait session capturing authentic moments on Hawaiian beaches.'
     },
   ];
 
@@ -100,32 +107,15 @@ const PortfolioSection = () => {
         </motion.div>
 
         {/* Gallery Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          <AnimatePresence>
-            {filteredItems.map((item, index) => (
-              <motion.div
-                key={item.id}
-                initial={{ opacity: 0, scale: 0.8 }}
-                animate={{ opacity: 1, scale: 1 }}
-                exit={{ opacity: 0, scale: 0.8 }}
-                transition={{ duration: 0.3, delay: index * 0.1 }}
-                className="relative overflow-hidden rounded-xl shadow-lg hover-scale group cursor-pointer"
-              >
-                <img
-                  src={item.image}
-                  alt={item.title}
-                  className="w-full h-64 object-cover transition-transform duration-300 group-hover:scale-110"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-ocean-blue/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                  <i className="fas fa-search-plus text-white text-2xl"></i>
-                </div>
-                <div className="absolute bottom-0 left-0 right-0 p-4 text-white">
-                  <h3 className="text-lg font-playfair font-bold">{item.title}</h3>
-                </div>
-              </motion.div>
-            ))}
-          </AnimatePresence>
-        </div>
+        <AccessibleGallery
+          items={filteredItems.map(item => ({
+            id: item.id,
+            src: item.image,
+            alt: item.title,
+            title: item.title,
+            description: item.description
+          }))}
+        />
 
         <motion.div
           initial={{ opacity: 0, y: 30 }}
