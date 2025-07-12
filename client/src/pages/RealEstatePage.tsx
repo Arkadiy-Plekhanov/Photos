@@ -270,9 +270,11 @@ const RealEstatePage = () => {
                     </li>
                   ))}
                 </ul>
-                <Button className="w-full bg-ocean-blue hover:bg-ocean-blue/90">
-                  Get Started
-                </Button>
+                <Link href="/checkout">
+                  <Button className="w-full bg-ocean-blue hover:bg-ocean-blue/90">
+                    Book This Package
+                  </Button>
+                </Link>
               </Card>
             ))}
           </div>
@@ -374,10 +376,10 @@ const RealEstatePage = () => {
             Professional real estate photography that helps properties sell faster
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Link href="/#contact">
+            <Link href="/checkout">
               <Button size="lg" className="bg-luxury-gold text-ocean-blue hover:bg-sunset-orange">
                 <i className="fas fa-calendar-check mr-2"></i>
-                Schedule a Shoot
+                Book Now
               </Button>
             </Link>
             <Link href="/portfolio">

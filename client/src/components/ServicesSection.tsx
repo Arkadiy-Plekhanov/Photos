@@ -75,12 +75,20 @@ const ServicesSection = () => {
               <div className="absolute bottom-0 left-0 right-0 p-6 text-white">
                 <h3 className="text-2xl font-playfair font-bold mb-2">{service.title}</h3>
                 <p className="font-inter opacity-90 mb-4">{service.description}</p>
-                <Link
-                  href={service.link}
-                  className="inline-flex items-center font-inter font-semibold hover:text-luxury-gold transition-colors"
-                >
-                  Learn More <i className="fas fa-arrow-right ml-2"></i>
-                </Link>
+                <div className="flex flex-col sm:flex-row gap-2">
+                  <Link
+                    href={service.link}
+                    className="inline-flex items-center font-inter font-semibold hover:text-luxury-gold transition-colors"
+                  >
+                    Learn More <i className="fas fa-arrow-right ml-2"></i>
+                  </Link>
+                  <Link
+                    href="/checkout"
+                    className="inline-flex items-center font-inter font-semibold bg-luxury-gold text-ocean-blue px-4 py-2 rounded-lg hover:bg-sunset-orange transition-colors"
+                  >
+                    Book Now <i className="fas fa-calendar-plus ml-2"></i>
+                  </Link>
+                </div>
               </div>
             </motion.div>
           ))}

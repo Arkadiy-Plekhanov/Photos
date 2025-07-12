@@ -238,9 +238,11 @@ const WeddingPage = () => {
                     </li>
                   ))}
                 </ul>
-                <Button className="w-full bg-ocean-blue hover:bg-ocean-blue/90">
-                  Inquire About This Package
-                </Button>
+                <Link href="/checkout">
+                  <Button className="w-full bg-ocean-blue hover:bg-ocean-blue/90">
+                    Book This Package
+                  </Button>
+                </Link>
               </Card>
             ))}
           </div>
@@ -325,10 +327,10 @@ const WeddingPage = () => {
             Let's create beautiful memories of your special day in paradise
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Link href="/#contact">
+            <Link href="/checkout">
               <Button size="lg" className="bg-luxury-gold text-ocean-blue hover:bg-sunset-orange">
                 <i className="fas fa-calendar-alt mr-2"></i>
-                Check Availability
+                Book Now
               </Button>
             </Link>
             <Link href="/portfolio">

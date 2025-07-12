@@ -39,9 +39,10 @@ Preferred communication style: Simple, everyday language.
 ### Database Schema
 - **Users Table**: Basic user authentication (id, username, password)
 - **Contact Submissions Table**: Form submissions with contact details, service requests, and status tracking
+- **Bookings Table**: Payment-enabled bookings with Stripe integration, package details, and booking status tracking
 - **Schema Validation**: Drizzle-Zod integration for type-safe database operations
 - **Database**: PostgreSQL with Neon serverless provider
-- **Storage**: DatabaseStorage class implemented with full CRUD operations
+- **Storage**: DatabaseStorage class implemented with full CRUD operations for all entities
 
 ### Frontend Components
 - **Navigation**: Sticky navigation with scroll-triggered background changes and dropdown menus
@@ -55,7 +56,7 @@ Preferred communication style: Simple, everyday language.
 - **Footer**: Site links and social media integration
 
 ### Pages
-- **Home Page**: Main landing page with all major sections
+- **Home Page**: Main landing page with all major sections and "Book Now" buttons
 - **Wedding Photography Page**: Dedicated page for wedding services with packages, process, and gallery
 - **Real Estate Photography Page**: Professional real estate photography services with pricing and features
 - **Family Photography Page**: Family portrait services with session types and location suggestions
@@ -63,20 +64,30 @@ Preferred communication style: Simple, everyday language.
 - **Portfolio Page**: Full gallery with category filtering (Wedding, Real Estate, Family)
 - **Blog Page**: Photography tips, behind-the-scenes content, and location guides
 - **FAQ Page**: Comprehensive frequently asked questions organized by category
+- **Checkout Page**: Secure payment processing for booking photography services
+- **Booking Success Page**: Confirmation page after successful payment
 
 ### API Endpoints
 - `POST /api/contact` - Submit contact form
 - `GET /api/contact/submissions` - Retrieve all contact submissions (admin)
+- `POST /api/bookings` - Create new booking with payment intent
+- `GET /api/bookings` - Retrieve all bookings (admin)
+- `PATCH /api/bookings/:id/status` - Update booking status
+- `POST /api/create-payment-intent` - Create Stripe payment intent
+- `POST /api/webhooks/stripe` - Handle Stripe webhook events
 
 ## Data Flow
 
 1. **Contact Form Submission**: 
    - User fills out contact form → Frontend validation with Zod → API request to backend → Database storage → Success/error response
    
-2. **Page Rendering**: 
+2. **Payment Processing**: 
+   - User selects service/package → Creates booking → Stripe payment intent created → Secure payment with Stripe Elements → Webhook confirms payment → Booking status updated → Confirmation email sent
+
+3. **Page Rendering**: 
    - Static content loaded immediately → Smooth scroll animations triggered by intersection observer → Dynamic content loaded as needed
 
-3. **State Management**: 
+4. **State Management**: 
    - React Query manages API calls and caching → Form state handled by React Hook Form → UI state managed by React hooks
 
 ## External Dependencies
@@ -89,12 +100,14 @@ Preferred communication style: Simple, everyday language.
 - **HTTP Client**: Fetch API with React Query
 - **Icons**: Font Awesome, Lucide React
 - **Fonts**: Google Fonts (Playfair Display, Inter, Dancing Script)
+- **Payment Processing**: Stripe React SDK, Stripe Elements
 
 ### Backend Dependencies
 - **Server**: Express.js
 - **Database**: Drizzle ORM, PostgreSQL driver
 - **Validation**: Zod for schema validation
 - **Session**: Express-session with connect-pg-simple
+- **Payment Processing**: Stripe Node.js SDK
 - **Development**: tsx for TypeScript execution
 
 ### Build Tools

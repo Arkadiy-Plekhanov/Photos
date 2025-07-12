@@ -14,6 +14,8 @@ import BlogPage from "@/pages/BlogPage";
 import FAQPage from "@/pages/FAQPage";
 import TermsPage from "@/pages/TermsPage";
 import PrivacyPage from "@/pages/PrivacyPage";
+import CheckoutPage from "@/pages/CheckoutPage";
+import BookingSuccessPage from "@/pages/BookingSuccessPage";
 
 function Router() {
   return (
@@ -28,6 +30,8 @@ function Router() {
       <Route path="/faq" component={FAQPage} />
       <Route path="/terms" component={TermsPage} />
       <Route path="/privacy" component={PrivacyPage} />
+      <Route path="/checkout" component={CheckoutPage} />
+      <Route path="/booking-success" component={BookingSuccessPage} />
       <Route component={NotFound} />
     </Switch>
   );

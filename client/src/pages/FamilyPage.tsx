@@ -283,9 +283,11 @@ const FamilyPage = () => {
                     </li>
                   ))}
                 </ul>
-                <Button className="w-full bg-ocean-blue hover:bg-ocean-blue/90">
-                  Book This Session
-                </Button>
+                <Link href="/checkout">
+                  <Button className="w-full bg-ocean-blue hover:bg-ocean-blue/90">
+                    Book This Session
+                  </Button>
+                </Link>
               </Card>
             ))}
           </div>
@@ -401,7 +403,7 @@ const FamilyPage = () => {
             Let's capture your family's unique story in paradise
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Link href="/#contact">
+            <Link href="/checkout">
               <Button size="lg" className="bg-luxury-gold text-ocean-blue hover:bg-sunset-orange">
                 <i className="fas fa-calendar-alt mr-2"></i>
                 Book Your Session
