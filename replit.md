@@ -1,0 +1,117 @@
+# Arcadia Photography Website
+
+## Overview
+
+This is a modern, responsive photography website built for Arcadia Photography, a Oahu-based photography service specializing in weddings, real estate, and family portraits. The application features a sleek single-page design with smooth animations, contact form functionality, and a professional portfolio showcase.
+
+## User Preferences
+
+Preferred communication style: Simple, everyday language.
+
+## System Architecture
+
+### Frontend Architecture
+- **Framework**: React with TypeScript
+- **Build Tool**: Vite for development and production builds
+- **Styling**: Tailwind CSS with custom CSS variables for brand colors
+- **UI Components**: Radix UI primitives with shadcn/ui component library
+- **Animations**: Framer Motion for smooth transitions and scroll-triggered animations
+- **Routing**: Wouter for lightweight client-side routing
+- **State Management**: React Query (TanStack Query) for server state management
+- **Forms**: React Hook Form with Zod validation
+
+### Backend Architecture
+- **Runtime**: Node.js with Express.js
+- **Language**: TypeScript with ES modules
+- **Database**: PostgreSQL with Drizzle ORM
+- **Database Provider**: Neon Database (@neondatabase/serverless)
+- **Session Management**: Connect-pg-simple for PostgreSQL session storage
+- **API Design**: RESTful API with JSON responses
+
+### Design System
+- **Typography**: Multiple Google Fonts (Playfair Display, Inter, Dancing Script)
+- **Color Scheme**: Custom ocean-themed palette with luxury gold accents
+- **Component Library**: shadcn/ui components with Radix UI primitives
+- **Responsive Design**: Mobile-first approach with Tailwind CSS breakpoints
+
+## Key Components
+
+### Database Schema
+- **Users Table**: Basic user authentication (id, username, password)
+- **Contact Submissions Table**: Form submissions with contact details, service requests, and status tracking
+- **Schema Validation**: Drizzle-Zod integration for type-safe database operations
+
+### Frontend Components
+- **Navigation**: Sticky navigation with scroll-triggered background changes
+- **Hero Section**: Full-screen hero with parallax background and call-to-action
+- **Services Section**: Grid layout showcasing photography services
+- **Portfolio Section**: Filterable image gallery with category-based filtering
+- **Testimonials Section**: Customer reviews with star ratings
+- **About Section**: Company information with statistics
+- **Blog Section**: Latest blog posts preview
+- **Contact Section**: Contact form with validation and submission handling
+- **Footer**: Site links and social media integration
+
+### API Endpoints
+- `POST /api/contact` - Submit contact form
+- `GET /api/contact/submissions` - Retrieve all contact submissions (admin)
+
+## Data Flow
+
+1. **Contact Form Submission**: 
+   - User fills out contact form → Frontend validation with Zod → API request to backend → Database storage → Success/error response
+   
+2. **Page Rendering**: 
+   - Static content loaded immediately → Smooth scroll animations triggered by intersection observer → Dynamic content loaded as needed
+
+3. **State Management**: 
+   - React Query manages API calls and caching → Form state handled by React Hook Form → UI state managed by React hooks
+
+## External Dependencies
+
+### Frontend Dependencies
+- **UI Framework**: React, React DOM
+- **Styling**: Tailwind CSS, PostCSS, Autoprefixer
+- **Animations**: Framer Motion
+- **Forms**: React Hook Form, Hookform Resolvers
+- **HTTP Client**: Fetch API with React Query
+- **Icons**: Font Awesome, Lucide React
+- **Fonts**: Google Fonts (Playfair Display, Inter, Dancing Script)
+
+### Backend Dependencies
+- **Server**: Express.js
+- **Database**: Drizzle ORM, PostgreSQL driver
+- **Validation**: Zod for schema validation
+- **Session**: Express-session with connect-pg-simple
+- **Development**: tsx for TypeScript execution
+
+### Build Tools
+- **Bundler**: Vite with React plugin
+- **TypeScript**: Full TypeScript support with strict mode
+- **Database**: Drizzle Kit for migrations
+- **Development**: Replit-specific plugins for runtime error handling
+
+## Deployment Strategy
+
+### Development
+- **Local Development**: `npm run dev` starts both frontend and backend
+- **Database**: Drizzle Kit handles schema migrations with `npm run db:push`
+- **Type Checking**: `npm run check` for TypeScript validation
+
+### Production Build
+- **Frontend**: Vite builds optimized React application to `dist/public`
+- **Backend**: esbuild bundles server code to `dist/index.js`
+- **Database**: PostgreSQL with connection pooling via Neon serverless
+- **Environment**: Requires `DATABASE_URL` environment variable
+
+### Architecture Decisions
+
+1. **Single Page Application**: Chosen for better user experience with smooth transitions and faster navigation
+2. **Drizzle ORM**: Selected for type-safe database operations and excellent TypeScript integration
+3. **Neon Database**: Serverless PostgreSQL provider for easy deployment and scaling
+4. **React Query**: Handles server state management and API caching efficiently
+5. **Tailwind CSS**: Utility-first CSS framework for rapid UI development
+6. **Framer Motion**: Professional-grade animations for enhanced user experience
+7. **Zod Validation**: Schema-first validation for both frontend and backend consistency
+
+The application is designed to be maintainable, scalable, and performant while providing an excellent user experience for potential photography clients.

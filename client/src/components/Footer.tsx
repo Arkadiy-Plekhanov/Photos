@@ -1,0 +1,154 @@
+import { motion } from 'framer-motion';
+
+const Footer = () => {
+  const footerLinks = {
+    services: [
+      { name: 'Wedding Photography', href: '#services' },
+      { name: 'Real Estate Photography', href: '#services' },
+      { name: 'Family Portraits', href: '#services' },
+      { name: 'Commercial Photography', href: '#services' },
+      { name: 'Drone Photography', href: '#services' },
+    ],
+    company: [
+      { name: 'About Us', href: '#about' },
+      { name: 'Portfolio', href: '#portfolio' },
+      { name: 'Blog', href: '#blog' },
+      { name: 'Contact', href: '#contact' },
+      { name: 'FAQ', href: '#faq' },
+    ],
+    legal: [
+      { name: 'Privacy Policy', href: '#privacy' },
+      { name: 'Terms of Service', href: '#terms' },
+      { name: 'Cookie Policy', href: '#cookies' },
+      { name: 'Licensing', href: '#licensing' },
+    ],
+  };
+
+  const socialLinks = [
+    { icon: 'fab fa-instagram', href: '#', label: 'Instagram' },
+    { icon: 'fab fa-facebook', href: '#', label: 'Facebook' },
+    { icon: 'fab fa-pinterest', href: '#', label: 'Pinterest' },
+  ];
+
+  const handleSmoothScroll = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+    e.preventDefault();
+    const target = document.querySelector(href);
+    if (target) {
+      target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  };
+
+  return (
+    <footer className="bg-charcoal text-white py-12">
+      <div className="container mx-auto px-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            viewport={{ once: true }}
+          >
+            <div className="flex items-center space-x-2 mb-4">
+              <i className="fas fa-camera text-2xl text-luxury-gold"></i>
+              <span className="text-2xl font-playfair font-bold">Arcadia Photography</span>
+            </div>
+            <p className="text-gray-300 font-inter mb-4">
+              Creating timeless memories in the heart of paradise. Professional photography services across Oahu, Hawaii.
+            </p>
+            <div className="flex space-x-4">
+              {socialLinks.map((social, index) => (
+                <a
+                  key={index}
+                  href={social.href}
+                  aria-label={social.label}
+                  className="text-gray-300 hover:text-luxury-gold transition-colors"
+                >
+                  <i className={`${social.icon} text-xl`}></i>
+                </a>
+              ))}
+            </div>
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.1 }}
+            viewport={{ once: true }}
+          >
+            <h4 className="text-xl font-playfair font-bold mb-4">Services</h4>
+            <ul className="space-y-2 font-inter text-gray-300">
+              {footerLinks.services.map((link, index) => (
+                <li key={index}>
+                  <a
+                    href={link.href}
+                    onClick={(e) => handleSmoothScroll(e, link.href)}
+                    className="hover:text-luxury-gold transition-colors"
+                  >
+                    {link.name}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+            viewport={{ once: true }}
+          >
+            <h4 className="text-xl font-playfair font-bold mb-4">Company</h4>
+            <ul className="space-y-2 font-inter text-gray-300">
+              {footerLinks.company.map((link, index) => (
+                <li key={index}>
+                  <a
+                    href={link.href}
+                    onClick={(e) => handleSmoothScroll(e, link.href)}
+                    className="hover:text-luxury-gold transition-colors"
+                  >
+                    {link.name}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.3 }}
+            viewport={{ once: true }}
+          >
+            <h4 className="text-xl font-playfair font-bold mb-4">Legal</h4>
+            <ul className="space-y-2 font-inter text-gray-300">
+              {footerLinks.legal.map((link, index) => (
+                <li key={index}>
+                  <a
+                    href={link.href}
+                    className="hover:text-luxury-gold transition-colors"
+                  >
+                    {link.name}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </motion.div>
+        </div>
+
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.4 }}
+          viewport={{ once: true }}
+          className="border-t border-gray-700 mt-8 pt-8 text-center"
+        >
+          <p className="text-gray-300 font-inter">
+            © 2024 Arcadia Photography. All rights reserved. | Licensed & Insured in Hawaii
+          </p>
+        </motion.div>
+      </div>
+    </footer>
+  );
+};
+
+export default Footer;
