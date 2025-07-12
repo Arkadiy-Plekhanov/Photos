@@ -5,8 +5,10 @@ import Footer from '../components/Footer';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Link } from 'wouter';
 import { Button } from '@/components/ui/button';
+import { useSEO } from '../hooks/useSEO';
 
 const PortfolioPage = () => {
+  useSEO('portfolio');
   const [selectedCategory, setSelectedCategory] = useState('all');
 
   const portfolioItems = {

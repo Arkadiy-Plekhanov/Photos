@@ -15,13 +15,13 @@ import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '
 import type { ContactFormData } from '../types';
 
 const contactSchema = z.object({
-  firstName: z.string().min(2, 'First name must be at least 2 characters'),
-  lastName: z.string().min(2, 'Last name must be at least 2 characters'),
-  email: z.string().email('Please enter a valid email address'),
-  phone: z.string().min(10, 'Please enter a valid phone number'),
+  firstName: z.string().min(2, 'First name must be at least 2 characters').max(50, 'First name is too long'),
+  lastName: z.string().min(2, 'Last name must be at least 2 characters').max(50, 'Last name is too long'),
+  email: z.string().email('Please enter a valid email address').max(100, 'Email is too long'),
+  phone: z.string().min(10, 'Please enter a valid phone number').regex(/^[\+\-\s\(\)\d]+$/, 'Please enter a valid phone number'),
   service: z.string().min(1, 'Please select a service'),
   eventDate: z.string().optional(),
-  message: z.string().min(10, 'Message must be at least 10 characters'),
+  message: z.string().min(10, 'Message must be at least 10 characters').max(500, 'Message is too long'),
 });
 
 const ContactSection = () => {

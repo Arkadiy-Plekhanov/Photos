@@ -4,8 +4,10 @@ import Navigation from '../components/Navigation';
 import Footer from '../components/Footer';
 import { Card } from '@/components/ui/card';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
+import { useSEO } from '../hooks/useSEO';
 
 const FAQPage = () => {
+  useSEO('faq');
   const faqCategories = {
     general: {
       title: 'General Questions',

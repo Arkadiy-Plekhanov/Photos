@@ -8,6 +8,15 @@ This is a modern, responsive photography website built for Arcadia Photography, 
 
 Preferred communication style: Simple, everyday language.
 
+## Recent Changes (January 2025)
+
+### SEO & Performance Enhancements
+- **Dynamic SEO System**: Implemented comprehensive SEO management with dynamic title/meta tags for all pages
+- **Mobile Optimization**: Enhanced mobile responsiveness across all components
+- **Performance Improvements**: Added lazy loading system for images with placeholder effects
+- **Contact Form Enhancement**: Improved validation, user experience, and error handling
+- **CTA Optimization**: Enhanced call-to-action buttons with better conversion focus
+
 ## System Architecture
 
 ### Frontend Architecture

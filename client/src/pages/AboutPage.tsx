@@ -4,8 +4,10 @@ import Footer from '../components/Footer';
 import { Card } from '@/components/ui/card';
 import { Link } from 'wouter';
 import { Button } from '@/components/ui/button';
+import { useSEO } from '../hooks/useSEO';
 
 const AboutPage = () => {
+  useSEO('about');
   const awards = [
     { year: '2023', title: 'Hawaii Wedding Photographer of the Year' },
     { year: '2022', title: 'Best Real Estate Photography - Honolulu Magazine' },

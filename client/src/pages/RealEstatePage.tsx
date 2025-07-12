@@ -5,8 +5,10 @@ import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
 import { Link } from 'wouter';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
+import { useSEO } from '../hooks/useSEO';
 
 const RealEstatePage = () => {
+  useSEO('realestate');
   const services = [
     {
       icon: 'fas fa-home',

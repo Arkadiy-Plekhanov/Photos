@@ -3,8 +3,10 @@ import Navigation from '../components/Navigation';
 import Footer from '../components/Footer';
 import { Card } from '@/components/ui/card';
 import { Link } from 'wouter';
+import { useSEO } from '../hooks/useSEO';
 
 const BlogPage = () => {
+  useSEO('blog');
   const blogPosts = [
     {
       id: '1',

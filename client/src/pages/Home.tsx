@@ -7,8 +7,11 @@ import AboutSection from '../components/AboutSection';
 import BlogSection from '../components/BlogSection';
 import ContactSection from '../components/ContactSection';
 import Footer from '../components/Footer';
+import { useSEO } from '../hooks/useSEO';
 
 const Home = () => {
+  useSEO('home');
+  
   return (
     <div className="min-h-screen bg-warm-white text-charcoal overflow-x-hidden">
       <Navigation />
