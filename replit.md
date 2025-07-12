@@ -40,6 +40,8 @@ Preferred communication style: Simple, everyday language.
 - **Users Table**: Basic user authentication (id, username, password)
 - **Contact Submissions Table**: Form submissions with contact details, service requests, and status tracking
 - **Schema Validation**: Drizzle-Zod integration for type-safe database operations
+- **Database**: PostgreSQL with Neon serverless provider
+- **Storage**: DatabaseStorage class implemented with full CRUD operations
 
 ### Frontend Components
 - **Navigation**: Sticky navigation with scroll-triggered background changes
