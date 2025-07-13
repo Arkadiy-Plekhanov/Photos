@@ -1,0 +1,51 @@
+Bugs found: 
+
+
+Nastasia, [12 июл. 2025 в 21:33]
+В разделе Family Portrait Gallery не отображается второе фото: Family portrait 2
+
+В разделе Our Portfolio не отображаются Portfolio image 4, 11, 14
+
+В разделе Weddings - Wedding 4 изображение не отображается
+
+В разделе Real Estate - Real Estate 5 изображение не отображается
+
+Фотографии в разделе Portfolio не увеличиваются при нажатии на «+»
+
+При нажатии на кнопку View Full Portfolio, выбрасывает в контакты💆🏼‍♀️
+
+В разделе Home, где написано Capturing Love Stories in Paradise, отображается стрелочка вниз, но она не нажимается🧐
+
+В разделе Our Portfolio есть кнопочка View Full Size, и при нажатии на неё фото увеличивается незначительно, значит это не полноразмерный формат
+
+В разделе Portfolio > Weddings у тебя среди свадебных фото затесался лего-бетмен🌝
+
+Не отображается фото Wedding 4
+
+В разделе Portfolio > Family > Family 2 - картинка не отображается
+
+Раздел Blog > Latest Stories > Read more - не открывается
+
+Real Estate Portfolio > Commercial > Commercial property 2 - фото не отображается
+
+Раздел Family and Portrait Photography > Family Portrait Gallery > 5 фото - Бэтмен и ещё рядом морская волна (6 фото)
+
+In dark mode “What Our Clients Say” on the main page is now not seen well.
+
+Social media icons throughout the site lead to nowhere due to me not having social media for photography. They’re unnecessary at this point but I like to recover them later. Hide them for now.
+
+Button “book your date” in the hero header leads to “get in touch section” on the main page which doesn’t have a booking option.
+
+“View all posts” button on the main page scrolls up to the top of the same section on the main page not showing  the blog page with the list of all stories.
+
+On Family & Portrait Photography page the bright section in the dark mode has no visible text (mostly same behaviour on the whole website in the bright section in the dark mode)
+
+One of the hero rotating images is out of place showing weird picture
+
+Most links of the top and bottom menus lead to the bottom part of the pages instead of the top.
+
+In portfolio all the pictures have “View Full Size” or “click to view” but they don’t show the full size or are unclickable. Also it would be nice to have some consistency (giving only one option “Click to view” or “View Full Size”
+
+Test all links and see if they actually leading to appropriate place or page according to the architecture of the website. Add missing content.
+
+“Read More” buttons of the blog section are not active (they don’t lead to the full articles).

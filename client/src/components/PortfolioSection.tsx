@@ -1,12 +1,14 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useIntersectionObserver } from '../hooks/useIntersectionObserver';
-
+import { ImageLightbox } from './ImageLightbox';
 import type { PortfolioItem } from '../types';
 
 const PortfolioSection = () => {
   const { ref, isIntersecting } = useIntersectionObserver();
   const [activeFilter, setActiveFilter] = useState<string>('all');
+  const [lightboxOpen, setLightboxOpen] = useState(false);
+  const [lightboxIndex, setLightboxIndex] = useState(0);
 
   const portfolioItems: PortfolioItem[] = [
     {
@@ -119,7 +121,11 @@ const PortfolioSection = () => {
               initial={{ opacity: 0, y: 20 }}
               animate={isIntersecting ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.6, delay: index * 0.1 }}
-              className="group relative overflow-hidden rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-500 transform hover:scale-[1.02] bg-white dark:bg-gray-800"
+              className="group relative overflow-hidden rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-500 transform hover:scale-[1.02] bg-white dark:bg-gray-800 cursor-pointer"
+              onClick={() => {
+                setLightboxIndex(index);
+                setLightboxOpen(true);
+              }}
             >
               <div className="relative aspect-[4/3] overflow-hidden">
                 <img
@@ -143,7 +149,14 @@ const PortfolioSection = () => {
                 {/* Enhanced view icon */}
                 <div className="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-all duration-500 transform translate-y-2 group-hover:translate-y-0">
                   <div className="bg-luxury-gold/90 backdrop-blur-sm rounded-full p-3 shadow-lg">
-                    <i className="fas fa-eye text-ocean-blue text-lg" />
+                    <i className="fas fa-expand-arrows-alt text-ocean-blue text-lg" />
+                  </div>
+                </div>
+                
+                {/* Click to view label */}
+                <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                  <div className="bg-black/70 backdrop-blur-sm rounded-lg px-4 py-2">
+                    <span className="text-white text-sm font-inter font-semibold">View Full Size</span>
                   </div>
                 </div>
                 
@@ -161,13 +174,20 @@ const PortfolioSection = () => {
           className="text-center mt-12"
         >
           <a
-            href="#contact"
-            onClick={(e) => handleSmoothScroll(e, '#contact')}
+            href="/portfolio"
             className="bg-luxury-gold text-ocean-blue px-8 py-4 rounded-full font-inter font-semibold hover:bg-sunset-orange transition-colors duration-300 hover-scale"
           >
             View Full Portfolio
           </a>
         </motion.div>
+        
+        {/* Lightbox */}
+        <ImageLightbox
+          images={filteredItems.map(item => item.image)}
+          isOpen={lightboxOpen}
+          onClose={() => setLightboxOpen(false)}
+          initialIndex={lightboxIndex}
+        />
       </div>
     </section>
   );

@@ -59,7 +59,7 @@ const BlogSection = () => {
               initial={{ opacity: 0, y: 50 }}
               animate={isIntersecting ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.8, delay: index * 0.2 }}
-              className="bg-white rounded-2xl shadow-lg overflow-hidden hover-scale"
+              className="bg-white dark:bg-gray-800 dark:text-white rounded-2xl shadow-lg overflow-hidden hover-scale"
             >
               <img
                 src={post.image}
@@ -75,14 +75,14 @@ const BlogSection = () => {
                   <span>{post.readTime}</span>
                 </div>
 
-                <h3 className="text-xl font-playfair font-bold text-ocean-blue mb-3">
+                <h3 className="text-xl font-playfair font-bold text-ocean-blue dark:text-white mb-3">
                   {post.title}
                 </h3>
 
-                <p className="text-gray-600 font-inter mb-4">{post.excerpt}</p>
+                <p className="text-gray-600 dark:text-gray-300 font-inter mb-4">{post.excerpt}</p>
 
                 <a
-                  href={`#blog/${post.slug}`}
+                  href={`/blog/${post.id}`}
                   className="inline-flex items-center font-inter font-semibold text-luxury-gold hover:text-sunset-orange transition-colors"
                 >
                   Read More <i className="fas fa-arrow-right ml-2"></i>
@@ -99,7 +99,7 @@ const BlogSection = () => {
           className="text-center mt-12"
         >
           <a
-            href="#blog"
+            href="/blog"
             className="bg-luxury-gold text-ocean-blue px-8 py-4 rounded-full font-inter font-semibold hover:bg-sunset-orange transition-colors duration-300 hover-scale"
           >
             View All Posts

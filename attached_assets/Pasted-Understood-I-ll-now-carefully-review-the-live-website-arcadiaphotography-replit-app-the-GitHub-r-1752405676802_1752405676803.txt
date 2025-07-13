@@ -1,0 +1,34 @@
+Understood. I’ll now carefully review the live website (arcadiaphotography.replit.app), the GitHub repository ([https://github.com/Arkadiy-Plekhanov/Photos](https://github.com/Arkadiy-Plekhanov/Photos)), and the bug list and screenshots you provided to compile a single, highly precise prompt. This prompt will instruct an AI developer to fix all bugs and UI issues in one iteration to the highest professional standard.
+
+I’ll notify you once it's ready.
+
+
+# ArcadiaPhotography Frontend Fixes
+
+* **Fix missing images:** Check all gallery image paths (Family Portrait, Portfolio, Weddings, Real Estate) and either supply the correct files or use a generic placeholder image with descriptive `alt` text. Missing images should show a consistent placeholder (e.g. “Image coming soon” with a meaningful description) to maintain layout. Also verify the “Latest Stories” blog section; ensure each “Read more” button correctly links to its full article.
+
+* **Unify gallery labels and implement lightbox:** Standardize all image overlay captions to one phrase (for example “View Full Size”) and remove any “Click to view” variants. Clicking a gallery image or its caption should open that image at full resolution in a modal/lightbox (with proper keyboard focus and close controls) rather than just a minor zoom. Ensure each lightbox image uses its `alt` text and meets accessibility standards.
+
+* **Correct “View Full Portfolio” link:** Update the “View Full Portfolio” button so it scrolls or routes to the Portfolio section/page. It should no longer jump to Contact; instead link to the full portfolio gallery. Verify that the target section ID or route exists and scrolls to its top.
+
+* **Make “Read more” functional:** Fix the Blog section so each “Read more” button navigates to the corresponding blog post page or expands the article. Use a valid `href` or React Router link to the article’s URL.
+
+* **Enable hero arrow click:** Wrap the hero section’s downward arrow (⬇️) in a clickable link or button that scrolls smoothly to the next section (e.g. add an `href="#section-id"` or an onClick handler with `scrollIntoView`). This provides a clear call-to-action to explore below.
+
+* **Align “Book your date” CTA:** The hero’s “Book your date” button should not mislead users. If no booking form exists, rename it to something like “Contact Us” and link to the contact section. If a booking feature is intended, add a simple booking form or reservation component under “Get in Touch.” Ensure the button’s text and target match user expectations.
+
+* **Dark mode contrast fixes:** For sections with a light background or text (e.g. Family & Portrait, “What Our Clients Say”), add Tailwind dark-mode variants to ensure good contrast in dark mode. For example use classes like `bg-white dark:bg-gray-800` and `text-gray-900 dark:text-white`. Verify all text meets WCAG AA contrast (at least 4.5:1 ratio). For instance, change any low-contrast text (like light gray on white) to darker tones or vice versa in dark mode. Use `dark:` prefixes on backgrounds and text to maintain readability.
+
+* **Remove off-theme images:** Delete any irrelevant or broken images from galleries, such as the Lego Batman picture or any stock images not matching Weddings or Family themes. All gallery images should be on-topic.
+
+* **Hide social icons temporarily:** Remove or hide social media icons (e.g. add a `hidden` class or comment them out) so they’re invisible but the code remains for future use. This prevents confusion since the icons currently have no link target.
+
+* **Fix navigation anchors:** Ensure all top and bottom menu links scroll to the correct section anchors. Check that each target section has a matching `id` and adjust link offsets if needed so the section title appears at the top. For example, if a link goes to `#contact`, make sure `id="contact"` is set on the intended element. This prevents scrolling to the very bottom of a section.
+
+* **Improve mobile text visibility:** On small screens, explicitly set text color classes so they don’t blend into the background. Use responsive or universal text color utilities (e.g. `text-black dark:text-white` or `text-gray-700 dark:text-gray-300`) to ensure legibility on all devices. Tailwind’s responsive prefixes (like `sm:` or `md:`) can adjust layout and colors at breakpoints. Verify viewport meta tag is present for mobile scaling.
+
+* **Maintain layout and accessibility:** Do not alter the overall layout or navigation structure more than needed. Follow modern React (or Vue) and Tailwind best practices: use semantic HTML, accessible ARIA attributes (e.g. `aria-label` on icon buttons), and proper focus management in modals. Ensure all images have `alt` text according to Section 508 guidelines (short, relevant descriptions). Make interactive elements keyboard-navigable and screen-reader friendly.
+
+* **General UI polish:** Replace any broken hero slide image with a high-quality, on-brand photo or remove that slide. Ensure all buttons, links, and form fields are styled consistently with Tailwind and that hover/focus states are visible. Use Tailwind’s responsive utility classes to keep the design adaptive and maintain consistent spacing/padding on all screen sizes.
+
+**Summary:** In one commit, update the existing React/Vue + Vite code to fix image paths, implement a working lightbox gallery, correct all navigation links (portfolio, read-more, hero arrow, CTA), improve dark-mode contrast (using `dark:` classes) and mobile text colors, and hide nonfunctional elements. Preserve the current layout; only tweak component code and Tailwind classes to resolve the listed bugs. Ensure the result meets accessibility and responsive design standards (alt text, WCAG contrast, semantic links).

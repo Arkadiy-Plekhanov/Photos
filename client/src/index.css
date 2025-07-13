@@ -88,6 +88,51 @@ html.dark body {
   overflow: hidden;
 }
 
+/* Enhanced dark mode fixes for better contrast */
+.dark {
+  --color-text: #f1f5f9;
+  --color-text-muted: #cbd5e1;
+  --color-background: #0f172a;
+  --color-surface: #1e293b;
+  --color-border: #334155;
+}
+
+/* Ensure proper contrast in dark mode */
+.dark .text-ocean-blue { color: #60a5fa !important; }
+.dark .text-charcoal { color: #f1f5f9 !important; }
+.dark .text-gray-900 { color: #f1f5f9 !important; }
+.dark .text-gray-800 { color: #f1f5f9 !important; }
+.dark .text-gray-700 { color: #e2e8f0 !important; }
+.dark .text-gray-600 { color: #cbd5e1 !important; }
+.dark .text-gray-500 { color: #94a3b8 !important; }
+
+/* Dark mode backgrounds with proper contrast */
+.dark .bg-white { background-color: #1e293b !important; }
+.dark .bg-gray-50 { background-color: #0f172a !important; }
+.dark .bg-gray-100 { background-color: #1e293b !important; }
+.dark .bg-sage-green\/10 { background-color: rgba(30, 41, 59, 0.8) !important; }
+
+/* Ensure testimonial cards are readable in dark mode */
+.dark .glass-effect {
+  background: rgba(30, 41, 59, 0.8) !important;
+  border: 1px solid rgba(148, 163, 184, 0.2) !important;
+}
+
+/* Blog cards dark mode */
+.dark .bg-white .rounded-2xl {
+  background-color: #1e293b !important;
+  color: #f1f5f9 !important;
+}
+
+/* Navigation and footer dark mode improvements */
+.dark nav {
+  background-color: rgba(15, 23, 42, 0.95) !important;
+}
+
+.dark footer {
+  background-color: #0f172a !important;
+}
+
 /* Global Smooth Scrolling */
 html {
   scroll-behavior: smooth;

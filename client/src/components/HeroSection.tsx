@@ -110,8 +110,8 @@ const HeroSection = () => {
             onClick={(e) => handleSmoothScroll(e, '#contact')}
             className="border-2 border-white/80 text-white px-6 sm:px-8 py-3 sm:py-4 rounded-full font-inter font-semibold hover:bg-white hover:text-ocean-blue transition-all duration-300 hover-scale backdrop-blur-sm text-sm sm:text-base"
           >
-            <i className="fas fa-calendar-alt mr-2"></i>
-            Book Your Date
+            <i className="fas fa-envelope mr-2"></i>
+            Get in Touch
           </a>
         </motion.div>
 
@@ -141,7 +141,14 @@ const HeroSection = () => {
         transition={{ duration: 1, delay: 1.4 }}
         className="absolute bottom-8 left-1/2 transform -translate-x-1/2 text-white animate-bounce"
       >
-        <i className="fas fa-chevron-down text-2xl"></i>
+        <a
+          href="#services"
+          onClick={(e) => handleSmoothScroll(e, '#services')}
+          className="text-white hover:text-luxury-gold transition-colors duration-300 cursor-pointer"
+          aria-label="Scroll to services section"
+        >
+          <i className="fas fa-chevron-down text-2xl"></i>
+        </a>
       </motion.div>
     </section>
   );

@@ -60,10 +60,10 @@ const TestimonialsSection = () => {
           transition={{ duration: 0.8 }}
           className="text-center mb-16"
         >
-          <h2 className="text-4xl md:text-5xl font-playfair font-bold text-white mb-4">
+          <h2 className="text-4xl md:text-5xl font-playfair font-bold text-white dark:text-gray-100 mb-4">
             What Our <span className="gradient-text">Clients Say</span>
           </h2>
-          <p className="text-xl font-inter text-gray-300 max-w-3xl mx-auto">
+          <p className="text-xl font-inter text-gray-300 dark:text-gray-300 max-w-3xl mx-auto">
             Stories of love, joy, and cherished memories captured in paradise
           </p>
         </motion.div>
@@ -75,7 +75,7 @@ const TestimonialsSection = () => {
               initial={{ opacity: 0, y: 50 }}
               animate={isIntersecting ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.8, delay: index * 0.2 }}
-              className="testimonial-card rounded-2xl p-8 text-white"
+              className="testimonial-card glass-effect backdrop-blur-sm bg-white/10 dark:bg-gray-800/80 border border-white/20 dark:border-gray-600/30 rounded-2xl p-8 text-white dark:text-gray-100"
             >
               <div className="flex items-center mb-6">
                 <img
@@ -85,11 +85,11 @@ const TestimonialsSection = () => {
                 />
                 <div>
                   <h4 className="font-playfair font-bold text-lg">{testimonial.name}</h4>
-                  <p className="text-sm text-gray-300 font-inter">{testimonial.role}</p>
+                  <p className="text-sm text-gray-300 dark:text-gray-400 font-inter">{testimonial.role}</p>
                 </div>
               </div>
               <div className="flex mb-4">{renderStars(testimonial.rating)}</div>
-              <p className="font-inter text-gray-200 leading-relaxed">{testimonial.text}</p>
+              <p className="font-inter text-gray-200 dark:text-gray-300 leading-relaxed">{testimonial.text}</p>
             </motion.div>
           ))}
         </div>
