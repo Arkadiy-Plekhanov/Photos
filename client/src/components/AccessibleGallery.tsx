@@ -106,7 +106,7 @@ export const AccessibleGallery = ({ items, className }: AccessibleGalleryProps) 
               setFocusedIndex(index);
               openLightbox(index);
             }}
-            className="relative overflow-hidden rounded-xl shadow-lg hover:shadow-xl transition-shadow duration-300 focus:outline-none focus:ring-2 focus:ring-luxury-gold focus:ring-offset-2"
+            className="relative overflow-hidden rounded-xl shadow-lg hover:shadow-xl transition-shadow duration-300 focus:outline-none focus:ring-luxury-gold focus:ring-offset-2"
             whileHover={{ scale: 1.02 }}
             whileTap={{ scale: 0.98 }}
             aria-label={`View ${item.title || item.alt} in lightbox`}
@@ -118,12 +118,12 @@ export const AccessibleGallery = ({ items, className }: AccessibleGalleryProps) 
               width={600}
               height={400}
             />
-            
+
             {/* Hover overlay */}
             <div className="absolute inset-0 bg-black bg-opacity-0 hover:bg-opacity-30 transition-opacity duration-300 flex items-center justify-center">
               <i className="fas fa-search-plus text-white text-2xl opacity-0 hover:opacity-100 transition-opacity duration-300" aria-hidden="true"></i>
             </div>
-            
+
             {/* Title overlay */}
             {item.title && (
               <div className="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-black/80 to-transparent">
@@ -196,7 +196,7 @@ export const AccessibleGallery = ({ items, className }: AccessibleGalleryProps) 
                 className="max-w-full max-h-full object-contain"
                 priority
               />
-              
+
               {/* Image info */}
               {(items[selectedIndex].title || items[selectedIndex].description) && (
                 <div className="absolute bottom-4 left-4 right-4 text-white">
@@ -222,3 +222,4 @@ export const AccessibleGallery = ({ items, className }: AccessibleGalleryProps) 
 };
 
 export default AccessibleGallery;
+```
