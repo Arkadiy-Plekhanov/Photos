@@ -80,6 +80,14 @@ html.dark body {
 .dark .bg-sage-green\/10 { background-color: rgba(45, 55, 72, 0.5) !important; }
 .dark .bg-gray-50 { background-color: var(--color-surface) !important; }
 
+/* Text truncation utility */
+.line-clamp-2 {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
 /* Global Smooth Scrolling */
 html {
   scroll-behavior: smooth;

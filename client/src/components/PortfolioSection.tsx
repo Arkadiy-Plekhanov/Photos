@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useIntersectionObserver } from '../hooks/useIntersectionObserver';
-import AccessibleGallery from './AccessibleGallery';
+
 import type { PortfolioItem } from '../types';
 
 const PortfolioSection = () => {
@@ -107,15 +107,52 @@ const PortfolioSection = () => {
         </motion.div>
 
         {/* Gallery Grid */}
-        <AccessibleGallery
-          items={filteredItems.map(item => ({
-            id: item.id,
-            src: item.image,
-            alt: item.title,
-            title: item.title,
-            description: item.description
-          }))}
-        />
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          animate={isIntersecting ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.8, delay: 0.2 }}
+          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8"
+        >
+          {filteredItems.map((item, index) => (
+            <motion.div
+              key={item.id}
+              initial={{ opacity: 0, y: 20 }}
+              animate={isIntersecting ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.6, delay: index * 0.1 }}
+              className="group relative overflow-hidden rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-500 transform hover:scale-[1.02] bg-white dark:bg-gray-800"
+            >
+              <div className="relative aspect-[4/3] overflow-hidden">
+                <img
+                  src={item.image}
+                  alt={item.title}
+                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                  loading="lazy"
+                />
+                
+                {/* Elegant overlay with better gradient */}
+                <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                
+                {/* Content overlay with better positioning */}
+                <div className="absolute bottom-0 left-0 right-0 p-4 md:p-6 text-white transform translate-y-8 group-hover:translate-y-0 transition-transform duration-500">
+                  <h3 className="text-lg md:text-xl font-playfair font-semibold mb-2 leading-tight">{item.title}</h3>
+                  {item.description && (
+                    <p className="text-sm font-inter text-gray-200 opacity-90 line-clamp-2">{item.description}</p>
+                  )}
+                </div>
+                
+                {/* Enhanced view icon */}
+                <div className="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-all duration-500 transform translate-y-2 group-hover:translate-y-0">
+                  <div className="bg-luxury-gold/90 backdrop-blur-sm rounded-full p-3 shadow-lg">
+                    <i className="fas fa-eye text-ocean-blue text-lg" />
+                  </div>
+                </div>
+                
+                {/* Bottom accent line */}
+                <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-luxury-gold to-sunset-orange transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500" />
+              </div>
+            </motion.div>
+          ))}
+        </motion.div>
 
         <motion.div
           initial={{ opacity: 0, y: 30 }}
