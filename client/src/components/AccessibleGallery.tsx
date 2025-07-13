@@ -222,4 +222,3 @@ export const AccessibleGallery = ({ items, className }: AccessibleGalleryProps) 
 };
 
 export default AccessibleGallery;
-```
