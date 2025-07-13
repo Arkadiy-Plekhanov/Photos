@@ -50,7 +50,7 @@ const PortfolioPage = () => {
   return (
     <div className="min-h-screen bg-warm-white">
       <Navigation />
-      
+
       {/* Hero Section */}
       <section className="relative h-[40vh] flex items-center justify-center overflow-hidden">
         <div
@@ -123,25 +123,31 @@ const PortfolioPage = () => {
               ))}
             </TabsContent>
 
-            <TabsContent value="wedding" className="grid grid-cols-1 md:grid-cols-3 gap-4">
+            <TabsContent value="wedding" className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               {portfolioItems.wedding.map((image, index) => (
                 <motion.div
                   key={`wedding-${index}`}
                   initial={{ opacity: 0, scale: 0.95 }}
                   animate={{ opacity: 1, scale: 1 }}
                   transition={{ duration: 0.5, delay: index * 0.05 }}
-                  whileHover={{ scale: 1.05 }}
-                  className="relative aspect-[4/3] overflow-hidden rounded-lg shadow-lg cursor-pointer group"
+                  whileHover={{ scale: 1.02 }}
+                  className="relative aspect-[4/3] overflow-hidden rounded-xl shadow-lg cursor-pointer group bg-white"
                 >
                   <img 
                     src={image} 
-                    alt={`Wedding ${index + 1}`} 
-                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                    alt={`Wedding photo ${index + 1}`} 
+                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                    loading="lazy"
+                    onError={(e) => {
+                      const target = e.target as HTMLImageElement;
+                      target.src = 'https://via.placeholder.com/800x600?text=Wedding+Photo';
+                    }}
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-4">
-                    <button className="text-white text-sm">
-                      <i className="fas fa-expand mr-2"></i>View Full Size
-                    </button>
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-all duration-300 flex items-end p-4">
+                    <div className="text-white">
+                      <p className="text-sm font-medium mb-1">Wedding Photo</p>
+                      <p className="text-xs opacity-80">Click to view</p>
+                    </div>
                   </div>
                 </motion.div>
               ))}
