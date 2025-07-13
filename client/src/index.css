@@ -133,6 +133,41 @@ html.dark body {
   background-color: #0f172a !important;
 }
 
+/* Fix bright section text visibility in dark mode */
+.dark .py-20.bg-white {
+  background-color: #1e293b !important;
+}
+
+.dark .py-20.bg-gray-50 {
+  background-color: #0f172a !important;
+}
+
+.dark .py-20.bg-sage-green\/10 {
+  background-color: rgba(15, 23, 42, 0.8) !important;
+}
+
+/* Family page specific fixes */
+.dark .bg-warm-white {
+  background-color: #0f172a !important;
+}
+
+.dark .bg-sage-green\/5 {
+  background-color: rgba(15, 23, 42, 0.5) !important;
+}
+
+/* Ensure all text is visible in dark mode */
+.dark .text-gray-900 {
+  color: #f8fafc !important;
+}
+
+.dark .text-gray-800 {
+  color: #f1f5f9 !important;
+}
+
+.dark .text-gray-700 {
+  color: #e2e8f0 !important;
+}
+
 /* Global Smooth Scrolling */
 html {
   scroll-behavior: smooth;

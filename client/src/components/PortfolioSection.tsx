@@ -37,7 +37,7 @@ const PortfolioSection = () => {
       title: 'Luxury Kitchen Design',
       category: 'real-estate',
       image: 'https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=600&h=400',
-      description: 'Professional architectural photography showcasing modern kitchen design.'
+      description: 'Professional architectural photography showcasing luxury home interiors for real estate marketing.'
     },
     {
       id: '5',
@@ -156,7 +156,7 @@ const PortfolioSection = () => {
                 {/* Click to view label */}
                 <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-500">
                   <div className="bg-black/70 backdrop-blur-sm rounded-lg px-4 py-2">
-                    <span className="text-white text-sm font-inter font-semibold">View Full Size</span>
+                    <span className="text-white text-sm font-inter font-semibold">Click to View</span>
                   </div>
                 </div>
                 

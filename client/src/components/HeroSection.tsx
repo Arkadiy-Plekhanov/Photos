@@ -106,12 +106,11 @@ const HeroSection = () => {
             View Wedding Gallery
           </a>
           <a
-            href="#contact"
-            onClick={(e) => handleSmoothScroll(e, '#contact')}
+            href="/checkout"
             className="border-2 border-white/80 text-white px-6 sm:px-8 py-3 sm:py-4 rounded-full font-inter font-semibold hover:bg-white hover:text-ocean-blue transition-all duration-300 hover-scale backdrop-blur-sm text-sm sm:text-base"
           >
-            <i className="fas fa-envelope mr-2"></i>
-            Get in Touch
+            <i className="fas fa-calendar-check mr-2"></i>
+            Book Your Date
           </a>
         </motion.div>
 
