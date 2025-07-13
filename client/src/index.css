@@ -27,6 +27,17 @@
   --color-border: #4a5568;
 }
 
+/* Apply dark theme to body and html */
+html.dark {
+  background-color: var(--color-background);
+  color: var(--color-text);
+}
+
+html.dark body {
+  background-color: var(--color-background);
+  color: var(--color-text);
+}
+
 /* Custom colors using CSS variables */
 .bg-primary { background-color: var(--color-primary); }
 .bg-secondary { background-color: var(--color-secondary); }
@@ -34,6 +45,40 @@
 .text-primary { color: var(--color-primary); }
 .text-secondary { color: var(--color-secondary); }
 .text-accent { color: var(--color-accent); }
+
+/* Dark mode specific styles */
+.dark .bg-white { background-color: var(--color-surface) !important; }
+.dark .text-black { color: var(--color-text) !important; }
+.dark .text-gray-900 { color: var(--color-text) !important; }
+.dark .text-gray-800 { color: var(--color-text) !important; }
+.dark .text-gray-600 { color: var(--color-text-muted) !important; }
+.dark .bg-gray-50 { background-color: var(--color-surface) !important; }
+.dark .bg-gray-100 { background-color: var(--color-surface) !important; }
+.dark .border-gray-200 { border-color: var(--color-border) !important; }
+
+/* Ensure all sections have proper dark mode backgrounds */
+.dark section { background-color: transparent; }
+.dark body { 
+  background-color: var(--color-background); 
+  color: var(--color-text);
+}
+
+/* Text colors for dark mode */
+.dark h1, .dark h2, .dark h3, .dark h4, .dark h5, .dark h6 {
+  color: var(--color-text);
+}
+
+.dark p, .dark span, .dark div {
+  color: var(--color-text);
+}
+
+/* Override specific text colors */
+.dark .text-ocean-blue { color: #60a5fa !important; }
+.dark .text-charcoal { color: var(--color-text) !important; }
+
+/* Card and component backgrounds */
+.dark .bg-sage-green\/10 { background-color: rgba(45, 55, 72, 0.5) !important; }
+.dark .bg-gray-50 { background-color: var(--color-surface) !important; }
 
 /* Global Smooth Scrolling */
 html {

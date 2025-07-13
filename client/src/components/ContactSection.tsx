@@ -74,10 +74,10 @@ const ContactSection = () => {
   ];
 
   return (
-    <section id="contact" className="py-20 bg-ocean-blue relative overflow-hidden" ref={ref}>
+    <section id="contact" className="py-20 bg-ocean-blue dark:bg-gray-900 relative overflow-hidden" ref={ref}>
       {/* Background Image */}
       <div
-        className="absolute inset-0 opacity-10"
+        className="absolute inset-0 opacity-10 dark:opacity-5"
         style={{
           backgroundImage: `url('https://images.unsplash.com/photo-1439066615861-d1af74d74000?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80')`,
           backgroundSize: 'cover',
@@ -92,10 +92,10 @@ const ContactSection = () => {
           transition={{ duration: 0.8 }}
           className="text-center mb-16"
         >
-          <h2 className="text-4xl md:text-5xl font-playfair font-bold text-white mb-4">
+          <h2 className="text-4xl md:text-5xl font-playfair font-bold text-white dark:text-gray-100 mb-4">
             Let's Create <span className="gradient-text">Magic Together</span>
           </h2>
-          <p className="text-xl font-inter text-gray-300 max-w-3xl mx-auto">
+          <p className="text-xl font-inter text-gray-300 dark:text-gray-300 max-w-3xl mx-auto">
             Ready to capture your story in paradise? Get in touch to discuss your photography needs.
           </p>
         </motion.div>

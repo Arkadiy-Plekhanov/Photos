@@ -46,10 +46,12 @@ function App() {
   return (
     <QueryClientProvider client={queryClient}>
       <TooltipProvider>
-        <ScrollProgress />
-        <DarkModeToggle />
-        <Toaster />
-        <Router />
+        <div className="min-h-screen bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100">
+          <ScrollProgress />
+          <DarkModeToggle />
+          <Toaster />
+          <Router />
+        </div>
       </TooltipProvider>
     </QueryClientProvider>
   );

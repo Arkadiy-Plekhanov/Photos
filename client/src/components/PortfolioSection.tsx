@@ -73,7 +73,7 @@ const PortfolioSection = () => {
   };
 
   return (
-    <section id="portfolio" className="py-12 sm:py-16 lg:py-20 bg-gray-50" ref={ref}>
+    <section id="portfolio" className="py-12 sm:py-16 lg:py-20 bg-gray-50 dark:bg-gray-800" ref={ref}>
       <div className="container mx-auto px-4 md:px-8 lg:px-16">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -81,10 +81,10 @@ const PortfolioSection = () => {
           transition={{ duration: 0.8 }}
           className="text-center mb-16"
         >
-          <h2 className="text-4xl md:text-5xl font-playfair font-bold text-ocean-blue mb-4">
+          <h2 className="text-4xl md:text-5xl font-playfair font-bold text-ocean-blue dark:text-white mb-4">
             Our <span className="gradient-text">Portfolio</span>
           </h2>
-          <p className="text-xl font-inter text-gray-600 max-w-3xl mx-auto mb-8">
+          <p className="text-xl font-inter text-gray-600 dark:text-gray-300 max-w-3xl mx-auto mb-8">
             A curated collection of our finest work capturing the beauty of Honolulu
           </p>
 
@@ -96,8 +96,8 @@ const PortfolioSection = () => {
                 onClick={() => setActiveFilter(filter.key)}
                 className={`px-6 py-3 rounded-full font-inter font-semibold transition-colors duration-300 ${
                   activeFilter === filter.key
-                    ? 'bg-luxury-gold text-ocean-blue'
-                    : 'bg-white text-ocean-blue hover:bg-luxury-gold'
+                    ? 'bg-luxury-gold text-ocean-blue dark:text-ocean-blue'
+                    : 'bg-white dark:bg-gray-700 text-ocean-blue dark:text-white hover:bg-luxury-gold dark:hover:bg-luxury-gold'
                 }`}
               >
                 {filter.label}

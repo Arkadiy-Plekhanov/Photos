@@ -39,7 +39,7 @@ const ServicesSection = () => {
   };
 
   return (
-    <section id="services" className="py-12 sm:py-16 lg:py-20 bg-white" ref={ref}>
+    <section id="services" className="py-12 sm:py-16 lg:py-20 bg-white dark:bg-gray-900" ref={ref}>
       <div className="container mx-auto px-4 md:px-8 lg:px-16">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -47,10 +47,10 @@ const ServicesSection = () => {
           transition={{ duration: 0.8 }}
           className="text-center mb-16"
         >
-          <h2 className="text-4xl md:text-5xl font-playfair font-bold text-ocean-blue mb-4">
+          <h2 className="text-4xl md:text-5xl font-playfair font-bold text-ocean-blue dark:text-white mb-4">
             Our <span className="gradient-text">Services</span>
           </h2>
-          <p className="text-xl font-inter text-gray-600 max-w-3xl mx-auto">
+          <p className="text-xl font-inter text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
             Specializing in capturing life's most precious moments against the stunning backdrop of Honolulu
           </p>
         </motion.div>

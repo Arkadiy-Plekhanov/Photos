@@ -31,7 +31,7 @@ const HeroSection = () => {
   return (
     <section
       id="home"
-      className="relative h-screen flex items-center justify-center overflow-hidden pt-16"
+      className="relative h-screen flex items-center justify-center overflow-hidden pt-16 dark:bg-gray-900"
       style={{ minHeight: '100vh' }}
     >
       {/* Background Image Carousel - Stunning Wedding Photography */}
@@ -55,7 +55,7 @@ const HeroSection = () => {
       <div className="absolute inset-0 bg-gradient-to-b from-ocean-blue/40 via-transparent to-ocean-blue/60" />
 
       {/* Content */}
-      <div className="relative z-10 text-center text-white px-4 sm:px-6 max-w-6xl mx-auto">
+      <div className="relative z-10 text-center text-white dark:text-gray-100 px-4 sm:px-6 max-w-6xl mx-auto">
         <motion.div
           initial={{ opacity: 0, scale: 0.9 }}
           animate={{ opacity: 1, scale: 1 }}
