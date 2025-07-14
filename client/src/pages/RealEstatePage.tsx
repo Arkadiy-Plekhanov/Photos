@@ -6,6 +6,7 @@ import { Card } from '@/components/ui/card';
 import { Link } from 'wouter';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { useSEO } from '../hooks/useSEO';
+import Gallery from '../components/Gallery';
 
 const RealEstatePage = () => {
   useSEO('realestate');

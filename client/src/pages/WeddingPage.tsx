@@ -6,6 +6,7 @@ import { Card } from '@/components/ui/card';
 import { Link } from 'wouter';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { useSEO } from '../hooks/useSEO';
+import Gallery from '../components/Gallery';
 
 const WeddingPage = () => {
   useSEO('wedding');
@@ -342,6 +343,12 @@ const WeddingPage = () => {
               </Button>
             </Link>
           </div>
+        </div>
+      </section>
+
+      <section id="portfolio" className="py-16 px-6">
+        <div className="max-w-7xl mx-auto">
+          <Gallery items={weddingGallery} />
         </div>
       </section>
 
