@@ -5,7 +5,6 @@ import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
 import { Link } from 'wouter';
 import { useSEO } from '../hooks/useSEO';
-import Gallery from '../components/Gallery';
 
 const FamilyPage = () => {
   useSEO('family');

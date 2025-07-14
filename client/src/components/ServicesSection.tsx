@@ -2,10 +2,8 @@ import { motion } from 'framer-motion';
 import { useIntersectionObserver } from '../hooks/useIntersectionObserver';
 import type { Service } from '../types';
 import { Link } from 'wouter';
-import { useState } from 'react';
 
 const ServicesSection = () => {
-  const [brokenImages, setBrokenImages] = useState<string[]>([]);
   const { ref, isIntersecting } = useIntersectionObserver();
 
   const services: Service[] = [
@@ -66,21 +64,14 @@ const ServicesSection = () => {
               transition={{ duration: 0.8, delay: index * 0.2 }}
               className="group relative overflow-hidden rounded-2xl shadow-2xl hover-scale"
             >
-              {!brokenImages.includes(service.image) ? (
-                <img
-                  src={service.image}
-                  alt={service.title || ''}
-                  className="w-full h-80 object-cover transition-transform duration-500 group-hover:scale-110"
-                  width={800}
-                  height={600}
-                  style={{ aspectRatio: '4/3' }}
-                  onError={() => setBrokenImages((prev: string[]) => [...prev, service.image])}
-                />
-              ) : (
-                <div className="w-full h-80 flex items-center justify-center bg-gray-200 dark:bg-gray-700">
-                  <span className="text-gray-500 dark:text-gray-300">Image unavailable</span>
-                </div>
-              )}
+              <img
+                src={service.image}
+                alt={service.title}
+                className="w-full h-80 object-cover transition-transform duration-500 group-hover:scale-110"
+                width={800}
+                height={600}
+                style={{ aspectRatio: '4/3' }}
+              />
 
               <div className="absolute inset-0 bg-gradient-to-t from-ocean-blue via-transparent to-transparent opacity-80"></div>
 
@@ -92,13 +83,13 @@ const ServicesSection = () => {
                     href={service.link}
                     className="inline-flex items-center font-inter font-semibold hover:text-luxury-gold transition-colors"
                   >
-                    Learn More <i className="fas fa-arrow-right ml-2" aria-hidden="true"></i>
+                    Learn More <i className="fas fa-arrow-right ml-2"></i>
                   </Link>
                   <Link
                     href="/checkout"
                     className="inline-flex items-center font-inter font-semibold bg-luxury-gold text-ocean-blue px-4 py-2 rounded-lg hover:bg-sunset-orange transition-colors"
                   >
-                    Book Now <i className="fas fa-calendar-plus ml-2" aria-hidden="true"></i>
+                    Book Now <i className="fas fa-calendar-plus ml-2"></i>
                   </Link>
                 </div>
               </div>

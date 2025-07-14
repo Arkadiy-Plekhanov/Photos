@@ -1,14 +1,11 @@
 import { motion } from 'framer-motion';
 import { useIntersectionObserver } from '../hooks/useIntersectionObserver';
-import { Link } from 'wouter';
-import { useState } from 'react';
+import type { BlogPost } from '../types';
 
 const BlogSection = () => {
   const { ref, isIntersecting } = useIntersectionObserver();
 
-  const [activeFilter, setActiveFilter] = useState<string>('all');
-
-  const blogPosts = [
+  const blogPosts: BlogPost[] = [
     {
       id: '1',
       title: 'Best Honolulu Wedding Venues for Your Elopement',
@@ -17,7 +14,6 @@ const BlogSection = () => {
       date: 'March 15, 2024',
       readTime: '5 min read',
       slug: 'best-honolulu-wedding-venues',
-      category: 'wedding',
     },
     {
       id: '2',
@@ -27,7 +23,6 @@ const BlogSection = () => {
       date: 'March 10, 2024',
       readTime: '7 min read',
       slug: 'real-estate-photo-prep-tips',
-      category: 'real-estate',
     },
     {
       id: '3',
@@ -37,20 +32,8 @@ const BlogSection = () => {
       date: 'March 5, 2024',
       readTime: '6 min read',
       slug: 'scenic-family-photo-spots-honolulu',
-      category: 'family',
     },
   ];
-
-  const filters = [
-    { key: 'all', label: 'All' },
-    { key: 'wedding', label: 'Wedding Tips' },
-    { key: 'real-estate', label: 'Real Estate' },
-    { key: 'family', label: 'Family' },
-  ];
-
-  const filteredPosts = activeFilter === 'all'
-    ? blogPosts
-    : blogPosts.filter(post => post.category === activeFilter);
 
   return (
     <section id="blog" className="py-20 bg-gray-50" ref={ref}>
@@ -67,27 +50,10 @@ const BlogSection = () => {
           <p className="text-xl font-inter text-gray-600 max-w-3xl mx-auto">
             Photography tips, location guides, and behind-the-scenes stories from our adventures in paradise
           </p>
-
-          {/* Filter Buttons */}
-          <div className="flex flex-wrap justify-center gap-4 mt-8">
-            {filters.map(filter => (
-              <button
-                key={filter.key}
-                onClick={() => setActiveFilter(filter.key)}
-                className={`px-6 py-3 rounded-full font-inter font-semibold transition-colors duration-300 ${
-                  activeFilter === filter.key
-                    ? 'bg-luxury-gold text-ocean-blue'
-                    : 'bg-white text-ocean-blue hover:bg-luxury-gold'
-                }`}
-              >
-                {filter.label}
-              </button>
-            ))}
-          </div>
         </motion.div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {filteredPosts.map((post, index) => (
+          {blogPosts.map((post, index) => (
             <motion.article
               key={post.id}
               initial={{ opacity: 0, y: 50 }}
@@ -99,12 +65,11 @@ const BlogSection = () => {
                 src={post.image}
                 alt={post.title}
                 className="w-full h-48 object-cover"
-                loading="lazy"
               />
 
               <div className="p-6">
                 <div className="flex items-center text-sm text-gray-500 mb-3">
-                  <i className="fas fa-calendar-alt mr-2" aria-hidden="true"></i>
+                  <i className="fas fa-calendar-alt mr-2"></i>
                   <span>{post.date}</span>
                   <span className="mx-2">•</span>
                   <span>{post.readTime}</span>
@@ -116,12 +81,12 @@ const BlogSection = () => {
 
                 <p className="text-gray-600 dark:text-gray-300 font-inter mb-4">{post.excerpt}</p>
 
-                <Link
-                  href={`/blog/${post.slug}`}
+                <a
+                  href={`/blog/${post.id}`}
                   className="inline-flex items-center font-inter font-semibold text-luxury-gold hover:text-sunset-orange transition-colors"
                 >
-                  Read More <i className="fas fa-arrow-right ml-2" aria-hidden="true"></i>
-                </Link>
+                  Read More <i className="fas fa-arrow-right ml-2"></i>
+                </a>
               </div>
             </motion.article>
           ))}
@@ -133,12 +98,12 @@ const BlogSection = () => {
           transition={{ duration: 0.8, delay: 0.4 }}
           className="text-center mt-12"
         >
-          <Link
+          <a
             href="/blog"
             className="bg-luxury-gold text-ocean-blue px-8 py-4 rounded-full font-inter font-semibold hover:bg-sunset-orange transition-colors duration-300 hover-scale"
           >
             View All Posts
-          </Link>
+          </a>
         </motion.div>
       </div>
     </section>
