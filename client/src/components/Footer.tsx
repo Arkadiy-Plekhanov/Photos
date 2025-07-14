@@ -69,11 +69,7 @@ const Footer = () => {
             <p className="text-gray-300 font-inter mb-4">
               Creating timeless memories in the heart of paradise. Professional photography services across Honolulu, Hawaii.
             </p>
-            <div className="text-gray-400 text-sm">
-              <p>Social media coming soon</p>
-            </div>
-            {/* Social media icons temporarily hidden */}
-            <div className="hidden">
+            <div className="flex space-x-4">
               {socialLinks.map((social, index) => (
                 <a
                   key={index}
