@@ -154,10 +154,25 @@ const WeddingPage = () => {
             Wedding Portfolio
           </h2>
           <Tabs defaultValue="beach" className="w-full">
-            <TabsList className="grid w-full grid-cols-3 max-w-md mx-auto mb-8 bg-gray-100 rounded-lg p-1">
-              <TabsTrigger value="beach" className="data-[state=active]:bg-white data-[state=active]:text-ocean-blue">Beach Weddings</TabsTrigger>
-              <TabsTrigger value="resort" className="data-[state=active]:bg-white data-[state=active]:text-ocean-blue">Resort Weddings</TabsTrigger>
-              <TabsTrigger value="garden" className="data-[state=active]:bg-white data-[state=active]:text-ocean-blue">Garden Weddings</TabsTrigger>
+            <TabsList className="grid w-full grid-cols-3 max-w-md mx-auto mb-8 bg-gray-100 rounded-lg p-1 gap-1">
+              <TabsTrigger 
+                value="beach" 
+                className="px-4 py-2 text-sm font-medium rounded-md transition-all data-[state=active]:bg-white data-[state=active]:text-ocean-blue data-[state=active]:shadow-sm"
+              >
+                Beach Weddings
+              </TabsTrigger>
+              <TabsTrigger 
+                value="resort" 
+                className="px-4 py-2 text-sm font-medium rounded-md transition-all data-[state=active]:bg-white data-[state=active]:text-ocean-blue data-[state=active]:shadow-sm"
+              >
+                Resort Weddings
+              </TabsTrigger>
+              <TabsTrigger 
+                value="garden" 
+                className="px-4 py-2 text-sm font-medium rounded-md transition-all data-[state=active]:bg-white data-[state=active]:text-ocean-blue data-[state=active]:shadow-sm"
+              >
+                Garden Weddings
+              </TabsTrigger>
             </TabsList>
             <TabsContent value="beach" className="grid grid-cols-1 md:grid-cols-3 gap-4">
               {weddingGallery.slice(0, 3).map((image, index) => (
