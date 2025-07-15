@@ -16,6 +16,7 @@ import AboutPage from "@/pages/AboutPage";
 import PortfolioPage from "@/pages/PortfolioPage";
 import BlogPage from "@/pages/BlogPage";
 import BlogPostPage from "@/pages/BlogPostPage";
+import ContactPage from "@/pages/ContactPage";
 import FAQPage from "@/pages/FAQPage";
 import TermsPage from "@/pages/TermsPage";
 import PrivacyPage from "@/pages/PrivacyPage";
@@ -33,6 +34,7 @@ function Router() {
       <Route path="/portfolio" component={PortfolioPage} />
       <Route path="/blog" component={BlogPage} />
       <Route path="/blog/:id" component={BlogPostPage} />
+      <Route path="/contact" component={ContactPage} />
       <Route path="/faq" component={FAQPage} />
       <Route path="/terms" component={TermsPage} />
       <Route path="/privacy" component={PrivacyPage} />
