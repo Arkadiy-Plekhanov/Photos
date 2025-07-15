@@ -10,50 +10,80 @@ const PortfolioSection = () => {
   const [lightboxOpen, setLightboxOpen] = useState(false);
   const [lightboxIndex, setLightboxIndex] = useState(0);
 
+  // Фильтрация off-topic/placeholder изображений
+  const offTopicImages = [
+    'batman', 'ocean wave', 'placeholder', 'sample', 'test', 'dummy'
+  ];
   const portfolioItems: PortfolioItem[] = [
     {
-      id: '1',
-      title: 'Romantic Beach Wedding Ceremony',
+      id: 1,
+      title: 'Sunset Beach Wedding',
       category: 'wedding',
-      image: 'https://images.unsplash.com/photo-1583939003579-730e3918a45a?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=600&h=400',
-      description: 'Capturing the intimate moments of a beach wedding ceremony at sunset in Honolulu.'
+      image: 'https://images.unsplash.com/photo-1606800052052-a08af7148866?w=800&q=80',
+      description: 'Beautiful sunset wedding ceremony at Waikiki Beach'
     },
     {
-      id: '2',
-      title: 'Sunset Wedding Silhouette',
-      category: 'wedding',
-      image: 'https://images.unsplash.com/photo-1606800052052-a08af7148866?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=600&h=400',
-      description: 'Dramatic silhouette photography showcasing the romance of golden hour in Hawaii.'
-    },
-    {
-      id: '3',
-      title: 'Intimate Wedding Vows',
-      category: 'wedding',
-      image: 'https://images.unsplash.com/photo-1519741497674-611481863552?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=600&h=400',
-      description: 'Emotional documentary-style photography of wedding vows exchange.'
-    },
-    {
-      id: '4',
-      title: 'Luxury Kitchen Design',
+      id: 2,
+      title: 'Luxury Villa Photography',
       category: 'real-estate',
-      image: 'https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=600&h=400',
-      description: 'Professional architectural photography showcasing luxury home interiors for real estate marketing.'
+      image: 'https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=800&q=80',
+      description: 'High-end real estate photography in Diamond Head'
     },
     {
-      id: '5',
-      title: 'Ocean View Property',
-      category: 'real-estate',
-      image: 'https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=600&h=400',
-      description: 'Stunning ocean view property photography highlighting Hawaii\'s natural beauty.'
-    },
-    {
-      id: '6',
-      title: 'Family Beach Portraits',
+      id: 3,
+      title: 'Family Portrait Session',
       category: 'family',
-      image: 'https://images.unsplash.com/photo-1476703993599-0035a21b17a9?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=600&h=400',
-      description: 'Joyful family portrait session capturing authentic moments on Hawaiian beaches.'
+      image: 'https://images.unsplash.com/photo-1581579438747-1dc8d17bbce4?w=800&q=80',
+      description: 'Joyful family moments captured at Hanauma Bay'
     },
-  ];
+    {
+      id: 4,
+      title: 'Tropical Wedding Ceremony',
+      category: 'wedding',
+      image: 'https://images.unsplash.com/photo-1583939003579-730e3918a45a?w=800&q=80',
+      description: 'Romantic tropical wedding in Lanikai'
+    },
+    {
+      id: 5,
+      title: 'Modern Condo Interior',
+      category: 'real-estate',
+      image: 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=800&q=80',
+      description: 'Contemporary condo with ocean views'
+    },
+    {
+      id: 6,
+      title: 'Beachside Family Fun',
+      category: 'family',
+      image: 'https://images.unsplash.com/photo-1602623352104-6ce6dd25a909?w=800&q=80',
+      description: 'Candid family moments at Kailua Beach'
+    },
+    {
+      id: 7,
+      title: 'Garden Wedding Reception',
+      category: 'wedding',
+      image: 'https://images.unsplash.com/photo-1519741497674-611481863552?w=800&q=80',
+      description: 'Elegant garden reception at Lyon Arboretum'
+    },
+    {
+      id: 8,
+      title: 'Oceanfront Property',
+      category: 'real-estate',
+      image: 'https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=800&q=80',
+      description: 'Stunning oceanfront home in Kahala'
+    },
+    {
+      id: 9,
+      title: 'Maternity Beach Session',
+      category: 'family',
+      image: 'https://images.unsplash.com/photo-1581579186913-45ac3e6efe93?w=800&q=80',
+      description: 'Beautiful maternity photos at Sunset Beach'
+    }
+  ].filter(item => {
+    // Фильтруем off-topic по title и image
+    const lowerTitle = item.title.toLowerCase();
+    const lowerImage = item.image?.toLowerCase() || '';
+    return !offTopicImages.some(word => lowerTitle.includes(word) || lowerImage.includes(word));
+  });
 
   const filters = [
     { key: 'all', label: 'All Work' },
@@ -62,9 +92,12 @@ const PortfolioSection = () => {
     { key: 'family', label: 'Family' },
   ];
 
-  const filteredItems = activeFilter === 'all' 
-    ? portfolioItems 
-    : portfolioItems.filter(item => item.category === activeFilter);
+  // Пропуск сломанных изображений
+  const [brokenImages, setBrokenImages] = useState<string[]>([]);
+  const filteredItems = (activeFilter === 'all'
+    ? portfolioItems
+    : portfolioItems.filter(item => item.category === activeFilter)
+  ).filter(item => !brokenImages.includes(item.image));
 
   const handleSmoothScroll = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
     e.preventDefault();
@@ -130,38 +163,12 @@ const PortfolioSection = () => {
               <div className="relative aspect-[4/3] overflow-hidden">
                 <img
                   src={item.image}
-                  alt={item.title}
+                  alt={item.title || ''}
                   className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
                   loading="lazy"
+                  onError={() => setBrokenImages(prev => [...prev, item.image])}
                 />
-                
-                {/* Elegant overlay with better gradient */}
-                <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                
-                {/* Content overlay with better positioning */}
-                <div className="absolute bottom-0 left-0 right-0 p-4 md:p-6 text-white transform translate-y-8 group-hover:translate-y-0 transition-transform duration-500">
-                  <h3 className="text-lg md:text-xl font-playfair font-semibold mb-2 leading-tight">{item.title}</h3>
-                  {item.description && (
-                    <p className="text-sm font-inter text-gray-200 opacity-90 line-clamp-2">{item.description}</p>
-                  )}
-                </div>
-                
-                {/* Enhanced view icon */}
-                <div className="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-all duration-500 transform translate-y-2 group-hover:translate-y-0">
-                  <div className="bg-luxury-gold/90 backdrop-blur-sm rounded-full p-3 shadow-lg">
-                    <i className="fas fa-expand-arrows-alt text-ocean-blue text-lg" />
-                  </div>
-                </div>
-                
-                {/* Click to view label */}
-                <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-500">
-                  <div className="bg-black/70 backdrop-blur-sm rounded-lg px-4 py-2">
-                    <span className="text-white text-sm font-inter font-semibold">Click to View</span>
-                  </div>
-                </div>
-                
-                {/* Bottom accent line */}
-                <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-luxury-gold to-sunset-orange transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500" />
+                {/* ...existing code... */}
               </div>
             </motion.div>
           ))}
@@ -187,6 +194,8 @@ const PortfolioSection = () => {
           isOpen={lightboxOpen}
           onClose={() => setLightboxOpen(false)}
           initialIndex={lightboxIndex}
+          aria-modal="true"
+          role="dialog"
         />
       </div>
     </section>

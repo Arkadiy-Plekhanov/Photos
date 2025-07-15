@@ -67,10 +67,10 @@ const ContactSection = () => {
   };
 
   const socialLinks = [
-    { icon: 'fab fa-instagram', href: '#', label: 'Instagram' },
-    { icon: 'fab fa-facebook', href: '#', label: 'Facebook' },
-    { icon: 'fab fa-pinterest', href: '#', label: 'Pinterest' },
-    { icon: 'fab fa-linkedin', href: '#', label: 'LinkedIn' },
+    { icon: 'fab fa-instagram', href: '#', label: 'Instagram', disabled: true },
+    { icon: 'fab fa-facebook', href: '#', label: 'Facebook', disabled: true },
+    { icon: 'fab fa-pinterest', href: '#', label: 'Pinterest', disabled: true },
+    { icon: 'fab fa-linkedin', href: '#', label: 'LinkedIn', disabled: true },
   ];
 
   return (
@@ -328,6 +328,7 @@ const ContactSection = () => {
                     href={social.href}
                     aria-label={social.label}
                     className="w-12 h-12 bg-luxury-gold rounded-full flex items-center justify-center text-ocean-blue text-xl hover:bg-sunset-orange transition-colors duration-300"
+                    onClick={(e) => social.disabled && e.preventDefault()}
                   >
                     <i className={social.icon}></i>
                   </a>
