@@ -35,7 +35,7 @@ const PortfolioPage = () => {
       'https://images.unsplash.com/photo-1475503572774-15a45e5d60b9?w=800&q=80',
       'https://images.unsplash.com/photo-1609220136736-443140cffec6?w=800&q=80',
       'https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=800&q=80',
-      'https://images.unsplash.com/photo-1593104547274-9ba7007ed094?w=800&q=80',
+      'https://images.unsplash.com/photo-1548199973-03cce0bbc87b?w=800&q=80',
     ],
   };
 
