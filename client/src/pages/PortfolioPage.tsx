@@ -17,7 +17,7 @@ const PortfolioPage = () => {
       'https://images.unsplash.com/photo-1606800052052-a08af7148866?w=800&q=80',
       'https://images.unsplash.com/photo-1583939003579-730e3918a45a?w=800&q=80',
       'https://images.unsplash.com/photo-1519741497674-611481863552?w=800&q=80',
-      'https://images.unsplash.com/photo-1465495976277-4387d4b0e4a6?w=800&q=80',
+      'https://images.unsplash.com/photo-1525258350655-8750819c38dd?w=800&q=80',
       'https://images.unsplash.com/photo-1594736797933-d0501ba2fe65?w=800&q=80',
       'https://images.unsplash.com/photo-1591604466107-ec97de577aff?w=800&q=80',
     ],
@@ -26,7 +26,7 @@ const PortfolioPage = () => {
       'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=800&q=80',
       'https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=800&q=80',
       'https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=800&q=80',
-      'https://images.unsplash.com/photo-1484154218962-a197022b5858?w=800&q=80',
+      'https://images.unsplash.com/photo-1560185007-cde436f6a4d0?w=800&q=80',
       'https://images.unsplash.com/photo-1600585154526-990dced4db0d?w=800&q=80',
     ],
     family: [
