@@ -71,7 +71,7 @@ const FamilyPage = () => {
 
   const gallery = [
     'https://images.unsplash.com/photo-1581579438747-1dc8d17bbce4?w=800&q=80',
-    'https://images.unsplash.com/photo-1602623352104-6ce6dd25a909?w=800&q=80',
+    'https://images.unsplash.com/photo-1607048837157-d59b0516b662?w=800&q=80',
     'https://images.unsplash.com/photo-1581579186913-45ac3e6efe93?w=800&q=80',
     'https://images.unsplash.com/photo-1609220136736-443140cffec6?w=800&q=80',
     'https://images.unsplash.com/photo-1594736797933-d0501ba2fe65?w=800&q=80',

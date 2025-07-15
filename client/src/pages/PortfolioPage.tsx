@@ -17,7 +17,7 @@ const PortfolioPage = () => {
       'https://images.unsplash.com/photo-1606800052052-a08af7148866?w=800&q=80',
       'https://images.unsplash.com/photo-1583939003579-730e3918a45a?w=800&q=80',
       'https://images.unsplash.com/photo-1519741497674-611481863552?w=800&q=80',
-      'https://images.unsplash.com/photo-1605639253491-3c85b0ab8035?w=800&q=80',
+      'https://images.unsplash.com/photo-1465495976277-4387d4b0e4a6?w=800&q=80',
       'https://images.unsplash.com/photo-1594736797933-d0501ba2fe65?w=800&q=80',
       'https://images.unsplash.com/photo-1591604466107-ec97de577aff?w=800&q=80',
     ],
@@ -26,12 +26,12 @@ const PortfolioPage = () => {
       'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=800&q=80',
       'https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=800&q=80',
       'https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=800&q=80',
-      'https://images.unsplash.com/photo-1600607687644-c7171b42498b?w=800&q=80',
+      'https://images.unsplash.com/photo-1484154218962-a197022b5858?w=800&q=80',
       'https://images.unsplash.com/photo-1600585154526-990dced4db0d?w=800&q=80',
     ],
     family: [
       'https://images.unsplash.com/photo-1581579438747-1dc8d17bbce4?w=800&q=80',
-      'https://images.unsplash.com/photo-1602623352104-6ce6dd25a909?w=800&q=80',
+      'https://images.unsplash.com/photo-1607048837157-d59b0516b662?w=800&q=80',
       'https://images.unsplash.com/photo-1581579186913-45ac3e6efe93?w=800&q=80',
       'https://images.unsplash.com/photo-1609220136736-443140cffec6?w=800&q=80',
       'https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=800&q=80',
@@ -170,7 +170,7 @@ const PortfolioPage = () => {
           <p className="text-xl mb-8 opacity-90">
             Ready to add your story to our portfolio?
           </p>
-          <Link href="/#contact" className="inline-block">
+          <Link href="/checkout" className="inline-block">
             <Button size="lg" className="bg-luxury-gold text-ocean-blue hover:bg-sunset-orange">
               <i className="fas fa-calendar-alt mr-2"></i>
               Book Your Session
