@@ -63,8 +63,8 @@ const Gallery = ({ items }: GalleryProps) => {
             className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
             onError={(e) => {
               const target = e.target as HTMLImageElement;
-              target.src = 'https://via.placeholder.com/800x600?text=Image+Unavailable';
-            }}
+              target.src = 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iODAwIiBoZWlnaHQ9IjYwMCIgdmlld0JveD0iMCAwIDgwMCA2MDAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSI4MDAiIGhlaWdodD0iNjAwIiBmaWxsPSIjRjNGNEY2Ii8+CjxwYXRoIGQ9Ik0zODUgMjQwSDE1VjM2MEgzODVWMjQwWiIgZmlsbD0iI0Q5REREQSIvPgo8cGF0aCBkPSJNMzA1IDMwMEwzNDUgMjcwTDM3NSAzMDBMMzQ1IDMzMEwzMDUgMzAwWiIgZmlsbD0iI0Q5REREQSIvPgo8dGV4dCB4PSI0MDAiIHk9IjMxNSIgZm9udC1mYW1pbHk9IkFyaWFsLCBzYW5zLXNlcmlmIiBmb250LXNpemU9IjE4IiBmaWxsPSIjNkI3MjgwIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj5JbWFnZSBVbmF2YWlsYWJsZTwvdGV4dD4KPC9zdmc+';
+            }
           />
         </div>
       ))}

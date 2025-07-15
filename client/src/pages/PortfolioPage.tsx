@@ -18,7 +18,7 @@ const PortfolioPage = () => {
       'https://images.unsplash.com/photo-1583939003579-730e3918a45a?w=800&q=80',
       'https://images.unsplash.com/photo-1519741497674-611481863552?w=800&q=80',
       'https://images.unsplash.com/photo-1525258350655-8750819c38dd?w=800&q=80',
-      'https://images.unsplash.com/photo-1594736797933-d0501ba2fe65?w=800&q=80',
+      'https://images.unsplash.com/photo-1537633552985-df8429e8048b?w=800&q=80',
       'https://images.unsplash.com/photo-1591604466107-ec97de577aff?w=800&q=80',
     ],
     realEstate: [
@@ -32,7 +32,7 @@ const PortfolioPage = () => {
     family: [
       'https://images.unsplash.com/photo-1581579438747-1dc8d17bbce4?w=800&q=80',
       'https://images.unsplash.com/photo-1607048837157-d59b0516b662?w=800&q=80',
-      'https://images.unsplash.com/photo-1581579186913-45ac3e6efe93?w=800&q=80',
+      'https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=800&q=80',
       'https://images.unsplash.com/photo-1609220136736-443140cffec6?w=800&q=80',
       'https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=800&q=80',
       'https://images.unsplash.com/photo-1511895426328-dc8714191300?w=800&q=80',
