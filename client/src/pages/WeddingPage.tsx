@@ -154,10 +154,10 @@ const WeddingPage = () => {
             Wedding Portfolio
           </h2>
           <Tabs defaultValue="beach" className="w-full">
-            <TabsList className="grid w-full grid-cols-3 max-w-md mx-auto mb-8">
-              <TabsTrigger value="beach">Beach Weddings</TabsTrigger>
-              <TabsTrigger value="resort">Resort Weddings</TabsTrigger>
-              <TabsTrigger value="garden">Garden Weddings</TabsTrigger>
+            <TabsList className="grid w-full grid-cols-3 max-w-md mx-auto mb-8 bg-gray-100 rounded-lg p-1">
+              <TabsTrigger value="beach" className="data-[state=active]:bg-white data-[state=active]:text-ocean-blue">Beach Weddings</TabsTrigger>
+              <TabsTrigger value="resort" className="data-[state=active]:bg-white data-[state=active]:text-ocean-blue">Resort Weddings</TabsTrigger>
+              <TabsTrigger value="garden" className="data-[state=active]:bg-white data-[state=active]:text-ocean-blue">Garden Weddings</TabsTrigger>
             </TabsList>
             <TabsContent value="beach" className="grid grid-cols-1 md:grid-cols-3 gap-4">
               {weddingGallery.slice(0, 3).map((image, index) => (
