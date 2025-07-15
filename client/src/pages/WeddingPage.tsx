@@ -4,7 +4,6 @@ import Navigation from '../components/Navigation';
 import Footer from '../components/Footer';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
-import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Link } from 'wouter';
 import { useSEO } from '../hooks/useSEO';
 import Gallery from '../components/Gallery';
@@ -155,56 +154,87 @@ const WeddingPage = () => {
           <h2 className="text-3xl md:text-4xl font-playfair text-center mb-12">
             Wedding Portfolio
           </h2>
-          <Tabs defaultValue="beach" className="w-full">
-            <TabsList className="grid w-full grid-cols-3 max-w-md mx-auto mb-8">
-              <TabsTrigger value="beach">Beach Weddings</TabsTrigger>
-              <TabsTrigger value="resort">Resort Weddings</TabsTrigger>
-              <TabsTrigger value="garden">Garden Weddings</TabsTrigger>
-            </TabsList>
-            
-            <TabsContent value="beach" className="grid grid-cols-1 md:grid-cols-3 gap-4">
-              {weddingGallery.slice(0, 3).map((image, index) => (
-                <motion.div
-                  key={index}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.5, delay: index * 0.1 }}
-                  className="aspect-[4/5] overflow-hidden rounded-lg"
+          <div className="w-full">
+            <div className="flex justify-center mb-8">
+              <div className="inline-flex bg-gray-100 rounded-lg p-1 gap-1">
+                <button 
+                  onClick={() => setActiveTab('beach')}
+                  className={`px-4 py-2 text-sm font-medium rounded-md transition-all ${
+                    activeTab === 'beach' 
+                      ? 'bg-white text-ocean-blue shadow-sm' 
+                      : 'text-gray-600 hover:text-gray-900'
+                  }`}
                 >
-                  <img src={image} alt={`Beach wedding ${index + 1}`} className="w-full h-full object-cover hover:scale-110 transition-transform duration-500" />
-                </motion.div>
-              ))}
-            </TabsContent>
-            
-            <TabsContent value="resort" className="grid grid-cols-1 md:grid-cols-3 gap-4">
-              {weddingGallery.slice(3, 6).map((image, index) => (
-                <motion.div
-                  key={index}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.5, delay: index * 0.1 }}
-                  className="aspect-[4/5] overflow-hidden rounded-lg"
+                  Beach Weddings
+                </button>
+                <button 
+                  onClick={() => setActiveTab('resort')}
+                  className={`px-4 py-2 text-sm font-medium rounded-md transition-all ${
+                    activeTab === 'resort' 
+                      ? 'bg-white text-ocean-blue shadow-sm' 
+                      : 'text-gray-600 hover:text-gray-900'
+                  }`}
                 >
-                  <img src={image} alt={`Resort wedding ${index + 1}`} className="w-full h-full object-cover hover:scale-110 transition-transform duration-500" />
-                </motion.div>
-              ))}
-            </TabsContent>
-            
-            <TabsContent value="garden" className="grid grid-cols-1 md:grid-cols-3 gap-4">
-              {weddingGallery.slice(0, 3).map((image, index) => (
-                <motion.div
-                  key={index}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.5, delay: index * 0.1 }}
-                  className="aspect-[4/5] overflow-hidden rounded-lg"
+                  Resort Weddings
+                </button>
+                <button 
+                  onClick={() => setActiveTab('garden')}
+                  className={`px-4 py-2 text-sm font-medium rounded-md transition-all ${
+                    activeTab === 'garden' 
+                      ? 'bg-white text-ocean-blue shadow-sm' 
+                      : 'text-gray-600 hover:text-gray-900'
+                  }`}
                 >
-                  <img src={image} alt={`Garden wedding ${index + 1}`} className="w-full h-full object-cover hover:scale-110 transition-transform duration-500" />
-                </motion.div>
-              ))}
-            </TabsContent>
-          </Tabs>
-          
+                  Garden Weddings
+                </button>
+              </div>
+            </div>
+            {activeTab === 'beach' && (
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                {weddingGallery.slice(0, 3).map((image, index) => (
+                  <motion.div
+                    key={index}
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.5, delay: index * 0.1 }}
+                    className="aspect-[4/5] overflow-hidden rounded-lg"
+                  >
+                    <img src={image} alt={`Beach wedding ${index + 1}`} className="w-full h-full object-cover hover:scale-110 transition-transform duration-500" />
+                  </motion.div>
+                ))}
+              </div>
+            )}
+            {activeTab === 'resort' && (
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                {weddingGallery.slice(3, 6).map((image, index) => (
+                  <motion.div
+                    key={index}
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.5, delay: index * 0.1 }}
+                    className="aspect-[4/5] overflow-hidden rounded-lg"
+                  >
+                    <img src={image} alt={`Resort wedding ${index + 1}`} className="w-full h-full object-cover hover:scale-110 transition-transform duration-500" />
+                  </motion.div>
+                ))}
+              </div>
+            )}
+            {activeTab === 'garden' && (
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                {weddingGallery.slice(0, 3).map((image, index) => (
+                  <motion.div
+                    key={index}
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.5, delay: index * 0.1 }}
+                    className="aspect-[4/5] overflow-hidden rounded-lg"
+                  >
+                    <img src={image} alt={`Garden wedding ${index + 1}`} className="w-full h-full object-cover hover:scale-110 transition-transform duration-500" />
+                  </motion.div>
+                ))}
+              </div>
+            )}
+          </div>
           <div className="text-center mt-8">
             <Link href="/portfolio">
               <Button size="lg" className="bg-luxury-gold hover:bg-sunset-orange">
