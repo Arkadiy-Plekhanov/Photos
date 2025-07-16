@@ -2,6 +2,7 @@ import express from 'express';
 import path from 'path';
 import { fileURLToPath } from 'url';
 import fs from 'fs';
+import { storage } from './server/storage.js';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const app = express();
@@ -258,35 +259,68 @@ const createFullFeaturedHTML = () => {
           )
         );
         
-        // Portfolio Section
-        const portfolio = h('section', { id: 'portfolio', className: 'py-20 px-6 bg-gray-100 dark:bg-gray-900' },
-          h('div', { className: 'container mx-auto' },
-            h('h2', { className: 'text-4xl font-playfair font-bold text-center mb-12' }, 'Portfolio'),
-            h('div', { className: 'grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4' },
-              ...[
-                'https://images.unsplash.com/photo-1606800052052-a08af7148866?w=300&h=300&fit=crop',
-                'https://images.unsplash.com/photo-1519225421980-715cb0215aed?w=300&h=300&fit=crop',
-                'https://images.unsplash.com/photo-1560184897-1d85eb3aeb8b?w=300&h=300&fit=crop',
-                'https://images.unsplash.com/photo-1537633552985-df8429e8048b?w=300&h=300&fit=crop',
-                'https://images.unsplash.com/photo-1591604466107-ec97de577aff?w=300&h=300&fit=crop',
-                'https://images.unsplash.com/photo-1583939003579-730e3918a45a?w=300&h=300&fit=crop',
-                'https://images.unsplash.com/photo-1522673607200-164d1b6ce486?w=300&h=300&fit=crop',
-                'https://images.unsplash.com/photo-1595220959878-d83c88b59fb5?w=300&h=300&fit=crop'
-              ].map(src => 
-                h('div', { className: 'relative overflow-hidden rounded-lg cursor-pointer group' },
-                  h('img', { 
-                    src, 
-                    alt: 'Portfolio image',
-                    className: 'w-full h-full object-cover transform group-hover:scale-110 transition duration-500'
-                  }),
-                  h('div', { className: 'absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-50 transition duration-300 flex items-center justify-center' },
-                    h('i', { className: 'fas fa-search-plus text-white text-2xl opacity-0 group-hover:opacity-100 transition' })
+        // Portfolio Section with Lightbox
+        const portfolio = (() => {
+          const images = [
+            'https://images.unsplash.com/photo-1606800052052-a08af7148866?w=1200&h=800&fit=crop',
+            'https://images.unsplash.com/photo-1519225421980-715cb0215aed?w=1200&h=800&fit=crop',
+            'https://images.unsplash.com/photo-1560184897-1d85eb3aeb8b?w=1200&h=800&fit=crop',
+            'https://images.unsplash.com/photo-1537633552985-df8429e8048b?w=1200&h=800&fit=crop',
+            'https://images.unsplash.com/photo-1591604466107-ec97de577aff?w=1200&h=800&fit=crop',
+            'https://images.unsplash.com/photo-1583939003579-730e3918a45a?w=1200&h=800&fit=crop',
+            'https://images.unsplash.com/photo-1522673607200-164d1b6ce486?w=1200&h=800&fit=crop',
+            'https://images.unsplash.com/photo-1595220959878-d83c88b59fb5?w=1200&h=800&fit=crop'
+          ];
+          
+          return h('section', { id: 'portfolio', className: 'py-20 px-6 bg-gray-100 dark:bg-gray-900' },
+            h('div', { className: 'container mx-auto' },
+              h('h2', { className: 'text-4xl font-playfair font-bold text-center mb-12' }, 'Portfolio'),
+              h('div', { className: 'grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4' },
+                ...images.map((src, index) => 
+                  h('div', { 
+                    className: 'relative overflow-hidden rounded-lg cursor-pointer group',
+                    onclick: () => {
+                      // Create lightbox
+                      const lightbox = h('div', { 
+                        className: 'fixed inset-0 z-50 bg-black bg-opacity-90 flex items-center justify-center',
+                        onclick: (e) => {
+                          if (e.target === e.currentTarget) {
+                            e.currentTarget.remove();
+                          }
+                        }
+                      },
+                        h('div', { className: 'relative max-w-7xl mx-auto px-4' },
+                          h('img', { 
+                            src,
+                            alt: 'Portfolio image',
+                            className: 'max-w-full max-h-[90vh] object-contain'
+                          }),
+                          h('button', {
+                            className: 'absolute top-4 right-4 text-white text-4xl hover:text-gray-300 transition',
+                            onclick: () => lightbox.remove()
+                          }, '×'),
+                          h('div', { className: 'absolute bottom-4 left-1/2 transform -translate-x-1/2 text-white' },
+                            `${index + 1} / ${images.length}`
+                          )
+                        )
+                      );
+                      document.body.appendChild(lightbox);
+                    }
+                  },
+                    h('img', { 
+                      src: src.replace('1200&h=800', '300&h=300'), 
+                      alt: 'Portfolio thumbnail',
+                      className: 'w-full h-full object-cover transform group-hover:scale-110 transition duration-500'
+                    }),
+                    h('div', { className: 'absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-50 transition duration-300 flex items-center justify-center' },
+                      h('i', { className: 'fas fa-search-plus text-white text-2xl opacity-0 group-hover:opacity-100 transition' })
+                    )
                   )
                 )
               )
             )
-          )
-        );
+          );
+        })();
         
         // About Section
         const about = h('section', { id: 'about', className: 'py-20 px-6' },
@@ -332,9 +366,59 @@ const createFullFeaturedHTML = () => {
             h('h2', { className: 'text-4xl font-playfair font-bold text-center mb-12' }, 'Get In Touch'),
             h('form', { 
               className: 'bg-white dark:bg-gray-800 rounded-lg shadow-xl p-8',
-              onsubmit: (e) => {
+              id: 'contact-form',
+              onsubmit: async (e) => {
                 e.preventDefault();
-                alert('Thank you for your inquiry! We will get back to you soon.');
+                
+                // Get form data
+                const form = e.target;
+                const submitBtn = form.querySelector('button[type="submit"]');
+                const originalText = submitBtn.innerText;
+                
+                // Show loading state
+                submitBtn.disabled = true;
+                submitBtn.innerText = 'Sending...';
+                submitBtn.className = submitBtn.className + ' opacity-50 cursor-not-allowed';
+                
+                // Collect form data
+                const formData = {
+                  firstName: form.querySelector('input[name="firstName"]').value,
+                  lastName: form.querySelector('input[name="lastName"]').value,
+                  email: form.querySelector('input[name="email"]').value,
+                  phone: form.querySelector('input[name="phone"]').value,
+                  service: form.querySelector('select[name="service"]').value,
+                  message: form.querySelector('textarea[name="message"]').value
+                };
+                
+                try {
+                  // Submit to API
+                  const response = await fetch('/api/contact', {
+                    method: 'POST',
+                    headers: {
+                      'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(formData)
+                  });
+                  
+                  const result = await response.json();
+                  
+                  if (result.success) {
+                    // Show success message
+                    form.innerHTML = '<div class="text-center py-12"><i class="fas fa-check-circle text-5xl text-green-500 mb-4"></i><h3 class="text-2xl font-semibold mb-2">Thank You!</h3><p class="text-gray-600 dark:text-gray-300">' + result.message + '</p></div>';
+                  } else {
+                    // Show error
+                    alert(result.error || 'There was an error. Please try again.');
+                    submitBtn.disabled = false;
+                    submitBtn.innerText = originalText;
+                    submitBtn.className = submitBtn.className.replace(' opacity-50 cursor-not-allowed', '');
+                  }
+                } catch (error) {
+                  console.error('Form submission error:', error);
+                  alert('There was an error submitting the form. Please try again.');
+                  submitBtn.disabled = false;
+                  submitBtn.innerText = originalText;
+                  submitBtn.className = submitBtn.className.replace(' opacity-50 cursor-not-allowed', '');
+                }
               }
             },
               h('div', { className: 'grid md:grid-cols-2 gap-6' },
@@ -342,6 +426,7 @@ const createFullFeaturedHTML = () => {
                   h('label', { className: 'block text-sm font-semibold mb-2' }, 'First Name'),
                   h('input', { 
                     type: 'text', 
+                    name: 'firstName',
                     required: true,
                     className: 'w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-600 dark:bg-gray-700 focus:outline-none focus:border-ocean-blue'
                   })
@@ -350,6 +435,7 @@ const createFullFeaturedHTML = () => {
                   h('label', { className: 'block text-sm font-semibold mb-2' }, 'Last Name'),
                   h('input', { 
                     type: 'text', 
+                    name: 'lastName',
                     required: true,
                     className: 'w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-600 dark:bg-gray-700 focus:outline-none focus:border-ocean-blue'
                   })
@@ -358,6 +444,7 @@ const createFullFeaturedHTML = () => {
                   h('label', { className: 'block text-sm font-semibold mb-2' }, 'Email'),
                   h('input', { 
                     type: 'email', 
+                    name: 'email',
                     required: true,
                     className: 'w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-600 dark:bg-gray-700 focus:outline-none focus:border-ocean-blue'
                   })
@@ -366,6 +453,7 @@ const createFullFeaturedHTML = () => {
                   h('label', { className: 'block text-sm font-semibold mb-2' }, 'Phone'),
                   h('input', { 
                     type: 'tel', 
+                    name: 'phone',
                     className: 'w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-600 dark:bg-gray-700 focus:outline-none focus:border-ocean-blue'
                   })
                 )
@@ -373,6 +461,8 @@ const createFullFeaturedHTML = () => {
               h('div', { className: 'mt-6' },
                 h('label', { className: 'block text-sm font-semibold mb-2' }, 'Service'),
                 h('select', { 
+                  name: 'service',
+                  required: true,
                   className: 'w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-600 dark:bg-gray-700 focus:outline-none focus:border-ocean-blue'
                 },
                   h('option', { value: '' }, 'Select a service'),
@@ -385,6 +475,7 @@ const createFullFeaturedHTML = () => {
               h('div', { className: 'mt-6' },
                 h('label', { className: 'block text-sm font-semibold mb-2' }, 'Message'),
                 h('textarea', { 
+                  name: 'message',
                   rows: 4,
                   className: 'w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-600 dark:bg-gray-700 focus:outline-none focus:border-ocean-blue'
                 })
@@ -469,11 +560,55 @@ if (fs.existsSync(publicDir)) {
 
 // API Routes
 app.post('/api/contact', async (req, res) => {
-  console.log('Contact form submission:', req.body);
-  res.json({ 
-    success: true, 
-    message: 'Thank you for your message. We will get back to you soon!' 
-  });
+  try {
+    console.log('Contact form submission:', req.body);
+    
+    // Validate required fields
+    const { firstName, lastName, email, service, message } = req.body;
+    
+    if (!firstName || !lastName || !email || !service) {
+      return res.status(400).json({ 
+        success: false, 
+        error: 'Please fill in all required fields' 
+      });
+    }
+    
+    // Save to database
+    const submission = await storage.createContactSubmission({
+      firstName,
+      lastName,
+      email,
+      phone: req.body.phone || '',
+      service,
+      eventDate: req.body.eventDate,
+      message: message || ''
+    });
+    
+    console.log('Contact saved:', submission);
+    
+    res.json({ 
+      success: true, 
+      message: 'Thank you for your message. We will get back to you soon!',
+      id: submission.id
+    });
+  } catch (error) {
+    console.error('Contact form error:', error);
+    res.status(500).json({ 
+      success: false, 
+      error: 'Sorry, there was an error processing your request. Please try again.' 
+    });
+  }
+});
+
+// Get all contact submissions (admin endpoint)
+app.get('/api/contact/submissions', async (req, res) => {
+  try {
+    const submissions = await storage.getContactSubmissions();
+    res.json(submissions);
+  } catch (error) {
+    console.error('Error fetching submissions:', error);
+    res.status(500).json({ error: 'Failed to fetch submissions' });
+  }
 });
 
 app.get('/api/health', (req, res) => {
