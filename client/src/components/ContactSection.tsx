@@ -296,7 +296,7 @@ const ContactSection = () => {
                 <div className="flex items-center">
                   <i className="fas fa-phone text-luxury-gold text-xl w-6"></i>
                   <span className="text-white font-inter ml-4">
-                    (650) 882-6775
+                    (650) 892-6775
                   </span>
                 </div>
 

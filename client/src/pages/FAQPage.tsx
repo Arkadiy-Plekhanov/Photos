@@ -218,8 +218,8 @@ const FAQPage = () => {
               <i className="fas fa-phone text-3xl text-ocean-blue mb-4"></i>
               <h3 className="text-xl font-semibold mb-2">Call Us</h3>
               <p className="text-charcoal/70 mb-4">Mon-Fri 9am-6pm HST</p>
-              <a href="tel:+16508826775" className="text-ocean-blue hover:text-luxury-gold transition-colors">
-                (650) 882-6775
+              <a href="tel:+16508926775" className="text-ocean-blue hover:text-luxury-gold transition-colors">
+                (650) 892-6775
               </a>
             </Card>
           </div>
