@@ -7,20 +7,6 @@ import ContactSection from '../components/ContactSection';
 import { useSEO } from '../hooks/useSEO';
 
 const ContactPage = () => {
-  useSEO('contact');
-  
-  return (
-    <div className="min-h-screen bg-warm-white">
-      <Navigation />
-      <ContactSection />
-      <Footer />
-    </div>
-  );
-};
-
-export default ContactPage;
-
-const ContactPage = () => {
   useSEO({
     title: "Contact Arcadia Photography - Book Your Session Today",
     description: "Ready to capture your special moments? Contact Arcadia Photography to book your wedding, real estate, or family photography session in Oahu, Hawaii.",
