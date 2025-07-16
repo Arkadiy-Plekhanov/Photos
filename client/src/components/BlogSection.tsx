@@ -1,7 +1,7 @@
 import { motion } from 'framer-motion';
 import { useIntersectionObserver } from '../hooks/useIntersectionObserver';
 import { Link } from 'wouter';
-import { useState } from 'react';
+import React, { useState } from 'react';
 
 const BlogSection = () => {
   const { ref, isIntersecting } = useIntersectionObserver();
