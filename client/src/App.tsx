@@ -23,12 +23,16 @@ import TermsPage from "@/pages/TermsPage";
 import PrivacyPage from "@/pages/PrivacyPage";
 import CheckoutPage from "@/pages/CheckoutPage";
 import BookingSuccessPage from "@/pages/BookingSuccessPage";
+import TestComponent from "./TestComponent";
 
 function AppRouter() {
+  console.log("AppRouter rendering...");
+  
   return (
     <Router>
       <Switch>
         <Route path="/" component={Home} />
+        <Route path="/test" component={TestComponent} />
         <Route path="/wedding-photography" component={WeddingPage} />
         <Route path="/real-estate-photography" component={RealEstatePage} />
         <Route path="/family-photography" component={FamilyPage} />
@@ -49,7 +53,11 @@ function AppRouter() {
 }
 
 function App() {
-  // useServiceWorker(); // Temporarily disabled to fix runtime error
+  console.log("App component rendering...");
+  
+  React.useEffect(() => {
+    console.log("App mounted successfully");
+  }, []);
 
   return (
     <QueryClientProvider client={queryClient}>
