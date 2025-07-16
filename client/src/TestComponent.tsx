@@ -2,6 +2,13 @@
 import React from 'react';
 
 const TestComponent: React.FC = () => {
+  console.log('TestComponent rendering...');
+  
+  React.useEffect(() => {
+    console.log('TestComponent mounted successfully');
+    document.title = 'Test Component - Working';
+  }, []);
+
   return (
     <div style={{ 
       padding: '20px', 
@@ -26,6 +33,15 @@ const TestComponent: React.FC = () => {
         borderRadius: '5px' 
       }}>
         Timestamp: {new Date().toLocaleString()}
+      </div>
+      <div style={{ 
+        marginTop: '1rem', 
+        padding: '1rem', 
+        backgroundColor: '#28a745', 
+        color: 'white', 
+        borderRadius: '5px' 
+      }}>
+        Environment: {process.env.NODE_ENV || 'unknown'}
       </div>
     </div>
   );
