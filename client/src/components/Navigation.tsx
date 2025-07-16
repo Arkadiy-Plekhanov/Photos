@@ -70,15 +70,15 @@ const Navigation = () => {
                     onMouseEnter={() => setIsServicesOpen(true)}
                     onMouseLeave={() => setIsServicesOpen(false)}
                   >
-                    <Link href="/wedding-photography" className="block px-4 py-3 text-charcoal hover:bg-ocean-blue hover:text-white transition-colors">
+                    <Link href="/weddings" className="block px-4 py-3 text-charcoal hover:bg-ocean-blue hover:text-white transition-colors">
                       <i className="fas fa-heart mr-2"></i>
                       Wedding & Elopement
                     </Link>
-                    <Link href="/real-estate-photography" className="block px-4 py-3 text-charcoal hover:bg-ocean-blue hover:text-white transition-colors">
+                    <Link href="/real-estate" className="block px-4 py-3 text-charcoal hover:bg-ocean-blue hover:text-white transition-colors">
                       <i className="fas fa-home mr-2"></i>
                       Real Estate Photography
                     </Link>
-                    <Link href="/family-photography" className="block px-4 py-3 text-charcoal hover:bg-ocean-blue hover:text-white transition-colors">
+                    <Link href="/family-portraits" className="block px-4 py-3 text-charcoal hover:bg-ocean-blue hover:text-white transition-colors">
                       <i className="fas fa-users mr-2"></i>
                       Family & Portraits
                     </Link>
@@ -137,13 +137,13 @@ const Navigation = () => {
               </Link>
               <div className="space-y-2">
                 <p className="text-white/70 text-sm font-inter">Services</p>
-                <Link href="/wedding-photography" className="block text-white hover:text-luxury-gold transition-colors duration-300 font-inter pl-4" onClick={() => setIsMobileMenuOpen(false)}>
+                <Link href="/weddings" className="block text-white hover:text-luxury-gold transition-colors duration-300 font-inter pl-4" onClick={() => setIsMobileMenuOpen(false)}>
                   Wedding & Elopement
                 </Link>
-                <Link href="/real-estate-photography" className="block text-white hover:text-luxury-gold transition-colors duration-300 font-inter pl-4" onClick={() => setIsMobileMenuOpen(false)}>
+                <Link href="/real-estate" className="block text-white hover:text-luxury-gold transition-colors duration-300 font-inter pl-4" onClick={() => setIsMobileMenuOpen(false)}>
                   Real Estate Photography
                 </Link>
-                <Link href="/family-photography" className="block text-white hover:text-luxury-gold transition-colors duration-300 font-inter pl-4" onClick={() => setIsMobileMenuOpen(false)}>
+                <Link href="/family-portraits" className="block text-white hover:text-luxury-gold transition-colors duration-300 font-inter pl-4" onClick={() => setIsMobileMenuOpen(false)}>
                   Family & Portraits
                 </Link>
               </div>

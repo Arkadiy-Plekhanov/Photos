@@ -14,21 +14,21 @@ const ServicesSection = () => {
       title: 'Wedding Photography',
       description: 'Capturing your love story in paradise with cinematic elegance and artistic vision',
       image: 'https://images.unsplash.com/photo-1583939003579-730e3918a45a?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&h=600',
-      link: '/wedding-photography',
+      link: '/weddings',
     },
     {
       id: 'real-estate',
       title: 'Real Estate Photography',
       description: 'Showcasing properties with professional architectural photography that sells',
       image: 'https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&h=600',
-      link: '/real-estate-photography',
+      link: '/real-estate',
     },
     {
       id: 'family',
       title: 'Family Portraits',
       description: 'Cherishing your island memories with authentic family photography',
       image: 'https://images.unsplash.com/photo-1511895426328-dc8714191300?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&h=600',
-      link: '/family-photography',
+      link: '/family-portraits',
     },
   ];
 

@@ -100,7 +100,7 @@ const TermsPage = () => {
                 </div>
               </section>
 
-              <section>
+              <section id="licensing">
                 <h2 className="text-2xl font-playfair mb-4">5. Image Delivery and Usage Rights</h2>
                 <div className="space-y-3 text-charcoal/80">
                   <p className="leading-relaxed">

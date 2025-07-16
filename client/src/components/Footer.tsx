@@ -4,24 +4,24 @@ import { Link } from 'wouter';
 const Footer = () => {
   const footerLinks = {
     services: [
-      { name: 'Wedding Photography', href: '/wedding-photography', type: 'link' },
-      { name: 'Real Estate Photography', href: '/real-estate-photography', type: 'link' },
-      { name: 'Family Portraits', href: '/family-photography', type: 'link' },
-      { name: 'Commercial Photography', href: '/#services', type: 'scroll' },
-      { name: 'Drone Photography', href: '/#services', type: 'scroll' },
+      { name: 'Wedding Photography', href: '/weddings', type: 'link' },
+      { name: 'Real Estate Photography', href: '/real-estate', type: 'link' },
+      { name: 'Family Portraits', href: '/family-portraits', type: 'link' },
+      { name: 'Commercial Photography', href: '/contact', type: 'link' },
+      { name: 'Drone Photography', href: '/contact', type: 'link' },
     ],
     company: [
       { name: 'About Us', href: '/about', type: 'link' },
       { name: 'Portfolio', href: '/portfolio', type: 'link' },
       { name: 'Blog', href: '/blog', type: 'link' },
-      { name: 'Contact', href: '/#contact', type: 'scroll' },
+      { name: 'Contact', href: '/contact', type: 'link' },
       { name: 'FAQ', href: '/faq', type: 'link' },
     ],
     legal: [
       { name: 'Privacy Policy', href: '/privacy', type: 'link' },
       { name: 'Terms of Service', href: '/terms', type: 'link' },
-      { name: 'Cookie Policy', href: '/privacy#cookies', type: 'scroll' },
-      { name: 'Licensing', href: '/terms#licensing', type: 'scroll' },
+      { name: 'Cookie Policy', href: '/privacy#cookies', type: 'link' },
+      { name: 'Licensing', href: '/terms#licensing', type: 'link' },
     ],
   };
 
