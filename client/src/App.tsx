@@ -1,5 +1,5 @@
 import React from "react";
-import { Switch, Route } from "wouter";
+import { Router, Switch, Route } from "wouter";
 import { queryClient } from "./lib/queryClient";
 import { QueryClientProvider } from "@tanstack/react-query";
 import { Toaster } from "@/components/ui/toaster";
@@ -24,25 +24,27 @@ import PrivacyPage from "@/pages/PrivacyPage";
 import CheckoutPage from "@/pages/CheckoutPage";
 import BookingSuccessPage from "@/pages/BookingSuccessPage";
 
-function Router() {
+function AppRouter() {
   return (
-    <Switch>
-      <Route path="/" component={Home} />
-      <Route path="/wedding-photography" component={WeddingPage} />
-      <Route path="/real-estate-photography" component={RealEstatePage} />
-      <Route path="/family-photography" component={FamilyPage} />
-      <Route path="/about" component={AboutPage} />
-      <Route path="/portfolio" component={PortfolioPage} />
-      <Route path="/blog" component={BlogPage} />
-      <Route path="/blog/:id" component={BlogPostPage} />
-      <Route path="/contact" component={ContactPage} />
-      <Route path="/faq" component={FAQPage} />
-      <Route path="/terms" component={TermsPage} />
-      <Route path="/privacy" component={PrivacyPage} />
-      <Route path="/checkout" component={CheckoutPage} />
-      <Route path="/booking-success" component={BookingSuccessPage} />
-      <Route component={NotFound} />
-    </Switch>
+    <Router>
+      <Switch>
+        <Route path="/" component={Home} />
+        <Route path="/wedding-photography" component={WeddingPage} />
+        <Route path="/real-estate-photography" component={RealEstatePage} />
+        <Route path="/family-photography" component={FamilyPage} />
+        <Route path="/about" component={AboutPage} />
+        <Route path="/portfolio" component={PortfolioPage} />
+        <Route path="/blog" component={BlogPage} />
+        <Route path="/blog/:id" component={BlogPostPage} />
+        <Route path="/contact" component={ContactPage} />
+        <Route path="/faq" component={FAQPage} />
+        <Route path="/terms" component={TermsPage} />
+        <Route path="/privacy" component={PrivacyPage} />
+        <Route path="/checkout" component={CheckoutPage} />
+        <Route path="/booking-success" component={BookingSuccessPage} />
+        <Route component={NotFound} />
+      </Switch>
+    </Router>
   );
 }
 
@@ -57,7 +59,7 @@ function App() {
           <ScrollProgress />
           <DarkModeToggle />
           <Toaster />
-          <Router />
+          <AppRouter />
         </div>
       </TooltipProvider>
     </QueryClientProvider>
