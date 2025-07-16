@@ -1,23 +1,3 @@
-
-<old_str>
-import { StrictMode } from "react";
-import { createRoot } from "react-dom/client";
-import App from "./App.tsx";
-import "./index.css";
-
-const container = document.getElementById("root");
-if (!container) {
-  throw new Error("Root element not found");
-}
-
-const root = createRoot(container);
-root.render(
-  <StrictMode>
-    <App />
-  </StrictMode>
-);
-</old_str>
-<new_str>
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import App from "./App.tsx";
@@ -37,14 +17,13 @@ if ('serviceWorker' in navigator) {
 }
 
 const container = document.getElementById("root");
-if (!container) {
-  throw new Error("Root element not found");
+if (container) {
+  const root = createRoot(container);
+  root.render(
+    <StrictMode>
+      <App />
+    </StrictMode>
+  );
+} else {
+  console.error("Root element not found");
 }
-
-const root = createRoot(container);
-root.render(
-  <StrictMode>
-    <App />
-  </StrictMode>
-);
-</new_str>
