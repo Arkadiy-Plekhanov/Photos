@@ -210,16 +210,16 @@ const FAQPage = () => {
               <i className="fas fa-envelope text-3xl text-ocean-blue mb-4"></i>
               <h3 className="text-xl font-semibold mb-2">Email Us</h3>
               <p className="text-charcoal/70 mb-4">Get a response within 24 hours</p>
-              <a href="mailto:info@arcadiaphotography.com" className="text-ocean-blue hover:text-luxury-gold transition-colors">
-                info@arcadiaphotography.com
+              <a href="mailto:arcadia.honolulu@gmail.com" className="text-ocean-blue hover:text-luxury-gold transition-colors">
+                arcadia.honolulu@gmail.com
               </a>
             </Card>
             <Card className="p-6">
               <i className="fas fa-phone text-3xl text-ocean-blue mb-4"></i>
               <h3 className="text-xl font-semibold mb-2">Call Us</h3>
               <p className="text-charcoal/70 mb-4">Mon-Fri 9am-6pm HST</p>
-              <a href="tel:+18085551234" className="text-ocean-blue hover:text-luxury-gold transition-colors">
-                (808) 555-1234
+              <a href="tel:+16508826775" className="text-ocean-blue hover:text-luxury-gold transition-colors">
+                (650) 882-6775
               </a>
             </Card>
           </div>
