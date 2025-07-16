@@ -4,10 +4,9 @@ import { queryClient } from "./lib/queryClient";
 import { QueryClientProvider } from "@tanstack/react-query";
 import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
-import TestComponent from "./TestComponent";
-// import ScrollProgress from "@/components/ScrollProgress";
-// import ScrollToTop from "@/components/ScrollToTop";
-// import DarkModeToggle from "@/components/DarkModeToggle";
+import ScrollProgress from "@/components/ScrollProgress";
+import ScrollToTop from "@/components/ScrollToTop";
+import DarkModeToggle from "@/components/DarkModeToggle";
 // import { useServiceWorker } from "@/hooks/useServiceWorker";
 import NotFound from "@/pages/not-found";
 import Home from "@/pages/Home";
@@ -54,14 +53,11 @@ function App() {
     <QueryClientProvider client={queryClient}>
       <TooltipProvider>
         <div className="min-h-screen bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100">
-          <TestComponent />
-          {/* Temporarily disabled components to fix dispatcher error
           <ScrollToTop />
           <ScrollProgress />
           <DarkModeToggle />
           <Toaster />
           <Router />
-          */}
         </div>
       </TooltipProvider>
     </QueryClientProvider>
