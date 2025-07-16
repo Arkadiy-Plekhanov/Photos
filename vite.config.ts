@@ -1,6 +1,5 @@
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
-import themeSwapper from "@replit/vite-plugin-shadcn-theme-json";
 import path, { dirname } from "path";
 import { fileURLToPath } from "url";
 
@@ -10,7 +9,6 @@ const __dirname = dirname(__filename);
 export default defineConfig({
   plugins: [
     react(),
-    themeSwapper(),
   ],
   resolve: {
     alias: {
