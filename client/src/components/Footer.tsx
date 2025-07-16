@@ -26,9 +26,9 @@ const Footer = () => {
   };
 
   const socialLinks = [
-    { icon: 'fab fa-instagram', href: '#', label: 'Instagram' },
-    { icon: 'fab fa-facebook', href: '#', label: 'Facebook' },
-    { icon: 'fab fa-pinterest', href: '#', label: 'Pinterest' },
+    { icon: 'fab fa-instagram', href: 'https://instagram.com/arcadiaphotography', label: 'Instagram' },
+    { icon: 'fab fa-facebook', href: 'https://facebook.com/arcadiaphotography', label: 'Facebook' },
+    { icon: 'fab fa-pinterest', href: 'https://pinterest.com/arcadiaphotography', label: 'Pinterest' },
   ];
 
   const handleSmoothScroll = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
@@ -69,15 +69,29 @@ const Footer = () => {
             <p className="text-gray-300 font-inter mb-4">
               Creating timeless memories in the heart of paradise. Professional photography services across Honolulu, Hawaii.
             </p>
-            <div className="text-gray-400 text-sm">
-              <p>Social media coming soon</p>
+            <div className="space-y-2 mb-4">
+              <p className="flex items-center text-gray-300 hover:text-luxury-gold transition-colors">
+                <i className="fas fa-phone mr-2"></i>
+                <a href="tel:+18085550123">+1 (808) 555-0123</a>
+              </p>
+              <p className="flex items-center text-gray-300 hover:text-luxury-gold transition-colors">
+                <i className="fas fa-envelope mr-2"></i>
+                <a href="mailto:hello@arcadiaphoto.com">hello@arcadiaphoto.com</a>
+              </p>
+              <p className="flex items-center text-gray-300 hover:text-luxury-gold transition-colors">
+                <i className="fas fa-map-marker-alt mr-2"></i>
+                <a href="https://maps.google.com/?q=Honolulu,Hawaii" target="_blank" rel="noopener noreferrer">
+                  Honolulu, Hawaii
+                </a>
+              </p>
             </div>
-            {/* Social media icons temporarily hidden */}
-            <div className="hidden">
+            <div className="flex space-x-4">
               {socialLinks.map((social, index) => (
                 <a
                   key={index}
                   href={social.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   aria-label={social.label}
                   className="text-gray-300 hover:text-luxury-gold transition-colors"
                 >
