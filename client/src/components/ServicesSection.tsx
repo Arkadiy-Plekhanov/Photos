@@ -2,7 +2,7 @@ import { motion } from 'framer-motion';
 import { useIntersectionObserver } from '../hooks/useIntersectionObserver';
 import type { Service } from '../types';
 import { Link } from 'wouter';
-import React, { useState } from 'react';
+import { useState } from 'react';
 
 const ServicesSection = () => {
   const [brokenImages, setBrokenImages] = useState<string[]>([]);

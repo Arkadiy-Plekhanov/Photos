@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { motion } from 'framer-motion';
 import Navigation from '../components/Navigation';
 import Footer from '../components/Footer';
@@ -170,7 +170,7 @@ const PortfolioPage = () => {
           <p className="text-xl mb-8 opacity-90">
             Ready to add your story to our portfolio?
           </p>
-          <Link href="/contact">
+          <Link href="/checkout" className="inline-block">
             <Button size="lg" className="bg-luxury-gold text-ocean-blue hover:bg-sunset-orange">
               <i className="fas fa-calendar-alt mr-2"></i>
               Book Your Session

@@ -1,10 +1,10 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { motion } from 'framer-motion';
-import { Link } from 'wouter';
 import Navigation from '../components/Navigation';
 import Footer from '../components/Footer';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
+import { Link } from 'wouter';
 import { useSEO } from '../hooks/useSEO';
 import Gallery from '../components/Gallery';
 
@@ -80,7 +80,7 @@ const WeddingPage = () => {
   return (
     <div className="min-h-screen bg-warm-white">
       <Navigation />
-
+      
       {/* Hero Section */}
       <section className="relative h-[60vh] flex items-center justify-center overflow-hidden">
         <div

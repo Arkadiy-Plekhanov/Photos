@@ -1,6 +1,5 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { motion } from 'framer-motion';
-import { Link } from 'wouter';
 import Navigation from '../components/Navigation';
 import Footer from '../components/Footer';
 import { Card } from '@/components/ui/card';
@@ -136,7 +135,7 @@ const FAQPage = () => {
   return (
     <div className="min-h-screen bg-warm-white">
       <Navigation />
-
+      
       {/* Hero Section */}
       <section className="relative h-[40vh] flex items-center justify-center overflow-hidden">
         <div
@@ -211,18 +210,16 @@ const FAQPage = () => {
               <i className="fas fa-envelope text-3xl text-ocean-blue mb-4"></i>
               <h3 className="text-xl font-semibold mb-2">Email Us</h3>
               <p className="text-charcoal/70 mb-4">Get a response within 24 hours</p>
-              <Link href="/contact">
-                <span className="text-ocean-blue hover:text-luxury-gold transition-colors cursor-pointer">
-                  arcadia.honolulu@gmail.com
-                </span>
-              </Link>
+              <a href="mailto:info@arcadiaphotography.com" className="text-ocean-blue hover:text-luxury-gold transition-colors">
+                info@arcadiaphotography.com
+              </a>
             </Card>
             <Card className="p-6">
               <i className="fas fa-phone text-3xl text-ocean-blue mb-4"></i>
               <h3 className="text-xl font-semibold mb-2">Call Us</h3>
               <p className="text-charcoal/70 mb-4">Mon-Fri 9am-6pm HST</p>
-              <a href="tel:+16508926775" className="text-ocean-blue hover:text-luxury-gold transition-colors">
-                (650) 892-6775
+              <a href="tel:+18085551234" className="text-ocean-blue hover:text-luxury-gold transition-colors">
+                (808) 555-1234
               </a>
             </Card>
           </div>

@@ -1,9 +1,9 @@
 import { motion } from 'framer-motion';
-import { Link } from 'wouter';
 import Navigation from '../components/Navigation';
 import Footer from '../components/Footer';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
+import { Link } from 'wouter';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { useSEO } from '../hooks/useSEO';
 import Gallery from '../components/Gallery';
@@ -104,7 +104,7 @@ const RealEstatePage = () => {
   return (
     <div className="min-h-screen bg-warm-white">
       <Navigation />
-
+      
       {/* Hero Section */}
       <section className="relative h-[60vh] flex items-center justify-center overflow-hidden">
         <div

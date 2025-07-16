@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
@@ -296,14 +296,14 @@ const ContactSection = () => {
                 <div className="flex items-center">
                   <i className="fas fa-phone text-luxury-gold text-xl w-6"></i>
                   <span className="text-white font-inter ml-4">
-                    (650) 892-6775
+                    (808) 555-0123
                   </span>
                 </div>
 
                 <div className="flex items-center">
                   <i className="fas fa-envelope text-luxury-gold text-xl w-6"></i>
                   <span className="text-white font-inter ml-4">
-                    arcadia.honolulu@gmail.com
+                    hello@arcadiaphotography.com
                   </span>
                 </div>
 

@@ -14,7 +14,7 @@ const Footer = () => {
       { name: 'About Us', href: '/about', type: 'link' },
       { name: 'Portfolio', href: '/portfolio', type: 'link' },
       { name: 'Blog', href: '/blog', type: 'link' },
-      { name: 'Contact', href: '/contact', type: 'link' },
+      { name: 'Contact', href: '/#contact', type: 'scroll' },
       { name: 'FAQ', href: '/faq', type: 'link' },
     ],
     legal: [

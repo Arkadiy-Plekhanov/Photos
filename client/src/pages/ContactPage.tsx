@@ -1,6 +1,5 @@
 
 import { motion } from 'framer-motion';
-import { Link } from 'wouter';
 import Navigation from '../components/Navigation';
 import Footer from '../components/Footer';
 import ContactSection from '../components/ContactSection';

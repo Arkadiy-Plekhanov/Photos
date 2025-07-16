@@ -75,7 +75,7 @@ const BlogPage = () => {
   return (
     <div className="min-h-screen bg-warm-white">
       <Navigation />
-
+      
       {/* Hero Section */}
       <section className="relative h-[40vh] flex items-center justify-center overflow-hidden">
         <div

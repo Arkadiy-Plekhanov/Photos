@@ -1,9 +1,9 @@
 import { motion } from 'framer-motion';
-import { Link } from 'wouter';
 import Navigation from '../components/Navigation';
 import Footer from '../components/Footer';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
+import { Link } from 'wouter';
 import { useSEO } from '../hooks/useSEO';
 import Gallery from '../components/Gallery';
 

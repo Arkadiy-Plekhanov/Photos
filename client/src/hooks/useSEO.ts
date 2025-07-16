@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
 import { updateSEO } from '../lib/seo';
 
 export function useSEO(pageKey: string) {
