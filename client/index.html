@@ -38,8 +38,8 @@
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
 
-    <!-- Service Worker Registration -->
-    <script>
+    <!-- Service Worker Registration - Disabled for deployment debugging -->
+    <!-- <script>
       if ('serviceWorker' in navigator) {
         window.addEventListener('load', () => {
           navigator.serviceWorker.register('/sw.js')
@@ -51,6 +51,6 @@
             });
         });
       }
-    </script>
+    </script> -->
   </body>
 </html>
