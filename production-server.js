@@ -146,8 +146,502 @@ const createFullFeaturedHTML = () => {
         return element;
       };
       
+      // Simple routing system
+      let currentPage = 'home';
+      
+      const navigate = (page) => {
+        currentPage = page;
+        const root = document.getElementById('root');
+        root.innerHTML = '';
+        root.appendChild(App());
+        window.scrollTo(0, 0);
+      };
+      
+      // Service Pages
+      const WeddingPage = () => {
+        return h('div', { className: 'min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 dark:from-gray-900 dark:to-gray-800' },
+          h('nav', { className: 'fixed top-0 w-full z-50 glass-effect' },
+            h('div', { className: 'container mx-auto px-6 py-4' },
+              h('div', { className: 'flex items-center justify-between' },
+                h('a', { 
+                  href: '#',
+                  className: 'flex items-center space-x-2 cursor-pointer',
+                  onclick: (e) => {
+                    e.preventDefault();
+                    navigate('home');
+                  }
+                },
+                  h('i', { className: 'fas fa-camera text-2xl text-ocean-blue' }),
+                  h('span', { className: 'text-2xl font-playfair font-bold' }, 'Arcadia Photography')
+                ),
+                h('button', { 
+                  className: 'text-ocean-blue hover:underline',
+                  onclick: () => navigate('home')
+                }, '← Back to Home')
+              )
+            )
+          ),
+          h('div', { className: 'pt-24 px-6' },
+            h('div', { className: 'container mx-auto max-w-6xl' },
+              h('h1', { className: 'text-5xl font-playfair font-bold text-center mb-8' }, 'Wedding Photography'),
+              h('div', { className: 'grid md:grid-cols-2 gap-12 items-center mb-16' },
+                h('div', {},
+                  h('h2', { className: 'text-3xl font-semibold mb-4' }, 'Capture Your Love Story'),
+                  h('p', { className: 'text-gray-600 dark:text-gray-300 mb-6' }, 
+                    'Your wedding day is one of the most important days of your life. Our experienced photographers specialize in capturing the emotion, beauty, and unique moments that tell your love story.'
+                  ),
+                  h('ul', { className: 'space-y-3 mb-8' },
+                    h('li', { className: 'flex items-start' },
+                      h('i', { className: 'fas fa-check text-green-500 mt-1 mr-3' }),
+                      h('span', {}, '8-10 hours of coverage')
+                    ),
+                    h('li', { className: 'flex items-start' },
+                      h('i', { className: 'fas fa-check text-green-500 mt-1 mr-3' }),
+                      h('span', {}, 'Two professional photographers')
+                    ),
+                    h('li', { className: 'flex items-start' },
+                      h('i', { className: 'fas fa-check text-green-500 mt-1 mr-3' }),
+                      h('span', {}, '500+ edited high-resolution images')
+                    ),
+                    h('li', { className: 'flex items-start' },
+                      h('i', { className: 'fas fa-check text-green-500 mt-1 mr-3' }),
+                      h('span', {}, 'Online gallery with download rights')
+                    )
+                  ),
+                  h('button', {
+                    className: 'bg-ocean-blue hover:bg-blue-800 text-white px-8 py-4 rounded-full text-lg font-semibold transition',
+                    onclick: () => navigate('checkout')
+                  }, 'Book Your Wedding')
+                ),
+                h('div', {},
+                  h('img', {
+                    src: 'https://images.unsplash.com/photo-1519741497674-611481863552?w=600&h=400&fit=crop',
+                    alt: 'Wedding Photography',
+                    className: 'rounded-lg shadow-2xl'
+                  })
+                )
+              ),
+              h('div', { className: 'bg-white dark:bg-gray-800 rounded-lg shadow-xl p-8 mb-16' },
+                h('h3', { className: 'text-2xl font-semibold mb-6 text-center' }, 'Wedding Packages'),
+                h('div', { className: 'grid md:grid-cols-3 gap-8' },
+                  h('div', { className: 'text-center' },
+                    h('h4', { className: 'text-xl font-semibold mb-2' }, 'Essential'),
+                    h('p', { className: 'text-3xl font-bold text-ocean-blue mb-4' }, '$2,500'),
+                    h('ul', { className: 'text-gray-600 dark:text-gray-300 space-y-2' },
+                      h('li', {}, '6 hours coverage'),
+                      h('li', {}, 'One photographer'),
+                      h('li', {}, '300+ edited images'),
+                      h('li', {}, 'Online gallery')
+                    )
+                  ),
+                  h('div', { className: 'text-center border-x border-gray-200 dark:border-gray-700' },
+                    h('h4', { className: 'text-xl font-semibold mb-2' }, 'Premium'),
+                    h('p', { className: 'text-3xl font-bold text-ocean-blue mb-4' }, '$4,000'),
+                    h('ul', { className: 'text-gray-600 dark:text-gray-300 space-y-2' },
+                      h('li', {}, '8 hours coverage'),
+                      h('li', {}, 'Two photographers'),
+                      h('li', {}, '500+ edited images'),
+                      h('li', {}, 'Engagement session included')
+                    )
+                  ),
+                  h('div', { className: 'text-center' },
+                    h('h4', { className: 'text-xl font-semibold mb-2' }, 'Luxury'),
+                    h('p', { className: 'text-3xl font-bold text-ocean-blue mb-4' }, '$6,000'),
+                    h('ul', { className: 'text-gray-600 dark:text-gray-300 space-y-2' },
+                      h('li', {}, 'Full day coverage'),
+                      h('li', {}, 'Two photographers + assistant'),
+                      h('li', {}, '800+ edited images'),
+                      h('li', {}, 'Premium album included')
+                    )
+                  )
+                )
+              )
+            )
+          )
+        );
+      };
+      
+      // Real Estate Page
+      const RealEstatePage = () => {
+        return h('div', { className: 'min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 dark:from-gray-900 dark:to-gray-800' },
+          h('nav', { className: 'fixed top-0 w-full z-50 glass-effect' },
+            h('div', { className: 'container mx-auto px-6 py-4' },
+              h('div', { className: 'flex items-center justify-between' },
+                h('a', { 
+                  href: '#',
+                  className: 'flex items-center space-x-2 cursor-pointer',
+                  onclick: (e) => {
+                    e.preventDefault();
+                    navigate('home');
+                  }
+                },
+                  h('i', { className: 'fas fa-camera text-2xl text-ocean-blue' }),
+                  h('span', { className: 'text-2xl font-playfair font-bold' }, 'Arcadia Photography')
+                ),
+                h('button', { 
+                  className: 'text-ocean-blue hover:underline',
+                  onclick: () => navigate('home')
+                }, '← Back to Home')
+              )
+            )
+          ),
+          h('div', { className: 'pt-24 px-6' },
+            h('div', { className: 'container mx-auto max-w-6xl' },
+              h('h1', { className: 'text-5xl font-playfair font-bold text-center mb-8' }, 'Real Estate Photography'),
+              h('div', { className: 'grid md:grid-cols-2 gap-12 items-center mb-16' },
+                h('div', {},
+                  h('h2', { className: 'text-3xl font-semibold mb-4' }, 'Showcase Properties at Their Best'),
+                  h('p', { className: 'text-gray-600 dark:text-gray-300 mb-6' }, 
+                    'Professional real estate photography that helps properties sell faster and for more money. We capture the unique features and atmosphere of each property.'
+                  ),
+                  h('ul', { className: 'space-y-3 mb-8' },
+                    h('li', { className: 'flex items-start' },
+                      h('i', { className: 'fas fa-check text-green-500 mt-1 mr-3' }),
+                      h('span', {}, 'HDR photography for perfect exposure')
+                    ),
+                    h('li', { className: 'flex items-start' },
+                      h('i', { className: 'fas fa-check text-green-500 mt-1 mr-3' }),
+                      h('span', {}, '24-hour turnaround time')
+                    ),
+                    h('li', { className: 'flex items-start' },
+                      h('i', { className: 'fas fa-check text-green-500 mt-1 mr-3' }),
+                      h('span', {}, 'Virtual tours and 360° photography')
+                    ),
+                    h('li', { className: 'flex items-start' },
+                      h('i', { className: 'fas fa-check text-green-500 mt-1 mr-3' }),
+                      h('span', {}, 'Drone photography available')
+                    )
+                  ),
+                  h('button', {
+                    className: 'bg-ocean-blue hover:bg-blue-800 text-white px-8 py-4 rounded-full text-lg font-semibold transition',
+                    onclick: () => navigate('checkout')
+                  }, 'Schedule a Shoot')
+                ),
+                h('div', {},
+                  h('img', {
+                    src: 'https://images.unsplash.com/photo-1560184897-ae75f418493e?w=600&h=400&fit=crop',
+                    alt: 'Real Estate Photography',
+                    className: 'rounded-lg shadow-2xl'
+                  })
+                )
+              ),
+              h('div', { className: 'bg-white dark:bg-gray-800 rounded-lg shadow-xl p-8 mb-16' },
+                h('h3', { className: 'text-2xl font-semibold mb-6 text-center' }, 'Real Estate Pricing'),
+                h('div', { className: 'grid md:grid-cols-3 gap-8' },
+                  h('div', { className: 'text-center' },
+                    h('h4', { className: 'text-xl font-semibold mb-2' }, 'Standard Home'),
+                    h('p', { className: 'text-3xl font-bold text-ocean-blue mb-4' }, '$350'),
+                    h('ul', { className: 'text-gray-600 dark:text-gray-300 space-y-2' },
+                      h('li', {}, 'Up to 3,000 sq ft'),
+                      h('li', {}, '25-35 photos'),
+                      h('li', {}, 'Basic editing'),
+                      h('li', {}, 'MLS ready')
+                    )
+                  ),
+                  h('div', { className: 'text-center border-x border-gray-200 dark:border-gray-700' },
+                    h('h4', { className: 'text-xl font-semibold mb-2' }, 'Luxury Home'),
+                    h('p', { className: 'text-3xl font-bold text-ocean-blue mb-4' }, '$550'),
+                    h('ul', { className: 'text-gray-600 dark:text-gray-300 space-y-2' },
+                      h('li', {}, '3,000-5,000 sq ft'),
+                      h('li', {}, '40-60 photos'),
+                      h('li', {}, 'Advanced editing'),
+                      h('li', {}, 'Twilight shots included')
+                    )
+                  ),
+                  h('div', { className: 'text-center' },
+                    h('h4', { className: 'text-xl font-semibold mb-2' }, 'Estate'),
+                    h('p', { className: 'text-3xl font-bold text-ocean-blue mb-4' }, '$850+'),
+                    h('ul', { className: 'text-gray-600 dark:text-gray-300 space-y-2' },
+                      h('li', {}, '5,000+ sq ft'),
+                      h('li', {}, '60+ photos'),
+                      h('li', {}, 'Drone photography'),
+                      h('li', {}, 'Virtual tour included')
+                    )
+                  )
+                )
+              )
+            )
+          )
+        );
+      };
+      
+      // Checkout Page
+      const CheckoutPage = () => {
+        return h('div', { className: 'min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 dark:from-gray-900 dark:to-gray-800' },
+          h('nav', { className: 'fixed top-0 w-full z-50 glass-effect' },
+            h('div', { className: 'container mx-auto px-6 py-4' },
+              h('div', { className: 'flex items-center justify-between' },
+                h('a', { 
+                  href: '#',
+                  className: 'flex items-center space-x-2 cursor-pointer',
+                  onclick: (e) => {
+                    e.preventDefault();
+                    navigate('home');
+                  }
+                },
+                  h('i', { className: 'fas fa-camera text-2xl text-ocean-blue' }),
+                  h('span', { className: 'text-2xl font-playfair font-bold' }, 'Arcadia Photography')
+                ),
+                h('button', { 
+                  className: 'text-ocean-blue hover:underline',
+                  onclick: () => navigate('home')
+                }, '← Back to Home')
+              )
+            )
+          ),
+          h('div', { className: 'pt-24 px-6' },
+            h('div', { className: 'container mx-auto max-w-4xl' },
+              h('h1', { className: 'text-4xl font-playfair font-bold text-center mb-12' }, 'Book Your Photography Session'),
+              h('div', { className: 'grid md:grid-cols-2 gap-12' },
+                // Booking Form
+                h('div', { className: 'bg-white dark:bg-gray-800 rounded-lg shadow-xl p-8' },
+                  h('h2', { className: 'text-2xl font-semibold mb-6' }, 'Session Details'),
+                  h('form', { id: 'booking-form' },
+                    h('div', { className: 'space-y-4' },
+                      h('div', { className: 'grid grid-cols-2 gap-4' },
+                        h('div', {},
+                          h('label', { className: 'block text-sm font-medium mb-2' }, 'First Name'),
+                          h('input', { 
+                            type: 'text',
+                            name: 'firstName',
+                            className: 'w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-ocean-blue',
+                            required: true
+                          })
+                        ),
+                        h('div', {},
+                          h('label', { className: 'block text-sm font-medium mb-2' }, 'Last Name'),
+                          h('input', { 
+                            type: 'text',
+                            name: 'lastName',
+                            className: 'w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-ocean-blue',
+                            required: true
+                          })
+                        )
+                      ),
+                      h('div', {},
+                        h('label', { className: 'block text-sm font-medium mb-2' }, 'Email'),
+                        h('input', { 
+                          type: 'email',
+                          name: 'email',
+                          className: 'w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-ocean-blue',
+                          required: true
+                        })
+                      ),
+                      h('div', {},
+                        h('label', { className: 'block text-sm font-medium mb-2' }, 'Phone'),
+                        h('input', { 
+                          type: 'tel',
+                          name: 'phone',
+                          className: 'w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-ocean-blue',
+                          required: true
+                        })
+                      ),
+                      h('div', {},
+                        h('label', { className: 'block text-sm font-medium mb-2' }, 'Service Type'),
+                        h('select', { 
+                          name: 'service',
+                          className: 'w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-ocean-blue',
+                          required: true
+                        },
+                          h('option', { value: '' }, 'Select a service...'),
+                          h('option', { value: 'wedding' }, 'Wedding Photography'),
+                          h('option', { value: 'real-estate' }, 'Real Estate Photography'),
+                          h('option', { value: 'family' }, 'Family Portraits'),
+                          h('option', { value: 'other' }, 'Other')
+                        )
+                      ),
+                      h('div', {},
+                        h('label', { className: 'block text-sm font-medium mb-2' }, 'Event Date'),
+                        h('input', { 
+                          type: 'date',
+                          name: 'eventDate',
+                          className: 'w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-ocean-blue'
+                        })
+                      ),
+                      h('div', {},
+                        h('label', { className: 'block text-sm font-medium mb-2' }, 'Package'),
+                        h('select', { 
+                          name: 'package',
+                          className: 'w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-ocean-blue',
+                          required: true
+                        },
+                          h('option', { value: '' }, 'Select a package...'),
+                          h('option', { value: 'basic' }, 'Basic Package - $350'),
+                          h('option', { value: 'standard' }, 'Standard Package - $550'),
+                          h('option', { value: 'premium' }, 'Premium Package - $750'),
+                          h('option', { value: 'luxury' }, 'Luxury Package - $1,000+')
+                        )
+                      ),
+                      h('div', {},
+                        h('label', { className: 'block text-sm font-medium mb-2' }, 'Special Requests'),
+                        h('textarea', { 
+                          name: 'message',
+                          rows: 4,
+                          className: 'w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-ocean-blue',
+                          placeholder: 'Tell us about your vision, special requirements, or any questions you have...'
+                        })
+                      )
+                    )
+                  )
+                ),
+                // Payment Section
+                h('div', { className: 'bg-white dark:bg-gray-800 rounded-lg shadow-xl p-8' },
+                  h('h2', { className: 'text-2xl font-semibold mb-6' }, 'Payment'),
+                  h('div', { className: 'space-y-4' },
+                    h('div', { className: 'bg-gray-50 dark:bg-gray-700 rounded-lg p-4' },
+                      h('h3', { className: 'font-semibold mb-2' }, 'Order Summary'),
+                      h('div', { className: 'flex justify-between items-center' },
+                        h('span', {}, 'Photography Session'),
+                        h('span', { className: 'font-semibold' }, '$550.00')
+                      ),
+                      h('div', { className: 'flex justify-between items-center pt-2 border-t mt-2' },
+                        h('span', { className: 'font-semibold' }, 'Total'),
+                        h('span', { className: 'font-bold text-xl text-ocean-blue' }, '$550.00')
+                      )
+                    ),
+                    h('div', { id: 'payment-element' },
+                      h('div', { className: 'text-center text-gray-500 py-8' },
+                        h('i', { className: 'fas fa-spinner fa-spin text-2xl mb-4' }),
+                        h('p', {}, 'Loading payment form...')
+                      )
+                    ),
+                    h('button', { 
+                      id: 'submit-payment',
+                      className: 'w-full bg-ocean-blue hover:bg-blue-800 text-white py-4 rounded-md font-semibold transition disabled:opacity-50',
+                      disabled: true
+                    }, 'Complete Booking')
+                  )
+                )
+              )
+            )
+          )
+        );
+      };
+      
+      // Family Page
+      const FamilyPage = () => {
+        return h('div', { className: 'min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 dark:from-gray-900 dark:to-gray-800' },
+          h('nav', { className: 'fixed top-0 w-full z-50 glass-effect' },
+            h('div', { className: 'container mx-auto px-6 py-4' },
+              h('div', { className: 'flex items-center justify-between' },
+                h('a', { 
+                  href: '#',
+                  className: 'flex items-center space-x-2 cursor-pointer',
+                  onclick: (e) => {
+                    e.preventDefault();
+                    navigate('home');
+                  }
+                },
+                  h('i', { className: 'fas fa-camera text-2xl text-ocean-blue' }),
+                  h('span', { className: 'text-2xl font-playfair font-bold' }, 'Arcadia Photography')
+                ),
+                h('button', { 
+                  className: 'text-ocean-blue hover:underline',
+                  onclick: () => navigate('home')
+                }, '← Back to Home')
+              )
+            )
+          ),
+          h('div', { className: 'pt-24 px-6' },
+            h('div', { className: 'container mx-auto max-w-6xl' },
+              h('h1', { className: 'text-5xl font-playfair font-bold text-center mb-8' }, 'Family Portrait Photography'),
+              h('div', { className: 'grid md:grid-cols-2 gap-12 items-center mb-16' },
+                h('div', {},
+                  h('h2', { className: 'text-3xl font-semibold mb-4' }, 'Preserve Precious Moments'),
+                  h('p', { className: 'text-gray-600 dark:text-gray-300 mb-6' }, 
+                    'Create lasting memories with beautiful family portraits. Our relaxed approach ensures natural, authentic moments that showcase your family\'s unique personality.'
+                  ),
+                  h('ul', { className: 'space-y-3 mb-8' },
+                    h('li', { className: 'flex items-start' },
+                      h('i', { className: 'fas fa-check text-green-500 mt-1 mr-3' }),
+                      h('span', {}, 'Beach, park, or studio sessions')
+                    ),
+                    h('li', { className: 'flex items-start' },
+                      h('i', { className: 'fas fa-check text-green-500 mt-1 mr-3' }),
+                      h('span', {}, 'Maternity and newborn specialty')
+                    ),
+                    h('li', { className: 'flex items-start' },
+                      h('i', { className: 'fas fa-check text-green-500 mt-1 mr-3' }),
+                      h('span', {}, 'All edited images included')
+                    ),
+                    h('li', { className: 'flex items-start' },
+                      h('i', { className: 'fas fa-check text-green-500 mt-1 mr-3' }),
+                      h('span', {}, 'Print packages available')
+                    )
+                  ),
+                  h('button', {
+                    className: 'bg-ocean-blue hover:bg-blue-800 text-white px-8 py-4 rounded-full text-lg font-semibold transition',
+                    onclick: () => navigate('checkout')
+                  }, 'Book Your Session')
+                ),
+                h('div', {},
+                  h('img', {
+                    src: 'https://images.unsplash.com/photo-1559308350-86697adc9c39?w=600&h=400&fit=crop',
+                    alt: 'Family Photography',
+                    className: 'rounded-lg shadow-2xl'
+                  })
+                )
+              ),
+              h('div', { className: 'bg-white dark:bg-gray-800 rounded-lg shadow-xl p-8 mb-16' },
+                h('h3', { className: 'text-2xl font-semibold mb-6 text-center' }, 'Family Session Packages'),
+                h('div', { className: 'grid md:grid-cols-3 gap-8' },
+                  h('div', { className: 'text-center' },
+                    h('h4', { className: 'text-xl font-semibold mb-2' }, 'Mini Session'),
+                    h('p', { className: 'text-3xl font-bold text-ocean-blue mb-4' }, '$350'),
+                    h('ul', { className: 'text-gray-600 dark:text-gray-300 space-y-2' },
+                      h('li', {}, '30 minute session'),
+                      h('li', {}, '1 location'),
+                      h('li', {}, '15+ edited images'),
+                      h('li', {}, 'Online gallery')
+                    )
+                  ),
+                  h('div', { className: 'text-center border-x border-gray-200 dark:border-gray-700' },
+                    h('h4', { className: 'text-xl font-semibold mb-2' }, 'Standard Session'),
+                    h('p', { className: 'text-3xl font-bold text-ocean-blue mb-4' }, '$550'),
+                    h('ul', { className: 'text-gray-600 dark:text-gray-300 space-y-2' },
+                      h('li', {}, '1 hour session'),
+                      h('li', {}, 'Up to 2 locations'),
+                      h('li', {}, '30+ edited images'),
+                      h('li', {}, '5 prints included')
+                    )
+                  ),
+                  h('div', { className: 'text-center' },
+                    h('h4', { className: 'text-xl font-semibold mb-2' }, 'Extended Session'),
+                    h('p', { className: 'text-3xl font-bold text-ocean-blue mb-4' }, '$750'),
+                    h('ul', { className: 'text-gray-600 dark:text-gray-300 space-y-2' },
+                      h('li', {}, '2 hour session'),
+                      h('li', {}, 'Multiple locations'),
+                      h('li', {}, '50+ edited images'),
+                      h('li', {}, 'Premium album included')
+                    )
+                  )
+                )
+              )
+            )
+          )
+        );
+      };
+      
       // Main App Component
       const App = () => {
+        // Route to correct page
+        if (currentPage === 'wedding') {
+          return WeddingPage();
+        }
+        if (currentPage === 'real-estate') {
+          return RealEstatePage();
+        }
+        if (currentPage === 'family') {
+          return FamilyPage();
+        }
+        if (currentPage === 'checkout') {
+          return CheckoutPage();
+        }
+        if (currentPage === 'booking-success') {
+          return BookingSuccessPage();
+        }
+        
+        // Default home page
         const container = h('div', { className: 'min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 dark:from-gray-900 dark:to-gray-800' });
         
         // Navigation
@@ -159,10 +653,58 @@ const createFullFeaturedHTML = () => {
                 h('span', { className: 'text-2xl font-playfair font-bold' }, 'Arcadia Photography')
               ),
               h('div', { className: 'hidden md:flex items-center space-x-8' },
-                h('a', { href: '#services', className: 'hover:text-ocean-blue transition' }, 'Services'),
-                h('a', { href: '#portfolio', className: 'hover:text-ocean-blue transition' }, 'Portfolio'),
-                h('a', { href: '#about', className: 'hover:text-ocean-blue transition' }, 'About'),
-                h('a', { href: '#contact', className: 'hover:text-ocean-blue transition' }, 'Contact'),
+                h('a', { 
+                  href: '#services', 
+                  className: 'hover:text-ocean-blue transition',
+                  onclick: (e) => {
+                    if (currentPage !== 'home') {
+                      e.preventDefault();
+                      navigate('home');
+                      setTimeout(() => {
+                        document.querySelector('#services')?.scrollIntoView({ behavior: 'smooth' });
+                      }, 100);
+                    }
+                  }
+                }, 'Services'),
+                h('a', { 
+                  href: '#portfolio', 
+                  className: 'hover:text-ocean-blue transition',
+                  onclick: (e) => {
+                    if (currentPage !== 'home') {
+                      e.preventDefault();
+                      navigate('home');
+                      setTimeout(() => {
+                        document.querySelector('#portfolio')?.scrollIntoView({ behavior: 'smooth' });
+                      }, 100);
+                    }
+                  }
+                }, 'Portfolio'),
+                h('a', { 
+                  href: '#about', 
+                  className: 'hover:text-ocean-blue transition',
+                  onclick: (e) => {
+                    if (currentPage !== 'home') {
+                      e.preventDefault();
+                      navigate('home');
+                      setTimeout(() => {
+                        document.querySelector('#about')?.scrollIntoView({ behavior: 'smooth' });
+                      }, 100);
+                    }
+                  }
+                }, 'About'),
+                h('a', { 
+                  href: '#contact', 
+                  className: 'hover:text-ocean-blue transition',
+                  onclick: (e) => {
+                    if (currentPage !== 'home') {
+                      e.preventDefault();
+                      navigate('home');
+                      setTimeout(() => {
+                        document.querySelector('#contact')?.scrollIntoView({ behavior: 'smooth' });
+                      }, 100);
+                    }
+                  }
+                }, 'Contact'),
                 h('button', { 
                   className: 'ml-4 p-2 rounded-full hover:bg-gray-200 dark:hover:bg-gray-700 transition',
                   onClick: () => {
@@ -224,7 +766,14 @@ const createFullFeaturedHTML = () => {
                   h('p', { className: 'text-gray-600 dark:text-gray-300 mb-4' }, 
                     'Capture your special day with stunning imagery that tells your unique love story.'
                   ),
-                  h('a', { href: '#contact', className: 'text-ocean-blue hover:underline' }, 'Learn More →')
+                  h('a', { 
+                    href: '#',
+                    className: 'text-ocean-blue hover:underline cursor-pointer',
+                    onclick: (e) => {
+                      e.preventDefault();
+                      navigate('wedding');
+                    }
+                  }, 'Learn More →')
                 )
               ),
               // Real Estate
@@ -238,7 +787,14 @@ const createFullFeaturedHTML = () => {
                   h('p', { className: 'text-gray-600 dark:text-gray-300 mb-4' }, 
                     'Showcase properties in their best light with professional real estate photography.'
                   ),
-                  h('a', { href: '#contact', className: 'text-ocean-blue hover:underline' }, 'Learn More →')
+                  h('a', { 
+                    href: '#',
+                    className: 'text-ocean-blue hover:underline cursor-pointer',
+                    onclick: (e) => {
+                      e.preventDefault();
+                      navigate('real-estate');
+                    }
+                  }, 'Learn More →')
                 )
               ),
               // Family Portraits
@@ -252,7 +808,14 @@ const createFullFeaturedHTML = () => {
                   h('p', { className: 'text-gray-600 dark:text-gray-300 mb-4' }, 
                     'Preserve precious family moments with beautiful portraits in stunning locations.'
                   ),
-                  h('a', { href: '#contact', className: 'text-ocean-blue hover:underline' }, 'Learn More →')
+                  h('a', { 
+                    href: '#',
+                    className: 'text-ocean-blue hover:underline cursor-pointer',
+                    onclick: (e) => {
+                      e.preventDefault();
+                      navigate('family');
+                    }
+                  }, 'Learn More →')
                 )
               )
             )
@@ -537,11 +1100,187 @@ const createFullFeaturedHTML = () => {
         return container;
       };
       
+      // Stripe Integration
+      const initStripe = () => {
+        if (currentPage === 'checkout') {
+          const script = document.createElement('script');
+          script.src = 'https://js.stripe.com/v3/';
+          script.onload = () => {
+            const stripe = Stripe('${process.env.STRIPE_PUBLISHABLE_KEY}');
+            
+            // Create booking and payment intent
+            const form = document.getElementById('booking-form');
+            const paymentElement = document.getElementById('payment-element');
+            const submitButton = document.getElementById('submit-payment');
+            
+            let elements;
+            let clientSecret;
+            
+            // Initialize Stripe Elements
+            const initializePayment = async () => {
+              try {
+                // Create payment intent
+                const response = await fetch('/api/create-payment-intent', {
+                  method: 'POST',
+                  headers: { 'Content-Type': 'application/json' },
+                  body: JSON.stringify({ amount: 55000 }) // $550.00 in cents
+                });
+                
+                if (!response.ok) throw new Error('Failed to create payment intent');
+                
+                const { clientSecret: cs } = await response.json();
+                clientSecret = cs;
+                
+                elements = stripe.elements({ clientSecret });
+                
+                const paymentEl = elements.create('payment');
+                paymentEl.mount('#payment-element');
+                
+                submitButton.disabled = false;
+                paymentElement.innerHTML = '';
+                paymentElement.appendChild(paymentEl._element);
+                
+              } catch (error) {
+                console.error('Payment initialization error:', error);
+                paymentElement.innerHTML = 
+                  '<div class="text-center text-red-500 py-8">' +
+                  '<i class="fas fa-exclamation-triangle text-2xl mb-4"></i>' +
+                  '<p>Payment system temporarily unavailable. Please try again later.</p>' +
+                  '</div>';
+              }
+            };
+            
+            // Handle form submission
+            const handleSubmit = async (event) => {
+              event.preventDefault();
+              
+              if (!stripe || !elements) return;
+              
+              submitButton.disabled = true;
+              submitButton.textContent = 'Processing...';
+              
+              try {
+                // Get form data
+                const formData = new FormData(form);
+                const bookingData = {
+                  firstName: formData.get('firstName'),
+                  lastName: formData.get('lastName'),
+                  email: formData.get('email'),
+                  phone: formData.get('phone'),
+                  service: formData.get('service'),
+                  eventDate: formData.get('eventDate'),
+                  package: formData.get('package'),
+                  message: formData.get('message')
+                };
+                
+                // Confirm payment
+                const { error } = await stripe.confirmPayment({
+                  elements,
+                  confirmParams: {
+                    return_url: window.location.origin + '/booking-success'
+                  }
+                });
+                
+                if (error) {
+                  console.error('Payment error:', error);
+                  alert('Payment failed: ' + error.message);
+                  submitButton.disabled = false;
+                  submitButton.textContent = 'Complete Booking';
+                } else {
+                  // Success - redirect handled by Stripe
+                  navigate('booking-success');
+                }
+                
+              } catch (error) {
+                console.error('Booking error:', error);
+                alert('Booking failed. Please try again.');
+                submitButton.disabled = false;
+                submitButton.textContent = 'Complete Booking';
+              }
+            };
+            
+            // Initialize payment when page loads
+            initializePayment();
+            
+            // Attach event listener
+            submitButton.addEventListener('click', handleSubmit);
+          };
+          
+          document.head.appendChild(script);
+        }
+      };
+      
+      // Booking Success Page
+      const BookingSuccessPage = () => {
+        return h('div', { className: 'min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 dark:from-gray-900 dark:to-gray-800' },
+          h('nav', { className: 'fixed top-0 w-full z-50 glass-effect' },
+            h('div', { className: 'container mx-auto px-6 py-4' },
+              h('div', { className: 'flex items-center justify-between' },
+                h('a', { 
+                  href: '#',
+                  className: 'flex items-center space-x-2 cursor-pointer',
+                  onclick: (e) => {
+                    e.preventDefault();
+                    navigate('home');
+                  }
+                },
+                  h('i', { className: 'fas fa-camera text-2xl text-ocean-blue' }),
+                  h('span', { className: 'text-2xl font-playfair font-bold' }, 'Arcadia Photography')
+                ),
+                h('button', { 
+                  className: 'text-ocean-blue hover:underline',
+                  onclick: () => navigate('home')
+                }, '← Back to Home')
+              )
+            )
+          ),
+          h('div', { className: 'pt-24 px-6' },
+            h('div', { className: 'container mx-auto max-w-4xl text-center' },
+              h('div', { className: 'bg-white dark:bg-gray-800 rounded-lg shadow-xl p-12' },
+                h('i', { className: 'fas fa-check-circle text-6xl text-green-500 mb-6' }),
+                h('h1', { className: 'text-4xl font-playfair font-bold mb-6' }, 'Booking Confirmed!'),
+                h('p', { className: 'text-xl text-gray-600 dark:text-gray-300 mb-8' }, 
+                  'Thank you for choosing Arcadia Photography. Your session has been successfully booked and payment confirmed.'
+                ),
+                h('div', { className: 'bg-gray-50 dark:bg-gray-700 rounded-lg p-6 mb-8' },
+                  h('h2', { className: 'text-2xl font-semibold mb-4' }, 'What happens next?'),
+                  h('ul', { className: 'text-left space-y-3' },
+                    h('li', { className: 'flex items-start' },
+                      h('i', { className: 'fas fa-envelope text-ocean-blue mt-1 mr-3' }),
+                      h('span', {}, 'You will receive a confirmation email within 24 hours')
+                    ),
+                    h('li', { className: 'flex items-start' },
+                      h('i', { className: 'fas fa-calendar text-ocean-blue mt-1 mr-3' }),
+                      h('span', {}, 'Our team will contact you to finalize session details')
+                    ),
+                    h('li', { className: 'flex items-start' },
+                      h('i', { className: 'fas fa-camera text-ocean-blue mt-1 mr-3' }),
+                      h('span', {}, 'Get ready for an amazing photography experience!')
+                    )
+                  )
+                ),
+                h('div', { className: 'space-y-4' },
+                  h('button', {
+                    className: 'bg-ocean-blue hover:bg-blue-800 text-white px-8 py-3 rounded-full font-semibold transition mr-4',
+                    onclick: () => navigate('home')
+                  }, 'Return to Home'),
+                  h('button', {
+                    className: 'border-2 border-ocean-blue text-ocean-blue hover:bg-ocean-blue hover:text-white px-8 py-3 rounded-full font-semibold transition',
+                    onclick: () => window.location.href = 'mailto:info@arcadiaphotography.com'
+                  }, 'Contact Us')
+                )
+              )
+            )
+          )
+        );
+      };
+      
       // Initialize app when DOM is ready
       document.addEventListener('DOMContentLoaded', () => {
         const root = document.getElementById('root');
         if (root) {
           root.appendChild(App());
+          initStripe();
         }
       });
     </script>
@@ -608,6 +1347,51 @@ app.get('/api/contact/submissions', async (req, res) => {
   } catch (error) {
     console.error('Error fetching submissions:', error);
     res.status(500).json({ error: 'Failed to fetch submissions' });
+  }
+});
+
+// Create payment intent
+app.post('/api/create-payment-intent', async (req, res) => {
+  try {
+    const { amount } = req.body;
+    
+    if (!amount || amount < 50) {
+      return res.status(400).json({ error: 'Invalid amount' });
+    }
+    
+    const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
+    
+    const paymentIntent = await stripe.paymentIntents.create({
+      amount: amount,
+      currency: 'usd',
+      payment_method_types: ['card'],
+      description: 'Arcadia Photography Session',
+      metadata: {
+        business: 'Arcadia Photography',
+        type: 'photography_session'
+      }
+    });
+    
+    res.json({ clientSecret: paymentIntent.client_secret });
+  } catch (error) {
+    console.error('Payment intent creation error:', error);
+    res.status(500).json({ error: 'Failed to create payment intent' });
+  }
+});
+
+// Create booking
+app.post('/api/bookings', async (req, res) => {
+  try {
+    const booking = await storage.createBooking({
+      ...req.body,
+      status: 'pending',
+      paymentStatus: 'pending'
+    });
+    
+    res.json(booking);
+  } catch (error) {
+    console.error('Booking creation error:', error);
+    res.status(500).json({ error: 'Failed to create booking' });
   }
 });
 
