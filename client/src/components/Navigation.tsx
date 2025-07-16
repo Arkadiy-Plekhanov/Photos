@@ -99,19 +99,9 @@ const Navigation = () => {
               Blog
             </Link>
             
-            {isHomePage ? (
-              <a
-                href="#contact"
-                onClick={(e) => handleSmoothScroll(e, '#contact')}
-                className="bg-luxury-gold text-ocean-blue px-6 py-2 rounded-full font-inter font-medium hover:bg-sunset-orange transition-colors duration-300"
-              >
-                Contact
-              </a>
-            ) : (
-              <Link href="/contact" className="bg-luxury-gold text-ocean-blue px-6 py-2 rounded-full font-inter font-medium hover:bg-sunset-orange transition-colors duration-300">
-                Contact
-              </Link>
-            )}
+            <Link href="/contact" className="bg-luxury-gold text-ocean-blue px-6 py-2 rounded-full font-inter font-medium hover:bg-sunset-orange transition-colors duration-300">
+              Contact
+            </Link>
           </motion.div>
 
           {/* Mobile Menu Button */}
@@ -160,19 +150,9 @@ const Navigation = () => {
                 Blog
               </Link>
               
-              {isHomePage ? (
-                <a
-                  href="#contact"
-                  onClick={(e) => handleSmoothScroll(e, '#contact')}
-                  className="block bg-luxury-gold text-ocean-blue px-6 py-2 rounded-full font-inter font-medium hover:bg-sunset-orange transition-colors duration-300 text-center"
-                >
-                  Contact
-                </a>
-              ) : (
-                <Link href="/contact" className="block bg-luxury-gold text-ocean-blue px-6 py-2 rounded-full font-inter font-medium hover:bg-sunset-orange transition-colors duration-300 text-center" onClick={() => setIsMobileMenuOpen(false)}>
-                  Contact
-                </Link>
-              )}
+              <Link href="/contact" className="block bg-luxury-gold text-ocean-blue px-6 py-2 rounded-full font-inter font-medium hover:bg-sunset-orange transition-colors duration-300 text-center" onClick={() => setIsMobileMenuOpen(false)}>
+                Contact
+              </Link>
             </motion.div>
           )}
         </AnimatePresence>
