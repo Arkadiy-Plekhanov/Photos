@@ -58,7 +58,7 @@ function App() {
             <ScrollToTop />
             <ScrollProgress />
             <DarkModeToggle />
-            <Toaster />
+            {/* <Toaster /> */}
             <Router />
           </div>
         </TooltipProvider>
