@@ -1,8 +1,29 @@
 import { useParams } from 'wouter';
 import { motion } from 'framer-motion';
+import { Link } from 'wouter';
 import Navigation from '../components/Navigation';
 import Footer from '../components/Footer';
 import { useSEO } from '../hooks/useSEO';
+
+const BlogPostPage = () => {
+  const params = useParams();
+  useSEO('blog');
+  
+  return (
+    <div className="min-h-screen bg-warm-white">
+      <Navigation />
+      <main className="py-16 px-6">
+        <div className="max-w-4xl mx-auto">
+          <h1 className="text-4xl font-playfair mb-6">Blog Post</h1>
+          <p>Blog post content for ID: {params.id}</p>
+        </div>
+      </main>
+      <Footer />
+    </div>
+  );
+};
+
+export default BlogPostPage;
 
 const BlogPostPage = () => {
   const { id } = useParams<{ id: string }>();

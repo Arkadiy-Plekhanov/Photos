@@ -8,6 +8,25 @@ import { useSEO } from '../hooks/useSEO';
 
 const AboutPage = () => {
   useSEO('about');
+  
+  return (
+    <div className="min-h-screen bg-warm-white">
+      <Navigation />
+      <main className="py-16 px-6">
+        <div className="max-w-4xl mx-auto">
+          <h1 className="text-4xl font-playfair mb-6">About Us</h1>
+          <p>About page content will go here.</p>
+        </div>
+      </main>
+      <Footer />
+    </div>
+  );
+};
+
+export default AboutPage;
+
+const AboutPage = () => {
+  useSEO('about');
   const awards = [
     { year: '2023', title: 'Hawaii Wedding Photographer of the Year' },
     { year: '2022', title: 'Best Real Estate Photography - Honolulu Magazine' },

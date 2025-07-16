@@ -1,9 +1,24 @@
 
 import { motion } from 'framer-motion';
+import { Link } from 'wouter';
 import Navigation from '../components/Navigation';
 import Footer from '../components/Footer';
 import ContactSection from '../components/ContactSection';
 import { useSEO } from '../hooks/useSEO';
+
+const ContactPage = () => {
+  useSEO('contact');
+  
+  return (
+    <div className="min-h-screen bg-warm-white">
+      <Navigation />
+      <ContactSection />
+      <Footer />
+    </div>
+  );
+};
+
+export default ContactPage;
 
 const ContactPage = () => {
   useSEO({
