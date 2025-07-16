@@ -1,5 +1,5 @@
 import React from "react";
-import { Router, Switch, Route } from "wouter";
+import { Switch, Route } from "wouter";
 import { queryClient } from "./lib/queryClient";
 import { QueryClientProvider } from "@tanstack/react-query";
 import { Toaster } from "@/components/ui/toaster";
@@ -7,7 +7,6 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import ScrollProgress from "@/components/ScrollProgress";
 import ScrollToTop from "./components/ScrollToTop";
 import DarkModeToggle from "@/components/DarkModeToggle";
-// import { useServiceWorker } from "@/hooks/useServiceWorker";
 import NotFound from "@/pages/not-found";
 import Home from "@/pages/Home";
 import WeddingPage from "@/pages/WeddingPage";
@@ -23,42 +22,8 @@ import TermsPage from "@/pages/TermsPage";
 import PrivacyPage from "@/pages/PrivacyPage";
 import CheckoutPage from "@/pages/CheckoutPage";
 import BookingSuccessPage from "@/pages/BookingSuccessPage";
-import TestComponent from "./TestComponent";
-
-function AppRouter() {
-  console.log("AppRouter rendering...");
-  
-  return (
-    <Router>
-      <Switch>
-        <Route path="/" component={Home} />
-        <Route path="/test" component={TestComponent} />
-        <Route path="/wedding-photography" component={WeddingPage} />
-        <Route path="/real-estate-photography" component={RealEstatePage} />
-        <Route path="/family-photography" component={FamilyPage} />
-        <Route path="/about" component={AboutPage} />
-        <Route path="/portfolio" component={PortfolioPage} />
-        <Route path="/blog" component={BlogPage} />
-        <Route path="/blog/:id" component={BlogPostPage} />
-        <Route path="/contact" component={ContactPage} />
-        <Route path="/faq" component={FAQPage} />
-        <Route path="/terms" component={TermsPage} />
-        <Route path="/privacy" component={PrivacyPage} />
-        <Route path="/checkout" component={CheckoutPage} />
-        <Route path="/booking-success" component={BookingSuccessPage} />
-        <Route component={NotFound} />
-      </Switch>
-    </Router>
-  );
-}
 
 function App() {
-  console.log("App component rendering...");
-  
-  React.useEffect(() => {
-    console.log("App mounted successfully");
-  }, []);
-
   return (
     <QueryClientProvider client={queryClient}>
       <TooltipProvider>
@@ -67,7 +32,23 @@ function App() {
           <ScrollProgress />
           <DarkModeToggle />
           <Toaster />
-          <AppRouter />
+          <Switch>
+            <Route path="/" component={Home} />
+            <Route path="/wedding-photography" component={WeddingPage} />
+            <Route path="/real-estate-photography" component={RealEstatePage} />
+            <Route path="/family-photography" component={FamilyPage} />
+            <Route path="/about" component={AboutPage} />
+            <Route path="/portfolio" component={PortfolioPage} />
+            <Route path="/blog" component={BlogPage} />
+            <Route path="/blog/:id" component={BlogPostPage} />
+            <Route path="/contact" component={ContactPage} />
+            <Route path="/faq" component={FAQPage} />
+            <Route path="/terms" component={TermsPage} />
+            <Route path="/privacy" component={PrivacyPage} />
+            <Route path="/checkout" component={CheckoutPage} />
+            <Route path="/booking-success" component={BookingSuccessPage} />
+            <Route component={NotFound} />
+          </Switch>
         </div>
       </TooltipProvider>
     </QueryClientProvider>
