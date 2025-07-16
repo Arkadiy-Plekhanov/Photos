@@ -48,7 +48,7 @@ function Router() {
 }
 
 function App() {
-  useServiceWorker();
+  // useServiceWorker();
 
   return (
     <QueryClientProvider client={queryClient}>
