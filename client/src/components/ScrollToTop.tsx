@@ -1,14 +1,11 @@
-import { useEffect } from 'react';
-import { useLocation } from 'wouter';
+import { useEffect } from "react";
+import { useLocation } from "wouter";
 
 export default function ScrollToTop() {
   const [location] = useLocation();
 
   useEffect(() => {
-    // Small delay to ensure DOM is updated
-    setTimeout(() => {
-      window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
-    }, 0);
+    window.scrollTo(0, 0);
   }, [location]);
 
   return null;
