@@ -1,8 +1,8 @@
 
-import { useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { useLocation } from 'wouter';
 
-const ScrollToTop = () => {
+const ScrollToTop: React.FC = () => {
   const [location] = useLocation();
 
   useEffect(() => {
