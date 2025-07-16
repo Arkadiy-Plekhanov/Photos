@@ -716,10 +716,91 @@ const createFullFeaturedHTML = () => {
                   h('i', { className: 'fas fa-sun hidden dark:inline' })
                 )
               ),
-              h('button', { className: 'md:hidden', onClick: () => alert('Mobile menu would open here') },
+              h('button', { 
+                className: 'md:hidden',
+                onClick: () => {
+                  const mobileMenu = document.getElementById('mobile-menu');
+                  if (mobileMenu) {
+                    mobileMenu.classList.toggle('hidden');
+                  }
+                },
+                'aria-label': 'Toggle mobile menu'
+              },
                 h('i', { className: 'fas fa-bars text-2xl' })
               )
             )
+          )
+        );
+        
+        // Mobile Menu
+        const mobileMenu = h('div', { 
+          id: 'mobile-menu',
+          className: 'hidden fixed top-16 left-0 right-0 bg-white dark:bg-gray-800 shadow-lg z-40'
+        },
+          h('div', { className: 'px-6 py-4 space-y-4' },
+            h('a', { 
+              href: '#services',
+              className: 'block py-2 text-lg hover:text-ocean-blue transition',
+              onclick: (e) => {
+                document.getElementById('mobile-menu').classList.add('hidden');
+                if (currentPage !== 'home') {
+                  e.preventDefault();
+                  navigate('home');
+                  setTimeout(() => {
+                    document.querySelector('#services')?.scrollIntoView({ behavior: 'smooth' });
+                  }, 100);
+                }
+              }
+            }, 'Services'),
+            h('a', { 
+              href: '#portfolio',
+              className: 'block py-2 text-lg hover:text-ocean-blue transition',
+              onclick: (e) => {
+                document.getElementById('mobile-menu').classList.add('hidden');
+                if (currentPage !== 'home') {
+                  e.preventDefault();
+                  navigate('home');
+                  setTimeout(() => {
+                    document.querySelector('#portfolio')?.scrollIntoView({ behavior: 'smooth' });
+                  }, 100);
+                }
+              }
+            }, 'Portfolio'),
+            h('a', { 
+              href: '#about',
+              className: 'block py-2 text-lg hover:text-ocean-blue transition',
+              onclick: (e) => {
+                document.getElementById('mobile-menu').classList.add('hidden');
+                if (currentPage !== 'home') {
+                  e.preventDefault();
+                  navigate('home');
+                  setTimeout(() => {
+                    document.querySelector('#about')?.scrollIntoView({ behavior: 'smooth' });
+                  }, 100);
+                }
+              }
+            }, 'About'),
+            h('a', { 
+              href: '#contact',
+              className: 'block py-2 text-lg hover:text-ocean-blue transition',
+              onclick: (e) => {
+                document.getElementById('mobile-menu').classList.add('hidden');
+                if (currentPage !== 'home') {
+                  e.preventDefault();
+                  navigate('home');
+                  setTimeout(() => {
+                    document.querySelector('#contact')?.scrollIntoView({ behavior: 'smooth' });
+                  }, 100);
+                }
+              }
+            }, 'Contact'),
+            h('button', {
+              className: 'w-full bg-sunset-gold hover:bg-amber-600 text-white py-3 rounded-full font-semibold transition',
+              onclick: () => {
+                document.getElementById('mobile-menu').classList.add('hidden');
+                navigate('checkout');
+              }
+            }, 'Book Now')
           )
         );
         
@@ -740,11 +821,26 @@ const createFullFeaturedHTML = () => {
             h('div', { className: 'flex flex-col sm:flex-row gap-4 justify-center' },
               h('button', { 
                 className: 'bg-sunset-gold hover:bg-amber-600 text-white px-8 py-4 rounded-full text-lg font-semibold transition transform hover:scale-105',
-                onClick: () => window.location.href = '#contact'
+                onClick: () => {
+                  if (currentPage === 'home') {
+                    document.querySelector('#contact')?.scrollIntoView({ behavior: 'smooth' });
+                  } else {
+                    navigate('checkout');
+                  }
+                }
               }, 'Book Your Session'),
               h('button', { 
                 className: 'border-2 border-white text-white hover:bg-white hover:text-ocean-blue px-8 py-4 rounded-full text-lg font-semibold transition',
-                onClick: () => window.location.href = '#portfolio'
+                onClick: () => {
+                  if (currentPage === 'home') {
+                    document.querySelector('#portfolio')?.scrollIntoView({ behavior: 'smooth' });
+                  } else {
+                    navigate('home');
+                    setTimeout(() => {
+                      document.querySelector('#portfolio')?.scrollIntoView({ behavior: 'smooth' });
+                    }, 100);
+                  }
+                }
               }, 'View Portfolio')
             )
           )
@@ -1062,34 +1158,100 @@ const createFullFeaturedHTML = () => {
               h('div', {},
                 h('h4', { className: 'text-lg font-semibold mb-4' }, 'Contact Info'),
                 h('div', { className: 'space-y-2 text-blue-100' },
-                  h('p', {}, h('i', { className: 'fas fa-phone mr-2' }), '+1 (808) 555-0123'),
-                  h('p', {}, h('i', { className: 'fas fa-envelope mr-2' }), 'hello@arcadiaphoto.com'),
-                  h('p', {}, h('i', { className: 'fas fa-map-marker-alt mr-2' }), 'Honolulu, Hawaii')
+                  h('p', {},
+                    h('i', { className: 'fas fa-phone mr-2' }),
+                    h('a', { href: 'tel:+18085550123', className: 'hover:text-sunset-gold transition' }, '+1 (808) 555-0123')
+                  ),
+                  h('p', {},
+                    h('i', { className: 'fas fa-envelope mr-2' }),
+                    h('a', { href: 'mailto:hello@arcadiaphoto.com', className: 'hover:text-sunset-gold transition' }, 'hello@arcadiaphoto.com')
+                  ),
+                  h('p', {},
+                    h('i', { className: 'fas fa-map-marker-alt mr-2' }),
+                    h('a', { 
+                      href: 'https://maps.google.com/?q=Honolulu,Hawaii', 
+                      target: '_blank', 
+                      rel: 'noopener noreferrer',
+                      className: 'hover:text-sunset-gold transition' 
+                    }, 'Honolulu, Hawaii')
+                  )
                 )
               ),
               h('div', {},
                 h('h4', { className: 'text-lg font-semibold mb-4' }, 'Follow Us'),
                 h('div', { className: 'flex gap-4' },
-                  h('a', { href: '#', className: 'text-2xl hover:text-sunset-gold transition' }, 
+                  h('a', { 
+                    href: 'https://instagram.com/arcadiaphotography', 
+                    target: '_blank',
+                    rel: 'noopener noreferrer',
+                    className: 'text-2xl hover:text-sunset-gold transition',
+                    'aria-label': 'Follow us on Instagram'
+                  }, 
                     h('i', { className: 'fab fa-instagram' })
                   ),
-                  h('a', { href: '#', className: 'text-2xl hover:text-sunset-gold transition' }, 
+                  h('a', { 
+                    href: 'https://facebook.com/arcadiaphotography', 
+                    target: '_blank',
+                    rel: 'noopener noreferrer',
+                    className: 'text-2xl hover:text-sunset-gold transition',
+                    'aria-label': 'Like us on Facebook'
+                  }, 
                     h('i', { className: 'fab fa-facebook' })
                   ),
-                  h('a', { href: '#', className: 'text-2xl hover:text-sunset-gold transition' }, 
+                  h('a', { 
+                    href: 'https://pinterest.com/arcadiaphotography', 
+                    target: '_blank',
+                    rel: 'noopener noreferrer',
+                    className: 'text-2xl hover:text-sunset-gold transition',
+                    'aria-label': 'Follow us on Pinterest'
+                  }, 
                     h('i', { className: 'fab fa-pinterest' })
                   )
                 )
               )
             ),
-            h('div', { className: 'mt-8 pt-8 border-t border-blue-700 text-center text-blue-100' },
-              '© 2024 Arcadia Photography. All rights reserved.'
+            h('div', { className: 'mt-8 pt-8 border-t border-blue-700' },
+              h('div', { className: 'flex flex-col md:flex-row justify-between items-center' },
+                h('p', { className: 'text-blue-100 mb-4 md:mb-0' },
+                  '© 2024 Arcadia Photography. All rights reserved.'
+                ),
+                h('div', { className: 'flex gap-6 text-sm' },
+                  h('a', { 
+                    href: '#',
+                    className: 'text-blue-100 hover:text-sunset-gold transition',
+                    onclick: (e) => {
+                      e.preventDefault();
+                      alert('Privacy Policy page would be shown here');
+                    }
+                  }, 'Privacy Policy'),
+                  h('a', { 
+                    href: '#',
+                    className: 'text-blue-100 hover:text-sunset-gold transition',
+                    onclick: (e) => {
+                      e.preventDefault();
+                      alert('Terms of Service page would be shown here');
+                    }
+                  }, 'Terms of Service'),
+                  h('a', { 
+                    href: '#',
+                    className: 'text-blue-100 hover:text-sunset-gold transition',
+                    onclick: (e) => {
+                      e.preventDefault();
+                      navigate('home');
+                      setTimeout(() => {
+                        document.querySelector('#contact')?.scrollIntoView({ behavior: 'smooth' });
+                      }, 100);
+                    }
+                  }, 'Contact')
+                )
+              )
             )
           )
         );
         
         // Assemble all sections
         container.appendChild(nav);
+        container.appendChild(mobileMenu);
         container.appendChild(hero);
         container.appendChild(services);
         container.appendChild(portfolio);
@@ -1264,9 +1426,9 @@ const createFullFeaturedHTML = () => {
                     className: 'bg-ocean-blue hover:bg-blue-800 text-white px-8 py-3 rounded-full font-semibold transition mr-4',
                     onclick: () => navigate('home')
                   }, 'Return to Home'),
-                  h('button', {
-                    className: 'border-2 border-ocean-blue text-ocean-blue hover:bg-ocean-blue hover:text-white px-8 py-3 rounded-full font-semibold transition',
-                    onclick: () => window.location.href = 'mailto:info@arcadiaphotography.com'
+                  h('a', {
+                    href: 'mailto:hello@arcadiaphoto.com',
+                    className: 'inline-block border-2 border-ocean-blue text-ocean-blue hover:bg-ocean-blue hover:text-white px-8 py-3 rounded-full font-semibold transition'
                   }, 'Contact Us')
                 )
               )
