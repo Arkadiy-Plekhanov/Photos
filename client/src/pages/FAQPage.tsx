@@ -211,9 +211,11 @@ const FAQPage = () => {
               <i className="fas fa-envelope text-3xl text-ocean-blue mb-4"></i>
               <h3 className="text-xl font-semibold mb-2">Email Us</h3>
               <p className="text-charcoal/70 mb-4">Get a response within 24 hours</p>
-              <a href="mailto:arcadia.honolulu@gmail.com" className="text-ocean-blue hover:text-luxury-gold transition-colors">
-                arcadia.honolulu@gmail.com
-              </a>
+              <Link href="/contact">
+                <span className="text-ocean-blue hover:text-luxury-gold transition-colors cursor-pointer">
+                  arcadia.honolulu@gmail.com
+                </span>
+              </Link>
             </Card>
             <Card className="p-6">
               <i className="fas fa-phone text-3xl text-ocean-blue mb-4"></i>
