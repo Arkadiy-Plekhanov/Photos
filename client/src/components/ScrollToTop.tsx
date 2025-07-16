@@ -1,48 +1,15 @@
+import { useEffect } from 'react';
+import { useLocation } from 'wouter';
 
-import React, { useState, useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+export default function ScrollToTop() {
+  const [location] = useLocation();
 
-const ScrollToTop: React.FC = () => {
-  const [isVisible, setIsVisible] = useState(false);
-
-  // Show button when page is scrolled down
   useEffect(() => {
-    const toggleVisibility = () => {
-      if (window.pageYOffset > 300) {
-        setIsVisible(true);
-      } else {
-        setIsVisible(false);
-      }
-    };
+    // Small delay to ensure DOM is updated
+    setTimeout(() => {
+      window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
+    }, 0);
+  }, [location]);
 
-    window.addEventListener('scroll', toggleVisibility);
-
-    return () => window.removeEventListener('scroll', toggleVisibility);
-  }, []);
-
-  const scrollToTop = () => {
-    window.scrollTo({
-      top: 0,
-      behavior: 'smooth',
-    });
-  };
-
-  return (
-    <AnimatePresence>
-      {isVisible && (
-        <motion.button
-          initial={{ opacity: 0, scale: 0.8 }}
-          animate={{ opacity: 1, scale: 1 }}
-          exit={{ opacity: 0, scale: 0.8 }}
-          onClick={scrollToTop}
-          className="fixed bottom-8 right-8 z-50 bg-luxury-gold text-ocean-blue p-3 rounded-full shadow-lg hover:bg-sunset-orange transition-colors duration-300"
-          aria-label="Scroll to top"
-        >
-          <i className="fas fa-arrow-up text-xl"></i>
-        </motion.button>
-      )}
-    </AnimatePresence>
-  );
-};
-
-export default ScrollToTop;
+  return null;
+}
