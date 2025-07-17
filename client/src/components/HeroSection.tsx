@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react';
 
 const HeroSection = () => {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
-  
+
   const heroImages = [
     'https://images.unsplash.com/photo-1606800052052-a08af7148866?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80',
     'https://images.unsplash.com/photo-1583939003579-730e3918a45a?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80',
@@ -104,13 +104,18 @@ const HeroSection = () => {
             <i className="fas fa-images mr-2"></i>
             View Wedding Gallery
           </a>
-          <a
-            href="/checkout"
-            className="border-2 border-white/80 text-white px-6 sm:px-8 py-3 sm:py-4 rounded-full font-inter font-semibold hover:bg-white hover:text-ocean-blue transition-all duration-300 hover-scale backdrop-blur-sm text-sm sm:text-base"
-          >
-            <i className="fas fa-calendar-check mr-2"></i>
-            Book Your Date
-          </a>
+          <button 
+              onClick={() => {
+                const contactSection = document.getElementById('contact');
+                if (contactSection) {
+                  contactSection.scrollIntoView({ behavior: 'smooth' });
+                }
+              }}
+              className="bg-luxury-gold text-ocean-blue px-6 sm:px-8 py-3 sm:py-4 rounded-full font-inter font-semibold hover:bg-sunset-orange transition-all duration-300 hover-scale shadow-2xl text-sm sm:text-base"
+            >
+              <i className="fas fa-calendar-check mr-2"></i>
+              Book Your Date
+            </button>
         </motion.div>
 
         {/* Image Indicators */}

@@ -4,10 +4,16 @@ import Footer from '../components/Footer';
 import { Card } from '@/components/ui/card';
 import { Link } from 'wouter';
 import { useSEO } from '../hooks/useSEO';
+import { useState } from 'react';
 
 const BlogPage = () => {
   useSEO('blog');
-  const blogPosts = [
+
+  const [sortBy, setSortBy] = useState('date');
+  const [currentPage, setCurrentPage] = useState(1);
+  const [email, setEmail] = useState('');
+
+  const posts = [
     {
       id: '1',
       title: 'Best Honolulu Wedding Venues for Your Elopement',
@@ -16,7 +22,8 @@ const BlogPage = () => {
       date: 'March 15, 2024',
       readTime: '5 min read',
       category: 'Wedding Tips',
-      author: 'John Arcadia'
+      author: 'John Arcadia',
+      slug: 'best-honolulu-wedding-venues'
     },
     {
       id: '2',
@@ -26,7 +33,8 @@ const BlogPage = () => {
       date: 'March 10, 2024',
       readTime: '7 min read',
       category: 'Real Estate',
-      author: 'Sarah Chen'
+      author: 'Sarah Chen',
+      slug: 'preparing-home-for-real-estate-photos'
     },
     {
       id: '3',
@@ -36,7 +44,8 @@ const BlogPage = () => {
       date: 'March 5, 2024',
       readTime: '6 min read',
       category: 'Family Photography',
-      author: 'John Arcadia'
+      author: 'John Arcadia',
+      slug: 'scenic-spots-for-family-photos'
     },
     {
       id: '4',
@@ -46,7 +55,8 @@ const BlogPage = () => {
       date: 'February 28, 2024',
       readTime: '8 min read',
       category: 'Behind the Scenes',
-      author: 'John Arcadia'
+      author: 'John Arcadia',
+      slug: 'day-in-life-wedding-photographer'
     },
     {
       id: '5',
@@ -56,7 +66,8 @@ const BlogPage = () => {
       date: 'February 20, 2024',
       readTime: '10 min read',
       category: 'Business',
-      author: 'Sarah Chen'
+      author: 'Sarah Chen',
+      slug: 'commercial-photography-usage-rights'
     },
     {
       id: '6',
@@ -66,16 +77,38 @@ const BlogPage = () => {
       date: 'February 15, 2024',
       readTime: '5 min read',
       category: 'Photography Tips',
-      author: 'John Arcadia'
+      author: 'John Arcadia',
+      slug: 'golden-hour-photography-hawaii'
     }
   ];
+
+  const sortedPosts = [...posts].sort((a, b) => {
+    if (sortBy === 'date') {
+      return new Date(b.date).getTime() - new Date(a.date).getTime();
+    } else if (sortBy === 'category') {
+      return a.category.localeCompare(b.category);
+    }
+    return 0;
+  });
+
+  const postsPerPage = 6;
+  const totalPages = Math.ceil(sortedPosts.length / postsPerPage);
+  const currentPosts = sortedPosts.slice((currentPage - 1) * postsPerPage, currentPage * postsPerPage);
+
+  const handleSubscribe = (e) => {
+    e.preventDefault();
+    if (email.trim()) {
+      alert('Thank you for subscribing! We\'ll keep you updated with our latest stories.');
+      setEmail('');
+    }
+  };
 
   const categories = ['All', 'Wedding Tips', 'Real Estate', 'Family Photography', 'Behind the Scenes', 'Business', 'Photography Tips'];
 
   return (
     <div className="min-h-screen bg-warm-white">
       <Navigation />
-      
+
       {/* Hero Section */}
       <section className="relative h-[40vh] flex items-center justify-center overflow-hidden">
         <div
@@ -110,19 +143,27 @@ const BlogPage = () => {
         <div className="max-w-7xl mx-auto">
           {/* Categories */}
           <div className="flex flex-wrap justify-center gap-4 mb-12">
-            {categories.map((category) => (
+            <div className="flex space-x-4 mb-8">
               <button
-                key={category}
-                className="px-4 py-2 rounded-full border border-ocean-blue text-ocean-blue hover:bg-ocean-blue hover:text-white transition-colors"
+                onClick={() => setSortBy('date')}
+                className={`px-4 py-2 rounded-full border border-ocean-blue text-ocean-blue hover:bg-ocean-blue hover:text-white transition-colors ${sortBy === 'date' ? 'bg-ocean-blue text-white' : ''
+                  }`}
               >
-                {category}
+                Latest
               </button>
-            ))}
+              <button
+                onClick={() => setSortBy('category')}
+                className={`px-4 py-2 rounded-full border border-ocean-blue text-ocean-blue hover:bg-ocean-blue hover:text-white transition-colors ${sortBy === 'category' ? 'bg-ocean-blue text-white' : ''
+                  }`}
+              >
+                By Category
+              </button>
+            </div>
           </div>
 
           {/* Blog Posts Grid */}
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {blogPosts.map((post, index) => (
+            {currentPosts.map((post, index) => (
               <motion.article
                 key={post.id}
                 initial={{ opacity: 0, y: 20 }}
@@ -131,8 +172,8 @@ const BlogPage = () => {
               >
                 <Card className="overflow-hidden hover:shadow-xl transition-shadow h-full flex flex-col">
                   <div className="aspect-[3/2] overflow-hidden">
-                    <img 
-                      src={post.image} 
+                    <img
+                      src={post.image}
                       alt={post.title}
                       className="w-full h-full object-cover hover:scale-110 transition-transform duration-500"
                     />
@@ -155,7 +196,10 @@ const BlogPage = () => {
                         <p>{post.author}</p>
                         <p>{post.date}</p>
                       </div>
-                      <button className="text-ocean-blue hover:text-luxury-gold transition-colors">
+                      <button
+                        onClick={() => window.location.href = `/blog/${post.slug}`}
+                        className="text-ocean-blue hover:text-luxury-gold transition-colors"
+                      >
                         Read More <i className="fas fa-arrow-right ml-1"></i>
                       </button>
                     </div>
@@ -167,16 +211,36 @@ const BlogPage = () => {
 
           {/* Pagination */}
           <div className="flex justify-center gap-2 mt-12">
-            <button className="px-4 py-2 bg-ocean-blue text-white rounded-lg">
-              1
+            <button
+              onClick={() => setCurrentPage(Math.max(1, currentPage - 1))}
+              disabled={currentPage === 1}
+              className={`px-4 py-2 rounded-lg transition-colors ${currentPage === 1
+                ? 'bg-gray-100 text-gray-400 cursor-not-allowed'
+                : 'bg-ocean-blue text-white hover:bg-ocean-blue/90'
+                }`}
+            >
+              <i className="fas fa-chevron-left"></i>
             </button>
-            <button className="px-4 py-2 hover:bg-gray-100 rounded-lg transition-colors">
-              2
-            </button>
-            <button className="px-4 py-2 hover:bg-gray-100 rounded-lg transition-colors">
-              3
-            </button>
-            <button className="px-4 py-2 hover:bg-gray-100 rounded-lg transition-colors">
+            {Array.from({ length: totalPages }, (_, i) => (
+              <button
+                key={i + 1}
+                onClick={() => setCurrentPage(i + 1)}
+                className={`px-4 py-2 rounded-lg transition-colors ${currentPage === i + 1
+                  ? 'bg-luxury-gold text-white'
+                  : 'bg-warm-white text-charcoal hover:bg-gray-100'
+                  }`}
+              >
+                {i + 1}
+              </button>
+            ))}
+            <button
+              onClick={() => setCurrentPage(Math.min(totalPages, currentPage + 1))}
+              disabled={currentPage === totalPages}
+              className={`px-4 py-2 rounded-lg transition-colors ${currentPage === totalPages
+                ? 'bg-gray-100 text-gray-400 cursor-not-allowed'
+                : 'bg-ocean-blue text-white hover:bg-ocean-blue/90'
+                }`}
+            >
               <i className="fas fa-chevron-right"></i>
             </button>
           </div>
@@ -192,13 +256,16 @@ const BlogPage = () => {
           <p className="text-lg text-charcoal/70 mb-8">
             Subscribe to our newsletter for photography tips, location guides, and special offers
           </p>
-          <form className="flex flex-col sm:flex-row gap-4 max-w-md mx-auto">
-            <input 
-              type="email" 
+          <form onSubmit={handleSubscribe} className="flex flex-col sm:flex-row gap-4 max-w-md mx-auto">
+            <input
+              type="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
               placeholder="Enter your email"
               className="flex-1 px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:border-ocean-blue"
+              required
             />
-            <button 
+            <button
               type="submit"
               className="px-6 py-3 bg-ocean-blue text-white rounded-lg hover:bg-ocean-blue/90 transition-colors"
             >

@@ -234,19 +234,19 @@ const FAQPage = () => {
             Quick Links
           </h2>
           <div className="grid md:grid-cols-3 gap-6 text-center">
-            <Link href="/wedding-photography">
+            <Link href="/weddings">
               <Card className="p-6 hover:shadow-xl transition-shadow cursor-pointer">
                 <i className="fas fa-heart text-3xl text-ocean-blue mb-4"></i>
                 <h3 className="text-xl font-semibold">Wedding Packages</h3>
               </Card>
             </Link>
-            <Link href="/real-estate-photography">
+            <Link href="/real-estate">
               <Card className="p-6 hover:shadow-xl transition-shadow cursor-pointer">
                 <i className="fas fa-home text-3xl text-ocean-blue mb-4"></i>
                 <h3 className="text-xl font-semibold">Real Estate Services</h3>
               </Card>
             </Link>
-            <Link href="/family-photography">
+            <Link href="/family">
               <Card className="p-6 hover:shadow-xl transition-shadow cursor-pointer">
                 <i className="fas fa-users text-3xl text-ocean-blue mb-4"></i>
                 <h3 className="text-xl font-semibold">Family Sessions</h3>

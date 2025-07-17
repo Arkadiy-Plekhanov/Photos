@@ -49,7 +49,7 @@ const Navigation = () => {
             <Link href="/" className="text-white hover:text-luxury-gold transition-colors duration-300 font-inter">
               Home
             </Link>
-            
+
             {/* Services Dropdown */}
             <div className="relative group">
               <button
@@ -90,15 +90,15 @@ const Navigation = () => {
             <Link href="/portfolio" className="text-white hover:text-luxury-gold transition-colors duration-300 font-inter">
               Portfolio
             </Link>
-            
+
             <Link href="/about" className="text-white hover:text-luxury-gold transition-colors duration-300 font-inter">
               About
             </Link>
-            
+
             <Link href="/blog" className="text-white hover:text-luxury-gold transition-colors duration-300 font-inter">
               Blog
             </Link>
-            
+
             {isHomePage ? (
               <a
                 href="#contact"
@@ -147,19 +147,19 @@ const Navigation = () => {
                   Family & Portraits
                 </Link>
               </div>
-              
+
               <Link href="/portfolio" className="block text-white hover:text-luxury-gold transition-colors duration-300 font-inter" onClick={() => setIsMobileMenuOpen(false)}>
                 Portfolio
               </Link>
-              
+
               <Link href="/about" className="block text-white hover:text-luxury-gold transition-colors duration-300 font-inter" onClick={() => setIsMobileMenuOpen(false)}>
                 About
               </Link>
-              
+
               <Link href="/blog" className="block text-white hover:text-luxury-gold transition-colors duration-300 font-inter" onClick={() => setIsMobileMenuOpen(false)}>
                 Blog
               </Link>
-              
+
               {isHomePage ? (
                 <a
                   href="#contact"

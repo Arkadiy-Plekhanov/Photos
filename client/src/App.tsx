@@ -88,12 +88,12 @@ function App() {
             <Route path="/real-estate" component={RealEstatePage} />
             <Route path="/family-portraits" component={FamilyPage} />
             <Route path="/contact" component={ContactPage} />
+            <Route path="/faq" component={FAQPage} />
             <Route path="/blog" component={BlogPage} />
             <Route path="/blog/:slug" component={BlogPostPage} />
-            <Route path="/faq" component={FAQPage} />
+            <Route path="/checkout" component={CheckoutPage} />
             <Route path="/privacy" component={PrivacyPage} />
             <Route path="/terms" component={TermsPage} />
-            <Route path="/checkout" component={CheckoutPage} />
             <Route path="/booking-success" component={BookingSuccessPage} />
             <Route component={NotFoundPage} />
           </Switch>
