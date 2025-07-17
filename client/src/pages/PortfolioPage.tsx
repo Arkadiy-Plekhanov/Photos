@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import Navigation from '../components/Navigation';
 import Footer from '../components/Footer';
@@ -7,10 +7,21 @@ import { Link } from 'wouter';
 import { Button } from '@/components/ui/button';
 import { useSEO } from '../hooks/useSEO';
 import Gallery from '../components/Gallery';
+import { useLocation } from 'wouter';
 
 const PortfolioPage = () => {
   useSEO('portfolio');
   const [selectedCategory, setSelectedCategory] = useState('all');
+  const [location] = useLocation();
+
+  // Handle URL filter parameter
+  useEffect(() => {
+    const urlParams = new URLSearchParams(location.split('?')[1] || '');
+    const filterParam = urlParams.get('filter');
+    if (filterParam && ['wedding', 'family', 'realEstate'].includes(filterParam)) {
+      setSelectedCategory(filterParam);
+    }
+  }, [location]);
 
   const portfolioItems = {
     wedding: [

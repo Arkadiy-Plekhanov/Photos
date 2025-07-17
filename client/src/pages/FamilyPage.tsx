@@ -104,7 +104,7 @@ const FamilyPage = () => {
   return (
     <div className="min-h-screen bg-warm-white">
       <Navigation />
-      
+
       {/* Hero Section */}
       <section className="relative h-[60vh] flex items-center justify-center overflow-hidden">
         <div
@@ -245,7 +245,7 @@ const FamilyPage = () => {
             ))}
           </div>
           <div className="text-center mt-8">
-            <Link href="/portfolio">
+            <Link href="/portfolio?filter=family">
               <Button size="lg" className="bg-luxury-gold hover:bg-sunset-orange">
                 View Full Gallery
               </Button>
@@ -412,7 +412,7 @@ const FamilyPage = () => {
                 Book Your Session
               </Button>
             </Link>
-            <Link href="/portfolio">
+            <Link href="/portfolio?filter=family">
               <Button size="lg" variant="outline" className="border-white text-white hover:bg-white hover:text-ocean-blue">
                 <i className="fas fa-images mr-2"></i>
                 View Portfolio

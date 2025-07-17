@@ -80,7 +80,7 @@ const WeddingPage = () => {
   return (
     <div className="min-h-screen bg-warm-white">
       <Navigation />
-      
+
       {/* Hero Section */}
       <section className="relative h-[60vh] flex items-center justify-center overflow-hidden">
         <div
@@ -236,7 +236,7 @@ const WeddingPage = () => {
             )}
           </div>
           <div className="text-center mt-8">
-            <Link href="/portfolio">
+            <Link href="/portfolio?filter=wedding">
               <Button size="lg" className="bg-luxury-gold hover:bg-sunset-orange">
                 View Full Wedding Gallery
               </Button>
