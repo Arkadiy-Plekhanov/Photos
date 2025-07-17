@@ -386,7 +386,7 @@ const RealEstatePage = () => {
               </Button>
             </Link>
             <Link href="/portfolio">
-              <Button size="lg" variant="outline" className="border-white text-white hover:bg-white hover:text-ocean-blue">
+              <Button size="lg" variant="outline" className="border-luxury-gold text-luxury-gold hover:bg-luxury-gold hover:text-ocean-blue">
                 <i className="fas fa-building mr-2"></i>
                 View Portfolio
               </Button>

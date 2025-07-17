@@ -1,0 +1,64 @@
+Header visibility :
+/checkout
+Top Menu isn’t visible on white background.
+
+Visible only on hover over on desktop.
+
+
+Invisible on mobile
+
+
+/portfolio
+Top menu isn’t completely visible.
+
+Some menu options are not clearly visible on desktop.
+
+
+- [ ] Menu on mobile is not exactly clearly visible 
+
+
+About Us page hero menu is hard to see on mobile.
+
+
+
+
+
+Link and pages architecture:
+
+Cookie policy could be on a separate page (with appropriate link to it), I think we already created a separate page for it before. Otherwise access if we need a cookie policy in a separate page and have a link for it.  Otherwise maybe to include it in terms or privacy policy? 
+
+Licensing link transfers to terms page.
+I think we already created a separate page for it before. Otherwise access if we need a Licensing page as a separate page and have a link for it.  Otherwise maybe to include it in terms or privacy policy? 
+
+Maybe also unite all legal materials on one page Terms of Service? What is a high quality industry practice to have the best representation for marketing purposes on the website? 
+
+Get in Touch button on page About Us sends to the main page. View our work button text on page About Us is not visible (similar colour to background). View our work button is actually invisible on most pages for the same reason. 
+
+On the Blog page most buttons do not work:
+
+1. Sorting buttons do not sort
+2. Read more buttons on posts are not sending to the respective blog posts.
+3. 1, 2, 3 and arrow button on the bottom of the post list are not showing extra post content they supposed to.
+4. Subscribe button does nothing (clicking leads to the top of the blog page). 
+
+/weddings page
+
+Clicking View full wedding portfolio on weddings page leads to /portfolio where’s mixed pictures for the whole services instead of leading to the dedicated wedding gallery. 
+
+/real-estate 
+
+Can’t see text on the button “View Portfolio” 
+
+/family-portraits 
+
+Button view full gallery is leading to /portfolio where’s mixed pictures for all services present instead of dedicated gallery for family. 
+
+Text on the button View Portfolio is not visible on the family portrait page.
+
+/faq 
+
+Quick Links on the FAQ page lead to 404 pages instead of the working pages we already have.
+
+
+
+
