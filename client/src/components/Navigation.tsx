@@ -182,6 +182,18 @@ const Navigation = () => {
               >
                 Contact
               </a>
+              {/* Additional Links */}
+              <div className="border-t border-white/20 pt-4">
+                <Link href="/cookie-policy" className="block text-white hover:text-luxury-gold transition-colors duration-300 font-inter">
+                  Cookie Policy
+                </Link>
+                <Link href="/licensing" className="block text-white hover:text-luxury-gold transition-colors duration-300 font-inter">
+                  Licensing
+                </Link>
+                <Link href="/faq" className="block text-white hover:text-luxury-gold transition-colors duration-300 font-inter">
+                  FAQ
+                </Link>
+              </div>
             </motion.div>
           )}
         </AnimatePresence>
