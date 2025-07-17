@@ -39,7 +39,7 @@ const AboutPage = () => {
   return (
     <div className="min-h-screen bg-warm-white">
       <Navigation />
-
+      
       {/* Hero Section */}
       <section className="relative h-[50vh] flex items-center justify-center overflow-hidden">
         <div
@@ -270,18 +270,18 @@ const AboutPage = () => {
             Ready to work with Honolulu's premier photography studio?
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            
+            <Link href="/#contact">
               <Button size="lg" className="bg-luxury-gold text-ocean-blue hover:bg-sunset-orange">
                 <i className="fas fa-envelope mr-2"></i>
                 Get in Touch
               </Button>
-            
-            
+            </Link>
+            <Link href="/portfolio">
               <Button size="lg" variant="outline" className="border-white text-white hover:bg-white hover:text-ocean-blue">
                 <i className="fas fa-images mr-2"></i>
                 View Our Work
               </Button>
-            
+            </Link>
           </div>
         </div>
       </section>

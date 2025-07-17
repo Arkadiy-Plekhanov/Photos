@@ -104,7 +104,7 @@ const RealEstatePage = () => {
   return (
     <div className="min-h-screen bg-warm-white">
       <Navigation />
-
+      
       {/* Hero Section */}
       <section className="relative h-[60vh] flex items-center justify-center overflow-hidden">
         <div
@@ -386,7 +386,7 @@ const RealEstatePage = () => {
               </Button>
             </Link>
             <Link href="/portfolio">
-               <Button size="lg" variant="outline" className="border-white text-white hover:bg-white hover:text-ocean-blue">
+              <Button size="lg" variant="outline" className="border-white text-white hover:bg-white hover:text-ocean-blue">
                 <i className="fas fa-building mr-2"></i>
                 View Portfolio
               </Button>

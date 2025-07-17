@@ -7,7 +7,6 @@ import { Link } from 'wouter';
 import { Button } from '@/components/ui/button';
 import { useSEO } from '../hooks/useSEO';
 import Gallery from '../components/Gallery';
-import React from 'react';
 
 const PortfolioPage = () => {
   useSEO('portfolio');
