@@ -60,7 +60,7 @@ const Navigation: React.FC<NavigationProps> = ({ variant = 'default' }) => {
             <Link href="/" className={`${variant === 'dark' ? 'text-white' : 'text-ocean-blue'} hover:text-luxury-gold transition-colors duration-300 font-inter`}>
               Home
             </Link>
-            
+
             {/* Services Dropdown */}
             <div className="relative group">
               <button
@@ -81,15 +81,15 @@ const Navigation: React.FC<NavigationProps> = ({ variant = 'default' }) => {
                     onMouseEnter={() => setIsServicesOpen(true)}
                     onMouseLeave={() => setIsServicesOpen(false)}
                   >
-                    <Link href="/wedding-photography" className="block px-4 py-3 text-charcoal hover:bg-ocean-blue hover:text-white transition-colors">
+                    <Link href="/weddings" className="block px-4 py-3 text-charcoal hover:bg-ocean-blue hover:text-white transition-colors">
                       <i className="fas fa-heart mr-2"></i>
                       Wedding & Elopement
                     </Link>
-                    <Link href="/real-estate-photography" className="block px-4 py-3 text-charcoal hover:bg-ocean-blue hover:text-white transition-colors">
+                    <Link href="/real-estate" className="block px-4 py-3 text-charcoal hover:bg-ocean-blue hover:text-white transition-colors">
                       <i className="fas fa-home mr-2"></i>
                       Real Estate Photography
                     </Link>
-                    <Link href="/family-photography" className="block px-4 py-3 text-charcoal hover:bg-ocean-blue hover:text-white transition-colors">
+                    <Link href="/family-portraits" className="block px-4 py-3 text-charcoal hover:bg-ocean-blue hover:text-white transition-colors">
                       <i className="fas fa-users mr-2"></i>
                       Family & Portraits
                     </Link>
@@ -97,7 +97,6 @@ const Navigation: React.FC<NavigationProps> = ({ variant = 'default' }) => {
                 )}
               </AnimatePresence>
             </div>
-
             <a
               href="#portfolio"
               onClick={(e) => handleSmoothScroll(e, '#portfolio')}
@@ -118,14 +117,21 @@ const Navigation: React.FC<NavigationProps> = ({ variant = 'default' }) => {
               className={`${variant === 'dark' ? 'text-white' : 'text-ocean-blue'} hover:text-luxury-gold transition-colors duration-300 font-inter`}
             >
               Blog
-            </a>
-            <a
-              href="#contact"
-              onClick={(e) => handleSmoothScroll(e, '#contact')}
-              className="bg-luxury-gold text-ocean-blue px-6 py-2 rounded-full font-inter font-medium hover:bg-sunset-orange transition-colors duration-300"
-            >
-              Contact
-            </a>
+            </Link>
+
+            {isHomePage ? (
+              <a
+                href="#contact"
+                onClick={(e) => handleSmoothScroll(e, '#contact')}
+                className="bg-luxury-gold text-ocean-blue px-6 py-2 rounded-full font-inter font-medium hover:bg-sunset-orange transition-colors duration-300"
+              >
+                Contact
+              </a>
+            ) : (
+              <Link href="/contact" className="bg-luxury-gold text-ocean-blue px-6 py-2 rounded-full font-inter font-medium hover:bg-sunset-orange transition-colors duration-300">
+                Contact
+              </Link>
+            )}
           </motion.div>
 
           {/* Mobile Menu Button */}
@@ -152,7 +158,7 @@ const Navigation: React.FC<NavigationProps> = ({ variant = 'default' }) => {
                 className={`block ${variant === 'dark' ? 'text-white' : 'text-ocean-blue'} hover:text-luxury-gold transition-colors duration-300 font-inter`}
               >
                 Home
-              </a>
+              </Link>
               <div className="space-y-2">
                 <p className={`${variant === 'dark' ? 'text-white/70' : 'text-ocean-blue/70'} text-sm font-inter`}>Services</p>
                 <Link href="/wedding-photography" className={`block ${variant === 'dark' ? 'text-white' : 'text-ocean-blue'} hover:text-luxury-gold transition-colors duration-300 font-inter pl-4`}>

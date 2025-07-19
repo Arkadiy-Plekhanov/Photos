@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import Navigation from '../components/Navigation';
 import Footer from '../components/Footer';
@@ -7,18 +7,29 @@ import { Link } from 'wouter';
 import { Button } from '@/components/ui/button';
 import { useSEO } from '../hooks/useSEO';
 import Gallery from '../components/Gallery';
+import { useLocation } from 'wouter';
 
 const PortfolioPage = () => {
   useSEO('portfolio');
   const [selectedCategory, setSelectedCategory] = useState('all');
+  const [location] = useLocation();
+
+  // Handle URL filter parameter
+  useEffect(() => {
+    const urlParams = new URLSearchParams(location.split('?')[1] || '');
+    const filterParam = urlParams.get('filter');
+    if (filterParam && ['wedding', 'family', 'realEstate'].includes(filterParam)) {
+      setSelectedCategory(filterParam);
+    }
+  }, [location]);
 
   const portfolioItems = {
     wedding: [
       'https://images.unsplash.com/photo-1606800052052-a08af7148866?w=800&q=80',
       'https://images.unsplash.com/photo-1583939003579-730e3918a45a?w=800&q=80',
       'https://images.unsplash.com/photo-1519741497674-611481863552?w=800&q=80',
-      'https://images.unsplash.com/photo-1605639253491-3c85b0ab8035?w=800&q=80',
-      'https://images.unsplash.com/photo-1594736797933-d0501ba2fe65?w=800&q=80',
+      'https://images.unsplash.com/photo-1469371670807-013ccf25f16a?w=800&q=80',
+      'https://images.unsplash.com/photo-1537633552985-df8429e8048b?w=800&q=80',
       'https://images.unsplash.com/photo-1591604466107-ec97de577aff?w=800&q=80',
     ],
     realEstate: [
@@ -26,16 +37,16 @@ const PortfolioPage = () => {
       'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=800&q=80',
       'https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=800&q=80',
       'https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=800&q=80',
-      'https://images.unsplash.com/photo-1600607687644-c7171b42498b?w=800&q=80',
+      'https://images.unsplash.com/photo-1560185007-cde436f6a4d0?w=800&q=80',
       'https://images.unsplash.com/photo-1600585154526-990dced4db0d?w=800&q=80',
     ],
     family: [
-      'https://images.unsplash.com/photo-1581579438747-1dc8d17bbce4?w=800&q=80',
-      'https://images.unsplash.com/photo-1602623352104-6ce6dd25a909?w=800&q=80',
-      'https://images.unsplash.com/photo-1581579186913-45ac3e6efe93?w=800&q=80',
-      'https://images.unsplash.com/photo-1609220136736-443140cffec6?w=800&q=80',
-      'https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=800&q=80',
       'https://images.unsplash.com/photo-1511895426328-dc8714191300?w=800&q=80',
+      'https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=800&q=80',
+      'https://images.unsplash.com/photo-1475503572774-15a45e5d60b9?w=800&q=80',
+      'https://images.unsplash.com/photo-1609220136736-443140cffec6?w=800&q=80',
+      'https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=800&q=80',
+      'https://images.unsplash.com/photo-1548199973-03cce0bbc87b?w=800&q=80',
     ],
   };
 
@@ -170,7 +181,7 @@ const PortfolioPage = () => {
           <p className="text-xl mb-8 opacity-90">
             Ready to add your story to our portfolio?
           </p>
-          <Link href="/#contact" className="inline-block">
+          <Link href="/checkout" className="inline-block">
             <Button size="lg" className="bg-luxury-gold text-ocean-blue hover:bg-sunset-orange">
               <i className="fas fa-calendar-alt mr-2"></i>
               Book Your Session

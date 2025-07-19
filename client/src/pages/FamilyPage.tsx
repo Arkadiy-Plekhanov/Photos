@@ -71,7 +71,7 @@ const FamilyPage = () => {
 
   const gallery = [
     'https://images.unsplash.com/photo-1581579438747-1dc8d17bbce4?w=800&q=80',
-    'https://images.unsplash.com/photo-1602623352104-6ce6dd25a909?w=800&q=80',
+    'https://images.unsplash.com/photo-1576089172869-4f5f6f315620?w=800&q=80',
     'https://images.unsplash.com/photo-1581579186913-45ac3e6efe93?w=800&q=80',
     'https://images.unsplash.com/photo-1609220136736-443140cffec6?w=800&q=80',
     'https://images.unsplash.com/photo-1594736797933-d0501ba2fe65?w=800&q=80',
@@ -104,7 +104,6 @@ const FamilyPage = () => {
   return (
     <div className="min-h-screen bg-warm-white">
       <Navigation variant="dark" />
-      
       {/* Hero Section */}
       <section className="relative h-[60vh] flex items-center justify-center overflow-hidden">
         <div
@@ -245,7 +244,7 @@ const FamilyPage = () => {
             ))}
           </div>
           <div className="text-center mt-8">
-            <Link href="/portfolio">
+            <Link href="/portfolio?filter=family">
               <Button size="lg" className="bg-luxury-gold hover:bg-sunset-orange">
                 View Full Gallery
               </Button>

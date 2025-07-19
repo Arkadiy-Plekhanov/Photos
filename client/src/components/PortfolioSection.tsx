@@ -15,7 +15,69 @@ const PortfolioSection = () => {
     'batman', 'ocean wave', 'placeholder', 'sample', 'test', 'dummy'
   ];
   const portfolioItems: PortfolioItem[] = [
-    // ...оставьте существующие объекты...
+    {
+      id: 1,
+      title: 'Sunset Beach Wedding',
+      category: 'wedding',
+      image: 'https://images.unsplash.com/photo-1606800052052-a08af7148866?w=800&q=80',
+      description: 'Beautiful sunset wedding ceremony at Waikiki Beach'
+    },
+    {
+      id: 2,
+      title: 'Luxury Villa Photography',
+      category: 'real-estate',
+      image: 'https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=800&q=80',
+      description: 'High-end real estate photography in Diamond Head'
+    },
+    {
+      id: 3,
+      title: 'Family Portrait Session',
+      category: 'family',
+      image: 'https://images.unsplash.com/photo-1581579438747-1dc8d17bbce4?w=800&q=80',
+      description: 'Joyful family moments captured at Hanauma Bay'
+    },
+    {
+      id: 4,
+      title: 'Tropical Wedding Ceremony',
+      category: 'wedding',
+      image: 'https://images.unsplash.com/photo-1583939003579-730e3918a45a?w=800&q=80',
+      description: 'Romantic tropical wedding in Lanikai'
+    },
+    {
+      id: 5,
+      title: 'Modern Condo Interior',
+      category: 'real-estate',
+      image: 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=800&q=80',
+      description: 'Contemporary condo with ocean views'
+    },
+    {
+      id: 6,
+      title: 'Beachside Family Fun',
+      category: 'family',
+      image: 'https://images.unsplash.com/photo-1602623352104-6ce6dd25a909?w=800&q=80',
+      description: 'Candid family moments at Kailua Beach'
+    },
+    {
+      id: 7,
+      title: 'Garden Wedding Reception',
+      category: 'wedding',
+      image: 'https://images.unsplash.com/photo-1519741497674-611481863552?w=800&q=80',
+      description: 'Elegant garden reception at Lyon Arboretum'
+    },
+    {
+      id: 8,
+      title: 'Oceanfront Property',
+      category: 'real-estate',
+      image: 'https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=800&q=80',
+      description: 'Stunning oceanfront home in Kahala'
+    },
+    {
+      id: 9,
+      title: 'Maternity Beach Session',
+      category: 'family',
+      image: 'https://images.unsplash.com/photo-1581579186913-45ac3e6efe93?w=800&q=80',
+      description: 'Beautiful maternity photos at Sunset Beach'
+    }
   ].filter(item => {
     // Фильтруем off-topic по title и image
     const lowerTitle = item.title.toLowerCase();

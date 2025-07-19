@@ -5,6 +5,7 @@ import Footer from '../components/Footer';
 import { Card } from '@/components/ui/card';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
 import { useSEO } from '../hooks/useSEO';
+import { Link } from 'wouter';
 
 const FAQPage = () => {
   useSEO('faq');
@@ -135,7 +136,7 @@ const FAQPage = () => {
   return (
     <div className="min-h-screen bg-warm-white">
       <Navigation />
-      
+
       {/* Hero Section */}
       <section className="relative h-[40vh] flex items-center justify-center overflow-hidden">
         <div

@@ -139,7 +139,7 @@ const PrivacyPage = () => {
                 </ul>
               </section>
 
-              <section>
+              <section id="cookies">
                 <h2 className="text-2xl font-playfair mb-4">Cookies and Tracking</h2>
                 <p className="text-charcoal/80 leading-relaxed">
                   We use cookies and similar tracking technologies to enhance your browsing experience. 
