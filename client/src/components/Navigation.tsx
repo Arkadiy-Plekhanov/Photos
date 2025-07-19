@@ -158,7 +158,7 @@ const Navigation: React.FC<NavigationProps> = ({ variant = 'default' }) => {
                 className={`block ${variant === 'dark' ? 'text-white' : 'text-ocean-blue'} hover:text-luxury-gold transition-colors duration-300 font-inter`}
               >
                 Home
-              </Link>
+              </a>
               <div className="space-y-2">
                 <p className={`${variant === 'dark' ? 'text-white/70' : 'text-ocean-blue/70'} text-sm font-inter`}>Services</p>
                 <Link href="/wedding-photography" className={`block ${variant === 'dark' ? 'text-white' : 'text-ocean-blue'} hover:text-luxury-gold transition-colors duration-300 font-inter pl-4`}>
