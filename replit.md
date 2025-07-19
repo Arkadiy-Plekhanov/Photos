@@ -16,6 +16,8 @@ Preferred communication style: Simple, everyday language.
 - **Optimization Tools Available**: Project now includes additional build optimization files and deployment scripts
 - **Current Branch**: Working from `Top-backup-(main)` branch which contains the most stable codebase
 - **App Status**: Running successfully with all dependencies optimized
+- **Known Git Issue**: Replit Git interface shows "UNKNOWN_NOT_GIT" error due to bloated `.git` folder from auto-checkpoints
+- **Resolution**: Error is cosmetic only - does not affect app functionality. Project code runs perfectly despite Git UI issues
 
 ### Feature-Complete Deployment Strategy (January 16, 2025)
 - **Build Optimization Analysis**: Identified that bundling 1700+ Lucide React icons causes deployment timeouts
