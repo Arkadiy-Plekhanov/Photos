@@ -228,7 +228,7 @@ const CheckoutPage = () => {
   if (clientSecret && bookingData) {
     return (
       <div className="min-h-screen bg-warm-white">
-        <Navigation />
+<Navigation variant="dark" />
         <div className="pt-20 pb-16 px-6">
           <div className="max-w-2xl mx-auto">
             <motion.div
