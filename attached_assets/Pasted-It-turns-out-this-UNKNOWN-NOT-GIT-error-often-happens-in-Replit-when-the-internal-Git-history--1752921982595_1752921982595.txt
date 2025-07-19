@@ -1,0 +1,87 @@
+It turns out this **UNKNOWN\_NOT\_GIT** error often happens in Replit when the internal Git history balloons—usually because auto-checkpoints or log files stored in `.git` get excessively large (sometimes dozens of GB). Eventually the Git service breaks and can’t switch branches properly ([Reddit][1]).
+
+---
+
+### ✅ Why it happens
+
+* Replit’s built‑in AI checkpoints and file history can create massive `.git` folders over time.
+* When you switch branches, the Git pane tries to sync and fails, reporting that "UNKNOWN\_NOT\_GIT" error—a bug caused by the repository getting corrupted or too large ([Replit Docs][2]).
+
+---
+
+### 🛠️ What helped other users
+
+On Reddit, one user reported:
+
+> “I just went through this issue and got hit with the error:
+> ‘Unknown error … UNKNOWN\_NOT\_GIT …’
+> After checking, I realized Replit was saving all the checkpoint history, and my web app ended up being around 32 GB because of that.
+> To fix it, I had to remix the project, then deleted huge files in the .git folder (which was full of logs) and added a .gitignore.” ([Reddit][1])
+
+---
+
+### 🧭 Step-by-step solution
+
+**1. Make a backup or remix the project**
+
+* Remixing creates a fresh clone of your code without the excessive Git history.
+* Alternatively, manually download your source code via Turtle, zip it, or use `git clone`.
+
+**2. Clean up `.git`**
+
+If staying in the same project:
+
+```bash
+rm -rf .git/logs .git/refs/original
+```
+
+Or simply delete the entire `.git` directory and reinitialize—then re-add your remote.
+
+**3. Add a `.gitignore`**
+
+Include entries to skip heavy files or unnecessary logs:
+
+```
+*.log
+checkpoint/
+.history/
+```
+
+This prevents future buildup.
+
+**4. Reinitialize and reconnect**
+
+Using Shell in Replit:
+
+```bash
+git init
+git remote add origin <your-git-url>
+git add .
+git commit -m "Clean slate"
+git push -u origin <branch>
+```
+
+Or use the Git pane: Initialize, connect to GitHub, commit, then push.
+
+**5. Monitor growth**
+
+Avoid large binary files or letting auto-checkpoints accumulate unchecked.
+
+---
+
+### 🛠️ If you still need branches
+
+With the clean project, you’ll be able to switch branches again reliably using either the Git pane or standard Git commands (`git fetch && git checkout <branch>`).
+
+---
+
+### 💡 TL;DR
+
+* The `UNKNOWN_NOT_GIT` error is usually caused by an overloaded `.git` folder (too many logs/checkpoints).
+* Fix by remixing or cleaning `.git`, adding a `.gitignore`, then reinitializing and pushing.
+* After that, Git operations should work smoothly in Replit again.
+
+Let me know if you'd like help automating the cleanup or setting up backups!
+
+[1]: https://www.reddit.com/r/replit/comments/1lqfnr1/new_pricing_model_kills_vibecoding/?utm_source=chatgpt.com "New pricing model kills vibe-coding. : r/replit"
+[2]: https://docs.replit.com/replit-workspace/workspace-features/version-control?utm_source=chatgpt.com "Version control integration"
