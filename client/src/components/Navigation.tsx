@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useScrollAnimation } from '../hooks/useScrollAnimation';
@@ -50,7 +49,7 @@ const Navigation = () => {
             <Link href="/" className="text-white hover:text-luxury-gold transition-colors duration-300 font-inter">
               Home
             </Link>
-            
+
             {/* Services Dropdown */}
             <div className="relative group">
               <button
@@ -59,87 +58,53 @@ const Navigation = () => {
                 onMouseLeave={() => setIsServicesOpen(false)}
               >
                 Services
-                <i className="fas fa-chevron-down ml-1 text-xs"></i>
+                <i className="fas fa-chevron-down ml-1 text-xs transform group-hover:rotate-180 transition-transform duration-300"></i>
               </button>
+
               <AnimatePresence>
                 {isServicesOpen && (
                   <motion.div
-                    initial={{ opacity: 0, y: -10 }}
+                    initial={{ opacity: 0, y: 10 }}
                     animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, y: -10 }}
-                    className="absolute top-full left-0 mt-2 w-64 bg-white rounded-lg shadow-xl overflow-hidden"
+                    exit={{ opacity: 0, y: 10 }}
+                    className="absolute top-full left-0 mt-2 w-48 bg-white rounded-lg shadow-xl py-2 z-50"
                     onMouseEnter={() => setIsServicesOpen(true)}
                     onMouseLeave={() => setIsServicesOpen(false)}
                   >
-                    <Link href="/wedding-photography" className="block px-4 py-3 text-charcoal hover:bg-ocean-blue hover:text-white transition-colors">
-                      <i className="fas fa-heart mr-2"></i>
-                      Wedding & Elopement
+                    <Link href="/wedding" className="block px-4 py-2 text-gray-800 hover:bg-luxury-gold hover:text-white transition-colors duration-300">
+                      Wedding Photography
                     </Link>
-                    <Link href="/real-estate-photography" className="block px-4 py-3 text-charcoal hover:bg-ocean-blue hover:text-white transition-colors">
-                      <i className="fas fa-home mr-2"></i>
-                      Real Estate Photography
+                    <Link href="/family" className="block px-4 py-2 text-gray-800 hover:bg-luxury-gold hover:text-white transition-colors duration-300">
+                      Family Portraits
                     </Link>
-                    <Link href="/family-photography" className="block px-4 py-3 text-charcoal hover:bg-ocean-blue hover:text-white transition-colors">
-                      <i className="fas fa-users mr-2"></i>
-                      Family & Portraits
+                    <Link href="/real-estate" className="block px-4 py-2 text-gray-800 hover:bg-luxury-gold hover:text-white transition-colors duration-300">
+                      Real Estate
                     </Link>
                   </motion.div>
                 )}
               </AnimatePresence>
             </div>
 
-            {isHomePage ? (
-              <a
-                href="#portfolio"
-                onClick={(e) => handleSmoothScroll(e, '#portfolio')}
-                className="text-white hover:text-luxury-gold transition-colors duration-300 font-inter"
-              >
-                Portfolio
-              </a>
-            ) : (
-              <Link href="/#portfolio" className="text-white hover:text-luxury-gold transition-colors duration-300 font-inter">
-                Portfolio
-              </Link>
-            )}
+            <Link href="/portfolio" className="text-white hover:text-luxury-gold transition-colors duration-300 font-inter">
+              Portfolio
+            </Link>
+            <Link href="/about" className="text-white hover:text-luxury-gold transition-colors duration-300 font-inter">
+              About
+            </Link>
+            <Link href="/blog" className="text-white hover:text-luxury-gold transition-colors duration-300 font-inter">
+              Blog
+            </Link>
 
             {isHomePage ? (
-              <a
-                href="#about"
-                onClick={(e) => handleSmoothScroll(e, '#about')}
-                className="text-white hover:text-luxury-gold transition-colors duration-300 font-inter"
-              >
-                About
-              </a>
-            ) : (
-              <Link href="/#about" className="text-white hover:text-luxury-gold transition-colors duration-300 font-inter">
-                About
-              </Link>
-            )}
-
-            {isHomePage ? (
-              <a
-                href="#blog"
-                onClick={(e) => handleSmoothScroll(e, '#blog')}
-                className="text-white hover:text-luxury-gold transition-colors duration-300 font-inter"
-              >
-                Blog
-              </a>
-            ) : (
-              <Link href="/blog" className="text-white hover:text-luxury-gold transition-colors duration-300 font-inter">
-                Blog
-              </Link>
-            )}
-
-            {isHomePage ? (
-              <a
-                href="#contact"
+              <a 
+                href="#contact" 
                 onClick={(e) => handleSmoothScroll(e, '#contact')}
-                className="bg-luxury-gold text-ocean-blue px-6 py-2 rounded-full font-inter font-medium hover:bg-sunset-orange transition-colors duration-300"
+                className="bg-luxury-gold text-ocean-blue px-6 py-2 rounded-full hover:bg-white hover:text-ocean-blue transition-all duration-300 font-inter font-medium"
               >
                 Contact
               </a>
             ) : (
-              <Link href="/#contact" className="bg-luxury-gold text-ocean-blue px-6 py-2 rounded-full font-inter font-medium hover:bg-sunset-orange transition-colors duration-300">
+              <Link href="/#contact" className="bg-luxury-gold text-ocean-blue px-6 py-2 rounded-full hover:bg-white hover:text-ocean-blue transition-all duration-300 font-inter font-medium">
                 Contact
               </Link>
             )}
@@ -147,8 +112,9 @@ const Navigation = () => {
 
           {/* Mobile Menu Button */}
           <button
-            className="md:hidden text-white text-2xl p-2 hover:text-luxury-gold transition-colors"
+            className="md:hidden text-white text-2xl"
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+            aria-label="Toggle mobile menu"
           >
             <i className={`fas ${isMobileMenuOpen ? 'fa-times' : 'fa-bars'}`}></i>
           </button>
@@ -161,90 +127,76 @@ const Navigation = () => {
               initial={{ opacity: 0, height: 0 }}
               animate={{ opacity: 1, height: 'auto' }}
               exit={{ opacity: 0, height: 0 }}
-              className="md:hidden mt-4 pb-4 space-y-4"
+              className="md:hidden mt-4 pb-4"
             >
-              <Link
-                href="/"
-                className="block text-white hover:text-luxury-gold transition-colors duration-300 font-inter"
-                onClick={() => setIsMobileMenuOpen(false)}
-              >
-                Home
-              </Link>
-              <div className="space-y-2">
-                <p className="text-white/70 text-sm font-inter">Services</p>
-                <Link href="/wedding-photography" className="block text-white hover:text-luxury-gold transition-colors duration-300 font-inter pl-4">
-                  Wedding & Elopement
+              <div className="flex flex-col space-y-4">
+                <Link 
+                  href="/" 
+                  className="text-white hover:text-luxury-gold transition-colors duration-300 font-inter"
+                  onClick={() => setIsMobileMenuOpen(false)}
+                >
+                  Home
                 </Link>
-                <Link href="/real-estate-photography" className="block text-white hover:text-luxury-gold transition-colors duration-300 font-inter pl-4">
-                  Real Estate Photography
+                <Link 
+                  href="/wedding" 
+                  className="text-white hover:text-luxury-gold transition-colors duration-300 font-inter pl-4"
+                  onClick={() => setIsMobileMenuOpen(false)}
+                >
+                  Wedding Photography
                 </Link>
-                <Link href="/family-photography" className="block text-white hover:text-luxury-gold transition-colors duration-300 font-inter pl-4">
-                  Family & Portraits
+                <Link 
+                  href="/family" 
+                  className="text-white hover:text-luxury-gold transition-colors duration-300 font-inter pl-4"
+                  onClick={() => setIsMobileMenuOpen(false)}
+                >
+                  Family Portraits
                 </Link>
-              </div>
-              {isHomePage ? (
-                <a
-                  href="#portfolio"
-                  onClick={(e) => handleSmoothScroll(e, '#portfolio')}
-                  className="block text-white hover:text-luxury-gold transition-colors duration-300 font-inter"
+                <Link 
+                  href="/real-estate" 
+                  className="text-white hover:text-luxury-gold transition-colors duration-300 font-inter pl-4"
+                  onClick={() => setIsMobileMenuOpen(false)}
+                >
+                  Real Estate
+                </Link>
+                <Link 
+                  href="/portfolio" 
+                  className="text-white hover:text-luxury-gold transition-colors duration-300 font-inter"
+                  onClick={() => setIsMobileMenuOpen(false)}
                 >
                   Portfolio
-                </a>
-              ) : (
-                <Link href="/#portfolio" className="block text-white hover:text-luxury-gold transition-colors duration-300 font-inter">
-                  Portfolio
                 </Link>
-              )}
-              {isHomePage ? (
-                <a
-                  href="#about"
-                  onClick={(e) => handleSmoothScroll(e, '#about')}
-                  className="block text-white hover:text-luxury-gold transition-colors duration-300 font-inter"
+                <Link 
+                  href="/about" 
+                  className="text-white hover:text-luxury-gold transition-colors duration-300 font-inter"
+                  onClick={() => setIsMobileMenuOpen(false)}
                 >
                   About
-                </a>
-              ) : (
-                <Link href="/#about" className="block text-white hover:text-luxury-gold transition-colors duration-300 font-inter">
-                  About
                 </Link>
-              )}
-              {isHomePage ? (
-                <a
-                  href="#blog"
-                  onClick={(e) => handleSmoothScroll(e, '#blog')}
-                  className="block text-white hover:text-luxury-gold transition-colors duration-300 font-inter"
+                <Link 
+                  href="/blog" 
+                  className="text-white hover:text-luxury-gold transition-colors duration-300 font-inter"
+                  onClick={() => setIsMobileMenuOpen(false)}
                 >
                   Blog
-                </a>
-              ) : (
-                <Link href="/blog" className="block text-white hover:text-luxury-gold transition-colors duration-300 font-inter">
-                  Blog
                 </Link>
-              )}
-              {isHomePage ? (
-                <a
-                  href="#contact"
-                  onClick={(e) => handleSmoothScroll(e, '#contact')}
-                  className="block bg-luxury-gold text-ocean-blue px-6 py-2 rounded-full font-inter font-medium hover:bg-sunset-orange transition-colors duration-300 text-center"
-                >
-                  Contact
-                </a>
-              ) : (
-                <Link href="/#contact" className="block bg-luxury-gold text-ocean-blue px-6 py-2 rounded-full font-inter font-medium hover:bg-sunset-orange transition-colors duration-300 text-center">
-                  Contact
-                </Link>
-              )}
-              {/* Additional Links */}
-              <div className="border-t border-white/20 pt-4">
-                <Link href="/cookie-policy" className="block text-white hover:text-luxury-gold transition-colors duration-300 font-inter">
-                  Cookie Policy
-                </Link>
-                <Link href="/licensing" className="block text-white hover:text-luxury-gold transition-colors duration-300 font-inter">
-                  Licensing
-                </Link>
-                <Link href="/faq" className="block text-white hover:text-luxury-gold transition-colors duration-300 font-inter">
-                  FAQ
-                </Link>
+
+                {isHomePage ? (
+                  <a 
+                    href="#contact" 
+                    onClick={(e) => handleSmoothScroll(e, '#contact')}
+                    className="bg-luxury-gold text-ocean-blue px-6 py-2 rounded-full hover:bg-white hover:text-ocean-blue transition-all duration-300 font-inter font-medium text-center"
+                  >
+                    Contact
+                  </a>
+                ) : (
+                  <Link 
+                    href="/#contact" 
+                    className="bg-luxury-gold text-ocean-blue px-6 py-2 rounded-full hover:bg-white hover:text-ocean-blue transition-all duration-300 font-inter font-medium text-center"
+                    onClick={() => setIsMobileMenuOpen(false)}
+                  >
+                    Contact
+                  </Link>
+                )}
               </div>
             </motion.div>
           )}
