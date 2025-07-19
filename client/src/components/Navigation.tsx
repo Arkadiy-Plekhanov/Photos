@@ -1,14 +1,9 @@
 import { useState, useEffect } from 'react';
-import React from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useScrollAnimation } from '../hooks/useScrollAnimation';
 import { Link, useLocation } from 'wouter';
 
-interface NavigationProps {
-  variant?: 'default' | 'dark';
-}
-
-const Navigation: React.FC<NavigationProps> = ({ variant = 'default' }) => {
+const Navigation = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isServicesOpen, setIsServicesOpen] = useState(false);
   const { isScrolled } = useScrollAnimation();
@@ -24,19 +19,13 @@ const Navigation: React.FC<NavigationProps> = ({ variant = 'default' }) => {
     setIsMobileMenuOpen(false);
   };
 
-  // Determine header background and text color based on variant and scroll
-  const headerClass =
-    variant === 'dark'
-      ? 'bg-ocean-blue text-white'
-      : isScrolled
-      ? 'bg-ocean-blue/95 backdrop-blur-lg text-white'
-      : 'glass-effect text-ocean-blue';
-
   return (
     <motion.nav
       initial={{ y: -100 }}
       animate={{ y: 0 }}
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${headerClass}`}
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+        isScrolled ? 'bg-ocean-blue/95 backdrop-blur-lg' : 'glass-effect'
+      }`}
     >
       <div className="container mx-auto px-6 py-4">
         <div className="flex items-center justify-between">
@@ -46,7 +35,7 @@ const Navigation: React.FC<NavigationProps> = ({ variant = 'default' }) => {
             className="flex items-center space-x-2"
           >
             <i className="fas fa-camera text-2xl text-luxury-gold"></i>
-            <span className={`text-2xl font-playfair font-bold ${variant === 'dark' ? 'text-white' : 'text-ocean-blue'}`}>
+            <span className="text-2xl font-playfair font-bold text-white">
               Arcadia Photography
             </span>
           </motion.div>
@@ -57,14 +46,14 @@ const Navigation: React.FC<NavigationProps> = ({ variant = 'default' }) => {
             animate={{ opacity: 1, x: 0 }}
             className="hidden md:flex items-center space-x-8"
           >
-            <Link href="/" className={`${variant === 'dark' ? 'text-white' : 'text-ocean-blue'} hover:text-luxury-gold transition-colors duration-300 font-inter`}>
+            <Link href="/" className="text-white hover:text-luxury-gold transition-colors duration-300 font-inter">
               Home
             </Link>
-
+            
             {/* Services Dropdown */}
             <div className="relative group">
               <button
-                className={`${variant === 'dark' ? 'text-white' : 'text-ocean-blue'} hover:text-luxury-gold transition-colors duration-300 font-inter flex items-center`}
+                className="text-white hover:text-luxury-gold transition-colors duration-300 font-inter flex items-center"
                 onMouseEnter={() => setIsServicesOpen(true)}
                 onMouseLeave={() => setIsServicesOpen(false)}
               >
@@ -81,15 +70,15 @@ const Navigation: React.FC<NavigationProps> = ({ variant = 'default' }) => {
                     onMouseEnter={() => setIsServicesOpen(true)}
                     onMouseLeave={() => setIsServicesOpen(false)}
                   >
-                    <Link href="/weddings" className="block px-4 py-3 text-charcoal hover:bg-ocean-blue hover:text-white transition-colors">
+                    <Link href="/wedding-photography" className="block px-4 py-3 text-charcoal hover:bg-ocean-blue hover:text-white transition-colors">
                       <i className="fas fa-heart mr-2"></i>
                       Wedding & Elopement
                     </Link>
-                    <Link href="/real-estate" className="block px-4 py-3 text-charcoal hover:bg-ocean-blue hover:text-white transition-colors">
+                    <Link href="/real-estate-photography" className="block px-4 py-3 text-charcoal hover:bg-ocean-blue hover:text-white transition-colors">
                       <i className="fas fa-home mr-2"></i>
                       Real Estate Photography
                     </Link>
-                    <Link href="/family-portraits" className="block px-4 py-3 text-charcoal hover:bg-ocean-blue hover:text-white transition-colors">
+                    <Link href="/family-photography" className="block px-4 py-3 text-charcoal hover:bg-ocean-blue hover:text-white transition-colors">
                       <i className="fas fa-users mr-2"></i>
                       Family & Portraits
                     </Link>
@@ -97,46 +86,40 @@ const Navigation: React.FC<NavigationProps> = ({ variant = 'default' }) => {
                 )}
               </AnimatePresence>
             </div>
+
             <a
               href="#portfolio"
               onClick={(e) => handleSmoothScroll(e, '#portfolio')}
-              className={`${variant === 'dark' ? 'text-white' : 'text-ocean-blue'} hover:text-luxury-gold transition-colors duration-300 font-inter`}
+              className="text-white hover:text-luxury-gold transition-colors duration-300 font-inter"
             >
               Portfolio
             </a>
             <a
               href="#about"
               onClick={(e) => handleSmoothScroll(e, '#about')}
-              className={`${variant === 'dark' ? 'text-white' : 'text-ocean-blue'} hover:text-luxury-gold transition-colors duration-300 font-inter`}
+              className="text-white hover:text-luxury-gold transition-colors duration-300 font-inter"
             >
               About
             </a>
             <a
               href="#blog"
               onClick={(e) => handleSmoothScroll(e, '#blog')}
-              className={`${variant === 'dark' ? 'text-white' : 'text-ocean-blue'} hover:text-luxury-gold transition-colors duration-300 font-inter`}
+              className="text-white hover:text-luxury-gold transition-colors duration-300 font-inter"
             >
               Blog
             </a>
-
-            {isHomePage ? (
-              <a
-                href="#contact"
-                onClick={(e) => handleSmoothScroll(e, '#contact')}
-                className="bg-luxury-gold text-ocean-blue px-6 py-2 rounded-full font-inter font-medium hover:bg-sunset-orange transition-colors duration-300"
-              >
-                Contact
-              </a>
-            ) : (
-              <Link href="/contact" className="bg-luxury-gold text-ocean-blue px-6 py-2 rounded-full font-inter font-medium hover:bg-sunset-orange transition-colors duration-300">
-                Contact
-              </Link>
-            )}
+            <a
+              href="#contact"
+              onClick={(e) => handleSmoothScroll(e, '#contact')}
+              className="bg-luxury-gold text-ocean-blue px-6 py-2 rounded-full font-inter font-medium hover:bg-sunset-orange transition-colors duration-300"
+            >
+              Contact
+            </a>
           </motion.div>
 
           {/* Mobile Menu Button */}
           <button
-            className={`md:hidden ${variant === 'dark' ? 'text-white' : 'text-ocean-blue'} text-2xl p-2 hover:text-luxury-gold transition-colors`}
+            className="md:hidden text-white text-2xl p-2 hover:text-luxury-gold transition-colors"
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
           >
             <i className={`fas ${isMobileMenuOpen ? 'fa-times' : 'fa-bars'}`}></i>
@@ -150,45 +133,45 @@ const Navigation: React.FC<NavigationProps> = ({ variant = 'default' }) => {
               initial={{ opacity: 0, height: 0 }}
               animate={{ opacity: 1, height: 'auto' }}
               exit={{ opacity: 0, height: 0 }}
-              className={`md:hidden mt-4 pb-4 space-y-4 ${variant === 'dark' ? 'bg-ocean-blue' : 'bg-white'} rounded-lg shadow-xl`}
+              className="md:hidden mt-4 pb-4 space-y-4"
             >
               <a
                 href="#home"
                 onClick={(e) => handleSmoothScroll(e, '#home')}
-                className={`block ${variant === 'dark' ? 'text-white' : 'text-ocean-blue'} hover:text-luxury-gold transition-colors duration-300 font-inter`}
+                className="block text-white hover:text-luxury-gold transition-colors duration-300 font-inter"
               >
                 Home
               </a>
               <div className="space-y-2">
-                <p className={`${variant === 'dark' ? 'text-white/70' : 'text-ocean-blue/70'} text-sm font-inter`}>Services</p>
-                <Link href="/wedding-photography" className={`block ${variant === 'dark' ? 'text-white' : 'text-ocean-blue'} hover:text-luxury-gold transition-colors duration-300 font-inter pl-4`}>
+                <p className="text-white/70 text-sm font-inter">Services</p>
+                <Link href="/wedding-photography" className="block text-white hover:text-luxury-gold transition-colors duration-300 font-inter pl-4">
                   Wedding & Elopement
                 </Link>
-                <Link href="/real-estate-photography" className={`block ${variant === 'dark' ? 'text-white' : 'text-ocean-blue'} hover:text-luxury-gold transition-colors duration-300 font-inter pl-4`}>
+                <Link href="/real-estate-photography" className="block text-white hover:text-luxury-gold transition-colors duration-300 font-inter pl-4">
                   Real Estate Photography
                 </Link>
-                <Link href="/family-photography" className={`block ${variant === 'dark' ? 'text-white' : 'text-ocean-blue'} hover:text-luxury-gold transition-colors duration-300 font-inter pl-4`}>
+                <Link href="/family-photography" className="block text-white hover:text-luxury-gold transition-colors duration-300 font-inter pl-4">
                   Family & Portraits
                 </Link>
               </div>
               <a
                 href="#portfolio"
                 onClick={(e) => handleSmoothScroll(e, '#portfolio')}
-                className={`block ${variant === 'dark' ? 'text-white' : 'text-ocean-blue'} hover:text-luxury-gold transition-colors duration-300 font-inter`}
+                className="block text-white hover:text-luxury-gold transition-colors duration-300 font-inter"
               >
                 Portfolio
               </a>
               <a
                 href="#about"
                 onClick={(e) => handleSmoothScroll(e, '#about')}
-                className={`block ${variant === 'dark' ? 'text-white' : 'text-ocean-blue'} hover:text-luxury-gold transition-colors duration-300 font-inter`}
+                className="block text-white hover:text-luxury-gold transition-colors duration-300 font-inter"
               >
                 About
               </a>
               <a
                 href="#blog"
                 onClick={(e) => handleSmoothScroll(e, '#blog')}
-                className={`block ${variant === 'dark' ? 'text-white' : 'text-ocean-blue'} hover:text-luxury-gold transition-colors duration-300 font-inter`}
+                className="block text-white hover:text-luxury-gold transition-colors duration-300 font-inter"
               >
                 Blog
               </a>
@@ -201,13 +184,13 @@ const Navigation: React.FC<NavigationProps> = ({ variant = 'default' }) => {
               </a>
               {/* Additional Links */}
               <div className="border-t border-white/20 pt-4">
-                <Link href="/cookie-policy" className={`block ${variant === 'dark' ? 'text-white' : 'text-ocean-blue'} hover:text-luxury-gold transition-colors duration-300 font-inter`}>
+                <Link href="/cookie-policy" className="block text-white hover:text-luxury-gold transition-colors duration-300 font-inter">
                   Cookie Policy
                 </Link>
-                <Link href="/licensing" className={`block ${variant === 'dark' ? 'text-white' : 'text-ocean-blue'} hover:text-luxury-gold transition-colors duration-300 font-inter`}>
+                <Link href="/licensing" className="block text-white hover:text-luxury-gold transition-colors duration-300 font-inter">
                   Licensing
                 </Link>
-                <Link href="/faq" className={`block ${variant === 'dark' ? 'text-white' : 'text-ocean-blue'} hover:text-luxury-gold transition-colors duration-300 font-inter`}>
+                <Link href="/faq" className="block text-white hover:text-luxury-gold transition-colors duration-300 font-inter">
                   FAQ
                 </Link>
               </div>

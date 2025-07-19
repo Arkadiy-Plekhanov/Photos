@@ -95,8 +95,6 @@ export class MemStorage implements IStorage {
     const newBooking: Booking = {
       ...booking,
       id,
-      eventDate: booking.eventDate || null,
-      message: booking.message || null,
       stripePaymentIntentId: null,
       paymentStatus: "pending",
       bookingStatus: "pending",
