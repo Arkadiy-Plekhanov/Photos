@@ -71,9 +71,13 @@ function App() {
                 <RouteValidator />
               </>
             )}
-            {/* Performance testing tool - always available */}
-            <QuickPerformanceTest />
-            <AutoPerformanceTest />
+            {/* Performance testing tools - development only */}
+            {process.env.NODE_ENV === 'development' && (
+              <>
+                <QuickPerformanceTest />
+                <AutoPerformanceTest />
+              </>
+            )}
             <ScrollProgress />
             <DarkModeToggle />
             <Toaster />
