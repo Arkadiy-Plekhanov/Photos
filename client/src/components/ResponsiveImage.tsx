@@ -1,134 +1,165 @@
-import { useState, useRef, useEffect } from 'react';
+import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { cn } from '@/lib/utils';
 
 interface ResponsiveImageProps {
   src: string;
   alt: string;
   className?: string;
-  width?: number;
-  height?: number;
-  srcSet?: string;
+  sizes?: string;
   priority?: boolean;
-  onLoad?: () => void;
-  onError?: () => void;
+  quality?: number;
+  webpSupport?: boolean;
 }
 
-export const ResponsiveImage = ({
+export default function ResponsiveImage({
   src,
   alt,
-  className,
-  width,
-  height,
-  srcSet,
+  className = '',
+  sizes = '(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw',
   priority = false,
-  onLoad,
-  onError,
-}: ResponsiveImageProps) => {
-  const [isLoaded, setIsLoaded] = useState(false);
-  const [isInView, setIsInView] = useState(priority);
-  const [hasError, setHasError] = useState(false);
-  const imgRef = useRef<HTMLImageElement>(null);
-  const containerRef = useRef<HTMLDivElement>(null);
+  quality = 80,
+  webpSupport = true
+}: ResponsiveImageProps) {
+  const [loaded, setLoaded] = useState(false);
+  const [error, setError] = useState(false);
+  const [currentFormat, setCurrentFormat] = useState<'webp' | 'jpg'>('webp');
 
-  // Generate responsive srcset for high-DPI displays
-  const generateSrcSet = (baseSrc: string) => {
-    if (srcSet) return srcSet;
-    
-    const baseUrl = baseSrc.split('?')[0];
-    const params = baseSrc.split('?')[1] || '';
-    
-    return `
-      ${baseUrl}?${params}&w=800&q=75 1x,
-      ${baseUrl}?${params}&w=1600&q=75 2x,
-      ${baseUrl}?${params}&w=2400&q=75 3x
-    `.trim();
+  // Check WebP support
+  const supportsWebP = () => {
+    if (!webpSupport) return false;
+
+    const canvas = document.createElement('canvas');
+    canvas.width = 1;
+    canvas.height = 1;
+    return canvas.toDataURL('image/webp').indexOf('data:image/webp') === 0;
   };
 
-  useEffect(() => {
-    if (priority) return;
+  // Generate srcSet for different screen sizes and formats
+  const generateSrcSet = (baseSrc: string, format: 'webp' | 'jpg' = 'jpg') => {
+    if (baseSrc.includes('unsplash')) {
+      const baseUrl = baseSrc.split('?')[0];
+      const formatParam = format === 'webp' ? '&fm=webp' : '';
 
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setIsInView(true);
-          observer.disconnect();
-        }
-      },
-      {
-        rootMargin: '50px',
-      }
-    );
-
-    if (containerRef.current) {
-      observer.observe(containerRef.current);
+      return [
+        `${baseUrl}?w=400&q=${quality}${formatParam} 400w`,
+        `${baseUrl}?w=600&q=${quality}${formatParam} 600w`,
+        `${baseUrl}?w=800&q=${quality}${formatParam} 800w`,
+        `${baseUrl}?w=1024&q=${quality}${formatParam} 1024w`,
+        `${baseUrl}?w=1280&q=${quality}${formatParam} 1280w`,
+        `${baseUrl}?w=1600&q=${quality}${formatParam} 1600w`,
+        `${baseUrl}?w=1920&q=${quality}${formatParam} 1920w`,
+        `${baseUrl}?w=2400&q=${quality}${formatParam} 2400w`
+      ].join(', ');
     }
+    return baseSrc;
+  };
 
-    return () => observer.disconnect();
-  }, [priority]);
+  // Get the optimal src for the current viewport
+  const getOptimalSrc = (baseSrc: string, format: 'webp' | 'jpg' = 'jpg') => {
+    if (baseSrc.includes('unsplash')) {
+      const width = Math.min(window.innerWidth * (window.devicePixelRatio || 1), 2400);
+      const formatParam = format === 'webp' ? '&fm=webp' : '';
+      const baseUrl = baseSrc.split('?')[0];
+      return `${baseUrl}?w=${width}&q=${quality}${formatParam}`;
+    }
+    return baseSrc;
+  };
+
+  // Generate LQIP (Low Quality Image Placeholder)
+  const getLQIP = (baseSrc: string) => {
+    if (baseSrc.includes('unsplash')) {
+      const baseUrl = baseSrc.split('?')[0];
+      return `${baseUrl}?w=20&q=20&blur=50`;
+    }
+    return 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300"%3E%3Crect width="400" height="300" fill="%23f3f4f6"/%3E%3C/svg%3E';
+  };
 
   const handleLoad = () => {
-    setIsLoaded(true);
-    onLoad?.();
+    setLoaded(true);
   };
 
   const handleError = () => {
-    setHasError(true);
-    onError?.();
+    if (currentFormat === 'webp') {
+      // Fallback to JPEG if WebP fails
+      setCurrentFormat('jpg');
+    } else {
+      setError(true);
+    }
   };
 
+  if (error) {
+    return (
+      <div className={`bg-gradient-to-br from-gray-100 to-gray-200 flex items-center justify-center ${className}`}>
+        <div className="text-center p-8">
+          <div className="w-16 h-16 mx-auto mb-4 bg-gray-300 rounded-full flex items-center justify-center">
+            <svg className="w-8 h-8 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+            </svg>
+          </div>
+          <span className="text-gray-500 text-sm">Image temporarily unavailable</span>
+        </div>
+      </div>
+    );
+  }
+
+  const useWebP = supportsWebP() && webpSupport && currentFormat === 'webp';
+
   return (
-    <div
-      ref={containerRef}
-      className={cn('relative overflow-hidden', className)}
-      style={{ width, height }}
-      role="img"
-      aria-label={alt}
-    >
-      {/* Skeleton loader */}
-      {!isLoaded && !hasError && (
-        <motion.div 
-          className="absolute inset-0 bg-gradient-to-r from-gray-200 via-gray-300 to-gray-200 rounded"
-          animate={{
-            backgroundPosition: ['0% 50%', '100% 50%', '0% 50%'],
+    <div className={`relative overflow-hidden ${className}`}>
+      {/* LQIP Background */}
+      {!loaded && (
+        <motion.div
+          className="absolute inset-0"
+          style={{
+            backgroundImage: `url(${getLQIP(src)})`,
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
+            filter: 'blur(4px)',
+            transform: 'scale(1.02)'
           }}
-          transition={{
-            duration: 2,
-            repeat: Infinity,
-            ease: 'easeInOut',
-          }}
+          animate={{ opacity: [0.6, 0.8, 0.6] }}
+          transition={{ repeat: Infinity, duration: 2, ease: 'easeInOut' }}
         />
       )}
-      
-      {/* Actual image */}
-      {isInView && (
-        <img
-          ref={imgRef}
-          src={src}
+
+      {/* Main Image with WebP support */}
+      <picture>
+        {useWebP && (
+          <source
+            srcSet={generateSrcSet(src, 'webp')}
+            sizes={sizes}
+            type="image/webp"
+          />
+        )}
+        <motion.img
+          src={getOptimalSrc(src, currentFormat)}
+          srcSet={generateSrcSet(src, currentFormat)}
+          sizes={sizes}
           alt={alt}
-          srcSet={generateSrcSet(src)}
-          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-          className={cn(
-            'transition-opacity duration-300',
-            isLoaded ? 'opacity-100' : 'opacity-0',
-            className
-          )}
+          className={`relative z-10 w-full h-full object-cover transition-all duration-500 ${
+            loaded ? 'opacity-100' : 'opacity-0'
+          }`}
           onLoad={handleLoad}
           onError={handleError}
           loading={priority ? 'eager' : 'lazy'}
-          width={width}
-          height={height}
+          decoding="async"
+          initial={{ opacity: 0, scale: 1.02 }}
+          animate={{ 
+            opacity: loaded ? 1 : 0,
+            scale: loaded ? 1 : 1.02
+          }}
+          transition={{ duration: 0.5, ease: 'easeOut' }}
         />
-      )}
-      
-      {/* Error state */}
-      {hasError && (
-        <div className="absolute inset-0 flex items-center justify-center bg-gray-100 text-gray-500">
-          <i className="fas fa-image text-2xl" aria-hidden="true"></i>
-        </div>
+      </picture>
+
+      {/* Loading overlay */}
+      {!loaded && (
+        <motion.div
+          className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent"
+          animate={{ x: ['-100%', '100%'] }}
+          transition={{ repeat: Infinity, duration: 1.5, ease: 'linear' }}
+        />
       )}
     </div>
   );
-};
-
-export default ResponsiveImage;
+}

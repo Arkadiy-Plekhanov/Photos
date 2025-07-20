@@ -21,20 +21,74 @@ app.use((req, res, next) => {
     const duration = Date.now() - start;
     if (path.startsWith("/api")) {
       let logLine = `${req.method} ${path} ${res.statusCode} in ${duration}ms`;
+      
+      // Enhanced logging with sensitive data filtering
       if (capturedJsonResponse) {
-        logLine += ` :: ${JSON.stringify(capturedJsonResponse)}`;
+        const sanitizedResponse = sanitizeSensitiveData(capturedJsonResponse);
+        logLine += ` :: ${JSON.stringify(sanitizedResponse)}`;
       }
 
-      if (logLine.length > 80) {
-        logLine = logLine.slice(0, 79) + "…";
+      // Log request headers for debugging (without sensitive info)
+      const sanitizedHeaders = sanitizeSensitiveData(req.headers);
+      if (res.statusCode >= 400) {
+        logLine += ` | Headers: ${JSON.stringify(sanitizedHeaders)}`;
       }
 
-      log(logLine);
+      // Truncate if too long
+      if (logLine.length > 200) {
+        logLine = logLine.slice(0, 199) + "…";
+      }
+
+      // Color-coded logging based on status
+      if (res.statusCode >= 500) {
+        log(`🔴 ${logLine}`);
+      } else if (res.statusCode >= 400) {
+        log(`🟡 ${logLine}`);
+      } else if (res.statusCode >= 300) {
+        log(`🔵 ${logLine}`);
+      } else {
+        log(`🟢 ${logLine}`);
+      }
+
+      // Performance monitoring
+      if (duration > 1000) {
+        log(`⚠️  SLOW REQUEST: ${req.method} ${path} took ${duration}ms`);
+      }
     }
   });
 
   next();
 });
+
+// Utility function to sanitize sensitive data from logs
+function sanitizeSensitiveData(obj: any): any {
+  if (!obj || typeof obj !== 'object') return obj;
+  
+  const sensitiveKeys = [
+    'password', 'token', 'secret', 'key', 'authorization', 
+    'cookie', 'stripe', 'payment', 'card', 'cvv', 'ssn',
+    'email', 'phone', 'address'
+  ];
+  
+  const sanitized = Array.isArray(obj) ? [] : {};
+  
+  for (const [key, value] of Object.entries(obj)) {
+    const keyLower = key.toLowerCase();
+    const isSensitive = sensitiveKeys.some(sensitiveKey => 
+      keyLower.includes(sensitiveKey)
+    );
+    
+    if (isSensitive) {
+      (sanitized as any)[key] = '***REDACTED***';
+    } else if (typeof value === 'object' && value !== null) {
+      (sanitized as any)[key] = sanitizeSensitiveData(value);
+    } else {
+      (sanitized as any)[key] = value;
+    }
+  }
+  
+  return sanitized;
+}
 
 (async () => {
   const server = await registerRoutes(app);

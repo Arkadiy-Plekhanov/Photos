@@ -5,6 +5,8 @@ import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import ScrollProgress from "@/components/ScrollProgress";
 import DarkModeToggle from "@/components/DarkModeToggle";
+import PerformanceMonitor from "@/components/PerformanceMonitor";
+import ErrorBoundary from "@/components/ErrorBoundary";
 import { useServiceWorker } from "@/hooks/useServiceWorker";
 import NotFound from "@/pages/not-found";
 import Home from "@/pages/Home";
@@ -46,16 +48,19 @@ function App() {
   useServiceWorker();
 
   return (
-    <QueryClientProvider client={queryClient}>
-      <TooltipProvider>
-        <div className="min-h-screen bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100">
-          <ScrollProgress />
-          <DarkModeToggle />
-          <Toaster />
-          <Router />
-        </div>
-      </TooltipProvider>
-    </QueryClientProvider>
+    <ErrorBoundary>
+      <QueryClientProvider client={queryClient}>
+        <TooltipProvider>
+          <div className="min-h-screen bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100">
+            <PerformanceMonitor />
+            <ScrollProgress />
+            <DarkModeToggle />
+            <Toaster />
+            <Router />
+          </div>
+        </TooltipProvider>
+      </QueryClientProvider>
+    </ErrorBoundary>
   );
 }
 

@@ -2,118 +2,248 @@ export interface SEOData {
   title: string;
   description: string;
   keywords?: string;
-  ogTitle?: string;
-  ogDescription?: string;
-  ogImage?: string;
+  image?: string;
+  url?: string;
+  type?: 'website' | 'article' | 'profile' | 'business';
+  structuredData?: Record<string, any>;
+  canonicalUrl?: string;
+  author?: string;
+  publishDate?: string;
+  modifiedDate?: string;
 }
 
-export const SEO_CONFIG: Record<string, SEOData> = {
-  home: {
-    title: "Arcadia Photography - Professional Wedding, Real Estate & Portrait Photography in Oahu, Hawaii",
-    description: "Capturing breathtaking moments in Oahu, Hawaii. Specializing in wedding, real estate, and family portrait photography with luxury service. Book your session today!",
-    keywords: "Oahu photography, Honolulu wedding photographer, Hawaii photographer, real estate photography Hawaii, family portraits Oahu",
-    ogTitle: "Arcadia Photography - Where Stories Meet Paradise",
-    ogDescription: "Professional wedding, real estate, and family photography services in Honolulu, Hawaii. Capturing your story in paradise.",
-    ogImage: "/api/placeholder/1200/630"
-  },
-  wedding: {
-    title: "Wedding Photography in Oahu, Hawaii | Arcadia Photography",
-    description: "Luxury wedding photography in Oahu, Hawaii. Capturing your special day with breathtaking beach venues, professional service, and timeless memories. View packages and book now!",
-    keywords: "Oahu wedding photographer, Hawaii wedding photography, Honolulu wedding photographer, beach wedding photography, luxury wedding photography",
-    ogTitle: "Wedding Photography in Paradise - Arcadia Photography",
-    ogDescription: "Capturing love stories in Oahu's most stunning locations. Professional wedding photography with luxury service.",
-    ogImage: "/api/placeholder/1200/630"
-  },
-  realestate: {
-    title: "Real Estate Photography in Oahu, Hawaii | Arcadia Photography",
-    description: "Professional real estate photography in Oahu and Honolulu. High-quality property photos that help homes sell faster. Serving real estate agents across Hawaii.",
-    keywords: "Hawaii real estate photography, Oahu property photography, Honolulu real estate photographer, property marketing photos",
-    ogTitle: "Real Estate Photography - Arcadia Photography",
-    ogDescription: "Professional real estate photography in Oahu that helps properties sell faster with stunning visuals.",
-    ogImage: "/api/placeholder/1200/630"
-  },
-  family: {
-    title: "Family Portrait Photography in Oahu, Hawaii | Arcadia Photography",
-    description: "Beautiful family portrait sessions in Oahu, Hawaii. Capturing precious moments with professional photography at stunning beach locations and scenic spots.",
-    keywords: "Oahu family photographer, Hawaii family portraits, Honolulu family photography, beach family photos",
-    ogTitle: "Family Portrait Photography - Arcadia Photography",
-    ogDescription: "Creating beautiful family memories in Oahu's most picturesque locations with professional photography.",
-    ogImage: "/api/placeholder/1200/630"
-  },
-  about: {
-    title: "About Arcadia Photography - Professional Oahu Photographer",
-    description: "Meet the team behind Arcadia Photography. Award-winning photographers specializing in weddings, real estate, and family portraits in Oahu, Hawaii.",
-    keywords: "Oahu photographer, Hawaii photography team, professional photographer Honolulu",
-    ogTitle: "About Arcadia Photography",
-    ogDescription: "Award-winning photographers capturing life's precious moments in Oahu, Hawaii.",
-    ogImage: "/api/placeholder/1200/630"
-  },
-  portfolio: {
-    title: "Photography Portfolio | Arcadia Photography Oahu, Hawaii",
-    description: "View our stunning photography portfolio featuring weddings, real estate, and family portraits shot in Oahu's most beautiful locations.",
-    keywords: "photography portfolio Hawaii, Oahu photography gallery, wedding portfolio Hawaii",
-    ogTitle: "Photography Portfolio - Arcadia Photography",
-    ogDescription: "Stunning photography portfolio showcasing our work across Oahu, Hawaii.",
-    ogImage: "/api/placeholder/1200/630"
-  },
-  blog: {
-    title: "Photography Blog | Tips & Inspiration from Oahu | Arcadia Photography",
-    description: "Photography tips, location guides, and inspiration from Oahu's premier photographers. Learn about the best photo spots and techniques in Hawaii.",
-    keywords: "Hawaii photography tips, Oahu photo locations, wedding photography blog Hawaii",
-    ogTitle: "Photography Blog - Arcadia Photography",
-    ogDescription: "Photography tips and inspiration from Oahu's beautiful locations and our professional experiences.",
-    ogImage: "/api/placeholder/1200/630"
-  },
-  contact: {
-    title: "Contact Arcadia Photography | Book Your Oahu Photography Session",
-    description: "Ready to capture your special moments? Contact Arcadia Photography to book your wedding, real estate, or family photography session in Oahu, Hawaii.",
-    keywords: "book photographer Oahu, contact Hawaii photographer, photography inquiry Honolulu",
-    ogTitle: "Contact Arcadia Photography",
-    ogDescription: "Ready to capture your special moments in Oahu? Get in touch to book your photography session.",
-    ogImage: "/api/placeholder/1200/630"
-  },
-  faq: {
-    title: "Frequently Asked Questions | Arcadia Photography Oahu",
-    description: "Get answers to common questions about our photography services in Oahu, Hawaii. Learn about pricing, packages, and what to expect.",
-    keywords: "photography FAQ Hawaii, Oahu photographer questions, photography pricing Hawaii",
-    ogTitle: "FAQ - Arcadia Photography",
-    ogDescription: "Frequently asked questions about our photography services in Oahu, Hawaii.",
-    ogImage: "/api/placeholder/1200/630"
-  }
-};
+export function updateSEO({
+  title,
+  description,
+  keywords,
+  image = '/placeholder-social.jpg',
+  url = window.location.href,
+  type = 'website',
+  structuredData,
+  canonicalUrl,
+  author,
+  publishDate,
+  modifiedDate
+}: SEOData) {
+  // Update title with site name
+  const fullTitle = title.includes('Arcadia Photography') ? title : `${title} | Arcadia Photography`;
+  document.title = fullTitle;
 
-export function updateSEO(pageKey: string) {
-  const seoData = SEO_CONFIG[pageKey];
-  if (!seoData) return;
+  // Update or create meta tags
+  updateMetaTag('description', description);
+  updateMetaTag('robots', 'index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1');
 
-  // Update title
-  document.title = seoData.title;
-
-  // Update meta description
-  updateMetaTag('description', seoData.description);
-
-  // Update keywords if provided
-  if (seoData.keywords) {
-    updateMetaTag('keywords', seoData.keywords);
+  if (keywords) {
+    updateMetaTag('keywords', keywords);
   }
 
-  // Update Open Graph tags
-  updateMetaTag('og:title', seoData.ogTitle || seoData.title, 'property');
-  updateMetaTag('og:description', seoData.ogDescription || seoData.description, 'property');
-  
-  if (seoData.ogImage) {
-    updateMetaTag('og:image', seoData.ogImage, 'property');
+  if (author) {
+    updateMetaTag('author', author);
+  }
+
+  if (canonicalUrl) {
+    updateLinkTag('canonical', canonicalUrl);
+  }
+
+  // Open Graph tags
+  updateMetaTag('og:title', title, 'property');
+  updateMetaTag('og:description', description, 'property');
+  updateMetaTag('og:image', image, 'property');
+  updateMetaTag('og:image:width', '1200', 'property');
+  updateMetaTag('og:image:height', '630', 'property');
+  updateMetaTag('og:url', url, 'property');
+  updateMetaTag('og:type', type, 'property');
+  updateMetaTag('og:site_name', 'Arcadia Photography', 'property');
+  updateMetaTag('og:locale', 'en_US', 'property');
+
+  // Twitter Card tags
+  updateMetaTag('twitter:card', 'summary_large_image');
+  updateMetaTag('twitter:site', '@ArcadiaPhotography');
+  updateMetaTag('twitter:title', title);
+  updateMetaTag('twitter:description', description);
+  updateMetaTag('twitter:image', image);
+  updateMetaTag('twitter:image:alt', `${title} - Professional Photography by Arcadia Photography`);
+
+  // Article-specific meta tags
+  if (type === 'article' && publishDate) {
+    updateMetaTag('article:published_time', publishDate, 'property');
+    updateMetaTag('article:author', author || 'Arcadia Photography', 'property');
+
+    if (modifiedDate) {
+      updateMetaTag('article:modified_time', modifiedDate, 'property');
+    }
+  }
+
+  // Business-specific meta tags
+  if (type === 'business') {
+    updateMetaTag('business:contact_data:locality', 'Oahu', 'property');
+    updateMetaTag('business:contact_data:region', 'Hawaii', 'property');
+    updateMetaTag('business:contact_data:country_name', 'United States', 'property');
+  }
+
+  // Add structured data
+  if (structuredData) {
+    addStructuredData(structuredData);
+  } else {
+    // Default structured data for photography business
+    addDefaultBusinessStructuredData(title, description, image, url);
   }
 }
 
-function updateMetaTag(name: string, content: string, attribute: string = 'name') {
-  let meta = document.querySelector(`meta[${attribute}="${name}"]`);
-  
-  if (!meta) {
-    meta = document.createElement('meta');
-    meta.setAttribute(attribute, name);
-    document.head.appendChild(meta);
+function updateMetaTag(name: string, content: string, attribute: 'name' | 'property' = 'name') {
+  let element = document.querySelector(`meta[${attribute}="${name}"]`);
+
+  if (!element) {
+    element = document.createElement('meta');
+    element.setAttribute(attribute, name);
+    document.head.appendChild(element);
   }
-  
-  meta.setAttribute('content', content);
+
+  element.setAttribute('content', content);
+}
+
+function updateLinkTag(rel: string, href: string) {
+  let element = document.querySelector(`link[rel="${rel}"]`);
+
+  if (!element) {
+    element = document.createElement('link');
+    element.setAttribute('rel', rel);
+    document.head.appendChild(element);
+  }
+
+  element.setAttribute('href', href);
+}
+
+function addStructuredData(data: Record<string, any>) {
+  // Remove existing structured data
+  const existingScript = document.querySelector('script[type="application/ld+json"]');
+  if (existingScript) {
+    existingScript.remove();
+  }
+
+  // Add new structured data
+  const script = document.createElement('script');
+  script.type = 'application/ld+json';
+  script.textContent = JSON.stringify(data);
+  document.head.appendChild(script);
+}
+
+function addDefaultBusinessStructuredData(title: string, description: string, image: string, url: string) {
+  const structuredData = {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Organization",
+        "@id": "https://arcadiaphotography.replit.app/#organization",
+        "name": "Arcadia Photography",
+        "url": "https://arcadiaphotography.replit.app/",
+        "sameAs": [
+          "https://www.instagram.com/arcadiaphotography",
+          "https://www.facebook.com/arcadiaphotography"
+        ],
+        "logo": {
+          "@type": "ImageObject",
+          "url": `${window.location.origin}/logo.png`,
+          "width": 400,
+          "height": 400
+        },
+        "contactPoint": {
+          "@type": "ContactPoint",
+          "telephone": "+1-808-555-0123",
+          "contactType": "Customer Service",
+          "availableLanguage": ["English"]
+        },
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": "Honolulu",
+          "addressRegion": "HI",
+          "addressCountry": "US"
+        }
+      },
+      {
+        "@type": "LocalBusiness",
+        "@id": "https://arcadiaphotography.replit.app/#business",
+        "name": "Arcadia Photography",
+        "description": "Professional photography services specializing in weddings, family portraits, and real estate photography in Oahu, Hawaii.",
+        "url": "https://arcadiaphotography.replit.app/",
+        "telephone": "+1-808-555-0123",
+        "priceRange": "$$",
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": "Honolulu",
+          "addressRegion": "HI",
+          "addressCountry": "US"
+        },
+        "geo": {
+          "@type": "GeoCoordinates",
+          "latitude": 21.3099,
+          "longitude": -157.8581
+        },
+        "openingHoursSpecification": [
+          {
+            "@type": "OpeningHoursSpecification",
+            "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+            "opens": "09:00",
+            "closes": "18:00"
+          },
+          {
+            "@type": "OpeningHoursSpecification",
+            "dayOfWeek": ["Saturday", "Sunday"],
+            "opens": "08:00",
+            "closes": "20:00"
+          }
+        ],
+        "serviceArea": {
+          "@type": "State",
+          "name": "Hawaii"
+        }
+      },
+      {
+        "@type": "WebSite",
+        "@id": "https://arcadiaphotography.replit.app/#website",
+        "url": "https://arcadiaphotography.replit.app/",
+        "name": "Arcadia Photography",
+        "description": description,
+        "publisher": {
+          "@id": "https://arcadiaphotography.replit.app/#organization"
+        },
+        "potentialAction": {
+          "@type": "SearchAction",
+          "target": {
+            "@type": "EntryPoint",
+            "urlTemplate": "https://arcadiaphotography.replit.app/portfolio?search={search_term_string}"
+          },
+          "query-input": "required name=search_term_string"
+        }
+      }
+    ]
+  };
+
+  addStructuredData(structuredData);
+}
+
+// Enhanced SEO for specific page types
+export function addPhotographyServiceStructuredData(serviceType: string, price: number) {
+  const structuredData = {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    "name": `${serviceType} Photography`,
+    "description": `Professional ${serviceType.toLowerCase()} photography services in Oahu, Hawaii`,
+    "provider": {
+      "@type": "Organization",
+      "@id": "https://arcadiaphotography.replit.app/#organization"
+    },
+    "areaServed": {
+      "@type": "State",
+      "name": "Hawaii"
+    },
+    "offers": {
+      "@type": "Offer",
+      "price": price,
+      "priceCurrency": "USD",
+      "availability": "https://schema.org/InStock"
+    }
+  };
+
+  addStructuredData(structuredData);
 }
