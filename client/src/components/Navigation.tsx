@@ -9,6 +9,7 @@ const Navigation = () => {
   const { isScrolled } = useScrollAnimation();
   const [location] = useLocation();
   const isHomePage = location === '/';
+  const variant = 'light'; // TODO: Remove hardcoded variant
 
   const handleSmoothScroll = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
     e.preventDefault();
@@ -19,13 +20,18 @@ const Navigation = () => {
     setIsMobileMenuOpen(false);
   };
 
+  // Enhanced header styling with glass effect
+  const headerClass = variant === 'dark'
+    ? 'bg-ocean-blue text-white'
+    : isScrolled
+    ? 'bg-ocean-blue/95 backdrop-blur-lg text-white'
+    : 'glass-effect text-ocean-blue';
+
   return (
     <motion.nav
       initial={{ y: -100 }}
       animate={{ y: 0 }}
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isScrolled ? 'bg-ocean-blue/95 backdrop-blur-lg' : 'glass-effect'
-      }`}
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${headerClass}`}
     >
       <div className="container mx-auto px-6 py-4">
         <div className="flex items-center justify-between">
