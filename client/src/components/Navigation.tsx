@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useScrollAnimation } from '../hooks/useScrollAnimation';
 import { Link, useLocation } from 'wouter';
+import { ROUTES, ROUTE_GROUPS } from '../utils/routes';
 
 const Navigation = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -77,28 +78,28 @@ const Navigation = () => {
                     onMouseEnter={() => setIsServicesOpen(true)}
                     onMouseLeave={() => setIsServicesOpen(false)}
                   >
-                    <Link href="/wedding" className="block px-4 py-2 text-gray-800 hover:bg-luxury-gold hover:text-white transition-colors duration-300">
-                      Wedding Photography
+                    <Link href={ROUTES.WEDDING.path} className="block px-4 py-2 text-gray-800 hover:bg-luxury-gold hover:text-white transition-colors duration-300">
+                      {ROUTES.WEDDING.label}
                     </Link>
-                    <Link href="/family" className="block px-4 py-2 text-gray-800 hover:bg-luxury-gold hover:text-white transition-colors duration-300">
-                      Family Portraits
+                    <Link href={ROUTES.FAMILY.path} className="block px-4 py-2 text-gray-800 hover:bg-luxury-gold hover:text-white transition-colors duration-300">
+                      {ROUTES.FAMILY.label}
                     </Link>
-                    <Link href="/real-estate" className="block px-4 py-2 text-gray-800 hover:bg-luxury-gold hover:text-white transition-colors duration-300">
-                      Real Estate
+                    <Link href={ROUTES.REAL_ESTATE.path} className="block px-4 py-2 text-gray-800 hover:bg-luxury-gold hover:text-white transition-colors duration-300">
+                      {ROUTES.REAL_ESTATE.label}
                     </Link>
                   </motion.div>
                 )}
               </AnimatePresence>
             </div>
 
-            <Link href="/portfolio" className="text-white hover:text-luxury-gold transition-colors duration-300 font-inter">
-              Portfolio
+            <Link href={ROUTES.PORTFOLIO.path} className="text-white hover:text-luxury-gold transition-colors duration-300 font-inter">
+              {ROUTES.PORTFOLIO.label}
             </Link>
-            <Link href="/about" className="text-white hover:text-luxury-gold transition-colors duration-300 font-inter">
-              About
+            <Link href={ROUTES.ABOUT.path} className="text-white hover:text-luxury-gold transition-colors duration-300 font-inter">
+              {ROUTES.ABOUT.label}
             </Link>
-            <Link href="/blog" className="text-white hover:text-luxury-gold transition-colors duration-300 font-inter">
-              Blog
+            <Link href={ROUTES.BLOG.path} className="text-white hover:text-luxury-gold transition-colors duration-300 font-inter">
+              {ROUTES.BLOG.label}
             </Link>
 
             {isHomePage ? (
@@ -144,46 +145,46 @@ const Navigation = () => {
                   Home
                 </Link>
                 <Link 
-                  href="/wedding" 
+                  href={ROUTES.WEDDING.path} 
                   className="text-white hover:text-luxury-gold transition-colors duration-300 font-inter pl-4"
                   onClick={() => setIsMobileMenuOpen(false)}
                 >
-                  Wedding Photography
+                  {ROUTES.WEDDING.label}
                 </Link>
                 <Link 
-                  href="/family" 
+                  href={ROUTES.FAMILY.path} 
                   className="text-white hover:text-luxury-gold transition-colors duration-300 font-inter pl-4"
                   onClick={() => setIsMobileMenuOpen(false)}
                 >
-                  Family Portraits
+                  {ROUTES.FAMILY.label}
                 </Link>
                 <Link 
-                  href="/real-estate" 
+                  href={ROUTES.REAL_ESTATE.path} 
                   className="text-white hover:text-luxury-gold transition-colors duration-300 font-inter pl-4"
                   onClick={() => setIsMobileMenuOpen(false)}
                 >
-                  Real Estate
+                  {ROUTES.REAL_ESTATE.label}
                 </Link>
                 <Link 
-                  href="/portfolio" 
+                  href={ROUTES.PORTFOLIO.path} 
                   className="text-white hover:text-luxury-gold transition-colors duration-300 font-inter"
                   onClick={() => setIsMobileMenuOpen(false)}
                 >
-                  Portfolio
+                  {ROUTES.PORTFOLIO.label}
                 </Link>
                 <Link 
-                  href="/about" 
+                  href={ROUTES.ABOUT.path} 
                   className="text-white hover:text-luxury-gold transition-colors duration-300 font-inter"
                   onClick={() => setIsMobileMenuOpen(false)}
                 >
-                  About
+                  {ROUTES.ABOUT.label}
                 </Link>
                 <Link 
-                  href="/blog" 
+                  href={ROUTES.BLOG.path} 
                   className="text-white hover:text-luxury-gold transition-colors duration-300 font-inter"
                   onClick={() => setIsMobileMenuOpen(false)}
                 >
-                  Blog
+                  {ROUTES.BLOG.label}
                 </Link>
 
                 {isHomePage ? (

@@ -15,6 +15,7 @@ import DeploymentAnalyzer from "@/components/DeploymentAnalyzer";
 import DeployedSiteAnalyzer from "@/components/DeployedSiteAnalyzer";
 import QuickPerformanceTest from "@/components/QuickPerformanceTest";
 import AutoPerformanceTest from "@/components/AutoPerformanceTest";
+import RouteValidator from "@/components/RouteValidator";
 import NotFound from "@/pages/not-found";
 import Home from "@/pages/Home";
 import WeddingPage from "@/pages/WeddingPage";
@@ -67,6 +68,7 @@ function App() {
                 <PerformanceBooster />
                 <PerformanceMonitor />
                 <DeploymentAnalyzer />
+                <RouteValidator />
               </>
             )}
             {/* Performance testing tool - always available */}
