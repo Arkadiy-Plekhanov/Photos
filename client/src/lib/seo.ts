@@ -25,12 +25,14 @@ export function updateSEO({
   publishDate,
   modifiedDate
 }: SEOData) {
-  // Update title with site name
-  const fullTitle = title.includes('Arcadia Photography') ? title : `${title} | Arcadia Photography`;
+  // Update title with site name - add null checks
+  const safeTitle = title || 'Arcadia Photography';
+  const fullTitle = safeTitle.includes('Arcadia Photography') ? safeTitle : `${safeTitle} | Arcadia Photography`;
   document.title = fullTitle;
 
-  // Update or create meta tags
-  updateMetaTag('description', description);
+  // Update or create meta tags - add safe defaults
+  const safeDescription = description || 'Professional photography services in Oahu, Hawaii specializing in weddings, family portraits, and real estate photography.';
+  updateMetaTag('description', safeDescription);
   updateMetaTag('robots', 'index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1');
 
   if (keywords) {
@@ -46,8 +48,8 @@ export function updateSEO({
   }
 
   // Open Graph tags
-  updateMetaTag('og:title', title, 'property');
-  updateMetaTag('og:description', description, 'property');
+  updateMetaTag('og:title', safeTitle, 'property');
+  updateMetaTag('og:description', safeDescription, 'property');
   updateMetaTag('og:image', image, 'property');
   updateMetaTag('og:image:width', '1200', 'property');
   updateMetaTag('og:image:height', '630', 'property');
@@ -59,10 +61,10 @@ export function updateSEO({
   // Twitter Card tags
   updateMetaTag('twitter:card', 'summary_large_image');
   updateMetaTag('twitter:site', '@ArcadiaPhotography');
-  updateMetaTag('twitter:title', title);
-  updateMetaTag('twitter:description', description);
+  updateMetaTag('twitter:title', safeTitle);
+  updateMetaTag('twitter:description', safeDescription);
   updateMetaTag('twitter:image', image);
-  updateMetaTag('twitter:image:alt', `${title} - Professional Photography by Arcadia Photography`);
+  updateMetaTag('twitter:image:alt', `${safeTitle} - Professional Photography by Arcadia Photography`);
 
   // Article-specific meta tags
   if (type === 'article' && publishDate) {
@@ -86,7 +88,7 @@ export function updateSEO({
     addStructuredData(structuredData);
   } else {
     // Default structured data for photography business
-    addDefaultBusinessStructuredData(title, description, image, url);
+    addDefaultBusinessStructuredData(safeTitle, safeDescription, image, url);
   }
 }
 
