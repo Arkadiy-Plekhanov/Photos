@@ -12,6 +12,9 @@ import CriticalResourcePreloader from "@/components/CriticalResourcePreloader";
 import PerformanceBooster from "@/components/PerformanceBooster";
 import InstantLoader from "@/components/InstantLoader";
 import DeploymentAnalyzer from "@/components/DeploymentAnalyzer";
+import DeployedSiteAnalyzer from "@/components/DeployedSiteAnalyzer";
+import QuickPerformanceTest from "@/components/QuickPerformanceTest";
+import AutoPerformanceTest from "@/components/AutoPerformanceTest";
 import NotFound from "@/pages/not-found";
 import Home from "@/pages/Home";
 import WeddingPage from "@/pages/WeddingPage";
@@ -66,6 +69,9 @@ function App() {
                 <DeploymentAnalyzer />
               </>
             )}
+            {/* Performance testing tool - always available */}
+            <QuickPerformanceTest />
+            <AutoPerformanceTest />
             <ScrollProgress />
             <DarkModeToggle />
             <Toaster />
