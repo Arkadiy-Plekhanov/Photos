@@ -62,10 +62,7 @@ const FAQPage = () => {
           question: 'What\'s your turnaround time?',
           answer: 'Standard turnaround is 24 hours for all real estate packages. Same-day rush delivery is available for an additional fee.'
         },
-        {
-          question: 'Do you provide drone photography?',
-          answer: 'Yes! We\'re FAA Part 107 certified. Drone photography is included in our Professional and Luxury packages, or available as an add-on.'
-        },
+        
         {
           question: 'Can you do virtual tours?',
           answer: 'We offer Matterport 3D virtual tours as an add-on service or included in our Luxury package.'

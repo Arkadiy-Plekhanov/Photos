@@ -59,8 +59,6 @@ const TermsPage = () => {
                   <li>Wedding and elopement photography</li>
                   <li>Real estate and architectural photography</li>
                   <li>Family and portrait photography</li>
-                  <li>Commercial photography</li>
-                  <li>Drone photography services</li>
                 </ul>
               </section>
 

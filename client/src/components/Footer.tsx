@@ -7,8 +7,6 @@ const Footer = () => {
       { name: 'Wedding Photography', href: '/wedding-photography', type: 'link' },
       { name: 'Real Estate Photography', href: '/real-estate-photography', type: 'link' },
       { name: 'Family Portraits', href: '/family-photography', type: 'link' },
-      { name: 'Commercial Photography', href: '/#services', type: 'scroll' },
-      { name: 'Drone Photography', href: '/#services', type: 'scroll' },
     ],
     company: [
       { name: 'About Us', href: '/about', type: 'link' },
