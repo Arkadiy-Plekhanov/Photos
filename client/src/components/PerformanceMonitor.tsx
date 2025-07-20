@@ -1,105 +1,54 @@
-import React, { useEffect } from 'react';
-
-interface PerformanceMetrics {
-  loadTime: number;
-  firstContentfulPaint: number;
-  largestContentfulPaint: number;
-  cumulativeLayoutShift: number;
-  firstInputDelay: number;
-}
+import React from 'react';
+import { usePerformanceMonitor } from '@/hooks/usePerformanceMonitor';
 
 export default function PerformanceMonitor() {
-  useEffect(() => {
-    // Only run in production for real performance data
-    if (process.env.NODE_ENV !== 'production') return;
+  const { metrics, performanceScore, recommendations } = usePerformanceMonitor();
 
-    const collectMetrics = () => {
-      try {
-        const navigation = performance.getEntriesByType('navigation')[0] as PerformanceNavigationTiming;
-        const paint = performance.getEntriesByType('paint');
-
-        const metrics: Partial<PerformanceMetrics> = {
-          loadTime: navigation.loadEventEnd - navigation.loadEventStart,
-          firstContentfulPaint: paint.find(p => p.name === 'first-contentful-paint')?.startTime || 0,
-        };
-
-        // Collect LCP using PerformanceObserver
-        if ('PerformanceObserver' in window) {
-          // Largest Contentful Paint
-          const lcpObserver = new PerformanceObserver((list) => {
-            const entries = list.getEntries();
-            const lastEntry = entries[entries.length - 1];
-            metrics.largestContentfulPaint = lastEntry.startTime;
-
-            // Send metrics to analytics
-            sendMetricsToAnalytics(metrics as PerformanceMetrics);
-          });
-          lcpObserver.observe({ type: 'largest-contentful-paint', buffered: true });
-
-          // Cumulative Layout Shift
-          const clsObserver = new PerformanceObserver((list) => {
-            let clsValue = 0;
-            for (const entry of list.getEntries()) {
-              if (!(entry as any).hadRecentInput) {
-                clsValue += (entry as any).value;
-              }
-            }
-            metrics.cumulativeLayoutShift = clsValue;
-          });
-          clsObserver.observe({ type: 'layout-shift', buffered: true });
-
-          // First Input Delay
-          const fidObserver = new PerformanceObserver((list) => {
-            for (const entry of list.getEntries()) {
-              metrics.firstInputDelay = (entry as any).processingStart - entry.startTime;
-              sendMetricsToAnalytics(metrics as PerformanceMetrics);
-            }
-          });
-          fidObserver.observe({ type: 'first-input', buffered: true });
-        }
-
-        // Send initial metrics after 5 seconds
-        setTimeout(() => {
-          sendMetricsToAnalytics(metrics as PerformanceMetrics);
-        }, 5000);
-
-      } catch (error) {
-        console.warn('Performance monitoring error:', error);
-      }
+  // Show performance insights in development mode
+  if (process.env.NODE_ENV === 'development' && performanceScore > 0) {
+    // Visual performance indicator for development
+    const getScoreColor = (score: number) => {
+      if (score >= 80) return '#10b981'; // Green
+      if (score >= 60) return '#f59e0b'; // Yellow
+      return '#ef4444'; // Red
     };
 
-    // Wait for page to be fully loaded
-    if (document.readyState === 'complete') {
-      collectMetrics();
-    } else {
-      window.addEventListener('load', collectMetrics);
-    }
+    // Display floating performance indicator in development
+    return (
+      <div className="fixed top-20 right-4 z-50 bg-white dark:bg-gray-800 p-3 rounded-lg shadow-lg border text-xs font-mono max-w-xs">
+        <div className="flex items-center gap-2 mb-2">
+          <div 
+            className="w-3 h-3 rounded-full" 
+            style={{ backgroundColor: getScoreColor(performanceScore) }}
+          />
+          <span className="font-semibold">Performance: {performanceScore}/100</span>
+        </div>
+        
+        {Object.entries(metrics).map(([key, value]) => (
+          <div key={key} className="flex justify-between text-xs mb-1">
+            <span className="capitalize">{key.replace(/([A-Z])/g, ' $1').trim()}:</span>
+            <span className="text-gray-600 dark:text-gray-400">
+              {typeof value === 'number' ? Math.round(value) : value}
+              {key.includes('Time') || key.includes('Paint') || key.includes('Delay') ? 'ms' : ''}
+            </span>
+          </div>
+        ))}
+        
+        {recommendations.length > 0 && (
+          <details className="mt-2">
+            <summary className="cursor-pointer text-orange-600 dark:text-orange-400">
+              Optimization Tips
+            </summary>
+            <ul className="mt-1 space-y-1">
+              {recommendations.map((rec, index) => (
+                <li key={index} className="text-xs text-gray-600 dark:text-gray-400">• {rec}</li>
+              ))}
+            </ul>
+          </details>
+        )}
+      </div>
+    );
+  }
 
-    return () => {
-      window.removeEventListener('load', collectMetrics);
-    };
-  }, []);
-
-  return null; // This component doesn't render anything
-}
-
-function sendMetricsToAnalytics(metrics: PerformanceMetrics) {
-  // In a real application, you would send this to your analytics service
-  console.log('Performance Metrics:', {
-    loadTime: Math.round(metrics.loadTime),
-    firstContentfulPaint: Math.round(metrics.firstContentfulPaint),
-    largestContentfulPaint: Math.round(metrics.largestContentfulPaint),
-    cumulativeLayoutShift: metrics.cumulativeLayoutShift?.toFixed(3),
-    firstInputDelay: Math.round(metrics.firstInputDelay || 0),
-    timestamp: new Date().toISOString(),
-    userAgent: navigator.userAgent,
-    connection: (navigator as any).connection?.effectiveType || 'unknown'
-  });
-
-  // Optional: Send to your own analytics endpoint
-  // fetch('/api/analytics/performance', {
-  //   method: 'POST',
-  //   headers: { 'Content-Type': 'application/json' },
-  //   body: JSON.stringify(metrics)
-  // }).catch(() => {});
+  return null;
 }

@@ -1,13 +1,14 @@
 import { motion } from 'framer-motion';
 import { useState, useEffect } from 'react';
+import LazyImageLoader from './LazyImageLoader';
 
 const HeroSection = () => {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
   const heroImages = [
-    'https://images.unsplash.com/photo-1606800052052-a08af7148866?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80',
-    'https://images.unsplash.com/photo-1583939003579-730e3918a45a?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80',
-    'https://images.unsplash.com/photo-1519741497674-611481863552?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80'
+    'https://images.unsplash.com/photo-1606800052052-a08af7148866?w=1440&q=50&auto=format&cs=srgb',
+    'https://images.unsplash.com/photo-1583939003579-730e3918a45a?w=1440&q=50&auto=format&cs=srgb',
+    'https://images.unsplash.com/photo-1519741497674-611481863552?w=1440&q=50&auto=format&cs=srgb'
   ];
 
   useEffect(() => {
@@ -31,24 +32,29 @@ const HeroSection = () => {
   return (
     <section
       id="home"
-      className="relative h-screen flex items-center justify-center overflow-hidden pt-16 dark:bg-gray-900"
+      className="hero-section relative h-screen flex items-center justify-center overflow-hidden pt-16 dark:bg-gray-900"
       style={{ minHeight: '100vh' }}
     >
       {/* Background Image Carousel - Stunning Wedding Photography */}
       {heroImages.map((image, index) => (
         <motion.div
           key={index}
-          className="absolute inset-0 parallax-bg"
-          style={{
-            backgroundImage: `url('${image}')`,
-          }}
+          className="absolute inset-0"
           initial={{ opacity: 0, scale: 1.1 }}
           animate={{ 
             opacity: index === currentImageIndex ? 1 : 0,
             scale: index === currentImageIndex ? 1 : 1.1
           }}
           transition={{ duration: 1.5, ease: "easeInOut" }}
-        />
+        >
+          <LazyImageLoader
+            src={image}
+            alt={`Wedding photography ${index + 1}`}
+            className="w-full h-full object-cover parallax-bg"
+            priority={index === 0}
+            quality={index === 0 ? 60 : 45}
+          />
+        </motion.div>
       ))}
 
       {/* Enhanced Overlay */}

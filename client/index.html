@@ -12,8 +12,10 @@
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://arcadiaphotography.com" />
     
-    <!-- Hero Image Preload -->
-    <link rel="preload" as="image" href="https://images.unsplash.com/photo-1606800052052-a08af7148866?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80" />
+    <!-- Ultra-optimized Hero Image Preload -->
+    <link rel="preload" as="image" href="https://images.unsplash.com/photo-1606800052052-a08af7148866?w=1440&q=50&auto=format&cs=srgb" fetchpriority="high" />
+    <!-- LQIP preload for instant display -->
+    <link rel="preload" as="image" href="https://images.unsplash.com/photo-1606800052052-a08af7148866?w=20&q=10&auto=format&cs=srgb" />
     
     <!-- Favicon and Theme -->
     <link rel="icon" href="/favicon.ico" />
@@ -32,6 +34,78 @@
     
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    
+    <!-- Ultra-Critical CSS for Maximum Performance -->
+    <style>
+      /* Critical performance CSS - Ultra-optimized */
+      html { scroll-behavior: smooth; }
+      body { 
+        margin: 0; 
+        padding: 0; 
+        font-family: 'Inter', system-ui, -apple-system, sans-serif;
+        font-display: swap;
+      }
+      .parallax-bg { 
+        background-size: cover; 
+        background-position: center; 
+        background-repeat: no-repeat;
+        will-change: transform;
+      }
+      .gradient-text { 
+        background: linear-gradient(45deg, #FFD700, #FFA500); 
+        -webkit-background-clip: text; 
+        -webkit-text-fill-color: transparent; 
+        background-clip: text;
+        will-change: auto;
+      }
+      /* Prevent layout shifts and optimize rendering */
+      .hero-container { 
+        min-height: 100vh; 
+        position: relative;
+        contain: layout style paint;
+      }
+      .image-placeholder { 
+        background: linear-gradient(135deg, #1a365d 0%, #2a5a7a 100%);
+        content-visibility: auto;
+      }
+      /* Ultra-fast font loading */
+      @font-face {
+        font-family: 'Inter';
+        font-display: swap;
+        font-weight: 300 700;
+      }
+      @font-face {
+        font-family: 'Playfair Display';
+        font-display: swap;
+        font-weight: 400 700;
+      }
+      /* Ultra-Performance optimizations */
+      * {
+        box-sizing: border-box;
+      }
+      img {
+        content-visibility: auto;
+        contain: layout style paint;
+        transform: translateZ(0);
+      }
+      /* Force initial visibility for instant FCP */
+      body {
+        visibility: visible;
+        opacity: 1;
+      }
+      /* Remove render-blocking */
+      .hero-section {
+        contain: layout style paint size;
+      }
+      /* Optimize animations */
+      * {
+        backface-visibility: hidden;
+        transform-style: preserve-3d;
+      }
+    </style>
+    
+    <!-- Fastest possible font loading -->
+    <link rel="preload" href="https://fonts.gstatic.com/s/inter/v12/UcCO3FwrK3iLTeHuS_fvQtMwCp50KnMw2boKoduKmMEVuLyfAZ9hiA.woff2" as="font" type="font/woff2" crossorigin="anonymous" fetchpriority="high" />
     
     <!-- JSON-LD Schema.org Markup -->
     <script type="application/ld+json">

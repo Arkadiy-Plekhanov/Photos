@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { X, ChevronLeft, ChevronRight } from 'lucide-react';
+import OptimizedImage from './OptimizedImage';
 
 interface GalleryProps {
   items: string[];
@@ -57,13 +58,15 @@ const Gallery = ({ items }: GalleryProps) => {
           className="relative aspect-[4/3] overflow-hidden rounded-lg shadow-lg cursor-pointer group"
           onClick={() => openLightbox(index)}
         >
-          <img
+          <OptimizedImage
             src={item}
             alt={`Gallery image ${index + 1}`}
             className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-            onError={(e) => {
-              const target = e.target as HTMLImageElement;
-              target.src = 'https://via.placeholder.com/800x600?text=Image+Unavailable';
+            strategy="lazy"
+            quality={85}
+            sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+            onError={() => {
+              console.log(`Failed to load gallery image: ${item}`);
             }}
           />
         </div>
@@ -111,10 +114,14 @@ const Gallery = ({ items }: GalleryProps) => {
               className="max-w-full max-h-full"
               onClick={(e) => e.stopPropagation()}
             >
-              <img
+              <OptimizedImage
                 src={items[currentIndex]}
                 alt={`Gallery image ${currentIndex + 1}`}
                 className="max-w-full max-h-full object-contain"
+                priority={true}
+                strategy="responsive"
+                quality={95}
+                sizes="100vw"
               />
             </motion.div>
 

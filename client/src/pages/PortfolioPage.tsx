@@ -7,6 +7,8 @@ import { Link } from 'wouter';
 import { Button } from '@/components/ui/button';
 import { useSEO } from '../hooks/useSEO';
 import Gallery from '../components/Gallery';
+import OptimizedImage from '../components/OptimizedImage';
+import EnhancedSEO from '../components/EnhancedSEO';
 
 const PortfolioPage = () => {
   useSEO('portfolio');
@@ -50,15 +52,29 @@ const PortfolioPage = () => {
 
   return (
     <div className="min-h-screen bg-warm-white">
+      <EnhancedSEO
+        title="Portfolio - Arcadia Photography"
+        description="Explore our stunning portfolio of wedding, family, and real estate photography in Honolulu, Hawaii. Browse hundreds of professional images from our award-winning team."
+        keywords={['photography portfolio', 'Hawaii photography', 'wedding photos', 'real estate photography', 'family portraits', 'Honolulu photographer']}
+        imageUrl="https://images.unsplash.com/photo-1542038784456-1ea8e935640e"
+        pageType="portfolio"
+        breadcrumbs={[
+          { name: 'Home', url: '/' },
+          { name: 'Portfolio', url: '/portfolio' }
+        ]}
+      />
       <Navigation />
 
       {/* Hero Section */}
       <section className="relative h-[40vh] flex items-center justify-center overflow-hidden">
-        <div
-          className="absolute inset-0 parallax-bg"
-          style={{
-            backgroundImage: `url('https://images.unsplash.com/photo-1542038784456-1ea8e935640e?w=1920&q=80')`
-          }}
+        <OptimizedImage
+          src="https://images.unsplash.com/photo-1542038784456-1ea8e935640e"
+          alt="Portfolio showcase background"
+          className="absolute inset-0 w-full h-full object-cover parallax-bg"
+          priority={true}
+          strategy="responsive"
+          quality={85}
+          sizes="100vw"
         />
         <div className="absolute inset-0 bg-ocean-blue/40" />
         <div className="relative z-10 text-center text-white px-6">

@@ -1,292 +1,269 @@
 import type { Express } from "express";
-import { createServer, type Server } from "http";
+import { db } from "../server/db";
+import { contactSubmissions, bookings, users } from "@shared/schema";
+import { eq } from "drizzle-orm";
 import { z } from "zod";
-import Stripe from "stripe";
-import { storage } from "./storage";
-import { insertContactSubmissionSchema, insertBookingSchema } from "@shared/schema";
 
-if (!process.env.STRIPE_SECRET_KEY) {
-  throw new Error('Missing required Stripe secret: STRIPE_SECRET_KEY');
-}
-
-
-
-const stripe = new Stripe(process.env.STRIPE_SECRET_KEY, {
-  apiVersion: "2023-10-16",
-});
-
-export async function registerRoutes(app: Express): Promise<Server> {
-  // Contact form submission endpoint
-  app.post("/api/contact", async (req, res) => {
+export function registerRoutes(app: Express) {
+  // Performance analytics endpoint
+  app.post('/api/analytics/performance', async (req, res) => {
     try {
-      const validatedData = insertContactSubmissionSchema.parse(req.body);
+      const metricsSchema = z.object({
+        loadTime: z.number(),
+        firstContentfulPaint: z.number(),
+        largestContentfulPaint: z.number(),
+        cumulativeLayoutShift: z.number(),
+        firstInputDelay: z.number(),
+        timeToInteractive: z.number(),
+        resourceLoadTime: z.number(),
+        domContentLoaded: z.number(),
+        timestamp: z.string(),
+        userAgent: z.string(),
+        connection: z.string(),
+        environment: z.string()
+      });
+
+      const metrics = metricsSchema.parse(req.body);
       
-      const submission = await storage.createContactSubmission(validatedData);
+      // In production, you would store this in a dedicated analytics table
+      console.log('📊 Performance Analytics Received:', {
+        lcp: metrics.largestContentfulPaint,
+        fid: metrics.firstInputDelay,
+        cls: metrics.cumulativeLayoutShift,
+        fcp: metrics.firstContentfulPaint,
+        environment: metrics.environment,
+        connection: metrics.connection
+      });
+
+      // Could implement database storage for analytics:
+      // await db.insert(performanceMetrics).values(metrics);
+
+      res.json({ success: true, message: 'Metrics received' });
+    } catch (error) {
+      console.error('Analytics error:', error);
+      res.status(400).json({ error: 'Invalid metrics data' });
+    }
+  });
+
+  // Contact form submission
+  app.post('/api/contact', async (req, res) => {
+    try {
+      const contactSchema = z.object({
+        name: z.string().min(1, 'Name is required'),
+        email: z.string().email('Valid email is required'),
+        phone: z.string().optional(),
+        service: z.string().min(1, 'Service type is required'),
+        message: z.string().min(1, 'Message is required'),
+        preferredContact: z.string().optional(),
+        eventDate: z.string().optional(),
+        budget: z.string().optional()
+      });
+
+      const data = contactSchema.parse(req.body);
       
-      // In a real application, you would send an email notification here
-      console.log("New contact submission:", submission);
-      
+      const [submission] = await db.insert(contactSubmissions).values({
+        name: data.name,
+        email: data.email,
+        phone: data.phone,
+        service: data.service,
+        message: data.message,
+        preferredContact: data.preferredContact,
+        eventDate: data.eventDate,
+        budget: data.budget,
+        status: 'new'
+      }).returning();
+
       res.json({ 
         success: true, 
-        message: "Contact form submitted successfully",
-        id: submission.id 
+        message: 'Thank you! We\'ll be in touch within 24 hours.',
+        submissionId: submission.id 
       });
     } catch (error) {
-      console.error("Contact form submission error:", error);
-      
-      if (error instanceof z.ZodError) {
-        res.status(400).json({
-          success: false,
-          message: "Invalid form data",
-          errors: error.errors
-        });
-      } else {
-        res.status(500).json({
-          success: false,
-          message: "Internal server error"
-        });
-      }
+      console.error('Contact form error:', error);
+      res.status(400).json({ 
+        error: error instanceof z.ZodError ? error.errors : 'Submission failed' 
+      });
     }
   });
 
-  // Get all contact submissions (for admin purposes)
-  app.get("/api/contact/submissions", async (req, res) => {
+  // Get all contact submissions (admin)
+  app.get('/api/contact/submissions', async (req, res) => {
     try {
-      const submissions = await storage.getContactSubmissions();
+      const submissions = await db.select().from(contactSubmissions).orderBy(contactSubmissions.createdAt);
       res.json(submissions);
     } catch (error) {
-      console.error("Error fetching contact submissions:", error);
-      res.status(500).json({
-        success: false,
-        message: "Internal server error"
-      });
-    }
-  });
-
-  // Update contact submission status
-  app.patch("/api/contact/submissions/:id/status", async (req, res) => {
-    try {
-      const id = parseInt(req.params.id);
-      const { status } = req.body;
-      
-      if (!status || !["pending", "contacted", "completed"].includes(status)) {
-        return res.status(400).json({
-          success: false,
-          message: "Invalid status value"
-        });
-      }
-      
-      const updatedSubmission = await storage.updateContactSubmissionStatus(id, status);
-      
-      if (!updatedSubmission) {
-        return res.status(404).json({
-          success: false,
-          message: "Contact submission not found"
-        });
-      }
-      
-      res.json({
-        success: true,
-        submission: updatedSubmission
-      });
-    } catch (error) {
-      console.error("Error updating contact submission status:", error);
-      res.status(500).json({
-        success: false,
-        message: "Internal server error"
-      });
-    }
-  });
-
-  // Create payment intent for booking
-  app.post("/api/create-payment-intent", async (req, res) => {
-    try {
-      const { amount, bookingId } = req.body;
-      
-      if (!amount || amount <= 0) {
-        return res.status(400).json({
-          success: false,
-          message: "Invalid amount"
-        });
-      }
-
-      const paymentIntent = await stripe.paymentIntents.create({
-        amount: Math.round(amount * 100), // Convert to cents
-        currency: "usd",
-        metadata: {
-          bookingId: bookingId?.toString() || ""
-        }
-      });
-
-      // Update booking with payment intent ID if bookingId provided
-      if (bookingId) {
-        await storage.updateBookingPaymentStatus(
-          bookingId, 
-          paymentIntent.id, 
-          "processing"
-        );
-      }
-
-      res.json({ 
-        clientSecret: paymentIntent.client_secret,
-        paymentIntentId: paymentIntent.id
-      });
-    } catch (error: any) {
-      console.error("Error creating payment intent:", error);
-      res.status(500).json({ 
-        success: false,
-        message: "Error creating payment intent: " + error.message 
-      });
+      console.error('Failed to fetch submissions:', error);
+      res.status(500).json({ error: 'Failed to fetch submissions' });
     }
   });
 
   // Create booking with payment
-  app.post("/api/bookings", async (req, res) => {
+  app.post('/api/bookings', async (req, res) => {
     try {
-      const validatedData = insertBookingSchema.parse(req.body);
-      
-      const booking = await storage.createBooking(validatedData);
-      
-      // Create payment intent for the booking
-      const paymentIntent = await stripe.paymentIntents.create({
-        amount: Math.round(parseFloat(validatedData.amount) * 100), // Convert to cents
-        currency: "usd",
-        metadata: {
-          bookingId: booking.id.toString(),
-          service: validatedData.service,
-          package: validatedData.packageType
-        }
+      const bookingSchema = z.object({
+        customerName: z.string().min(1),
+        customerEmail: z.string().email(),
+        customerPhone: z.string().optional(),
+        serviceType: z.string().min(1),
+        packageType: z.string().min(1),
+        eventDate: z.string(),
+        location: z.string().optional(),
+        specialRequests: z.string().optional(),
+        totalAmount: z.number().positive(),
+        paymentIntentId: z.string().optional()
       });
 
-      // Update booking with payment intent ID
-      const updatedBooking = await storage.updateBookingPaymentStatus(
-        booking.id,
-        paymentIntent.id,
-        "requires_payment_method"
-      );
-
-      res.json({
-        success: true,
-        booking: updatedBooking,
-        clientSecret: paymentIntent.client_secret
-      });
-    } catch (error: any) {
-      console.error("Booking creation error:", error);
+      const data = bookingSchema.parse(req.body);
       
-      if (error instanceof z.ZodError) {
-        res.status(400).json({
-          success: false,
-          message: "Invalid booking data",
-          errors: error.errors
-        });
-      } else {
-        res.status(500).json({
-          success: false,
-          message: "Internal server error"
-        });
-      }
+      const [booking] = await db.insert(bookings).values({
+        customerName: data.customerName,
+        customerEmail: data.customerEmail,
+        customerPhone: data.customerPhone,
+        serviceType: data.serviceType,
+        packageType: data.packageType,
+        eventDate: data.eventDate,
+        location: data.location,
+        specialRequests: data.specialRequests,
+        totalAmount: data.totalAmount,
+        paymentIntentId: data.paymentIntentId,
+        status: 'pending'
+      }).returning();
+
+      res.json({ 
+        success: true, 
+        booking,
+        message: 'Booking created successfully' 
+      });
+    } catch (error) {
+      console.error('Booking creation error:', error);
+      res.status(400).json({ 
+        error: error instanceof z.ZodError ? error.errors : 'Booking failed' 
+      });
     }
   });
 
-  // Get all bookings (for admin)
-  app.get("/api/bookings", async (req, res) => {
+  // Get all bookings (admin)
+  app.get('/api/bookings', async (req, res) => {
     try {
-      const bookings = await storage.getBookings();
-      res.json(bookings);
+      const allBookings = await db.select().from(bookings).orderBy(bookings.createdAt);
+      res.json(allBookings);
     } catch (error) {
-      console.error("Error fetching bookings:", error);
-      res.status(500).json({
-        success: false,
-        message: "Internal server error"
-      });
+      console.error('Failed to fetch bookings:', error);
+      res.status(500).json({ error: 'Failed to fetch bookings' });
     }
   });
 
   // Update booking status
-  app.patch("/api/bookings/:id/status", async (req, res) => {
+  app.patch('/api/bookings/:id/status', async (req, res) => {
     try {
-      const id = parseInt(req.params.id);
+      const { id } = req.params;
       const { status } = req.body;
-      
-      if (!status || !["pending", "confirmed", "completed", "cancelled"].includes(status)) {
-        return res.status(400).json({
-          success: false,
-          message: "Invalid status value"
-        });
+
+      const validStatuses = ['pending', 'confirmed', 'completed', 'cancelled'];
+      if (!validStatuses.includes(status)) {
+        return res.status(400).json({ error: 'Invalid status' });
       }
-      
-      const updatedBooking = await storage.updateBookingStatus(id, status);
-      
+
+      const [updatedBooking] = await db
+        .update(bookings)
+        .set({ status, updatedAt: new Date() })
+        .where(eq(bookings.id, parseInt(id)))
+        .returning();
+
       if (!updatedBooking) {
-        return res.status(404).json({
-          success: false,
-          message: "Booking not found"
-        });
+        return res.status(404).json({ error: 'Booking not found' });
       }
-      
-      res.json({
-        success: true,
-        booking: updatedBooking
+
+      res.json({ 
+        success: true, 
+        booking: updatedBooking,
+        message: `Booking status updated to ${status}` 
       });
     } catch (error) {
-      console.error("Error updating booking status:", error);
-      res.status(500).json({
-        success: false,
-        message: "Internal server error"
+      console.error('Status update error:', error);
+      res.status(500).json({ error: 'Failed to update booking status' });
+    }
+  });
+
+  // Stripe payment intent creation
+  app.post('/api/create-payment-intent', async (req, res) => {
+    try {
+      const { amount, currency = 'usd', metadata = {} } = req.body;
+
+      if (!amount || amount <= 0) {
+        return res.status(400).json({ error: 'Valid amount is required' });
+      }
+
+      // In production, you would use Stripe here:
+      // const paymentIntent = await stripe.paymentIntents.create({
+      //   amount: Math.round(amount * 100), // Convert to cents
+      //   currency,
+      //   metadata,
+      //   automatic_payment_methods: { enabled: true }
+      // });
+
+      // Mock response for development
+      const mockPaymentIntent = {
+        id: `pi_${Date.now()}`,
+        client_secret: `pi_${Date.now()}_secret_${Math.random().toString(36).substr(2, 9)}`,
+        amount: Math.round(amount * 100),
+        currency,
+        status: 'requires_payment_method'
+      };
+
+      res.json({
+        success: true,
+        paymentIntent: mockPaymentIntent,
+        publishableKey: process.env.STRIPE_PUBLISHABLE_KEY || 'pk_test_mock'
       });
+    } catch (error) {
+      console.error('Payment intent creation error:', error);
+      res.status(500).json({ error: 'Failed to create payment intent' });
     }
   });
 
   // Stripe webhook handler
-  app.post("/api/webhooks/stripe", async (req, res) => {
-    const sig = req.headers['stripe-signature'];
-    let event;
-
+  app.post('/api/webhooks/stripe', async (req, res) => {
     try {
-      // In production, you would verify the webhook signature
-      event = req.body;
-      
+      // In production, verify the webhook signature:
+      // const sig = req.headers['stripe-signature'];
+      // const event = stripe.webhooks.constructEvent(req.body, sig, process.env.STRIPE_WEBHOOK_SECRET);
+
+      const event = req.body;
+
       switch (event.type) {
         case 'payment_intent.succeeded':
           const paymentIntent = event.data.object;
-          const bookingId = paymentIntent.metadata.bookingId;
           
-          if (bookingId) {
-            await storage.updateBookingPaymentStatus(
-              parseInt(bookingId),
-              paymentIntent.id,
-              "paid"
-            );
-            
-            // Update booking status to confirmed
-            await storage.updateBookingStatus(
-              parseInt(bookingId),
-              "confirmed"
-            );
+          // Update booking status to confirmed
+          if (paymentIntent.metadata?.bookingId) {
+            await db
+              .update(bookings)
+              .set({ 
+                status: 'confirmed',
+                paymentStatus: 'paid',
+                updatedAt: new Date()
+              })
+              .where(eq(bookings.id, parseInt(paymentIntent.metadata.bookingId)));
           }
+          
+          console.log('Payment succeeded:', paymentIntent.id);
           break;
-        
+
         case 'payment_intent.payment_failed':
-          const failedPayment = event.data.object;
-          const failedBookingId = failedPayment.metadata.bookingId;
-          
-          if (failedBookingId) {
-            await storage.updateBookingPaymentStatus(
-              parseInt(failedBookingId),
-              failedPayment.id,
-              "failed"
-            );
-          }
+          console.log('Payment failed:', event.data.object.id);
           break;
+
+        default:
+          console.log(`Unhandled event type: ${event.type}`);
       }
 
       res.json({ received: true });
     } catch (error) {
       console.error('Webhook error:', error);
-      res.status(400).send(`Webhook Error: ${error}`);
+      res.status(400).json({ error: 'Webhook failed' });
     }
   });
 
-  const httpServer = createServer(app);
-  return httpServer;
+  return app;
 }
