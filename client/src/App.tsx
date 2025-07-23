@@ -5,16 +5,10 @@ import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import ScrollProgress from "@/components/ScrollProgress";
 import DarkModeToggle from "@/components/DarkModeToggle";
-import PerformanceMonitor from "@/components/PerformanceMonitor";
 import ErrorBoundary from "@/components/ErrorBoundary";
 import { useServiceWorker } from "@/hooks/useServiceWorker";
 import CriticalResourcePreloader from "@/components/CriticalResourcePreloader";
-import PerformanceBooster from "@/components/PerformanceBooster";
 import InstantLoader from "@/components/InstantLoader";
-import DeploymentAnalyzer from "@/components/DeploymentAnalyzer";
-import DeployedSiteAnalyzer from "@/components/DeployedSiteAnalyzer";
-import UnifiedPerformanceTest from "@/components/UnifiedPerformanceTest";
-import RouteValidator from "@/components/RouteValidator";
 import NotFound from "@/pages/not-found";
 import Home from "@/pages/Home";
 import WeddingPage from "@/pages/WeddingPage";
@@ -61,19 +55,6 @@ function App() {
           <div className="min-h-screen bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100">
             <InstantLoader />
             <CriticalResourcePreloader />
-            {/* Development tools - remove in production */}
-            {process.env.NODE_ENV === 'development' && (
-              <>
-                <PerformanceBooster />
-                <PerformanceMonitor />
-                <DeploymentAnalyzer />
-                <RouteValidator />
-              </>
-            )}
-            {/* Unified Performance Testing - development only */}
-            {process.env.NODE_ENV === 'development' && (
-              <UnifiedPerformanceTest />
-            )}
             <ScrollProgress />
             <DarkModeToggle />
             <Toaster />
