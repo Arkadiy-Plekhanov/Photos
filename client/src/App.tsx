@@ -11,22 +11,22 @@ import CriticalResourcePreloader from "@/components/CriticalResourcePreloader";
 import InstantLoader from "@/components/InstantLoader";
 import React, { Suspense, lazy } from 'react';
 
-// Lazy load pages for better performance
-const HomePage = lazy(() => import('./pages/Home'));
+// Lazy load components for better performance
+const Home = lazy(() => import('./pages/Home'));
 const AboutPage = lazy(() => import('./pages/AboutPage'));
-const BlogPage = lazy(() => import('./pages/BlogPage'));
-const BlogPostPage = lazy(() => import('./pages/BlogPostPage'));
 const PortfolioPage = lazy(() => import('./pages/PortfolioPage'));
 const WeddingPage = lazy(() => import('./pages/WeddingPage'));
-const FamilyPage = lazy(() => import('./pages/FamilyPage'));
 const RealEstatePage = lazy(() => import('./pages/RealEstatePage'));
+const FamilyPage = lazy(() => import('./pages/FamilyPage'));
+const BlogPage = lazy(() => import('./pages/BlogPage'));
+const BlogPostPage = lazy(() => import('./pages/BlogPostPage'));
 const FAQPage = lazy(() => import('./pages/FAQPage'));
-const BookingSuccessPage = lazy(() => import('./pages/BookingSuccessPage'));
-const CheckoutPage = lazy(() => import('./pages/CheckoutPage'));
-const PrivacyPage = lazy(() => import('./pages/PrivacyPage'));
 const TermsPage = lazy(() => import('./pages/TermsPage'));
+const PrivacyPage = lazy(() => import('./pages/PrivacyPage'));
 const CookiePolicy = lazy(() => import('./pages/CookiePolicy'));
 const Licensing = lazy(() => import('./pages/Licensing'));
+const CheckoutPage = lazy(() => import('./pages/CheckoutPage'));
+const BookingSuccessPage = lazy(() => import('./pages/BookingSuccessPage'));
 const NotFound = lazy(() => import('./pages/not-found'));
 
 function Router() {
@@ -38,7 +38,7 @@ function Router() {
             <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600"></div>
           </div>
         }>
-          <HomePage />
+          <Home />
         </Suspense>
       </Route>
       <Route path="/wedding-photography">
