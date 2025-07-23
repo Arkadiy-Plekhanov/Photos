@@ -1,4 +1,4 @@
-import { Switch, Route } from "wouter";
+import { Routes, Route } from "react-router-dom";
 import { queryClient } from "./lib/queryClient";
 import { QueryClientProvider } from "@tanstack/react-query";
 import { Toaster } from "@/components/ui/toaster";
@@ -31,8 +31,8 @@ const NotFound = lazy(() => import('./pages/not-found'));
 
 function Router() {
   return (
-    <Switch>
-      <Route path="/">
+    <Routes>
+      <Route path="/" element={
         <Suspense fallback={
           <div className="min-h-screen flex items-center justify-center">
             <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600"></div>
@@ -40,125 +40,83 @@ function Router() {
         }>
           <Home />
         </Suspense>
-      </Route>
-      <Route path="/wedding-photography">
-        <Suspense fallback={
-          <div className="min-h-screen flex items-center justify-center">
-            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600"></div>
-          </div>
-        }>
+      } />
+      <Route path="/wedding-photography" element={
+        <Suspense fallback={<InstantLoader />}>
           <WeddingPage />
         </Suspense>
-      </Route>
-      <Route path="/real-estate-photography">
-        <Suspense fallback={
-          <div className="min-h-screen flex items-center justify-center">
-            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600"></div>
-          </div>
-        }>
+      } />
+      <Route path="/real-estate-photography" element={
+        <Suspense fallback={<InstantLoader />}>
           <RealEstatePage />
         </Suspense>
-      </Route>
-      <Route path="/family-photography">
-        <Suspense fallback={
-          <div className="min-h-screen flex items-center justify-center">
-            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600"></div>
-          </div>
-        }>
+      } />
+      <Route path="/family-photography" element={
+        <Suspense fallback={<InstantLoader />}>
           <FamilyPage />
         </Suspense>
-      </Route>
-      <Route path="/about">
-        <Suspense fallback={
-          <div className="min-h-screen flex items-center justify-center">
-            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600"></div>
-          </div>
-        }>
-          <AboutPage />
-        </Suspense>
-      </Route>
-      <Route path="/portfolio">
-        <Suspense fallback={
-          <div className="min-h-screen flex items-center justify-center">
-            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600"></div>
-          </div>
-        }>
+      } />
+      <Route path="/portfolio" element={
+        <Suspense fallback={<InstantLoader />}>
           <PortfolioPage />
         </Suspense>
-      </Route>
-      <Route path="/blog">
-        <Suspense fallback={
-          <div className="min-h-screen flex items-center justify-center">
-            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600"></div>
-          </div>
-        }>
+      } />
+      <Route path="/about" element={
+        <Suspense fallback={<InstantLoader />}>
+          <AboutPage />
+        </Suspense>
+      } />
+      <Route path="/blog" element={
+        <Suspense fallback={<InstantLoader />}>
           <BlogPage />
         </Suspense>
-      </Route>
-      <Route path="/blog/:id">
-        <Suspense fallback={
-          <div className="min-h-screen flex items-center justify-center">
-            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600"></div>
-          </div>
-        }>
+      } />
+      <Route path="/blog/:slug" element={
+        <Suspense fallback={<InstantLoader />}>
           <BlogPostPage />
         </Suspense>
-      </Route>
-      <Route path="/faq">
-        <Suspense fallback={
-          <div className="min-h-screen flex items-center justify-center">
-            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600"></div>
-          </div>
-        }>
+      } />
+      <Route path="/faq" element={
+        <Suspense fallback={<InstantLoader />}>
           <FAQPage />
         </Suspense>
-      </Route>
-      <Route path="/privacy-policy">
-        <Suspense fallback={
-          <div className="min-h-screen flex items-center justify-center">
-            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600"></div>
-          </div>
-        }>
-          <PrivacyPage />
-        </Suspense>
-      </Route>
-      <Route path="/terms-of-service">
-        <Suspense fallback={
-          <div className="min-h-screen flex items-center justify-center">
-            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600"></div>
-          </div>
-        }>
-          <TermsPage />
-        </Suspense>
-      </Route>
-      <Route path="/checkout">
-        <Suspense fallback={
-          <div className="min-h-screen flex items-center justify-center">
-            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600"></div>
-          </div>
-        }>
+      } />
+      <Route path="/checkout" element={
+        <Suspense fallback={<InstantLoader />}>
           <CheckoutPage />
         </Suspense>
-      </Route>
-      <Route path="/booking-success">
-        <Suspense fallback={
-          <div className="min-h-screen flex items-center justify-center">
-            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600"></div>
-          </div>
-        }>
+      } />
+      <Route path="/booking-success" element={
+        <Suspense fallback={<InstantLoader />}>
           <BookingSuccessPage />
         </Suspense>
-      </Route>
-      <Route>
-        <Suspense fallback={
-          <div className="min-h-screen flex items-center justify-center">
-            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600"></div>
-          </div>
-        }>
+      } />
+      <Route path="/terms" element={
+        <Suspense fallback={<InstantLoader />}>
+          <TermsPage />
+        </Suspense>
+      } />
+      <Route path="/privacy" element={
+        <Suspense fallback={<InstantLoader />}>
+          <PrivacyPage />
+        </Suspense>
+      } />
+      <Route path="/cookies" element={
+        <Suspense fallback={<InstantLoader />}>
+          <CookiePolicy />
+        </Suspense>
+      } />
+      <Route path="/licensing" element={
+        <Suspense fallback={<InstantLoader />}>
+          <Licensing />
+        </Suspense>
+      } />
+      <Route path="*" element={
+        <Suspense fallback={<InstantLoader />}>
           <NotFound />
         </Suspense>
-      </Route>
-    </Switch>
+      } />
+    </Routes>
   );
 }
 
