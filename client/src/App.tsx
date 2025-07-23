@@ -5,7 +5,7 @@ import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import ScrollProgress from "@/components/ScrollProgress";
 import DarkModeToggle from "@/components/DarkModeToggle";
-import PerformanceMonitor from "@/components/PerformanceMonitor";
+import UnifiedPerformanceTest from "./components/UnifiedPerformanceTest";
 import ErrorBoundary from "@/components/ErrorBoundary";
 import { useServiceWorker } from "@/hooks/useServiceWorker";
 import CriticalResourcePreloader from "@/components/CriticalResourcePreloader";
@@ -73,10 +73,7 @@ function App() {
             )}
             {/* Performance testing tools - development only */}
             {process.env.NODE_ENV === 'development' && (
-              <>
-                <QuickPerformanceTest />
-                <AutoPerformanceTest />
-              </>
+              <UnifiedPerformanceTest />
             )}
             <ScrollProgress />
             <DarkModeToggle />
