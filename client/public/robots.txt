@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://arcadiaphotography.replit.app/sitemap.xml
