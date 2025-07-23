@@ -63,16 +63,11 @@ export default function PerformanceBooster() {
       document.head.appendChild(link);
     });
 
-    // 4. Force early font loading
-    const fontFace = new FontFace('Inter', 'url(https://fonts.gstatic.com/s/inter/v12/UcCO3FwrK3iLTeHuS_fvQtMwCp50KnMw2boKoduKmMEVuLyfAZ9hiA.woff2)', {
-      display: 'swap',
-      weight: '400'
-    });
-    
-    fontFace.load().then(() => {
-      document.fonts.add(fontFace);
-    }).catch(() => {
-      // Fallback to system fonts if needed
+    // 4. Optimize Font Awesome loading
+    const faIcons = document.querySelectorAll('.fa, .fas, .far, .fab');
+    faIcons.forEach(icon => {
+      icon.style.fontDisplay = 'swap';
+      icon.style.willChange = 'auto';
     });
 
     // 5. Optimize paint and layout

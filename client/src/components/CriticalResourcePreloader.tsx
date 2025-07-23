@@ -1,10 +1,11 @@
 import { useEffect } from 'react';
 
 const CRITICAL_RESOURCES = [
-  // Preload critical fonts
-  'https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&display=swap',
-  'https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap',
-  'https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;500;600;700&display=swap'
+  // Preload critical local fonts
+  '/fonts/webfonts/fa-solid-900.woff2',
+  '/fonts/webfonts/fa-regular-400.woff2',
+  '/fonts/webfonts/fa-brands-400.woff2',
+  '/fonts/css/all.min.css'
 ];
 
 const HERO_IMAGES = [

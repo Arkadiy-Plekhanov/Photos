@@ -36,7 +36,6 @@
     
     <!-- Font Awesome (local files) -->
     <link rel="stylesheet" href="/fonts/css/all.min.css" />
-    <link rel="stylesheet" href="/fonts/css/all.min.css" />
     
     <!-- Ultra-Critical CSS for Maximum Performance -->
     <style>
@@ -45,46 +44,38 @@
       body { 
         margin: 0; 
         padding: 0; 
-        font-family: 'Inter', system-ui, -apple-system, sans-serif;
+        font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', sans-serif;
+        visibility: visible;
+        opacity: 1;
       }
-      /* Ultra-fast font loading */
-      @font-face {
-        font-family: 'Inter';
-        font-display: swap;
-        font-weight: 300 700;
-      }
-      @font-face {
-        font-family: 'Playfair Display';
-        font-display: swap;
-        font-weight: 400 700;
-      }
+      
       /* Ultra-Performance optimizations */
       * {
         box-sizing: border-box;
+        backface-visibility: hidden;
       }
+      
       img {
         content-visibility: auto;
         contain: layout style paint;
         transform: translateZ(0);
       }
-      /* Force initial visibility for instant FCP */
-      body {
-        visibility: visible;
-        opacity: 1;
+      
+      /* Font Awesome optimization */
+      .fa, .fas, .far, .fab {
+        will-change: auto;
+        contain: layout style paint;
       }
-      /* Base styles */
-      * {
-        box-sizing: border-box;
-      }
-      /* Optimize animations */
-      * {
-        backface-visibility: hidden;
-        transform-style: preserve-3d;
+      
+      /* Preload Font Awesome for instant rendering */
+      .fa::before, .fas::before, .far::before, .fab::before {
+        font-display: swap;
       }
     </style>
     
-    <!-- Fastest possible font loading -->
-    <link rel="preload" href="https://fonts.gstatic.com/s/inter/v12/UcCO3FwrK3iLTeHuS_fvQtMwCp50KnMw2boKoduKmMEVuLyfAZ9hiA.woff2" as="font" type="font/woff2" crossorigin="anonymous" />
+    <!-- Preload local Font Awesome for instant rendering -->
+    <link rel="preload" href="/fonts/webfonts/fa-solid-900.woff2" as="font" type="font/woff2" crossorigin="anonymous" />
+    <link rel="preload" href="/fonts/webfonts/fa-regular-400.woff2" as="font" type="font/woff2" crossorigin="anonymous" />
 
     <!-- Google Analytics - Replace G-XXXXXXXXXX with your actual measurement ID -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
