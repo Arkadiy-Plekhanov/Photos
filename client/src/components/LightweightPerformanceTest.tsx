@@ -86,13 +86,14 @@ export default function LightweightPerformanceTest() {
     <>
       <button
         onClick={() => setIsVisible(!isVisible)}
-        className="fixed bottom-4 left-4 bg-blue-600 text-white px-3 py-2 rounded-lg text-sm font-medium hover:bg-blue-700 transition-colors z-50"
+        className="fixed bottom-4 right-20 bg-blue-600 text-white px-3 py-2 rounded-lg text-sm font-medium hover:bg-blue-700 transition-colors shadow-lg cursor-pointer"
+        style={{ zIndex: 10000, pointerEvents: 'auto', position: 'fixed' }}
       >
-        Performance Test
+        📊 Test
       </button>
       
       {isVisible && (
-        <div className="fixed bottom-16 left-4 bg-white dark:bg-gray-800 p-4 rounded-lg shadow-xl border max-w-sm z-50">
+        <div className="fixed bottom-16 right-4 bg-white dark:bg-gray-800 p-4 rounded-lg shadow-xl border max-w-sm" style={{ zIndex: 10000 }}>
           <div className="text-sm font-semibold mb-3">{metrics.environment}</div>
           <div className="text-lg font-bold mb-2">
             {metrics.score}/100 ({metrics.grade})
