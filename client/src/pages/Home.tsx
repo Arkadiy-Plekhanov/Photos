@@ -11,9 +11,11 @@ import { useSEO } from '../hooks/useSEO';
 
 const Home = () => {
   useSEO('home');
-  
+
   return (
     <div className="min-h-screen bg-warm-white text-charcoal overflow-x-hidden">
+      {/* Font Awesome Icon Test */}
+      <i className="fas fa-camera-retro text-4xl"></i>
       <Navigation />
       <HeroSection />
       <ServicesSection />

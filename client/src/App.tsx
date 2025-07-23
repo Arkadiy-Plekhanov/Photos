@@ -12,7 +12,7 @@ import InstantLoader from "@/components/InstantLoader";
 import React, { Suspense, lazy } from 'react';
 
 // Lazy load pages for better performance
-const Home = lazy(() => import('./pages/Home'));
+const HomePage = lazy(() => import('./pages/Home'));
 const AboutPage = lazy(() => import('./pages/AboutPage'));
 const BlogPage = lazy(() => import('./pages/BlogPage'));
 const BlogPostPage = lazy(() => import('./pages/BlogPostPage'));
@@ -37,7 +37,7 @@ function Router() {
         </div>
       }>
     <Switch>
-      <Route path="/" component={Home} />
+      <Route path="/" component={HomePage} />
       <Route path="/wedding-photography" component={WeddingPage} />
       <Route path="/real-estate-photography" component={RealEstatePage} />
       <Route path="/family-photography" component={FamilyPage} />
