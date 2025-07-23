@@ -9,6 +9,7 @@ import ErrorBoundary from "@/components/ErrorBoundary";
 import { useServiceWorker } from "@/hooks/useServiceWorker";
 import CriticalResourcePreloader from "@/components/CriticalResourcePreloader";
 import InstantLoader from "@/components/InstantLoader";
+import LightweightPerformanceTest from "@/components/LightweightPerformanceTest";
 import NotFound from "@/pages/not-found";
 import Home from "@/pages/Home";
 import WeddingPage from "@/pages/WeddingPage";
@@ -59,6 +60,7 @@ function App() {
             <DarkModeToggle />
             <Toaster />
             <Router />
+            {process.env.NODE_ENV === 'development' && <LightweightPerformanceTest />}
           </div>
         </TooltipProvider>
       </QueryClientProvider>
