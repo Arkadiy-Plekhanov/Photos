@@ -31,28 +31,134 @@ const NotFound = lazy(() => import('./pages/not-found'));
 
 function Router() {
   return (
-    <Suspense fallback={
-        <div className="min-h-screen flex items-center justify-center">
-          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600"></div>
-        </div>
-      }>
     <Switch>
-      <Route path="/" component={HomePage} />
-      <Route path="/wedding-photography" component={WeddingPage} />
-      <Route path="/real-estate-photography" component={RealEstatePage} />
-      <Route path="/family-photography" component={FamilyPage} />
-      <Route path="/about" component={AboutPage} />
-      <Route path="/portfolio" component={PortfolioPage} />
-      <Route path="/blog" component={BlogPage} />
-      <Route path="/blog/:id" component={BlogPostPage} />
-      <Route path="/faq" component={FAQPage} />
-      <Route path="/privacy-policy" component={PrivacyPage} />
-      <Route path="/terms-of-service" component={TermsPage} />
-      <Route path="/checkout" component={CheckoutPage} />
-      <Route path="/booking-success" component={BookingSuccessPage} />
-      <Route component={NotFound} />
+      <Route path="/">
+        <Suspense fallback={
+          <div className="min-h-screen flex items-center justify-center">
+            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600"></div>
+          </div>
+        }>
+          <HomePage />
+        </Suspense>
+      </Route>
+      <Route path="/wedding-photography">
+        <Suspense fallback={
+          <div className="min-h-screen flex items-center justify-center">
+            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600"></div>
+          </div>
+        }>
+          <WeddingPage />
+        </Suspense>
+      </Route>
+      <Route path="/real-estate-photography">
+        <Suspense fallback={
+          <div className="min-h-screen flex items-center justify-center">
+            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600"></div>
+          </div>
+        }>
+          <RealEstatePage />
+        </Suspense>
+      </Route>
+      <Route path="/family-photography">
+        <Suspense fallback={
+          <div className="min-h-screen flex items-center justify-center">
+            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600"></div>
+          </div>
+        }>
+          <FamilyPage />
+        </Suspense>
+      </Route>
+      <Route path="/about">
+        <Suspense fallback={
+          <div className="min-h-screen flex items-center justify-center">
+            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600"></div>
+          </div>
+        }>
+          <AboutPage />
+        </Suspense>
+      </Route>
+      <Route path="/portfolio">
+        <Suspense fallback={
+          <div className="min-h-screen flex items-center justify-center">
+            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600"></div>
+          </div>
+        }>
+          <PortfolioPage />
+        </Suspense>
+      </Route>
+      <Route path="/blog">
+        <Suspense fallback={
+          <div className="min-h-screen flex items-center justify-center">
+            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600"></div>
+          </div>
+        }>
+          <BlogPage />
+        </Suspense>
+      </Route>
+      <Route path="/blog/:id">
+        <Suspense fallback={
+          <div className="min-h-screen flex items-center justify-center">
+            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600"></div>
+          </div>
+        }>
+          <BlogPostPage />
+        </Suspense>
+      </Route>
+      <Route path="/faq">
+        <Suspense fallback={
+          <div className="min-h-screen flex items-center justify-center">
+            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600"></div>
+          </div>
+        }>
+          <FAQPage />
+        </Suspense>
+      </Route>
+      <Route path="/privacy-policy">
+        <Suspense fallback={
+          <div className="min-h-screen flex items-center justify-center">
+            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600"></div>
+          </div>
+        }>
+          <PrivacyPage />
+        </Suspense>
+      </Route>
+      <Route path="/terms-of-service">
+        <Suspense fallback={
+          <div className="min-h-screen flex items-center justify-center">
+            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600"></div>
+          </div>
+        }>
+          <TermsPage />
+        </Suspense>
+      </Route>
+      <Route path="/checkout">
+        <Suspense fallback={
+          <div className="min-h-screen flex items-center justify-center">
+            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600"></div>
+          </div>
+        }>
+          <CheckoutPage />
+        </Suspense>
+      </Route>
+      <Route path="/booking-success">
+        <Suspense fallback={
+          <div className="min-h-screen flex items-center justify-center">
+            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600"></div>
+          </div>
+        }>
+          <BookingSuccessPage />
+        </Suspense>
+      </Route>
+      <Route>
+        <Suspense fallback={
+          <div className="min-h-screen flex items-center justify-center">
+            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600"></div>
+          </div>
+        }>
+          <NotFound />
+        </Suspense>
+      </Route>
     </Switch>
-    </Suspense>
   );
 }
 
