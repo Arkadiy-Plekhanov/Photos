@@ -5,10 +5,17 @@ import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import ScrollProgress from "@/components/ScrollProgress";
 import DarkModeToggle from "@/components/DarkModeToggle";
+import PerformanceMonitor from "@/components/PerformanceMonitor";
 import ErrorBoundary from "@/components/ErrorBoundary";
 import { useServiceWorker } from "@/hooks/useServiceWorker";
 import CriticalResourcePreloader from "@/components/CriticalResourcePreloader";
+import PerformanceBooster from "@/components/PerformanceBooster";
 import InstantLoader from "@/components/InstantLoader";
+import DeploymentAnalyzer from "@/components/DeploymentAnalyzer";
+import DeployedSiteAnalyzer from "@/components/DeployedSiteAnalyzer";
+import QuickPerformanceTest from "@/components/QuickPerformanceTest";
+import AutoPerformanceTest from "@/components/AutoPerformanceTest";
+import RouteValidator from "@/components/RouteValidator";
 import NotFound from "@/pages/not-found";
 import Home from "@/pages/Home";
 import WeddingPage from "@/pages/WeddingPage";
@@ -36,8 +43,8 @@ function Router() {
       <Route path="/blog" component={BlogPage} />
       <Route path="/blog/:id" component={BlogPostPage} />
       <Route path="/faq" component={FAQPage} />
-      <Route path="/privacy-policy" component={PrivacyPage} />
-      <Route path="/terms-of-service" component={TermsPage} />
+      <Route path="/terms" component={TermsPage} />
+      <Route path="/privacy" component={PrivacyPage} />
       <Route path="/checkout" component={CheckoutPage} />
       <Route path="/booking-success" component={BookingSuccessPage} />
       <Route component={NotFound} />
@@ -55,7 +62,22 @@ function App() {
           <div className="min-h-screen bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100">
             <InstantLoader />
             <CriticalResourcePreloader />
-            {/* Development tools are conditionally rendered only in development mode */}
+            {/* Development tools - remove in production */}
+            {process.env.NODE_ENV === 'development' && (
+              <>
+                <PerformanceBooster />
+                <PerformanceMonitor />
+                <DeploymentAnalyzer />
+                <RouteValidator />
+              </>
+            )}
+            {/* Performance testing tools - development only */}
+            {process.env.NODE_ENV === 'development' && (
+              <>
+                <QuickPerformanceTest />
+                <AutoPerformanceTest />
+              </>
+            )}
             <ScrollProgress />
             <DarkModeToggle />
             <Toaster />
