@@ -13,8 +13,7 @@ import PerformanceBooster from "@/components/PerformanceBooster";
 import InstantLoader from "@/components/InstantLoader";
 import DeploymentAnalyzer from "@/components/DeploymentAnalyzer";
 import DeployedSiteAnalyzer from "@/components/DeployedSiteAnalyzer";
-import QuickPerformanceTest from "@/components/QuickPerformanceTest";
-import AutoPerformanceTest from "@/components/AutoPerformanceTest";
+import UnifiedPerformanceTest from "@/components/UnifiedPerformanceTest";
 import RouteValidator from "@/components/RouteValidator";
 import NotFound from "@/pages/not-found";
 import Home from "@/pages/Home";
@@ -71,12 +70,9 @@ function App() {
                 <RouteValidator />
               </>
             )}
-            {/* Performance testing tools - development only */}
+            {/* Unified Performance Testing - development only */}
             {process.env.NODE_ENV === 'development' && (
-              <>
-                <QuickPerformanceTest />
-                <AutoPerformanceTest />
-              </>
+              <UnifiedPerformanceTest />
             )}
             <ScrollProgress />
             <DarkModeToggle />
