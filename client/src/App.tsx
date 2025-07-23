@@ -12,6 +12,7 @@ import InstantLoader from "@/components/InstantLoader";
 import React, { Suspense, lazy } from 'react';
 
 // Lazy load pages for better performance
+const Home = lazy(() => import('./pages/Home'));
 const AboutPage = lazy(() => import('./pages/AboutPage'));
 const BlogPage = lazy(() => import('./pages/BlogPage'));
 const BlogPostPage = lazy(() => import('./pages/BlogPostPage'));
