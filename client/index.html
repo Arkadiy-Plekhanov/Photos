@@ -5,15 +5,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1" />
     <title>Arcadia Photography - Where Stories Meet Paradise | Premium Honolulu Photography</title>
     <meta name="description" content="Professional wedding, real estate, and family photography services in Honolulu, Hawaii. Capturing your story in paradise with luxury photography experiences." />
+    <link rel="canonical" href="https://arcadiaphotography.replit.app" />
     
     <!-- Open Graph tags -->
     <meta property="og:title" content="Arcadia Photography - Where Stories Meet Paradise" />
     <meta property="og:description" content="Professional wedding, real estate, and family photography services in Honolulu, Hawaii." />
     <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://arcadiaphotography.com" />
+    <meta property="og:url" content="https://arcadiaphotography.replit.app" />
+    <meta property="og:image" content="https://arcadiaphotography.replit.app/og-image.jpg" />
     
     <!-- Ultra-optimized Hero Image Preload -->
-    <link rel="preload" as="image" href="https://images.unsplash.com/photo-1606800052052-a08af7148866?w=1440&q=50&auto=format&cs=srgb" fetchpriority="high" />
+    <link rel="preload" as="image" href="https://images.unsplash.com/photo-1606800052052-a08af7148866?w=1440&q=50&auto=format&cs=srgb" />
     <!-- LQIP preload for instant display -->
     <link rel="preload" as="image" href="https://images.unsplash.com/photo-1606800052052-a08af7148866?w=20&q=10&auto=format&cs=srgb" />
     
@@ -32,8 +34,8 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&family=Dancing+Script:wght@400;500;600;700&display=swap" rel="stylesheet" />
     
-    <!-- Font Awesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <!-- Font Awesome (local files) -->
+    <link rel="stylesheet" href="/fonts/css/all.min.css" />
     
     <!-- Ultra-Critical CSS for Maximum Performance -->
     <style>
@@ -43,30 +45,6 @@
         margin: 0; 
         padding: 0; 
         font-family: 'Inter', system-ui, -apple-system, sans-serif;
-        font-display: swap;
-      }
-      .parallax-bg { 
-        background-size: cover; 
-        background-position: center; 
-        background-repeat: no-repeat;
-        will-change: transform;
-      }
-      .gradient-text { 
-        background: linear-gradient(45deg, #FFD700, #FFA500); 
-        -webkit-background-clip: text; 
-        -webkit-text-fill-color: transparent; 
-        background-clip: text;
-        will-change: auto;
-      }
-      /* Prevent layout shifts and optimize rendering */
-      .hero-container { 
-        min-height: 100vh; 
-        position: relative;
-        contain: layout style paint;
-      }
-      .image-placeholder { 
-        background: linear-gradient(135deg, #1a365d 0%, #2a5a7a 100%);
-        content-visibility: auto;
       }
       /* Ultra-fast font loading */
       @font-face {
@@ -93,9 +71,9 @@
         visibility: visible;
         opacity: 1;
       }
-      /* Remove render-blocking */
-      .hero-section {
-        contain: layout style paint size;
+      /* Base styles */
+      * {
+        box-sizing: border-box;
       }
       /* Optimize animations */
       * {
@@ -105,7 +83,16 @@
     </style>
     
     <!-- Fastest possible font loading -->
-    <link rel="preload" href="https://fonts.gstatic.com/s/inter/v12/UcCO3FwrK3iLTeHuS_fvQtMwCp50KnMw2boKoduKmMEVuLyfAZ9hiA.woff2" as="font" type="font/woff2" crossorigin="anonymous" fetchpriority="high" />
+    <link rel="preload" href="https://fonts.gstatic.com/s/inter/v12/UcCO3FwrK3iLTeHuS_fvQtMwCp50KnMw2boKoduKmMEVuLyfAZ9hiA.woff2" as="font" type="font/woff2" crossorigin="anonymous" />
+
+    <!-- Google Analytics - Replace G-XXXXXXXXXX with your actual measurement ID -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-XXXXXXXXXX');
+    </script>
     
     <!-- JSON-LD Schema.org Markup -->
     <script type="application/ld+json">
@@ -114,7 +101,7 @@
       "@type": "PhotoGallery",
       "name": "Arcadia Photography - Premium Wedding Photography Hawaii",
       "description": "Professional wedding, real estate, and family photography services in Honolulu, Oahu, Hawaii. Capturing love stories in paradise with luxury photography experiences.",
-      "url": "https://arcadiaphotography.com",
+      "url": "https://arcadiaphotography.replit.app",
       "image": [
         "https://images.unsplash.com/photo-1606800052052-a08af7148866?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80",
         "https://images.unsplash.com/photo-1583939003579-730e3918a45a?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80",
@@ -134,8 +121,6 @@
   </head>
   <body>
     <div id="root"></div>
-    <script type="module" src="/src/main.tsx"></script>
-    <!-- This is a replit script which adds a banner on the top of the page when opened in development mode outside the replit environment -->
-    <script type="text/javascript" src="https://replit.com/public/js/replit-dev-banner.js"></script>
+    <script type="module" src="./src/main.tsx"></script>
   </body>
 </html>

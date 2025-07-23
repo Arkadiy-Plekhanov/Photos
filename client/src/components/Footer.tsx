@@ -16,10 +16,10 @@ const Footer = () => {
       { name: 'FAQ', href: '/faq', type: 'link' },
     ],
     legal: [
-      { name: 'Privacy Policy', href: '/privacy', type: 'link' },
-      { name: 'Terms of Service', href: '/terms', type: 'link' },
-      { name: 'Cookie Policy', href: '/privacy#cookies', type: 'scroll' },
-      { name: 'Licensing', href: '/terms#licensing', type: 'scroll' },
+      { name: 'Privacy Policy', href: '/privacy-policy', type: 'link' },
+      { name: 'Terms of Service', href: '/terms-of-service', type: 'link' },
+      { name: 'Cookie Policy', href: '/privacy-policy#cookies', type: 'scroll' },
+      { name: 'Licensing', href: '/terms-of-service#licensing', type: 'scroll' },
     ],
   };
 
