@@ -9,23 +9,32 @@ import ErrorBoundary from "@/components/ErrorBoundary";
 import { useServiceWorker } from "@/hooks/useServiceWorker";
 import CriticalResourcePreloader from "@/components/CriticalResourcePreloader";
 import InstantLoader from "@/components/InstantLoader";
-import NotFound from "@/pages/not-found";
-import Home from "@/pages/Home";
-import WeddingPage from "@/pages/WeddingPage";
-import RealEstatePage from "@/pages/RealEstatePage";
-import FamilyPage from "@/pages/FamilyPage";
-import AboutPage from "@/pages/AboutPage";
-import PortfolioPage from "@/pages/PortfolioPage";
-import BlogPage from "@/pages/BlogPage";
-import BlogPostPage from "@/pages/BlogPostPage";
-import FAQPage from "@/pages/FAQPage";
-import TermsPage from "@/pages/TermsPage";
-import PrivacyPage from "@/pages/PrivacyPage";
-import CheckoutPage from "@/pages/CheckoutPage";
-import BookingSuccessPage from "@/pages/BookingSuccessPage";
+import React, { Suspense, lazy } from 'react';
+
+// Lazy load pages for better performance
+const AboutPage = lazy(() => import('./pages/AboutPage'));
+const BlogPage = lazy(() => import('./pages/BlogPage'));
+const BlogPostPage = lazy(() => import('./pages/BlogPostPage'));
+const PortfolioPage = lazy(() => import('./pages/PortfolioPage'));
+const WeddingPage = lazy(() => import('./pages/WeddingPage'));
+const FamilyPage = lazy(() => import('./pages/FamilyPage'));
+const RealEstatePage = lazy(() => import('./pages/RealEstatePage'));
+const FAQPage = lazy(() => import('./pages/FAQPage'));
+const BookingSuccessPage = lazy(() => import('./pages/BookingSuccessPage'));
+const CheckoutPage = lazy(() => import('./pages/CheckoutPage'));
+const PrivacyPage = lazy(() => import('./pages/PrivacyPage'));
+const TermsPage = lazy(() => import('./pages/TermsPage'));
+const CookiePolicy = lazy(() => import('./pages/CookiePolicy'));
+const Licensing = lazy(() => import('./pages/Licensing'));
+const NotFound = lazy(() => import('./pages/not-found'));
 
 function Router() {
   return (
+    <Suspense fallback={
+        <div className="min-h-screen flex items-center justify-center">
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600"></div>
+        </div>
+      }>
     <Switch>
       <Route path="/" component={Home} />
       <Route path="/wedding-photography" component={WeddingPage} />
@@ -42,6 +51,7 @@ function Router() {
       <Route path="/booking-success" component={BookingSuccessPage} />
       <Route component={NotFound} />
     </Switch>
+    </Suspense>
   );
 }
 
