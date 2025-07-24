@@ -1,10 +1,10 @@
 import { motion } from 'framer-motion';
 import { useState, useEffect } from 'react';
-import IndustryLazyImage from './IndustryLazyImage';
+
 
 const HeroSection = () => {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
-  const [imagesLoaded, setImagesLoaded] = useState(1); // Start with 1 loaded
+  const [imagesLoaded, setImagesLoaded] = useState([true, false, false]);
 
   const heroImages = [
     'https://images.unsplash.com/photo-1606800052052-a08af7148866?w=1440&q=60&auto=format&cs=srgb',
@@ -13,43 +13,22 @@ const HeroSection = () => {
   ];
 
   useEffect(() => {
-    // Progressive image loading - don't block initial render
-    const loadImagesProgressively = () => {
-      // Load second image after a delay
-      setTimeout(() => {
-        const img2 = new Image();
-        img2.onload = () => setImagesLoaded(prev => Math.max(prev, 2));
-        img2.src = heroImages[1];
-      }, 800);
-      
-      // Load third image after second is loaded
-      setTimeout(() => {
-        const img3 = new Image();
-        img3.onload = () => setImagesLoaded(prev => Math.max(prev, 3));
-        img3.src = heroImages[2];
-      }, 1500);
-    };
-    
-    // Use requestIdleCallback to avoid blocking main thread
-    if ('requestIdleCallback' in window) {
-      window.requestIdleCallback(loadImagesProgressively);
-    } else {
-      setTimeout(loadImagesProgressively, 100);
-    }
-  }, [heroImages]);
+    // Preload images for smooth transitions
+    heroImages.slice(1).forEach((src, index) => {
+      const img = new Image();
+      img.src = src;
+    });
+  }, []);
 
   useEffect(() => {
-    // Only start carousel rotation after first image is confirmed loaded
     const interval = setInterval(() => {
-      setCurrentImageIndex((prevIndex) => {
-        const nextIndex = prevIndex === heroImages.length - 1 ? 0 : prevIndex + 1;
-        // Only advance if the next image is loaded, otherwise stay on current
-        return nextIndex < imagesLoaded ? nextIndex : prevIndex;
-      });
+      setCurrentImageIndex((prevIndex) => 
+        prevIndex === heroImages.length - 1 ? 0 : prevIndex + 1
+      );
     }, 5000);
 
     return () => clearInterval(interval);
-  }, [heroImages.length, imagesLoaded]);
+  }, [heroImages.length]);
 
   const handleSmoothScroll = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
     e.preventDefault();
@@ -77,18 +56,13 @@ const HeroSection = () => {
           }}
           transition={{ duration: 1.5, ease: "easeInOut" }}
         >
-          {/* Only render image if it's the current one or loaded */}
-          {(index === currentImageIndex || index < imagesLoaded) && (
-            <IndustryLazyImage
-              src={image}
-              alt={`Wedding photography ${index + 1}`}
-              className="w-full h-full object-cover parallax-bg"
-              priority={index === 0}
-              quality={index === 0 ? 60 : 50}
-              width={1440}
-              height={960}
-            />
-          )}
+          <div 
+            className="w-full h-full bg-cover bg-center"
+            style={{
+              backgroundImage: `url(${image})`,
+              filter: index === currentImageIndex ? 'none' : 'brightness(0.8)'
+            }}
+          />
         </motion.div>
       ))}
 

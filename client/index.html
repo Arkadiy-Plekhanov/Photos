@@ -6,16 +6,38 @@
     <title>Arcadia Photography | Award-Winning Wedding Photography in Honolulu</title>
     <meta name="description" content="Award-winning wedding photography in Honolulu. Capturing love stories in paradise with cinematic style and breathtaking locations." />
     
-    <!-- Critical Performance Optimization -->
-    <link rel="preload" as="image" href="https://images.unsplash.com/photo-1606800052052-a08af7148866?w=1440&q=60&auto=format&cs=srgb" />
+    <!-- Instant Loading Optimization -->
+    <link rel="preload" as="image" href="https://images.unsplash.com/photo-1606800052052-a08af7148866?w=1440&q=60&auto=format&cs=srgb" fetchpriority="high" />
     <link rel="preload" as="font" href="https://fonts.gstatic.com/s/playfairdisplay/v36/nuFvD-vYSZviVYUb_rj3ij__anPXJzDwcbmjWBN2PKdFvXDYbtXK-F2qC0s.woff2" type="font/woff2" crossorigin />
+    <link rel="preload" as="font" href="https://fonts.gstatic.com/s/inter/v13/UcC73FwrK3iLTeHuS_fvQtMwCp50KnMa1ZL7W0Q5nw.woff2" type="font/woff2" crossorigin />
     
-    <!-- Minimal Critical CSS -->
+    <!-- Critical CSS for Instant Hero Loading -->
     <style>
       * { margin: 0; padding: 0; box-sizing: border-box; }
       html { scroll-behavior: smooth; }
       body { font-family: system-ui, -apple-system, sans-serif; line-height: 1.6; }
-      #root { min-height: 100vh; background: linear-gradient(135deg, #0f2027 0%, #203a43 50%, #2c5364 100%); }
+      #root { min-height: 100vh; }
+      
+      /* Instant hero background */
+      @media (min-width: 768px) {
+        body::before {
+          content: '';
+          position: fixed;
+          top: 0;
+          left: 0;
+          right: 0;
+          height: 100vh;
+          background-image: url('https://images.unsplash.com/photo-1606800052052-a08af7148866?w=1440&q=60&auto=format&cs=srgb');
+          background-size: cover;
+          background-position: center;
+          z-index: -1;
+          opacity: 0.3;
+        }
+      }
+      
+      /* Smooth transitions */
+      .transition-opacity { transition: opacity 1.5s ease-in-out; }
+      .duration-1500 { transition-duration: 1500ms; }
     </style>
     
     <!-- Async External Resources -->

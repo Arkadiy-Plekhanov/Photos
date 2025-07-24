@@ -1,5 +1,5 @@
 import Navigation from '../components/Navigation';
-import OptimizedHeroSection from '../components/OptimizedHeroSection';
+import InstantHeroSection from '../components/InstantHeroSection';
 import ServicesSection from '../components/ServicesSection';
 import PortfolioSection from '../components/PortfolioSection';
 import TestimonialsSection from '../components/TestimonialsSection';
@@ -13,7 +13,7 @@ const Home = () => {
   return (
     <div className="min-h-screen bg-warm-white text-charcoal overflow-x-hidden">
       <Navigation />
-      <OptimizedHeroSection />
+      <InstantHeroSection />
       <ServicesSection />
       <PortfolioSection />
       <TestimonialsSection />
