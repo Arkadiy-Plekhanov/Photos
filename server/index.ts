@@ -4,6 +4,7 @@ import { registerRoutes } from "./routes";
 import { setupVite, serveStatic, log } from "./vite";
 import { performanceMiddleware } from "./performance";
 import { fontProxyMiddleware } from "./fontProxy";
+import { cssOptimizationMiddleware } from "./cssOptimization";
 
 const app = express();
 
@@ -12,6 +13,9 @@ app.use(performanceMiddleware);
 
 // Add font proxy for better caching
 app.use(fontProxyMiddleware);
+
+// Add CSS optimization for non-blocking CSS
+app.use(cssOptimizationMiddleware);
 
 // Enable high-performance compression for production (70% size reduction)
 app.use(compression({

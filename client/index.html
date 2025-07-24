@@ -64,6 +64,28 @@
       .animate-fade-slide {
         animation: fadeSlide 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
       }
+      
+      /* Font display optimization for immediate text rendering */
+      @font-face {
+        font-family: 'Playfair Display';
+        font-display: swap;
+      }
+      @font-face {
+        font-family: 'Inter';
+        font-display: swap;
+      }
+      @font-face {
+        font-family: 'Dancing Script';
+        font-display: swap;
+      }
+      @font-face {
+        font-family: 'Font Awesome 6 Free';
+        font-display: swap;
+      }
+      @font-face {
+        font-family: 'Font Awesome 6 Brands';
+        font-display: swap;
+      }
     </style>
     
     <!-- Async External Resources -->
@@ -71,10 +93,11 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin />
     
-    <!-- Font Awesome - Async Load -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" media="print" onload="this.media='all'; this.onload=null;" />
+    <!-- Font Awesome - Non-blocking with font-display optimization -->
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'" />
+    <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"></noscript>
     
-    <!-- Google Fonts - Optimized Loading -->
+    <!-- Google Fonts - High Performance Loading with font-display:swap -->
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Inter:wght@300;400;500;600;700&family=Dancing+Script:wght@400;500;600;700&display=swap" rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" />
     <noscript><link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Inter:wght@300;400;500;600;700&family=Dancing+Script:wght@400;500;600;700&display=swap" rel="stylesheet"></noscript>
   </head>
