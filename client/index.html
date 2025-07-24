@@ -57,7 +57,7 @@
         backface-visibility: hidden;
       }
 
-      /* Immediate hero section display - prevents layout shift */
+      /* Responsive hero section with proper mobile support */
       .hero-section {
         min-height: 100vh;
         background: linear-gradient(135deg, #0f2027 0%, #203a43 50%, #2c5364 100%);
@@ -66,28 +66,64 @@
         justify-content: center;
         position: relative;
         overflow: hidden;
+        padding: 1rem;
       }
 
-      /* Critical above-the-fold styles */
+      /* Mobile-first responsive content */
       .hero-content {
         text-align: center;
         color: white;
         z-index: 2;
-        max-width: 800px;
-        padding: 2rem;
+        max-width: 90%;
+        width: 100%;
+        padding: 1rem;
       }
 
       .hero-title {
-        font-size: clamp(2rem, 5vw, 4rem);
+        font-size: 2rem;
         font-weight: 700;
         margin-bottom: 1rem;
         font-family: 'Playfair Display', serif;
+        line-height: 1.2;
       }
 
       .hero-subtitle {
-        font-size: clamp(1rem, 2.5vw, 1.5rem);
-        margin-bottom: 2rem;
+        font-size: 1rem;
+        margin-bottom: 1.5rem;
         opacity: 0.9;
+        line-height: 1.4;
+      }
+
+      /* Tablet styles */
+      @media (min-width: 768px) {
+        .hero-content {
+          max-width: 600px;
+          padding: 2rem;
+        }
+        
+        .hero-title {
+          font-size: 3rem;
+        }
+        
+        .hero-subtitle {
+          font-size: 1.25rem;
+          margin-bottom: 2rem;
+        }
+      }
+
+      /* Desktop styles */
+      @media (min-width: 1024px) {
+        .hero-content {
+          max-width: 800px;
+        }
+        
+        .hero-title {
+          font-size: 4rem;
+        }
+        
+        .hero-subtitle {
+          font-size: 1.5rem;
+        }
       }
 
       img {
@@ -142,22 +178,39 @@
         opacity: 1;
       }
 
-      /* Immediate button styles for CTAs */
+      /* Responsive CTA button */
       .hero-cta {
         display: inline-block;
         background: linear-gradient(135deg, #d4af37 0%, #b8941f 100%);
         color: white;
-        padding: 1rem 2rem;
+        padding: 0.75rem 1.5rem;
         border-radius: 0.5rem;
         text-decoration: none;
         font-weight: 600;
-        transition: transform 0.2s ease;
+        transition: all 0.2s ease;
         box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3);
+        font-size: 0.9rem;
       }
 
       .hero-cta:hover {
         transform: translateY(-2px);
         box-shadow: 0 6px 25px rgba(212, 175, 55, 0.4);
+      }
+
+      /* Tablet CTA */
+      @media (min-width: 768px) {
+        .hero-cta {
+          padding: 1rem 2rem;
+          font-size: 1rem;
+        }
+      }
+
+      /* Desktop CTA */
+      @media (min-width: 1024px) {
+        .hero-cta {
+          padding: 1.25rem 2.5rem;
+          font-size: 1.1rem;
+        }
       }
     </style>
 
@@ -215,28 +268,63 @@
     
     <div id="root"></div>
     
-    <!-- Performance optimization scripts -->
+    <!-- Progressive loading optimization -->
     <script>
-      // Immediate performance optimizations
       (function() {
-        // Start loading critical resources immediately
-        const criticalResources = [
-          'https://images.unsplash.com/photo-1606800052052-a08af7148866?w=1440&q=60&auto=format&cs=srgb',
-          'https://images.unsplash.com/photo-1583939003579-730e3918a45a?w=1440&q=60&auto=format&cs=srgb',
-          'https://images.unsplash.com/photo-1519741497674-611481863552?w=1440&q=60&auto=format&cs=srgb'
-        ];
+        // Progressive resource loading strategy
+        let appLoaded = false;
         
-        criticalResources.forEach(src => {
-          const img = new Image();
-          img.src = src;
-        });
+        // Load only the first hero image immediately for smooth initial display
+        const primaryHero = new Image();
+        primaryHero.src = 'https://images.unsplash.com/photo-1606800052052-a08af7148866?w=1440&q=60&auto=format&cs=srgb';
         
-        // Show app once React loads
-        window.addEventListener('DOMContentLoaded', function() {
+        // Show app when DOM is ready
+        document.addEventListener('DOMContentLoaded', function() {
           setTimeout(() => {
             document.body.classList.add('app-loaded');
-          }, 50);
+            appLoaded = true;
+            
+            // Progressive loading of remaining assets after app loads
+            requestIdleCallback(() => {
+              loadSecondaryAssets();
+            });
+          }, 100);
         });
+        
+        // Load secondary resources after app is ready
+        function loadSecondaryAssets() {
+          if (!appLoaded) return;
+          
+          // Second hero image - load after 1 second
+          setTimeout(() => {
+            const secondHero = new Image();
+            secondHero.src = 'https://images.unsplash.com/photo-1583939003579-730e3918a45a?w=1440&q=60&auto=format&cs=srgb';
+          }, 1000);
+          
+          // Third hero image - load after 2 seconds
+          setTimeout(() => {
+            const thirdHero = new Image();
+            thirdHero.src = 'https://images.unsplash.com/photo-1519741497674-611481863552?w=1440&q=60&auto=format&cs=srgb';
+          }, 2000);
+          
+          // Non-critical scripts - load after 3 seconds
+          setTimeout(() => {
+            loadNonCriticalScripts();
+          }, 3000);
+        }
+        
+        // Load analytics and other non-critical scripts progressively
+        function loadNonCriticalScripts() {
+          // Only load if user hasn't bounced
+          if (document.visibilityState === 'visible') {
+            // Analytics could be loaded here if needed
+          }
+        }
+        
+        // Fallback: Use requestIdleCallback if available, otherwise setTimeout
+        window.requestIdleCallback = window.requestIdleCallback || function(cb) {
+          return setTimeout(cb, 1);
+        };
       })();
     </script>
     

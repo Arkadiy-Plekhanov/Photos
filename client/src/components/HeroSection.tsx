@@ -4,22 +4,44 @@ import IndustryLazyImage from './IndustryLazyImage';
 
 const HeroSection = () => {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const [imagesLoaded, setImagesLoaded] = useState(1); // Start with 1 loaded
 
   const heroImages = [
-    'https://images.unsplash.com/photo-1606800052052-a08af7148866?w=1440&q=50&auto=format&cs=srgb',
+    'https://images.unsplash.com/photo-1606800052052-a08af7148866?w=1440&q=60&auto=format&cs=srgb',
     'https://images.unsplash.com/photo-1583939003579-730e3918a45a?w=1440&q=50&auto=format&cs=srgb',
     'https://images.unsplash.com/photo-1519741497674-611481863552?w=1440&q=50&auto=format&cs=srgb'
   ];
 
   useEffect(() => {
+    // Progressive loading: Load images one by one after React app is ready
+    const loadNextImage = (index: number) => {
+      if (index >= heroImages.length) return;
+      
+      const img = new Image();
+      img.onload = () => {
+        setImagesLoaded(prev => prev + 1);
+        // Load next image after this one loads
+        setTimeout(() => loadNextImage(index + 1), 500);
+      };
+      img.src = heroImages[index];
+    };
+
+    // Start loading second image after component mounts
+    setTimeout(() => loadNextImage(1), 1000);
+  }, []);
+
+  useEffect(() => {
+    // Only start carousel rotation after first image is confirmed loaded
     const interval = setInterval(() => {
-      setCurrentImageIndex((prevIndex) => 
-        prevIndex === heroImages.length - 1 ? 0 : prevIndex + 1
-      );
+      setCurrentImageIndex((prevIndex) => {
+        const nextIndex = prevIndex === heroImages.length - 1 ? 0 : prevIndex + 1;
+        // Only advance if the next image is loaded, otherwise stay on current
+        return nextIndex < imagesLoaded ? nextIndex : prevIndex;
+      });
     }, 5000);
 
     return () => clearInterval(interval);
-  }, [heroImages.length]);
+  }, [heroImages.length, imagesLoaded]);
 
   const handleSmoothScroll = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
     e.preventDefault();
@@ -51,7 +73,7 @@ const HeroSection = () => {
             src={image}
             alt={`Wedding photography ${index + 1}`}
             className="w-full h-full object-cover parallax-bg"
-            priority={true}
+            priority={index === 0}
             quality={index === 0 ? 60 : 50}
             width={1440}
             height={960}
