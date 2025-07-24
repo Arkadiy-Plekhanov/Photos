@@ -1,10 +1,46 @@
 import express, { type Request, Response, NextFunction } from "express";
+import compression from "compression";
 import { registerRoutes } from "./routes";
 import { setupVite, serveStatic, log } from "./vite";
 
 const app = express();
-app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
+
+// Enable gzip compression for all responses (70% size reduction)
+app.use(compression({
+  level: 6, // Optimal balance between compression speed and ratio
+  threshold: 1024, // Only compress responses larger than 1KB
+  filter: (req, res) => {
+    // Don't compress images and videos
+    if (req.headers['x-no-compression']) {
+      return false;
+    }
+    return compression.filter(req, res);
+  }
+}));
+
+// Add expires headers for static assets
+app.use((req, res, next) => {
+  // Set cache headers for static assets
+  if (req.url.match(/\.(js|css|png|jpg|jpeg|gif|ico|svg|woff|woff2|ttf|eot)$/)) {
+    // Cache static assets for 1 year
+    res.set('Cache-Control', 'public, max-age=31536000, immutable');
+    res.set('Expires', new Date(Date.now() + 31536000000).toUTCString());
+  } else if (req.url.match(/\.(html|htm)$/)) {
+    // Cache HTML for 1 hour
+    res.set('Cache-Control', 'public, max-age=3600');
+    res.set('Expires', new Date(Date.now() + 3600000).toUTCString());
+  }
+  
+  // Security headers
+  res.set('X-Content-Type-Options', 'nosniff');
+  res.set('X-Frame-Options', 'DENY');
+  res.set('X-XSS-Protection', '1; mode=block');
+  
+  next();
+});
+
+app.use(express.json({ limit: '10mb' }));
+app.use(express.urlencoded({ extended: false, limit: '10mb' }));
 
 app.use((req, res, next) => {
   const start = Date.now();

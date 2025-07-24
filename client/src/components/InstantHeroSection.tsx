@@ -7,9 +7,9 @@ const InstantHeroSection = () => {
   const controls = useAnimation();
   
   const heroImages = [
-    'https://images.unsplash.com/photo-1606800052052-a08af7148866?w=1440&q=60&auto=format&cs=srgb',
-    'https://images.unsplash.com/photo-1583939003579-730e3918a45a?w=1440&q=60&auto=format&cs=srgb',
-    'https://images.unsplash.com/photo-1519741497674-611481863552?w=1440&q=60&auto=format&cs=srgb'
+    'https://images.unsplash.com/photo-1606800052052-a08af7148866?w=1440&q=75&auto=format&fm=webp&cs=srgb',
+    'https://images.unsplash.com/photo-1583939003579-730e3918a45a?w=1440&q=65&auto=format&fm=webp&cs=srgb',
+    'https://images.unsplash.com/photo-1519741497674-611481863552?w=1440&q=65&auto=format&fm=webp&cs=srgb'
   ];
 
   // Instant carousel rotation
