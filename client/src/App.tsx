@@ -28,7 +28,7 @@ import BookingSuccessPage from "@/pages/BookingSuccessPage";
 function Router() {
   return (
     <Switch>
-      <Route path="/" component={Home} />
+      <Route path="/"><Home /></Route>
       <Route path="/wedding-photography" component={WeddingPage} />
       <Route path="/real-estate-photography" component={RealEstatePage} />
       <Route path="/family-photography" component={FamilyPage} />

@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion';
 import { useState, useEffect } from 'react';
 import LazyImageLoader from './LazyImageLoader';
+import LazyImageAdvanced from './LazyImageAdvanced';
 
 const HeroSection = () => {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
