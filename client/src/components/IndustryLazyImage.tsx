@@ -62,7 +62,7 @@ export default function IndustryLazyImage({
     return originalSrc;
   };
 
-  // Native Intersection Observer for maximum performance
+  // Efficient progressive loading
   useEffect(() => {
     if (priority) {
       setInView(true);
@@ -79,8 +79,8 @@ export default function IndustryLazyImage({
         }
       },
       {
-        rootMargin: '200px', // Load 200px before entering viewport for hero carousel
-        threshold: 0
+        rootMargin: '50px', // Reduced margin for better efficiency
+        threshold: 0.1 // Only load when actually needed
       }
     );
 

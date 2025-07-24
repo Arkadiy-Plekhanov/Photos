@@ -13,22 +13,30 @@ const HeroSection = () => {
   ];
 
   useEffect(() => {
-    // Progressive loading: Load images one by one after React app is ready
-    const loadNextImage = (index: number) => {
-      if (index >= heroImages.length) return;
+    // Progressive image loading - don't block initial render
+    const loadImagesProgressively = () => {
+      // Load second image after a delay
+      setTimeout(() => {
+        const img2 = new Image();
+        img2.onload = () => setImagesLoaded(prev => Math.max(prev, 2));
+        img2.src = heroImages[1];
+      }, 800);
       
-      const img = new Image();
-      img.onload = () => {
-        setImagesLoaded(prev => prev + 1);
-        // Load next image after this one loads
-        setTimeout(() => loadNextImage(index + 1), 500);
-      };
-      img.src = heroImages[index];
+      // Load third image after second is loaded
+      setTimeout(() => {
+        const img3 = new Image();
+        img3.onload = () => setImagesLoaded(prev => Math.max(prev, 3));
+        img3.src = heroImages[2];
+      }, 1500);
     };
-
-    // Start loading second image after component mounts
-    setTimeout(() => loadNextImage(1), 1000);
-  }, []);
+    
+    // Use requestIdleCallback to avoid blocking main thread
+    if ('requestIdleCallback' in window) {
+      window.requestIdleCallback(loadImagesProgressively);
+    } else {
+      setTimeout(loadImagesProgressively, 100);
+    }
+  }, [heroImages]);
 
   useEffect(() => {
     // Only start carousel rotation after first image is confirmed loaded
@@ -69,15 +77,18 @@ const HeroSection = () => {
           }}
           transition={{ duration: 1.5, ease: "easeInOut" }}
         >
-          <IndustryLazyImage
-            src={image}
-            alt={`Wedding photography ${index + 1}`}
-            className="w-full h-full object-cover parallax-bg"
-            priority={index === 0}
-            quality={index === 0 ? 60 : 50}
-            width={1440}
-            height={960}
-          />
+          {/* Only render image if it's the current one or loaded */}
+          {(index === currentImageIndex || index < imagesLoaded) && (
+            <IndustryLazyImage
+              src={image}
+              alt={`Wedding photography ${index + 1}`}
+              className="w-full h-full object-cover parallax-bg"
+              priority={index === 0}
+              quality={index === 0 ? 60 : 50}
+              width={1440}
+              height={960}
+            />
+          )}
         </motion.div>
       ))}
 

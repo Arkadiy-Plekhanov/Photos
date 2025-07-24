@@ -14,9 +14,8 @@
     <meta property="og:url" content="https://arcadiaphotography.replit.app" />
     <meta property="og:image" content="https://arcadiaphotography.replit.app/og-image.jpg" />
 
-    <!-- Ultra-optimized Hero Image Preload -->
-    <link rel="preload" as="image" href="https://images.unsplash.com/photo-1606800052052-a08af7148866?w=1440&q=50&auto=format&cs=srgb" />
-    <!-- LQIP preload for instant display -->
+    <!-- Only preload the first hero image for immediate display -->
+    <link rel="preload" as="image" href="https://images.unsplash.com/photo-1606800052052-a08af7148866?w=1440&q=60&auto=format&cs=srgb" />
     <link rel="preload" as="image" href="https://images.unsplash.com/photo-1606800052052-a08af7148866?w=20&q=10&auto=format&cs=srgb" />
 
     <!-- Favicon and Theme -->
@@ -57,73 +56,10 @@
         backface-visibility: hidden;
       }
 
-      /* Responsive hero section with proper mobile support */
-      .hero-section {
+      /* Critical app loading optimization */
+      #root {
         min-height: 100vh;
         background: linear-gradient(135deg, #0f2027 0%, #203a43 50%, #2c5364 100%);
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        position: relative;
-        overflow: hidden;
-        padding: 1rem;
-      }
-
-      /* Mobile-first responsive content */
-      .hero-content {
-        text-align: center;
-        color: white;
-        z-index: 2;
-        max-width: 90%;
-        width: 100%;
-        padding: 1rem;
-      }
-
-      .hero-title {
-        font-size: 2rem;
-        font-weight: 700;
-        margin-bottom: 1rem;
-        font-family: 'Playfair Display', serif;
-        line-height: 1.2;
-      }
-
-      .hero-subtitle {
-        font-size: 1rem;
-        margin-bottom: 1.5rem;
-        opacity: 0.9;
-        line-height: 1.4;
-      }
-
-      /* Tablet styles */
-      @media (min-width: 768px) {
-        .hero-content {
-          max-width: 600px;
-          padding: 2rem;
-        }
-        
-        .hero-title {
-          font-size: 3rem;
-        }
-        
-        .hero-subtitle {
-          font-size: 1.25rem;
-          margin-bottom: 2rem;
-        }
-      }
-
-      /* Desktop styles */
-      @media (min-width: 1024px) {
-        .hero-content {
-          max-width: 800px;
-        }
-        
-        .hero-title {
-          font-size: 4rem;
-        }
-        
-        .hero-subtitle {
-          font-size: 1.5rem;
-        }
       }
 
       img {
@@ -143,75 +79,7 @@
         font-display: swap;
       }
 
-      /* Loading spinner for instant feedback */
-      .initial-loader {
-        position: fixed;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        width: 40px;
-        height: 40px;
-        border: 3px solid #f3f3f3;
-        border-top: 3px solid #d4af37;
-        border-radius: 50%;
-        animation: spin 1s linear infinite;
-        z-index: 9999;
-      }
 
-      @keyframes spin {
-        0% { transform: translate(-50%, -50%) rotate(0deg); }
-        100% { transform: translate(-50%, -50%) rotate(360deg); }
-      }
-
-      /* Hide loader when React loads */
-      .app-loaded .initial-loader {
-        display: none;
-      }
-
-      /* Critical performance hack: Hide Tailwind flash */
-      #root {
-        opacity: 0;
-        transition: opacity 0.2s ease-in-out;
-      }
-
-      .app-loaded #root {
-        opacity: 1;
-      }
-
-      /* Responsive CTA button */
-      .hero-cta {
-        display: inline-block;
-        background: linear-gradient(135deg, #d4af37 0%, #b8941f 100%);
-        color: white;
-        padding: 0.75rem 1.5rem;
-        border-radius: 0.5rem;
-        text-decoration: none;
-        font-weight: 600;
-        transition: all 0.2s ease;
-        box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3);
-        font-size: 0.9rem;
-      }
-
-      .hero-cta:hover {
-        transform: translateY(-2px);
-        box-shadow: 0 6px 25px rgba(212, 175, 55, 0.4);
-      }
-
-      /* Tablet CTA */
-      @media (min-width: 768px) {
-        .hero-cta {
-          padding: 1rem 2rem;
-          font-size: 1rem;
-        }
-      }
-
-      /* Desktop CTA */
-      @media (min-width: 1024px) {
-        .hero-cta {
-          padding: 1.25rem 2.5rem;
-          font-size: 1.1rem;
-        }
-      }
     </style>
 
     <!-- Preload Font Awesome CDN for instant rendering -->
@@ -254,78 +122,31 @@
 
   </head>
   <body>
-    <!-- Instant loading feedback -->
-    <div class="initial-loader"></div>
-    
-    <!-- Immediate hero section for instant visual feedback -->
-    <div id="immediate-hero" class="hero-section">
-      <div class="hero-content">
-        <h1 class="hero-title">Arcadia Photography</h1>
-        <p class="hero-subtitle">Where Stories Meet Paradise</p>
-        <a href="#contact" class="hero-cta">Book Your Session</a>
-      </div>
-    </div>
-    
     <div id="root"></div>
     
-    <!-- Progressive loading optimization -->
+    <!-- Efficient progressive loading -->
     <script>
-      (function() {
-        // Progressive resource loading strategy
-        let appLoaded = false;
-        
-        // Load only the first hero image immediately for smooth initial display
-        const primaryHero = new Image();
-        primaryHero.src = 'https://images.unsplash.com/photo-1606800052052-a08af7148866?w=1440&q=60&auto=format&cs=srgb';
-        
-        // Show app when DOM is ready
-        document.addEventListener('DOMContentLoaded', function() {
+      // Minimal overhead progressive enhancement
+      document.addEventListener('DOMContentLoaded', function() {
+        // Only preload when browser is idle to avoid blocking main thread
+        requestIdleCallback(() => {
+          // Stagger image loading to prevent network congestion
           setTimeout(() => {
-            document.body.classList.add('app-loaded');
-            appLoaded = true;
-            
-            // Progressive loading of remaining assets after app loads
-            requestIdleCallback(() => {
-              loadSecondaryAssets();
-            });
-          }, 100);
-        });
-        
-        // Load secondary resources after app is ready
-        function loadSecondaryAssets() {
-          if (!appLoaded) return;
-          
-          // Second hero image - load after 1 second
-          setTimeout(() => {
-            const secondHero = new Image();
-            secondHero.src = 'https://images.unsplash.com/photo-1583939003579-730e3918a45a?w=1440&q=60&auto=format&cs=srgb';
-          }, 1000);
-          
-          // Third hero image - load after 2 seconds
-          setTimeout(() => {
-            const thirdHero = new Image();
-            thirdHero.src = 'https://images.unsplash.com/photo-1519741497674-611481863552?w=1440&q=60&auto=format&cs=srgb';
+            const img2 = new Image();
+            img2.src = 'https://images.unsplash.com/photo-1583939003579-730e3918a45a?w=1440&q=50&auto=format&cs=srgb';
           }, 2000);
           
-          // Non-critical scripts - load after 3 seconds
           setTimeout(() => {
-            loadNonCriticalScripts();
-          }, 3000);
-        }
-        
-        // Load analytics and other non-critical scripts progressively
-        function loadNonCriticalScripts() {
-          // Only load if user hasn't bounced
-          if (document.visibilityState === 'visible') {
-            // Analytics could be loaded here if needed
-          }
-        }
-        
-        // Fallback: Use requestIdleCallback if available, otherwise setTimeout
-        window.requestIdleCallback = window.requestIdleCallback || function(cb) {
-          return setTimeout(cb, 1);
-        };
-      })();
+            const img3 = new Image();
+            img3.src = 'https://images.unsplash.com/photo-1519741497674-611481863552?w=1440&q=50&auto=format&cs=srgb';
+          }, 4000);
+        });
+      });
+      
+      // Fallback for older browsers
+      window.requestIdleCallback = window.requestIdleCallback || function(cb) {
+        return setTimeout(cb, 1);
+      };
     </script>
     
     <script type="module" src="/src/main.tsx"></script>
