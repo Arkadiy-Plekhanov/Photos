@@ -12,11 +12,11 @@ const InstantHeroSection = () => {
     'https://images.unsplash.com/photo-1519741497674-611481863552?w=1440&q=65&auto=format&fm=webp&cs=srgb'
   ];
 
-  // Instant carousel rotation
+  // Smooth carousel rotation with elegant timing
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentImageIndex((prev) => (prev + 1) % heroImages.length);
-    }, 5000);
+    }, 8000); // Slower transitions for more elegance
     return () => clearInterval(interval);
   }, []);
 
@@ -46,8 +46,9 @@ const InstantHeroSection = () => {
       opacity: 1,
       y: 0,
       transition: {
-        duration: 0.8,
-        staggerChildren: 0.2
+        duration: 1.2,
+        staggerChildren: 0.4,
+        ease: [0.25, 0.46, 0.45, 0.94]
       }
     }
   };
@@ -57,7 +58,24 @@ const InstantHeroSection = () => {
     visible: {
       opacity: 1,
       y: 0,
-      transition: { duration: 0.6 }
+      transition: { 
+        duration: 0.8,
+        ease: [0.25, 0.46, 0.45, 0.94]
+      }
+    }
+  };
+
+  const buttonVariants = {
+    hidden: { opacity: 0, y: 30, scale: 0.95 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      scale: 1,
+      transition: { 
+        duration: 1.0,
+        delay: 1.2,
+        ease: [0.25, 0.46, 0.45, 0.94]
+      }
     }
   };
 
@@ -67,7 +85,7 @@ const InstantHeroSection = () => {
       {heroImages.map((image, index) => (
         <div
           key={index}
-          className={`absolute inset-0 bg-cover bg-center transition-opacity duration-1500 ${
+          className={`absolute inset-0 bg-cover bg-center transition-opacity duration-[2500ms] ease-in-out ${
             index === currentImageIndex ? 'opacity-100' : 'opacity-0'
           }`}
           style={{
@@ -142,40 +160,55 @@ const InstantHeroSection = () => {
           that captures the magic of your special day in Honolulu's most breathtaking locations.
         </motion.p>
 
-        {/* CTA Buttons with Hover Effects */}
+        {/* CTA Buttons with Elegant Delayed Appearance */}
         <motion.div 
-          variants={childVariants}
+          variants={buttonVariants}
           className="flex flex-col sm:flex-row gap-4 justify-center items-center"
         >
           <motion.a
             href="#portfolio"
             onClick={(e) => handleSmoothScroll(e, '#portfolio')}
             className="group bg-luxury-gold text-ocean-blue px-8 py-4 rounded-full font-inter font-semibold 
-                     hover:bg-sunset-orange transition-all duration-300 shadow-2xl text-base md:text-lg
-                     relative overflow-hidden"
-            whileHover={{ scale: 1.05 }}
+                     hover:bg-sunset-orange transition-all duration-500 shadow-2xl text-base md:text-lg
+                     relative overflow-hidden backdrop-blur-sm"
+            whileHover={{ 
+              scale: 1.05,
+              boxShadow: "0 20px 40px rgba(0,0,0,0.3)",
+              transition: { duration: 0.3 }
+            }}
             whileTap={{ scale: 0.98 }}
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 1.8, duration: 0.8 }}
           >
             <span className="relative z-10">
               <i className="fas fa-images mr-2"></i>
               View Wedding Gallery
             </span>
-            <div className="absolute inset-0 bg-white/20 translate-y-full group-hover:translate-y-0 transition-transform duration-300" />
+            <div className="absolute inset-0 bg-gradient-to-r from-sunset-orange/20 to-white/20 translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-out" />
           </motion.a>
           
           <motion.a
             href="/checkout"
             className="group border-2 border-white/80 text-white px-8 py-4 rounded-full font-inter 
-                     font-semibold hover:bg-white hover:text-ocean-blue transition-all duration-300 
+                     font-semibold hover:bg-white hover:text-ocean-blue transition-all duration-500 
                      backdrop-blur-sm text-base md:text-lg relative overflow-hidden"
-            whileHover={{ scale: 1.05 }}
+            whileHover={{ 
+              scale: 1.05,
+              borderColor: "rgba(255,255,255,1)",
+              boxShadow: "0 0 30px rgba(255,255,255,0.3)",
+              transition: { duration: 0.3 }
+            }}
             whileTap={{ scale: 0.98 }}
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 2.0, duration: 0.8 }}
           >
             <span className="relative z-10">
               <i className="fas fa-calendar-check mr-2"></i>
               Book Your Date
             </span>
-            <div className="absolute inset-0 bg-white/10 translate-x-full group-hover:translate-x-0 transition-transform duration-500" />
+            <div className="absolute inset-0 bg-gradient-to-r from-white/10 to-white/20 translate-x-full group-hover:translate-x-0 transition-transform duration-700 ease-out" />
           </motion.a>
         </motion.div>
 
