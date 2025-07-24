@@ -7,7 +7,7 @@ import { Link } from 'wouter';
 import { Button } from '@/components/ui/button';
 import { useSEO } from '../hooks/useSEO';
 import Gallery from '../components/Gallery';
-import OptimizedImage from '../components/OptimizedImage';
+import IndustryLazyImage from '../components/IndustryLazyImage';
 import EnhancedSEO from '../components/EnhancedSEO';
 
 const PortfolioPage = () => {
@@ -67,13 +67,14 @@ const PortfolioPage = () => {
 
       {/* Hero Section */}
       <section className="relative h-[40vh] flex items-center justify-center overflow-hidden">
-        <OptimizedImage
+        <IndustryLazyImage
           src="https://images.unsplash.com/photo-1542038784456-1ea8e935640e"
           alt="Portfolio showcase background"
           className="absolute inset-0 w-full h-full object-cover parallax-bg"
           priority={true}
-          strategy="responsive"
           quality={85}
+          width={1920}
+          height={768}
           sizes="100vw"
         />
         <div className="absolute inset-0 bg-ocean-blue/40" />

@@ -1,7 +1,6 @@
 import { motion } from 'framer-motion';
 import { useState, useEffect } from 'react';
-import LazyImageLoader from './LazyImageLoader';
-import LazyImageAdvanced from './LazyImageAdvanced';
+import IndustryLazyImage from './IndustryLazyImage';
 
 const HeroSection = () => {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
@@ -48,12 +47,14 @@ const HeroSection = () => {
           }}
           transition={{ duration: 1.5, ease: "easeInOut" }}
         >
-          <LazyImageLoader
+          <IndustryLazyImage
             src={image}
             alt={`Wedding photography ${index + 1}`}
             className="w-full h-full object-cover parallax-bg"
             priority={index === 0}
             quality={index === 0 ? 60 : 45}
+            width={1440}
+            height={960}
           />
         </motion.div>
       ))}

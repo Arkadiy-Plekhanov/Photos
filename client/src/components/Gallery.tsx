@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { X, ChevronLeft, ChevronRight } from 'lucide-react';
-import OptimizedImage from './OptimizedImage';
+import IndustryLazyImage from './IndustryLazyImage';
 
 interface GalleryProps {
   items: string[];
@@ -58,16 +58,14 @@ const Gallery = ({ items }: GalleryProps) => {
           className="relative aspect-[4/3] overflow-hidden rounded-lg shadow-lg cursor-pointer group"
           onClick={() => openLightbox(index)}
         >
-          <OptimizedImage
+          <IndustryLazyImage
             src={item}
             alt={`Gallery image ${index + 1}`}
             className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-            strategy="lazy"
             quality={85}
+            width={800}
+            height={600}
             sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-            onError={() => {
-              console.log(`Failed to load gallery image: ${item}`);
-            }}
           />
         </div>
       ))}
@@ -114,13 +112,14 @@ const Gallery = ({ items }: GalleryProps) => {
               className="max-w-full max-h-full"
               onClick={(e) => e.stopPropagation()}
             >
-              <OptimizedImage
+              <IndustryLazyImage
                 src={items[currentIndex]}
                 alt={`Gallery image ${currentIndex + 1}`}
                 className="max-w-full max-h-full object-contain"
                 priority={true}
-                strategy="responsive"
                 quality={95}
+                width={1920}
+                height={1080}
                 sizes="100vw"
               />
             </motion.div>

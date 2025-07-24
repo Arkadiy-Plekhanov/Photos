@@ -1,11 +1,5 @@
-import React from 'react'
-import ReactDOM from 'react-dom/client'
-import App from './App.tsx'
-import './index.css'
+import { createRoot } from "react-dom/client";
+import App from "./App";
+import "./index.css";
 
-// Intersection Observer polyfill for older browsers
-if (!('IntersectionObserver' in window)) {
-  import('intersection-observer').then(() => {
-    console.log('IntersectionObserver polyfill loaded');
-  });
-}
+createRoot(document.getElementById("root")!).render(<App />);
