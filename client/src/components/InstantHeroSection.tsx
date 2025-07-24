@@ -7,16 +7,16 @@ const InstantHeroSection = () => {
   const controls = useAnimation();
   
   const heroImages = [
-    'https://images.unsplash.com/photo-1606800052052-a08af7148866?w=1440&q=75&auto=format&fm=webp&cs=srgb',
-    'https://images.unsplash.com/photo-1583939003579-730e3918a45a?w=1440&q=65&auto=format&fm=webp&cs=srgb',
-    'https://images.unsplash.com/photo-1519741497674-611481863552?w=1440&q=65&auto=format&fm=webp&cs=srgb'
+    'https://images.unsplash.com/photo-1606800052052-a08af7148866?w=1200&q=45&auto=format&fm=webp&cs=srgb',
+    'https://images.unsplash.com/photo-1583939003579-730e3918a45a?w=1200&q=40&auto=format&fm=webp&cs=srgb',
+    'https://images.unsplash.com/photo-1519741497674-611481863552?w=1200&q=40&auto=format&fm=webp&cs=srgb'
   ];
 
-  // Smooth carousel rotation with elegant timing
+  // Optimal carousel rotation timing
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentImageIndex((prev) => (prev + 1) % heroImages.length);
-    }, 8000); // Slower transitions for more elegance
+    }, 5000); // Perfect balance between viewing time and engagement
     return () => clearInterval(interval);
   }, []);
 
@@ -41,39 +41,39 @@ const InstantHeroSection = () => {
   };
 
   const contentVariants = {
-    hidden: { opacity: 0, y: 30 },
+    hidden: { opacity: 0, y: 20 },
     visible: {
       opacity: 1,
       y: 0,
       transition: {
-        duration: 1.2,
-        staggerChildren: 0.4,
+        duration: 0.6,
+        staggerChildren: 0.15,
         ease: [0.25, 0.46, 0.45, 0.94]
       }
     }
   };
 
   const childVariants = {
-    hidden: { opacity: 0, y: 20 },
+    hidden: { opacity: 0, y: 15 },
     visible: {
       opacity: 1,
       y: 0,
       transition: { 
-        duration: 0.8,
+        duration: 0.4,
         ease: [0.25, 0.46, 0.45, 0.94]
       }
     }
   };
 
   const buttonVariants = {
-    hidden: { opacity: 0, y: 30, scale: 0.95 },
+    hidden: { opacity: 0, y: 20, scale: 0.98 },
     visible: {
       opacity: 1,
       y: 0,
       scale: 1,
       transition: { 
-        duration: 1.0,
-        delay: 1.2,
+        duration: 0.5,
+        delay: 0.6,
         ease: [0.25, 0.46, 0.45, 0.94]
       }
     }
@@ -85,11 +85,12 @@ const InstantHeroSection = () => {
       {heroImages.map((image, index) => (
         <div
           key={index}
-          className={`absolute inset-0 bg-cover bg-center transition-opacity duration-[2500ms] ease-in-out ${
+          className={`absolute inset-0 bg-cover bg-center transition-opacity ease-in-out ${
             index === currentImageIndex ? 'opacity-100' : 'opacity-0'
           }`}
           style={{
             backgroundImage: `url(${image})`,
+            transitionDuration: '1200ms',
             willChange: 'opacity'
           }}
         />
@@ -177,9 +178,9 @@ const InstantHeroSection = () => {
               transition: { duration: 0.3 }
             }}
             whileTap={{ scale: 0.98 }}
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 15 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 1.8, duration: 0.8 }}
+            transition={{ delay: 0.6, duration: 0.4 }}
           >
             <span className="relative z-10">
               <i className="fas fa-images mr-2"></i>
@@ -200,9 +201,9 @@ const InstantHeroSection = () => {
               transition: { duration: 0.3 }
             }}
             whileTap={{ scale: 0.98 }}
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 15 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 2.0, duration: 0.8 }}
+            transition={{ delay: 0.8, duration: 0.4 }}
           >
             <span className="relative z-10">
               <i className="fas fa-calendar-check mr-2"></i>

@@ -7,7 +7,7 @@
     <meta name="description" content="Award-winning wedding photography in Honolulu. Capturing love stories in paradise with cinematic style and breathtaking locations." />
     
     <!-- Critical Performance Optimization -->
-    <link rel="preload" as="image" href="https://images.unsplash.com/photo-1606800052052-a08af7148866?w=1440&q=75&auto=format&fm=webp&cs=srgb" fetchpriority="high" />
+    <link rel="preload" as="image" href="https://images.unsplash.com/photo-1606800052052-a08af7148866?w=1200&q=45&auto=format&fm=webp&cs=srgb" fetchpriority="high" />
     <link rel="preload" as="font" href="https://fonts.gstatic.com/s/playfairdisplay/v36/nuFvD-vYSZviVYUb_rj3ij__anPXJzDwcbmjWBN2PKdFvXDYbtXK-F2qC0s.woff2" type="font/woff2" crossorigin />
     <link rel="preload" as="font" href="https://fonts.gstatic.com/s/inter/v13/UcC73FwrK3iLTeHuS_fvQtMwCp50KnMa1ZL7W0Q5nw.woff2" type="font/woff2" crossorigin />
     
@@ -32,7 +32,7 @@
           left: 0;
           right: 0;
           height: 100vh;
-          background-image: url('https://images.unsplash.com/photo-1606800052052-a08af7148866?w=1440&q=75&auto=format&fm=webp&cs=srgb');
+          background-image: url('https://images.unsplash.com/photo-1606800052052-a08af7148866?w=1200&q=45&auto=format&fm=webp&cs=srgb');
           background-size: cover;
           background-position: center;
           z-index: -1;
@@ -90,8 +90,8 @@
         requestIdleCallback(() => {
           // Preload remaining carousel images with optimal format
           const imagesToPreload = [
-            `https://images.unsplash.com/photo-1583939003579-730e3918a45a?w=1440&q=65&auto=format${imageFormat}&cs=srgb`,
-            `https://images.unsplash.com/photo-1519741497674-611481863552?w=1440&q=65&auto=format${imageFormat}&cs=srgb`
+            `https://images.unsplash.com/photo-1583939003579-730e3918a45a?w=1200&q=40&auto=format${imageFormat}&cs=srgb`,
+            `https://images.unsplash.com/photo-1519741497674-611481863552?w=1200&q=40&auto=format${imageFormat}&cs=srgb`
           ];
           
           imagesToPreload.forEach((src, index) => {
