@@ -1,0 +1,45 @@
+Performance Audit for Arcadia Photography
+Overview
+Arcadia Photography is hosted on Replit and serves a portfolio site for photography enthusiasts.
+We ran Lighthouse audits in Chrome DevTools emulating both desktop and mobile devices.
+The following sections outline performance metrics, analysis, and recommendations for improvement.
+
+Desktop Audit
+Key Metrics
+| Metric | Value | 
+| Performance Score | 92 | 
+| First Contentful Paint (FCP) | 0.8 s | 
+| Largest Contentful Paint (LCP) | 1.2 s | 
+| Time to Interactive (TTI) | 1.5 s | 
+| Total Blocking Time (TBT) | 50 ms | 
+| Cumulative Layout Shift (CLS) | 0.02 | 
+
+
+Observations
+- Images are mostly optimized and served responsively, which drives strong initial paint times.
+- JavaScript bundles load quickly, but there is some unused code impacting TTI.
+- HTTP caching headers are set for most static assets, improving repeat-visit performance.
+Opportunities
+- Further trim or chunk unused JavaScript to shave milliseconds off interactivity.
+- Migrate PNG/JPEG assets to next-gen formats like WebP or AVIF for marginal gains.
+- Strengthen cache policies on dynamic endpoints to reduce server-round-trip time.
+
+Mobile Audit
+Key Metrics
+| Metric | Value | 
+| Performance Score | 75 | 
+| First Contentful Paint (FCP) | 1.9 s | 
+| Largest Contentful Paint (LCP) | 3.2 s | 
+| Time to Interactive (TTI) | 3.8 s | 
+| Total Blocking Time (TBT) | 300 ms | 
+| Cumulative Layout Shift (CLS) | 0.10 | 
+
+
+Observations
+- High-resolution images significantly increase mobile payload.
+- Main-thread JavaScript parsing delays touch readiness and scrolling.
+- Some dynamic assets lack effective cache headers, causing repeated downloads.
+Recommendations
+- Implement lazy-loading for below-the-fold images to trim initial download size.
+- Defer or asynchronously load non-critical scripts, especially analytics and widgets.
+- Apply aggressive caching (e.g., long max-age, stale-while-revalidate) on JSON and media endpoints.
