@@ -62,15 +62,14 @@ export function registerRoutes(app: Express) {
       const data = contactSchema.parse(req.body);
       
       const [submission] = await db.insert(contactSubmissions).values({
-        name: data.name,
+        firstName: data.name.split(' ')[0] || data.name,
+        lastName: data.name.split(' ').slice(1).join(' ') || '',
         email: data.email,
-        phone: data.phone,
+        phone: data.phone || '',
         service: data.service,
         message: data.message,
-        preferredContact: data.preferredContact,
         eventDate: data.eventDate,
-        budget: data.budget,
-        status: 'new'
+        status: 'pending'
       }).returning();
 
       res.json({ 
@@ -89,7 +88,7 @@ export function registerRoutes(app: Express) {
   // Get all contact submissions (admin)
   app.get('/api/contact/submissions', async (req, res) => {
     try {
-      const submissions = await db.select().from(contactSubmissions).orderBy(contactSubmissions.createdAt);
+      const submissions = await db.select().from(contactSubmissions).orderBy(contactSubmissions.submittedAt);
       res.json(submissions);
     } catch (error) {
       console.error('Failed to fetch submissions:', error);
@@ -116,17 +115,16 @@ export function registerRoutes(app: Express) {
       const data = bookingSchema.parse(req.body);
       
       const [booking] = await db.insert(bookings).values({
-        customerName: data.customerName,
-        customerEmail: data.customerEmail,
-        customerPhone: data.customerPhone,
-        serviceType: data.serviceType,
+        firstName: data.customerName.split(' ')[0] || data.customerName,
+        lastName: data.customerName.split(' ').slice(1).join(' ') || '',
+        email: data.customerEmail,
+        phone: data.customerPhone || '',
+        service: data.serviceType,
         packageType: data.packageType,
         eventDate: data.eventDate,
-        location: data.location,
-        specialRequests: data.specialRequests,
-        totalAmount: data.totalAmount,
-        paymentIntentId: data.paymentIntentId,
-        status: 'pending'
+        message: data.specialRequests,
+        amount: data.totalAmount.toString(),
+        stripePaymentIntentId: data.paymentIntentId
       }).returning();
 
       res.json({ 
@@ -166,7 +164,7 @@ export function registerRoutes(app: Express) {
 
       const [updatedBooking] = await db
         .update(bookings)
-        .set({ status, updatedAt: new Date() })
+        .set({ bookingStatus: status, updatedAt: new Date() })
         .where(eq(bookings.id, parseInt(id)))
         .returning();
 
@@ -240,7 +238,7 @@ export function registerRoutes(app: Express) {
             await db
               .update(bookings)
               .set({ 
-                status: 'confirmed',
+                bookingStatus: 'confirmed',
                 paymentStatus: 'paid',
                 updatedAt: new Date()
               })

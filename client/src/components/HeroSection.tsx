@@ -51,8 +51,8 @@ const HeroSection = () => {
             src={image}
             alt={`Wedding photography ${index + 1}`}
             className="w-full h-full object-cover parallax-bg"
-            priority={index === 0}
-            quality={index === 0 ? 60 : 45}
+            priority={true}
+            quality={index === 0 ? 60 : 50}
             width={1440}
             height={960}
           />
