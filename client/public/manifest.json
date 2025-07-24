@@ -1,22 +1,13 @@
 {
-  "name": "Arcadia Photography - Professional Wedding & Portrait Photography",
-  "short_name": "Arcadia Photo",
-  "description": "Award-winning photography services in Honolulu, Hawaii. Specializing in weddings, family portraits, and real estate photography.",
+  "name": "Arcadia Photography",
+  "short_name": "Arcadia",
+  "description": "Award-winning wedding photography in Honolulu",
   "start_url": "/",
   "display": "standalone",
-  "background_color": "#1e3a8a",
-  "theme_color": "#ffd700",
-  "orientation": "portrait-primary",
-  "scope": "/",
-  "lang": "en-US",
-  "dir": "ltr",
-  "categories": ["photography", "business", "lifestyle"],
+  "theme_color": "#D4AF37",
+  "background_color": "#FFFFFF",
+  "orientation": "portrait",
   "icons": [
-    {
-      "src": "/favicon.ico",
-      "sizes": "16x16 32x32",
-      "type": "image/x-icon"
-    },
     {
       "src": "/icon-192.png",
       "sizes": "192x192",
@@ -28,92 +19,6 @@
       "sizes": "512x512",
       "type": "image/png",
       "purpose": "any maskable"
-    },
-    {
-      "src": "/icon-1024.png",
-      "sizes": "1024x1024",
-      "type": "image/png",
-      "purpose": "any"
     }
-  ],
-  "screenshots": [
-    {
-      "src": "/screenshot-mobile.png",
-      "sizes": "390x844",
-      "type": "image/png",
-      "form_factor": "narrow",
-      "label": "Mobile view of Arcadia Photography portfolio"
-    },
-    {
-      "src": "/screenshot-desktop.png",
-      "sizes": "1920x1080",
-      "type": "image/png",
-      "form_factor": "wide",
-      "label": "Desktop view of Arcadia Photography services"
-    }
-  ],
-  "shortcuts": [
-    {
-      "name": "Wedding Photography",
-      "short_name": "Weddings",
-      "description": "View our wedding photography services and packages",
-      "url": "/wedding-photography",
-      "icons": [
-        {
-          "src": "/wedding-icon.png",
-          "sizes": "96x96",
-          "type": "image/png"
-        }
-      ]
-    },
-    {
-      "name": "Portfolio Gallery",
-      "short_name": "Portfolio",
-      "description": "Browse our photography portfolio",
-      "url": "/portfolio",
-      "icons": [
-        {
-          "src": "/portfolio-icon.png",
-          "sizes": "96x96",
-          "type": "image/png"
-        }
-      ]
-    },
-    {
-      "name": "Contact Us",
-      "short_name": "Contact",
-      "description": "Get in touch for a photography session",
-      "url": "/#contact",
-      "icons": [
-        {
-          "src": "/contact-icon.png",
-          "sizes": "96x96",
-          "type": "image/png"
-        }
-      ]
-    }
-  ],
-  "share_target": {
-    "action": "/contact",
-    "method": "GET",
-    "params": {
-      "title": "title",
-      "text": "text",
-      "url": "url"
-    }
-  },
-  "protocol_handlers": [
-    {
-      "protocol": "web+arcadiaphoto",
-      "url": "/booking?service=%s"
-    }
-  ],
-  "edge_side_panel": {
-    "preferred_width": 400
-  },
-  "launch_handler": {
-    "client_mode": "focus-existing"
-  },
-  "handle_links": "preferred",
-  "capture_links": "existing-client-navigate"
+  ]
 }
