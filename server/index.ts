@@ -3,11 +3,15 @@ import compression from "compression";
 import { registerRoutes } from "./routes";
 import { setupVite, serveStatic, log } from "./vite";
 import { performanceMiddleware } from "./performance";
+import { fontProxyMiddleware } from "./fontProxy";
 
 const app = express();
 
 // Add performance monitoring
 app.use(performanceMiddleware);
+
+// Add font proxy for better caching
+app.use(fontProxyMiddleware);
 
 // Enable high-performance compression for production (70% size reduction)
 app.use(compression({
@@ -35,6 +39,11 @@ app.use((req, res, next) => {
     // Cache HTML for 1 hour
     res.set('Cache-Control', 'public, max-age=3600');
     res.set('Expires', new Date(Date.now() + 3600000).toUTCString());
+  }
+  
+  // Add cache headers for external font resources via proxy
+  if (req.url.includes('fonts.googleapis.com')) {
+    res.set('Cache-Control', 'public, max-age=31536000, immutable');
   }
   
   // Security and performance headers
