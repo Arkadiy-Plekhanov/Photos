@@ -91,7 +91,7 @@ function sanitizeSensitiveData(obj: any): any {
 }
 
 (async () => {
-  const server = await registerRoutes(app);
+  registerRoutes(app);
 
   app.use((err: any, _req: Request, res: Response, _next: NextFunction) => {
     const status = err.status || err.statusCode || 500;
@@ -99,6 +99,15 @@ function sanitizeSensitiveData(obj: any): any {
 
     res.status(status).json({ message });
     throw err;
+  });
+
+  // ALWAYS serve the app on the port specified in the environment variable PORT
+  // Other ports are firewalled. Default to 5000 if not specified.
+  // this serves both the API and the client.
+  // It is the only port that is not firewalled.
+  const port = parseInt(process.env.PORT || '5000', 10);
+  const server = app.listen(port, "0.0.0.0", () => {
+    log(`serving on port ${port}`);
   });
 
   // importantly only setup vite in development and after
@@ -109,17 +118,4 @@ function sanitizeSensitiveData(obj: any): any {
   } else {
     serveStatic(app);
   }
-
-  // ALWAYS serve the app on the port specified in the environment variable PORT
-  // Other ports are firewalled. Default to 5000 if not specified.
-  // this serves both the API and the client.
-  // It is the only port that is not firewalled.
-  const port = parseInt(process.env.PORT || '5000', 10);
-  server.listen({
-    port,
-    host: "0.0.0.0",
-    reusePort: true,
-  }, () => {
-    log(`serving on port ${port}`);
-  });
 })();

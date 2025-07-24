@@ -1,6 +1,6 @@
 import { useState, useRef, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import ResponsiveImage from './ResponsiveImage';
+import IndustryLazyImage from './IndustryLazyImage';
 import { cn } from '@/lib/utils';
 
 interface GalleryItem {
@@ -111,7 +111,7 @@ export const AccessibleGallery = ({ items, className }: AccessibleGalleryProps) 
             whileTap={{ scale: 0.98 }}
             aria-label={`View ${item.title || item.alt} in lightbox`}
           >
-            <ResponsiveImage
+            <IndustryLazyImage
               src={item.src}
               alt={item.alt}
               className="w-full h-64 object-cover"
@@ -190,11 +190,13 @@ export const AccessibleGallery = ({ items, className }: AccessibleGalleryProps) 
               className="max-w-4xl max-h-full"
               onClick={(e) => e.stopPropagation()}
             >
-              <ResponsiveImage
+              <IndustryLazyImage
                 src={items[selectedIndex].src}
                 alt={items[selectedIndex].alt}
                 className="max-w-full max-h-full object-contain"
-                priority
+                priority={true}
+                width={1200}
+                height={800}
               />
 
               {/* Image info */}

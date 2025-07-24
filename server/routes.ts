@@ -4,7 +4,7 @@ import { contactSubmissions, bookings, users } from "@shared/schema";
 import { eq } from "drizzle-orm";
 import { z } from "zod";
 
-export function registerRoutes(app: Express) {
+export function registerRoutes(app: Express): Express {
   // Performance analytics endpoint
   app.post('/api/analytics/performance', async (req, res) => {
     try {
