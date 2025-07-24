@@ -29,10 +29,11 @@
     <!-- Apple Touch Icon -->
     <link rel="apple-touch-icon" href="/icon-192.png" />
 
-    <!-- Google Fonts with font-display swap -->
+    <!-- Google Fonts - Async loaded to prevent render blocking -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&family=Dancing+Script:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&family=Dancing+Script:wght@400;500;600;700&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'" />
+    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&family=Dancing+Script:wght@400;500;600;700&display=swap" /></noscript>
 
     <!-- Font Awesome CDN - Load asynchronously to prevent render blocking -->
     <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'" crossorigin="anonymous" referrerpolicy="no-referrer" />
@@ -56,6 +57,39 @@
         backface-visibility: hidden;
       }
 
+      /* Immediate hero section display - prevents layout shift */
+      .hero-section {
+        min-height: 100vh;
+        background: linear-gradient(135deg, #0f2027 0%, #203a43 50%, #2c5364 100%);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+        overflow: hidden;
+      }
+
+      /* Critical above-the-fold styles */
+      .hero-content {
+        text-align: center;
+        color: white;
+        z-index: 2;
+        max-width: 800px;
+        padding: 2rem;
+      }
+
+      .hero-title {
+        font-size: clamp(2rem, 5vw, 4rem);
+        font-weight: 700;
+        margin-bottom: 1rem;
+        font-family: 'Playfair Display', serif;
+      }
+
+      .hero-subtitle {
+        font-size: clamp(1rem, 2.5vw, 1.5rem);
+        margin-bottom: 2rem;
+        opacity: 0.9;
+      }
+
       img {
         content-visibility: auto;
         contain: layout style paint;
@@ -71,6 +105,59 @@
       /* Preload Font Awesome for instant rendering */
       .fa::before, .fas::before, .far::before, .fab::before {
         font-display: swap;
+      }
+
+      /* Loading spinner for instant feedback */
+      .initial-loader {
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 40px;
+        height: 40px;
+        border: 3px solid #f3f3f3;
+        border-top: 3px solid #d4af37;
+        border-radius: 50%;
+        animation: spin 1s linear infinite;
+        z-index: 9999;
+      }
+
+      @keyframes spin {
+        0% { transform: translate(-50%, -50%) rotate(0deg); }
+        100% { transform: translate(-50%, -50%) rotate(360deg); }
+      }
+
+      /* Hide loader when React loads */
+      .app-loaded .initial-loader {
+        display: none;
+      }
+
+      /* Critical performance hack: Hide Tailwind flash */
+      #root {
+        opacity: 0;
+        transition: opacity 0.2s ease-in-out;
+      }
+
+      .app-loaded #root {
+        opacity: 1;
+      }
+
+      /* Immediate button styles for CTAs */
+      .hero-cta {
+        display: inline-block;
+        background: linear-gradient(135deg, #d4af37 0%, #b8941f 100%);
+        color: white;
+        padding: 1rem 2rem;
+        border-radius: 0.5rem;
+        text-decoration: none;
+        font-weight: 600;
+        transition: transform 0.2s ease;
+        box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3);
+      }
+
+      .hero-cta:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 25px rgba(212, 175, 55, 0.4);
       }
     </style>
 
@@ -114,7 +201,45 @@
 
   </head>
   <body>
+    <!-- Instant loading feedback -->
+    <div class="initial-loader"></div>
+    
+    <!-- Immediate hero section for instant visual feedback -->
+    <div id="immediate-hero" class="hero-section">
+      <div class="hero-content">
+        <h1 class="hero-title">Arcadia Photography</h1>
+        <p class="hero-subtitle">Where Stories Meet Paradise</p>
+        <a href="#contact" class="hero-cta">Book Your Session</a>
+      </div>
+    </div>
+    
     <div id="root"></div>
-    <script type="module" src="./src/main.tsx"></script>
+    
+    <!-- Performance optimization scripts -->
+    <script>
+      // Immediate performance optimizations
+      (function() {
+        // Start loading critical resources immediately
+        const criticalResources = [
+          'https://images.unsplash.com/photo-1606800052052-a08af7148866?w=1440&q=60&auto=format&cs=srgb',
+          'https://images.unsplash.com/photo-1583939003579-730e3918a45a?w=1440&q=60&auto=format&cs=srgb',
+          'https://images.unsplash.com/photo-1519741497674-611481863552?w=1440&q=60&auto=format&cs=srgb'
+        ];
+        
+        criticalResources.forEach(src => {
+          const img = new Image();
+          img.src = src;
+        });
+        
+        // Show app once React loads
+        window.addEventListener('DOMContentLoaded', function() {
+          setTimeout(() => {
+            document.body.classList.add('app-loaded');
+          }, 50);
+        });
+      })();
+    </script>
+    
+    <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>
