@@ -2,20 +2,26 @@ import express, { type Request, Response, NextFunction } from "express";
 import compression from "compression";
 import { registerRoutes } from "./routes";
 import { setupVite, serveStatic, log } from "./vite";
+import { performanceMiddleware } from "./performance";
 
 const app = express();
 
-// Enable gzip compression for all responses (70% size reduction)
+// Add performance monitoring
+app.use(performanceMiddleware);
+
+// Enable high-performance compression for production (70% size reduction)
 app.use(compression({
-  level: 6, // Optimal balance between compression speed and ratio
+  level: process.env.NODE_ENV === 'production' ? 9 : 6, // Maximum compression in production
   threshold: 1024, // Only compress responses larger than 1KB
   filter: (req, res) => {
-    // Don't compress images and videos
+    // Don't compress images and videos (already compressed)
     if (req.headers['x-no-compression']) {
       return false;
     }
+    // Compress all text-based content
     return compression.filter(req, res);
-  }
+  },
+
 }));
 
 // Add expires headers for static assets
@@ -31,10 +37,25 @@ app.use((req, res, next) => {
     res.set('Expires', new Date(Date.now() + 3600000).toUTCString());
   }
   
-  // Security headers
+  // Security and performance headers
   res.set('X-Content-Type-Options', 'nosniff');
   res.set('X-Frame-Options', 'DENY');
   res.set('X-XSS-Protection', '1; mode=block');
+  res.set('Referrer-Policy', 'strict-origin-when-cross-origin');
+  
+  // Performance optimizations
+  if (process.env.NODE_ENV === 'production') {
+    res.set('Strict-Transport-Security', 'max-age=31536000; includeSubDomains');
+    // Add preload hints for critical resources
+    if (req.url === '/') {
+      res.set('Link', [
+        '</assets/index.js>; rel=preload; as=script',
+        '</assets/index.css>; rel=preload; as=style',
+        '<https://fonts.googleapis.com>; rel=preconnect',
+        '<https://images.unsplash.com>; rel=dns-prefetch'
+      ].join(', '));
+    }
+  }
   
   next();
 });
