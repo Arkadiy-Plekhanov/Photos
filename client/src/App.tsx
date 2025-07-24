@@ -3,13 +3,8 @@ import { queryClient } from "./lib/queryClient";
 import { QueryClientProvider } from "@tanstack/react-query";
 import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
-import ScrollProgress from "@/components/ScrollProgress";
 import DarkModeToggle from "@/components/DarkModeToggle";
 import ErrorBoundary from "@/components/ErrorBoundary";
-import { useServiceWorker } from "@/hooks/useServiceWorker";
-import CriticalResourcePreloader from "@/components/CriticalResourcePreloader";
-import InstantLoader from "@/components/InstantLoader";
-import CriticalCSS from "@/components/CriticalCSS";
 
 import NotFound from "@/pages/not-found";
 import Home from "@/pages/Home";
@@ -48,20 +43,14 @@ function Router() {
 }
 
 function App() {
-  useServiceWorker();
-
   return (
     <ErrorBoundary>
       <QueryClientProvider client={queryClient}>
         <TooltipProvider>
           <div className="min-h-screen bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100">
-            <CriticalCSS />
-            <InstantLoader />
-            <CriticalResourcePreloader />
-            <ScrollProgress />
             <DarkModeToggle />
-            <Toaster />
             <Router />
+            <Toaster />
           </div>
         </TooltipProvider>
       </QueryClientProvider>

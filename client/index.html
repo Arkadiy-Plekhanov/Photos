@@ -2,151 +2,53 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1" />
-    <title>Arcadia Photography - Where Stories Meet Paradise | Premium Honolulu Photography</title>
-    <meta name="description" content="Professional wedding, real estate, and family photography services in Honolulu, Hawaii. Capturing your story in paradise with luxury photography experiences." />
-    <link rel="canonical" href="https://arcadiaphotography.replit.app" />
-
-    <!-- Open Graph tags -->
-    <meta property="og:title" content="Arcadia Photography - Where Stories Meet Paradise" />
-    <meta property="og:description" content="Professional wedding, real estate, and family photography services in Honolulu, Hawaii." />
-    <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://arcadiaphotography.replit.app" />
-    <meta property="og:image" content="https://arcadiaphotography.replit.app/og-image.jpg" />
-
-    <!-- Only preload the first hero image for immediate display -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Arcadia Photography | Award-Winning Wedding Photography in Honolulu</title>
+    <meta name="description" content="Award-winning wedding photography in Honolulu. Capturing love stories in paradise with cinematic style and breathtaking locations." />
+    
+    <!-- Critical Performance Optimization -->
     <link rel="preload" as="image" href="https://images.unsplash.com/photo-1606800052052-a08af7148866?w=1440&q=60&auto=format&cs=srgb" />
-    <link rel="preload" as="image" href="https://images.unsplash.com/photo-1606800052052-a08af7148866?w=20&q=10&auto=format&cs=srgb" />
-
-    <!-- Favicon and Theme -->
-    <link rel="icon" href="/favicon.ico" />
-    <meta name="theme-color" content="#1a365d" />
-
-    <!-- PWA Manifest -->
-    <link rel="manifest" href="/manifest.json" />
-
-    <!-- Apple Touch Icon -->
-    <link rel="apple-touch-icon" href="/icon-192.png" />
-
-    <!-- Google Fonts - Async loaded to prevent render blocking -->
+    <link rel="preload" as="font" href="https://fonts.gstatic.com/s/playfairdisplay/v36/nuFvD-vYSZviVYUb_rj3ij__anPXJzDwcbmjWBN2PKdFvXDYbtXK-F2qC0s.woff2" type="font/woff2" crossorigin />
+    
+    <!-- Minimal Critical CSS -->
+    <style>
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      html { scroll-behavior: smooth; }
+      body { font-family: system-ui, -apple-system, sans-serif; line-height: 1.6; }
+      #root { min-height: 100vh; background: linear-gradient(135deg, #0f2027 0%, #203a43 50%, #2c5364 100%); }
+    </style>
+    
+    <!-- Async External Resources -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&family=Dancing+Script:wght@400;500;600;700&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'" />
-    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&family=Dancing+Script:wght@400;500;600;700&display=swap" /></noscript>
-
-    <!-- Font Awesome CDN - Load asynchronously to prevent render blocking -->
-    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" /></noscript>
-
-    <!-- Ultra-Critical CSS for Maximum Performance -->
-    <style>
-      /* Critical performance CSS - Ultra-optimized */
-      html { scroll-behavior: smooth; }
-      body { 
-        margin: 0; 
-        padding: 0; 
-        font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', sans-serif;
-        visibility: visible;
-        opacity: 1;
-      }
-
-      /* Ultra-Performance optimizations */
-      * {
-        box-sizing: border-box;
-        backface-visibility: hidden;
-      }
-
-      /* Critical app loading optimization */
-      #root {
-        min-height: 100vh;
-        background: linear-gradient(135deg, #0f2027 0%, #203a43 50%, #2c5364 100%);
-      }
-
-      img {
-        content-visibility: auto;
-        contain: layout style paint;
-        transform: translateZ(0);
-      }
-
-      /* Font Awesome optimization */
-      .fa, .fas, .far, .fab {
-        will-change: auto;
-        contain: layout style paint;
-      }
-
-      /* Preload Font Awesome for instant rendering */
-      .fa::before, .fas::before, .far::before, .fab::before {
-        font-display: swap;
-      }
-
-
-    </style>
-
-    <!-- Preload Font Awesome CDN for instant rendering -->
     <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin />
-    <link rel="dns-prefetch" href="//cdnjs.cloudflare.com" />
-
-    <!-- Google Analytics - Replace G-XXXXXXXXXX with your actual measurement ID -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', 'G-XXXXXXXXXX');
-    </script>
-
-    <!-- JSON-LD Schema.org Markup -->
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "PhotoGallery",
-      "name": "Arcadia Photography - Premium Wedding Photography Hawaii",
-      "description": "Professional wedding, real estate, and family photography services in Honolulu, Oahu, Hawaii. Capturing love stories in paradise with luxury photography experiences.",
-      "url": "https://arcadiaphotography.replit.app",
-      "image": [
-        "https://images.unsplash.com/photo-1606800052052-a08af7148866?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80",
-        "https://images.unsplash.com/photo-1583939003579-730e3918a45a?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80",
-        "https://images.unsplash.com/photo-1519741497674-611481863552?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80"
-      ],
-      "address": {
-        "@type": "PostalAddress",
-        "addressLocality": "Honolulu",
-        "addressRegion": "HI",
-        "addressCountry": "US"
-      },
-      "telephone": "+1-808-555-0123",
-      "priceRange": "$$$",
-      "openingHours": "Mo-Su 09:00-18:00"
-    }
-    </script>
-
+    
+    <!-- Font Awesome - Async Load -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" media="print" onload="this.media='all'; this.onload=null;" />
+    
+    <!-- Google Fonts - Async Load -->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Inter:wght@300;400;500;600;700&family=Dancing+Script:wght@400;500;600;700&display=swap" rel="stylesheet" media="print" onload="this.media='all'; this.onload=null;" />
   </head>
+  
   <body>
     <div id="root"></div>
     
-    <!-- Efficient progressive loading -->
+    <!-- Minimal Progressive Enhancement -->
     <script>
-      // Minimal overhead progressive enhancement
-      document.addEventListener('DOMContentLoaded', function() {
-        // Only preload when browser is idle to avoid blocking main thread
+      // Industry-grade progressive loading
+      if ('requestIdleCallback' in window) {
         requestIdleCallback(() => {
-          // Stagger image loading to prevent network congestion
-          setTimeout(() => {
-            const img2 = new Image();
-            img2.src = 'https://images.unsplash.com/photo-1583939003579-730e3918a45a?w=1440&q=50&auto=format&cs=srgb';
-          }, 2000);
-          
-          setTimeout(() => {
-            const img3 = new Image();
-            img3.src = 'https://images.unsplash.com/photo-1519741497674-611481863552?w=1440&q=50&auto=format&cs=srgb';
-          }, 4000);
+          // Preload remaining hero images after main content loads
+          ['https://images.unsplash.com/photo-1583939003579-730e3918a45a?w=1440&q=50&auto=format&cs=srgb', 
+           'https://images.unsplash.com/photo-1519741497674-611481863552?w=1440&q=50&auto=format&cs=srgb'
+          ].forEach((src, i) => {
+            setTimeout(() => {
+              const img = new Image();
+              img.src = src;
+            }, (i + 1) * 1500);
+          });
         });
-      });
-      
-      // Fallback for older browsers
-      window.requestIdleCallback = window.requestIdleCallback || function(cb) {
-        return setTimeout(cb, 1);
-      };
+      }
     </script>
     
     <script type="module" src="/src/main.tsx"></script>
