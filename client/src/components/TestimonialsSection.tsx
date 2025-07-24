@@ -43,11 +43,11 @@ const TestimonialsSection = () => {
 
   return (
     <section className="py-20 bg-ocean-blue relative overflow-hidden" ref={ref}>
-      {/* Background Image */}
+      {/* Background Image - Optimized for performance */}
       <div
         className="absolute inset-0 opacity-20"
         style={{
-          backgroundImage: `url('https://images.unsplash.com/photo-1439066615861-d1af74d74000?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80')`,
+          backgroundImage: `url('https://images.unsplash.com/photo-1439066615861-d1af74d74000?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1200&q=40')`,
           backgroundSize: 'cover',
           backgroundPosition: 'center',
         }}
@@ -82,6 +82,9 @@ const TestimonialsSection = () => {
                   src={testimonial.image}
                   alt={testimonial.name}
                   className="w-16 h-16 rounded-full object-cover mr-4"
+                  loading="lazy"
+                  width={64}
+                  height={64}
                 />
                 <div>
                   <h4 className="font-playfair font-bold text-lg">{testimonial.name}</h4>
