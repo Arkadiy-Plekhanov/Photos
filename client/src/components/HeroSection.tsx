@@ -9,7 +9,7 @@ const HeroSection = () => {
   const heroImages = [
     '/images/services/wedding.jpg',
     '/images/portfolio/wedding-1.jpg',
-    '/images/portfolio/wedding-2.jpg'
+    '/images/portfolio/wedding-3.jpg'
   ];
 
   useEffect(() => {

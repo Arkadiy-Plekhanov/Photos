@@ -1,6 +1,6 @@
 import { lazy, Suspense, useEffect } from 'react';
 import Navigation from '../components/Navigation';
-import InstantHeroSection from '../components/InstantHeroSection';
+import HeroSection from '../components/HeroSection';
 
 // Lazy load non-critical sections for faster initial load
 const ServicesSection = lazy(() => import('../components/ServicesSection'));
@@ -38,7 +38,7 @@ const Home = () => {
   return (
     <div className="min-h-screen bg-warm-white text-charcoal overflow-x-hidden">
       <Navigation />
-      <InstantHeroSection />
+      <HeroSection />
       <Suspense fallback={<SectionLoader />}>
         <ServicesSection />
       </Suspense>
