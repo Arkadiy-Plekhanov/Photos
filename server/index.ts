@@ -40,6 +40,9 @@ const server = app.listen(PORT, "0.0.0.0", () => {
   log(`serving on port ${PORT}`);
 });
 
+// Serve static files from public directory in both dev and prod
+app.use(express.static('public'));
+
 // Setup Vite in development mode
 if (process.env.NODE_ENV === "development") {
   setupVite(app, server);

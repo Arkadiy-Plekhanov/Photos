@@ -16,7 +16,7 @@ const SimpleHero = () => {
         <p>This green box should be visible if React is working</p>
       </div>
       <img 
-        src="/images/services/wedding.jpg" 
+        src="http://localhost:5000/images/services/wedding.jpg" 
         alt="Wedding"
         style={{ 
           width: '300px', 
@@ -24,12 +24,16 @@ const SimpleHero = () => {
           objectFit: 'cover',
           border: '3px solid yellow'
         }}
-        onLoad={() => console.log('Image loaded successfully')}
+        onLoad={() => console.log('Image loaded successfully with full URL')}
         onError={(e) => {
-          console.error('Image failed to load:', e);
-          console.log('Trying to load from:', '/images/services/wedding.jpg');
+          console.error('Image failed to load with full URL:', e);
+          // Try relative path as fallback
+          e.currentTarget.src = '/images/services/wedding.jpg';
         }}
       />
+      <p style={{ color: 'white', fontSize: '16px' }}>
+        Testing image from: http://localhost:5000/images/services/wedding.jpg
+      </p>
       <p style={{ color: 'white', fontSize: '20px' }}>If you can see this RED section, React is working!</p>
     </div>
   );
