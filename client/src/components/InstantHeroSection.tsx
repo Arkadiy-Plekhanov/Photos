@@ -81,20 +81,15 @@ const InstantHeroSection = () => {
 
   return (
     <section id="home" className="relative h-screen flex items-center justify-center overflow-hidden pt-16">
-      {/* Instant CSS Background Images */}
-      {heroImages.map((image, index) => (
-        <div
-          key={index}
-          className={`absolute inset-0 bg-cover bg-center transition-opacity ease-in-out ${
-            index === currentImageIndex ? 'opacity-100' : 'opacity-0'
-          }`}
-          style={{
-            backgroundImage: `url(${image})`,
-            transitionDuration: '1200ms',
-            willChange: 'opacity'
-          }}
+      {/* Debug: Test with regular img tags first */}
+      <div className="absolute inset-0">
+        <img 
+          src={heroImages[currentImageIndex]}
+          alt="Wedding photography"
+          className="w-full h-full object-cover"
+          style={{ opacity: 1 }}
         />
-      ))}
+      </div>
 
       {/* Beautiful Gradient Overlay */}
       <div className="absolute inset-0 bg-gradient-to-b from-ocean-blue/40 via-transparent to-ocean-blue/60" />
