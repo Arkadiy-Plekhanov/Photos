@@ -12,14 +12,14 @@ const Footer = () => {
       { name: 'About Us', href: '/about', type: 'link' },
       { name: 'Portfolio', href: '/portfolio', type: 'link' },
       { name: 'Blog', href: '/blog', type: 'link' },
-      { name: 'Contact', href: '#contact', type: 'scroll' },
+      { name: 'Contact', href: '/#contact', type: 'link' },
       { name: 'FAQ', href: '/faq', type: 'link' },
     ],
     legal: [
       { name: 'Privacy Policy', href: '/privacy', type: 'link' },
       { name: 'Terms of Service', href: '/terms', type: 'link' },
-      { name: 'Cookie Policy', href: '/privacy#cookies', type: 'scroll' },
-      { name: 'Licensing', href: '/terms#licensing', type: 'scroll' },
+      { name: 'Cookie Policy', href: '/cookie-policy', type: 'link' },
+      { name: 'Licensing', href: '/licensing', type: 'link' },
     ],
   };
 

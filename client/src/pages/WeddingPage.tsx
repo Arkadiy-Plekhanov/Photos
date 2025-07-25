@@ -58,9 +58,9 @@ const WeddingPage = () => {
     '/images/wedding/gallery-1.jpg',
     '/images/wedding/gallery-2.jpg',
     '/images/wedding/gallery-3.jpg',
-    '/images/wedding/gallery-1.jpg',
-    '/images/wedding/gallery-2.jpg',
-    '/images/wedding/gallery-3.jpg',
+    '/images/wedding/gallery-4.jpg',
+    '/images/wedding/gallery-5.jpg',
+    '/images/wedding/gallery-6.jpg'
   ];
 
   const testimonials = [
@@ -85,7 +85,7 @@ const WeddingPage = () => {
         <div
           className="absolute inset-0 parallax-bg"
           style={{
-            backgroundImage: `url('https://images.unsplash.com/photo-1519225421980-715cb0215aed?w=1920&q=80')`
+            backgroundImage: `url('/images/services/wedding.jpg')`
           }}
         />
         <div className="absolute inset-0 bg-ocean-blue/40" />

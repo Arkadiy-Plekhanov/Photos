@@ -9,7 +9,7 @@ const HeroSection = () => {
   const heroImages = [
     '/images/services/wedding.jpg',
     '/images/portfolio/wedding-1.jpg',
-    '/images/portfolio/wedding-3.jpg'
+    '/images/portfolio/wedding-2.jpg'
   ];
 
   useEffect(() => {
@@ -113,8 +113,7 @@ const HeroSection = () => {
           className="flex flex-col sm:flex-row gap-4 justify-center items-center"
         >
           <a
-            href="#portfolio"
-            onClick={(e) => handleSmoothScroll(e, '#portfolio')}
+            href="/wedding-photography"
             className="bg-luxury-gold text-ocean-blue px-6 sm:px-8 py-3 sm:py-4 rounded-full font-inter font-semibold hover:bg-sunset-orange transition-all duration-300 hover-scale shadow-2xl text-sm sm:text-base"
           >
             <i className="fas fa-images mr-2"></i>

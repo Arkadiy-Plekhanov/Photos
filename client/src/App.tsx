@@ -21,6 +21,8 @@ const BlogPostPage = lazy(() => import("@/pages/BlogPostPage"));
 const FAQPage = lazy(() => import("@/pages/FAQPage"));
 const TermsPage = lazy(() => import("@/pages/TermsPage"));
 const PrivacyPage = lazy(() => import("@/pages/PrivacyPage"));
+const CookiePolicy = lazy(() => import("@/pages/CookiePolicy"));
+const Licensing = lazy(() => import("@/pages/Licensing"));
 const CheckoutPage = lazy(() => import("@/pages/CheckoutPage"));
 const BookingSuccessPage = lazy(() => import("@/pages/BookingSuccessPage"));
 
@@ -49,6 +51,8 @@ function Router() {
         <Route path="/faq" component={FAQPage} />
         <Route path="/terms" component={TermsPage} />
         <Route path="/privacy" component={PrivacyPage} />
+        <Route path="/cookie-policy" component={CookiePolicy} />
+        <Route path="/licensing" component={Licensing} />
         <Route path="/checkout" component={CheckoutPage} />
         <Route path="/booking-success" component={BookingSuccessPage} />
         <Route component={NotFound} />
