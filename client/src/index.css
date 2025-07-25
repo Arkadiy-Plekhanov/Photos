@@ -171,27 +171,10 @@ html.dark body {
   color: #e2e8f0 !important;
 }
 
-/* Force image visibility - critical fix */
+/* Targeted image visibility fix */
 img {
   opacity: 1 !important;
   visibility: visible !important;
-  display: block !important;
-  position: relative !important;
-  z-index: 100 !important;
-}
-
-/* Remove transforms only from images and their containers */
-img, img * {
-  transform: none !important;
-}
-
-.group img {
-  transform: none !important;
-}
-
-/* Ensure containers don't hide content */
-.relative, .absolute {
-  overflow: visible !important;
 }
 
 /* Global Smooth Scrolling */

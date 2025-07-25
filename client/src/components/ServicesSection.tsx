@@ -64,13 +64,13 @@ const ServicesSection = () => {
               initial={{ opacity: 0, y: 50 }}
               animate={isIntersecting ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.8, delay: index * 0.2 }}
-              className="group relative rounded-2xl shadow-2xl bg-gray-100"
+              className="group relative overflow-hidden rounded-2xl shadow-2xl hover-scale"
             >
               {!brokenImages.includes(service.image) ? (
                 <img
                   src={service.image}
                   alt={service.title || ''}
-                  className="w-full h-80 object-cover"
+                  className="w-full h-80 object-cover transition-transform duration-500 group-hover:scale-110"
                   width={800}
                   height={600}
                   loading="lazy"
@@ -87,7 +87,9 @@ const ServicesSection = () => {
                 </div>
               )}
 
-              <div className="absolute bottom-0 left-0 right-0 p-6 text-white bg-gradient-to-t from-ocean-blue/80 to-transparent" style={{ zIndex: 50 }}>
+              <div className="absolute inset-0 bg-gradient-to-t from-ocean-blue via-transparent to-transparent opacity-80"></div>
+
+              <div className="absolute bottom-0 left-0 right-0 p-6 text-white">
                 <h3 className="text-2xl font-playfair font-bold mb-2">{service.title}</h3>
                 <p className="font-inter opacity-90 mb-4">{service.description}</p>
                 <div className="flex flex-col sm:flex-row gap-2">
