@@ -14,15 +14,14 @@
     <!-- Resource Hints for Performance -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link rel="dns-prefetch" href="https://images.unsplash.com" />
+
     <link rel="preload" href="/fonts/playfair-display-v30-latin-regular.woff2" as="font" type="font/woff2" crossorigin />
     <!-- Critical Performance Optimization -->
-    <link rel="preload" as="image" href="https://images.unsplash.com/photo-1606800052052-a08af7148866?w=1200&q=45&auto=format&fm=webp&cs=srgb" fetchpriority="high" />
+    <link rel="preload" as="image" href="/images/services/wedding.jpg" fetchpriority="high" />
     <link rel="preload" as="font" href="https://fonts.gstatic.com/s/playfairdisplay/v36/nuFvD-vYSZviVYUb_rj3ij__anPXJzDwcbmjWBN2PKdFvXDYbtXK-F2qC0s.woff2" type="font/woff2" crossorigin />
     <link rel="preload" as="font" href="https://fonts.gstatic.com/s/inter/v13/UcC73FwrK3iLTeHuS_fvQtMwCp50KnMa1ZL7W0Q5nw.woff2" type="font/woff2" crossorigin />
     
     <!-- DNS Prefetch for External Resources -->
-    <link rel="dns-prefetch" href="//images.unsplash.com" />
     <link rel="dns-prefetch" href="//fonts.googleapis.com" />
     <link rel="dns-prefetch" href="//cdnjs.cloudflare.com" />
     
@@ -42,7 +41,7 @@
           left: 0;
           right: 0;
           height: 100vh;
-          background-image: url('https://images.unsplash.com/photo-1606800052052-a08af7148866?w=1200&q=45&auto=format&fm=webp&cs=srgb');
+          background-image: url('/images/services/wedding.jpg');
           background-size: cover;
           background-position: center;
           z-index: -1;
@@ -124,8 +123,8 @@
         requestIdleCallback(() => {
           // Preload remaining carousel images with optimal format
           const imagesToPreload = [
-            `https://images.unsplash.com/photo-1583939003579-730e3918a45a?w=1200&q=40&auto=format${imageFormat}&cs=srgb`,
-            `https://images.unsplash.com/photo-1519741497674-611481863552?w=1200&q=40&auto=format${imageFormat}&cs=srgb`
+            `/images/portfolio/wedding-1.jpg`,
+            `/images/portfolio/wedding-2.jpg`
           ];
           
           imagesToPreload.forEach((src, index) => {

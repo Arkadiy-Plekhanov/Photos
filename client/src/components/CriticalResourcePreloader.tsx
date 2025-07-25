@@ -9,11 +9,11 @@ const CRITICAL_RESOURCES = [
 ];
 
 const HERO_IMAGES = [
-  'https://images.unsplash.com/photo-1606800052052-a08af7148866?w=1440&q=50&auto=format&cs=srgb'
+  '/images/services/wedding.jpg'
 ];
 
 const LQIP_IMAGES = [
-  'https://images.unsplash.com/photo-1606800052052-a08af7148866?w=20&q=10&auto=format&cs=srgb'
+  '/images/services/wedding.jpg'
 ];
 
 export default function CriticalResourcePreloader() {
@@ -58,7 +58,6 @@ export default function CriticalResourcePreloader() {
 
     // DNS prefetch for external domains
     const dnsPrefetchDomains = [
-      'https://images.unsplash.com',
       'https://fonts.googleapis.com',
       'https://fonts.gstatic.com'
     ];

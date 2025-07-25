@@ -7,9 +7,9 @@ const InstantHeroSection = () => {
   const controls = useAnimation();
   
   const heroImages = [
-    'https://images.unsplash.com/photo-1606800052052-a08af7148866?w=1200&q=45&auto=format&fm=webp&cs=srgb',
-    'https://images.unsplash.com/photo-1583939003579-730e3918a45a?w=1200&q=40&auto=format&fm=webp&cs=srgb',
-    'https://images.unsplash.com/photo-1519741497674-611481863552?w=1200&q=40&auto=format&fm=webp&cs=srgb'
+    '/images/services/wedding.jpg',
+    '/images/portfolio/wedding-1.jpg',
+    '/images/portfolio/wedding-2.jpg'
   ];
 
   // Optimal carousel rotation timing

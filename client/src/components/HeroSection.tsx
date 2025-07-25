@@ -7,9 +7,9 @@ const HeroSection = () => {
   const [imagesLoaded, setImagesLoaded] = useState([true, false, false]);
 
   const heroImages = [
-    'https://images.unsplash.com/photo-1606800052052-a08af7148866?w=1440&q=60&auto=format&cs=srgb',
-    'https://images.unsplash.com/photo-1583939003579-730e3918a45a?w=1440&q=50&auto=format&cs=srgb',
-    'https://images.unsplash.com/photo-1519741497674-611481863552?w=1440&q=50&auto=format&cs=srgb'
+    '/images/services/wedding.jpg',
+    '/images/portfolio/wedding-1.jpg',
+    '/images/portfolio/wedding-2.jpg'
   ];
 
   useEffect(() => {

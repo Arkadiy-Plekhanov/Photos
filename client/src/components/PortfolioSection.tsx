@@ -18,31 +18,31 @@ const PortfolioSection = () => {
     {
       id: '1',
       title: 'Maui Beach Wedding',
-      category: 'wedding',
+      category: 'wedding' as const,
       image: '/images/portfolio/wedding-1.jpg',
     },
     {
       id: '2',
       title: 'Luxury Villa Photography', 
-      category: 'real-estate',
+      category: 'real-estate' as const,
       image: '/images/portfolio/real-estate-1.jpg',
     },
     {
       id: '3',
       title: 'Family Portrait Session',
-      category: 'family', 
+      category: 'family' as const, 
       image: '/images/portfolio/family-1.jpg',
     },
     {
       id: '4',
       title: 'Sunset Wedding Ceremony',
-      category: 'wedding',
+      category: 'wedding' as const,
       image: '/images/portfolio/wedding-2.jpg',
     },
     {
       id: '5',
       title: 'Diamond Head Wedding',
-      category: 'wedding',
+      category: 'wedding' as const,
       image: '/images/portfolio/wedding-3.jpg',
     },
   ].filter(item => {
@@ -161,8 +161,6 @@ const PortfolioSection = () => {
           isOpen={lightboxOpen}
           onClose={() => setLightboxOpen(false)}
           initialIndex={lightboxIndex}
-          aria-modal="true"
-          role="dialog"
         />
       </div>
     </section>
