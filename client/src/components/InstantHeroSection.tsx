@@ -167,8 +167,7 @@ const InstantHeroSection = () => {
           className="flex flex-col sm:flex-row gap-4 justify-center items-center"
         >
           <motion.a
-            href="#portfolio"
-            onClick={(e) => handleSmoothScroll(e, '#portfolio')}
+            href="/wedding-photography"
             className="group bg-luxury-gold text-ocean-blue px-8 py-4 rounded-full font-inter font-semibold 
                      hover:bg-sunset-orange transition-all duration-500 shadow-2xl text-base md:text-lg
                      relative overflow-hidden backdrop-blur-sm"

@@ -55,12 +55,12 @@ const WeddingPage = () => {
   ];
 
   const weddingGallery = [
-    'https://images.unsplash.com/photo-1606800052052-a08af7148866?w=800&q=80',
-    'https://images.unsplash.com/photo-1583939003579-730e3918a45a?w=800&q=80',
-    'https://images.unsplash.com/photo-1519741497674-611481863552?w=800&q=80',
-    'https://images.unsplash.com/photo-1605639253491-3c85b0ab8035?w=800&q=80',
-    'https://images.unsplash.com/photo-1594736797933-d0501ba2fe65?w=800&q=80',
-    'https://images.unsplash.com/photo-1591604466107-ec97de577aff?w=800&q=80',
+    '/images/wedding/gallery-1.jpg',
+    '/images/wedding/gallery-2.jpg',
+    '/images/wedding/gallery-3.jpg',
+    '/images/wedding/gallery-1.jpg',
+    '/images/wedding/gallery-2.jpg',
+    '/images/wedding/gallery-3.jpg',
   ];
 
   const testimonials = [

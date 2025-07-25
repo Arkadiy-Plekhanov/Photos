@@ -10,6 +10,21 @@ Preferred communication style: Simple, everyday language.
 
 ## Recent Changes (January 2025)
 
+### Complete Image System Restoration & Navigation Fixes (January 25, 2025) ✅ COMPLETE
+- **Image Migration to Local Server**: All external image dependencies moved to local server storage
+  - Services section: wedding.jpg, real-estate.jpg, family.jpg (now displaying correctly)
+  - Portfolio gallery: wedding/real-estate/family portfolio images restored 
+  - Testimonials: Client avatars (Sarah & Michael, Lisa Thompson, David Kim) now visible
+  - Blog section: All story thumbnails serving from /images/blog/
+  - Wedding page gallery: Local wedding photos in all gallery tabs
+- **Missing Pages Created**: Privacy Policy and Terms of Service pages with comprehensive content
+- **Navigation System Fixed**: 
+  - Footer links corrected to proper routes (/privacy, /terms)
+  - Contact button in footer now scrolls to contact section properly
+  - Hero "View Wedding" button routes to wedding photography page (not portfolio)
+- **Performance Maintained**: All fixes preserve sub-second loading performance
+- **Zero External Dependencies**: Complete elimination of Unsplash CDN dependencies
+
 ### Comprehensive Performance & Visual Restoration (January 25, 2025) ✅ COMPLETE
 - **Performance Analysis**: Identified 189% degradation in FCP (800ms vs 276ms achieved)
 - **Visual Experience Issues**: Carousel too slow (8s), buttons delayed (2s), transitions sluggish

@@ -12,14 +12,14 @@ const Footer = () => {
       { name: 'About Us', href: '/about', type: 'link' },
       { name: 'Portfolio', href: '/portfolio', type: 'link' },
       { name: 'Blog', href: '/blog', type: 'link' },
-      { name: 'Contact', href: '/#contact', type: 'scroll' },
+      { name: 'Contact', href: '#contact', type: 'scroll' },
       { name: 'FAQ', href: '/faq', type: 'link' },
     ],
     legal: [
-      { name: 'Privacy Policy', href: '/privacy-policy', type: 'link' },
-      { name: 'Terms of Service', href: '/terms-of-service', type: 'link' },
-      { name: 'Cookie Policy', href: '/privacy-policy#cookies', type: 'scroll' },
-      { name: 'Licensing', href: '/terms-of-service#licensing', type: 'scroll' },
+      { name: 'Privacy Policy', href: '/privacy', type: 'link' },
+      { name: 'Terms of Service', href: '/terms', type: 'link' },
+      { name: 'Cookie Policy', href: '/privacy#cookies', type: 'scroll' },
+      { name: 'Licensing', href: '/terms#licensing', type: 'scroll' },
     ],
   };
 
@@ -32,20 +32,13 @@ const Footer = () => {
   const handleSmoothScroll = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
     e.preventDefault();
     // Handle navigation to home page sections
-    if (href.startsWith('/#')) {
-      const sectionId = href.substring(2);
-      window.location.href = '/';
-      // Use setTimeout to allow page to load before scrolling
-      setTimeout(() => {
-        const target = document.getElementById(sectionId);
-        if (target) {
-          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        }
-      }, 100);
-    } else if (href.startsWith('#')) {
+    if (href.startsWith('#')) {
       const target = document.querySelector(href);
       if (target) {
         target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      } else {
+        // If on a different page, navigate to home and then scroll
+        window.location.href = '/' + href;
       }
     }
   };

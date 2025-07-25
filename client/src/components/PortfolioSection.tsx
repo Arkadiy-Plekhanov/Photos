@@ -15,7 +15,36 @@ const PortfolioSection = () => {
     'batman', 'ocean wave', 'placeholder', 'sample', 'test', 'dummy'
   ];
   const portfolioItems: PortfolioItem[] = [
-    // ...оставьте существующие объекты...
+    {
+      id: '1',
+      title: 'Maui Beach Wedding',
+      category: 'wedding',
+      image: '/images/portfolio/wedding-1.jpg',
+    },
+    {
+      id: '2',
+      title: 'Luxury Villa Photography', 
+      category: 'real-estate',
+      image: '/images/portfolio/real-estate-1.jpg',
+    },
+    {
+      id: '3',
+      title: 'Family Portrait Session',
+      category: 'family', 
+      image: '/images/portfolio/family-1.jpg',
+    },
+    {
+      id: '4',
+      title: 'Sunset Wedding Ceremony',
+      category: 'wedding',
+      image: '/images/portfolio/wedding-2.jpg',
+    },
+    {
+      id: '5',
+      title: 'Diamond Head Wedding',
+      category: 'wedding',
+      image: '/images/portfolio/wedding-3.jpg',
+    },
   ].filter(item => {
     // Фильтруем off-topic по title и image
     const lowerTitle = item.title.toLowerCase();
