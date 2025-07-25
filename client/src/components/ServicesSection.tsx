@@ -73,9 +73,13 @@ const ServicesSection = () => {
                   className="w-full h-80 object-cover transition-transform duration-500 group-hover:scale-110"
                   width={800}
                   height={600}
-                  loading="lazy"
-                  style={{ aspectRatio: '4/3' }}
-                  onError={() => setBrokenImages((prev: string[]) => [...prev, service.image])}
+                  loading="eager"
+                  style={{ aspectRatio: '4/3', zIndex: 1 }}
+                  onError={(e) => {
+                    console.log('Image failed to load:', service.image);
+                    setBrokenImages((prev: string[]) => [...prev, service.image]);
+                  }}
+                  onLoad={() => console.log('Image loaded successfully:', service.image)}
                 />
               ) : (
                 <div className="w-full h-80 flex items-center justify-center bg-gray-200 dark:bg-gray-700">
@@ -83,9 +87,9 @@ const ServicesSection = () => {
                 </div>
               )}
 
-              <div className="absolute inset-0 bg-gradient-to-t from-ocean-blue via-transparent to-transparent opacity-80"></div>
+              <div className="absolute inset-0 bg-gradient-to-t from-ocean-blue via-transparent to-transparent opacity-80" style={{ zIndex: 2 }}></div>
 
-              <div className="absolute bottom-0 left-0 right-0 p-6 text-white">
+              <div className="absolute bottom-0 left-0 right-0 p-6 text-white" style={{ zIndex: 3 }}>
                 <h3 className="text-2xl font-playfair font-bold mb-2">{service.title}</h3>
                 <p className="font-inter opacity-90 mb-4">{service.description}</p>
                 <div className="flex flex-col sm:flex-row gap-2">

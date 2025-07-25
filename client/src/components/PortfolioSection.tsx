@@ -132,8 +132,13 @@ const PortfolioSection = () => {
                   src={item.image}
                   alt={item.title || ''}
                   className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-                  loading="lazy"
-                  onError={() => setBrokenImages(prev => [...prev, item.image])}
+                  loading="eager"
+                  style={{ zIndex: 1 }}
+                  onError={(e) => {
+                    console.log('Portfolio image failed to load:', item.image);
+                    setBrokenImages(prev => [...prev, item.image]);
+                  }}
+                  onLoad={() => console.log('Portfolio image loaded:', item.image)}
                 />
                 {/* ...existing code... */}
               </div>
