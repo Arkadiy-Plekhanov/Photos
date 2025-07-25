@@ -100,7 +100,7 @@ const BlogSection = () => {
                 alt={post.title}
                 className="w-full h-48 object-cover"
                 loading="lazy"
-                style={{ zIndex: 1 }}
+                style={{  }}
               />
 
               <div className="p-6">

@@ -121,7 +121,7 @@ const PortfolioSection = () => {
               initial={{ opacity: 0, y: 20 }}
               animate={isIntersecting ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.6, delay: index * 0.1 }}
-              className="group relative overflow-hidden rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-500 transform hover:scale-[1.02] bg-white dark:bg-gray-800 cursor-pointer"
+              className="group relative rounded-2xl shadow-xl bg-white dark:bg-gray-800 cursor-pointer"
               onClick={() => {
                 setLightboxIndex(index);
                 setLightboxOpen(true);
@@ -131,17 +131,16 @@ const PortfolioSection = () => {
                 <img
                   src={item.image}
                   alt={item.title || ''}
-                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                  className="w-full h-full object-cover"
                   loading="lazy"
-                  style={{ zIndex: 1, position: 'relative' }}
+                  style={{ aspectRatio: '4/3' }}
                   onError={(e) => {
                     console.log('Portfolio image failed to load:', item.image);
                     setBrokenImages(prev => [...prev, item.image]);
                   }}
                   onLoad={() => console.log('Portfolio image loaded:', item.image)}
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
-                <div className="absolute bottom-0 left-0 right-0 p-4 text-white transform translate-y-full group-hover:translate-y-0 transition-transform duration-300">
+                <div className="absolute bottom-0 left-0 right-0 p-4 text-white bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" style={{ zIndex: 50 }}>
                   <h3 className="font-playfair font-bold text-lg">{item.title}</h3>
                   <p className="text-sm opacity-90">{item.category}</p>
                 </div>
