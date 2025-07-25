@@ -171,8 +171,14 @@ html.dark body {
   color: #e2e8f0 !important;
 }
 
-/* Targeted image visibility fix */
+/* Targeted image visibility fix - NEVER REMOVE */
 img {
+  opacity: 1 !important;
+  visibility: visible !important;
+}
+
+/* Portfolio hover text fix */
+.group:hover .absolute {
   opacity: 1 !important;
   visibility: visible !important;
 }
