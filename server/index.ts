@@ -34,11 +34,15 @@ app.use((req, res, next) => {
 // Register API routes
 registerRoutes(app);
 
-// Setup Vite or serve static files
-const server = setupVite ? setupVite(app) : serveStatic(app);
-
-// Start the server
-const PORT = process.env.PORT || 5000;
-app.listen(PORT, "0.0.0.0", () => {
+// Start the server first
+const PORT = parseInt(process.env.PORT || '5000', 10);
+const server = app.listen(PORT, "0.0.0.0", () => {
   log(`serving on port ${PORT}`);
 });
+
+// Setup Vite in development mode
+if (process.env.NODE_ENV === "development") {
+  setupVite(app, server);
+} else {
+  serveStatic(app);
+}
