@@ -133,14 +133,18 @@ const PortfolioSection = () => {
                   alt={item.title || ''}
                   className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
                   loading="lazy"
-                  style={{ zIndex: 1 }}
+                  style={{ zIndex: 1, position: 'relative' }}
                   onError={(e) => {
                     console.log('Portfolio image failed to load:', item.image);
                     setBrokenImages(prev => [...prev, item.image]);
                   }}
                   onLoad={() => console.log('Portfolio image loaded:', item.image)}
                 />
-                {/* ...existing code... */}
+                <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
+                <div className="absolute bottom-0 left-0 right-0 p-4 text-white transform translate-y-full group-hover:translate-y-0 transition-transform duration-300">
+                  <h3 className="font-playfair font-bold text-lg">{item.title}</h3>
+                  <p className="text-sm opacity-90">{item.category}</p>
+                </div>
               </div>
             </motion.div>
           ))}

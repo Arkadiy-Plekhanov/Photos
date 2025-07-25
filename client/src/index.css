@@ -171,6 +171,19 @@ html.dark body {
   color: #e2e8f0 !important;
 }
 
+/* Ensure images are visible - debug CSS */
+img {
+  position: relative !important;
+  z-index: 10 !important;
+  display: block !important;
+  visibility: visible !important;
+}
+
+/* Override any absolute positioning that might hide images */
+.absolute img {
+  position: relative !important;
+}
+
 /* Global Smooth Scrolling */
 html {
   scroll-behavior: smooth;

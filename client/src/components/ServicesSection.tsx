@@ -64,7 +64,7 @@ const ServicesSection = () => {
               initial={{ opacity: 0, y: 50 }}
               animate={isIntersecting ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.8, delay: index * 0.2 }}
-              className="group relative overflow-hidden rounded-2xl shadow-2xl hover-scale"
+              className="group relative overflow-hidden rounded-2xl shadow-2xl hover-scale bg-gray-100"
             >
               {!brokenImages.includes(service.image) ? (
                 <img
@@ -74,7 +74,7 @@ const ServicesSection = () => {
                   width={800}
                   height={600}
                   loading="lazy"
-                  style={{ aspectRatio: '4/3', zIndex: 1 }}
+                  style={{ aspectRatio: '4/3', zIndex: 1, position: 'relative' }}
                   onError={(e) => {
                     console.log('Image failed to load:', service.image);
                     setBrokenImages((prev: string[]) => [...prev, service.image]);
@@ -87,9 +87,9 @@ const ServicesSection = () => {
                 </div>
               )}
 
-              <div className="absolute inset-0 bg-gradient-to-t from-ocean-blue via-transparent to-transparent opacity-80" style={{ zIndex: 2 }}></div>
+              <div className="absolute inset-0 bg-gradient-to-t from-ocean-blue/60 via-transparent to-transparent pointer-events-none" style={{ zIndex: 2 }}></div>
 
-              <div className="absolute bottom-0 left-0 right-0 p-6 text-white" style={{ zIndex: 3 }}>
+              <div className="absolute bottom-0 left-0 right-0 p-6 text-white pointer-events-auto" style={{ zIndex: 3 }}>
                 <h3 className="text-2xl font-playfair font-bold mb-2">{service.title}</h3>
                 <p className="font-inter opacity-90 mb-4">{service.description}</p>
                 <div className="flex flex-col sm:flex-row gap-2">
