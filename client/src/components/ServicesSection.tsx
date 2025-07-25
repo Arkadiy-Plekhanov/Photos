@@ -73,7 +73,7 @@ const ServicesSection = () => {
                   className="w-full h-80 object-cover transition-transform duration-500 group-hover:scale-110"
                   width={800}
                   height={600}
-                  loading="eager"
+                  loading="lazy"
                   style={{ aspectRatio: '4/3', zIndex: 1 }}
                   onError={(e) => {
                     console.log('Image failed to load:', service.image);

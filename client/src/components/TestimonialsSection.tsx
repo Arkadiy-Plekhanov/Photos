@@ -85,6 +85,7 @@ const TestimonialsSection = () => {
                   loading="lazy"
                   width={64}
                   height={64}
+                  style={{ zIndex: 1 }}
                 />
                 <div>
                   <h4 className="font-playfair font-bold text-lg">{testimonial.name}</h4>

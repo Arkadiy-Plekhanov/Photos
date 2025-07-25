@@ -26,13 +26,13 @@ const AboutPage = () => {
       name: 'John Arcadia',
       role: 'Lead Photographer & Founder',
       bio: 'With over 12 years of experience capturing Hawaii\'s beauty, John brings artistic vision and technical expertise to every shoot.',
-      image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=400&q=80'
+      image: '/images/testimonials/sarah-michael.jpg'
     },
     {
       name: 'Sarah Chen',
       role: 'Second Shooter & Editor',
       bio: 'Sarah\'s keen eye for detail and passion for storytelling ensures every moment is beautifully preserved.',
-      image: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=400&h=400&q=80'
+      image: '/images/testimonials/lisa-thompson.jpg'
     }
   ];
 
@@ -45,7 +45,7 @@ const AboutPage = () => {
         <div
           className="absolute inset-0 parallax-bg"
           style={{
-            backgroundImage: `url('https://images.unsplash.com/photo-1610564667089-069b9153f613?w=1920&q=80')`
+            backgroundImage: `url('/images/portfolio/wedding-1.jpg')`
           }}
         />
         <div className="absolute inset-0 bg-ocean-blue/40" />
@@ -96,9 +96,11 @@ const AboutPage = () => {
           </div>
           <div className="relative">
             <img 
-              src="https://images.unsplash.com/photo-1502982720700-bfff97f2ecac?w=800&q=80" 
+              src="/images/services/wedding.jpg" 
               alt="Photographer at work" 
               className="rounded-lg shadow-2xl"
+              loading="lazy"
+              style={{ zIndex: 1 }}
             />
             <div className="absolute -bottom-6 -right-6 bg-luxury-gold text-ocean-blue p-6 rounded-lg shadow-xl">
               <p className="text-2xl font-playfair font-bold">12+ Years</p>
@@ -159,6 +161,8 @@ const AboutPage = () => {
                   src={member.image} 
                   alt={member.name}
                   className="w-32 h-32 rounded-full mx-auto mb-4 object-cover"
+                  loading="lazy"
+                  style={{ zIndex: 1 }}
                 />
                 <h3 className="text-2xl font-playfair mb-2">{member.name}</h3>
                 <p className="text-luxury-gold mb-4">{member.role}</p>

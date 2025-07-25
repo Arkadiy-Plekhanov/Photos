@@ -132,7 +132,7 @@ const PortfolioSection = () => {
                   src={item.image}
                   alt={item.title || ''}
                   className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-                  loading="eager"
+                  loading="lazy"
                   style={{ zIndex: 1 }}
                   onError={(e) => {
                     console.log('Portfolio image failed to load:', item.image);
