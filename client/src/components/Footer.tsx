@@ -44,7 +44,7 @@ const Footer = () => {
   };
 
   return (
-    <footer className="bg-charcoal text-white py-12">
+    <footer className="bg-charcoal text-white py-12 relative z-10" style={{ display: 'block', visibility: 'visible' }}>
       <div className="container mx-auto px-6">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           <motion.div

@@ -46,7 +46,7 @@ const Home = () => {
   }, []);
 
   return (
-    <div className="bg-warm-white text-charcoal overflow-x-hidden">
+    <div className="bg-warm-white text-charcoal overflow-x-hidden" style={{ position: 'relative', zIndex: 1 }}>
       <PerformanceOptimizer />
       <CriticalImageOptimizer />
       <UltraPerformanceBooster />

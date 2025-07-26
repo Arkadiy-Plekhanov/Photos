@@ -183,6 +183,17 @@ html {
   -webkit-text-size-adjust: 100%;
 }
 
+/* Ensure footer is always visible on desktop */
+@media (min-width: 768px) {
+  footer {
+    display: block !important;
+    visibility: visible !important;
+    position: relative !important;
+    z-index: 10 !important;
+    margin-top: auto !important;
+  }
+}
+
 /* Lazy loading optimizations */
 img[loading="lazy"] {
   opacity: 0;
