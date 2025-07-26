@@ -5,13 +5,32 @@ import { setupVite, serveStatic, log } from "./vite";
 
 const app = express();
 
-// Enable compression
-app.use(compression());
+// High-performance compression with optimal settings
+app.use(compression({
+  level: 9, // Maximum compression
+  threshold: 1024, // Compress files over 1KB
+  filter: (req, res) => {
+    if (req.headers['x-no-compression']) return false;
+    return compression.filter(req, res);
+  }
+}));
 
-// Basic security headers
+// Performance-optimized headers
 app.use((req, res, next) => {
+  // Aggressive caching for static assets
+  if (req.url.match(/\.(css|js|png|jpg|jpeg|gif|ico|svg|woff|woff2|ttf|eot)$/)) {
+    res.set('Cache-Control', 'public, max-age=31536000, immutable'); // 1 year
+    res.set('ETag', `"${Date.now()}-${req.url}"`);
+  } else if (req.url.endsWith('.html') || req.url === '/') {
+    res.set('Cache-Control', 'public, max-age=3600'); // 1 hour for HTML
+  }
+  
+  // Security and performance headers
   res.set('X-Content-Type-Options', 'nosniff');
   res.set('X-Frame-Options', 'DENY');
+  res.set('X-XSS-Protection', '1; mode=block');
+  res.set('Strict-Transport-Security', 'max-age=63072000; includeSubDomains; preload');
+  
   next();
 });
 
