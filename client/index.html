@@ -108,13 +108,13 @@
         line-height: 1.6;
         font-display: swap;
       }
-      #root { min-height: 100vh; }
+      #root { min-height: 100vh; position: relative; }
       
-      /* Instant hero background with ultra-optimized loading */
+      /* Instant hero background with ultra-optimized loading - Fixed for footer visibility */
       @media (min-width: 768px) {
         body::before {
           content: '';
-          position: fixed;
+          position: absolute;
           top: 0;
           left: 0;
           right: 0;
@@ -126,6 +126,7 @@
           opacity: 0.2;
           will-change: opacity;
           transform: translateZ(0);
+          pointer-events: none;
         }
       }
       

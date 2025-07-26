@@ -166,7 +166,6 @@ const SuperiorPerformanceOptimizer = () => {
             const link = document.createElement('link');
             link.rel = hint.rel;
             link.href = hint.href;
-            if (hint.crossorigin) link.crossOrigin = 'anonymous';
             document.head.appendChild(link);
           }
         });
