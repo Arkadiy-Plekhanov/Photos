@@ -177,12 +177,6 @@ img {
   visibility: visible !important;
 }
 
-/* Portfolio hover text fix */
-.group:hover .absolute {
-  opacity: 1 !important;
-  visibility: visible !important;
-}
-
 /* Global Smooth Scrolling */
 html {
   scroll-behavior: smooth;
