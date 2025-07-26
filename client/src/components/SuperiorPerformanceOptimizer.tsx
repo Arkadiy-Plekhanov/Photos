@@ -110,24 +110,16 @@ const SuperiorPerformanceOptimizer = () => {
         });
       };
 
-      // Optimize font loading for faster text rendering
+      // Optimize local font loading for faster text rendering
       const optimizeFontLoading = () => {
-        // Use font-display: swap for faster text rendering
-        const fontLinks = document.querySelectorAll('link[href*="fonts.googleapis.com"]');
-        fontLinks.forEach(link => {
-          const href = (link as HTMLLinkElement).href;
-          if (!href.includes('display=swap')) {
-            (link as HTMLLinkElement).href = href + (href.includes('?') ? '&' : '?') + 'display=swap';
-          }
-        });
-
-        // Preload critical fonts with higher priority
-        const criticalFonts = [
-          'https://fonts.gstatic.com/s/playfairdisplay/v36/nuFvD-vYSZviVYUb_rj3ij__anPXJzDwcbmjWBN2PKdFvXDYbtXK-F2qC0s.woff2',
-          'https://fonts.gstatic.com/s/inter/v13/UcC73FwrK3iLTeHuS_fvQtMwCp50KnMa1ZL7W0Q5nw.woff2'
+        // All fonts now served locally - no external dependencies
+        const criticalLocalFonts = [
+          '/fonts/playfair-display.woff2',
+          '/fonts/inter.woff2',
+          '/fonts/dancing-script.woff2'
         ];
 
-        criticalFonts.forEach(fontUrl => {
+        criticalLocalFonts.forEach(fontUrl => {
           const existingPreload = document.querySelector(`link[href="${fontUrl}"]`);
           if (!existingPreload) {
             const link = document.createElement('link');
@@ -136,6 +128,7 @@ const SuperiorPerformanceOptimizer = () => {
             link.as = 'font';
             link.type = 'font/woff2';
             link.crossOrigin = 'anonymous';
+            link.setAttribute('fetchpriority', 'high');
             document.head.appendChild(link);
           }
         });
@@ -163,11 +156,8 @@ const SuperiorPerformanceOptimizer = () => {
       // Implement client-side resource hints
       const addResourceHints = () => {
         const hints = [
-          { rel: 'dns-prefetch', href: '//fonts.googleapis.com' },
-          { rel: 'dns-prefetch', href: '//fonts.gstatic.com' },
-          { rel: 'dns-prefetch', href: '//cdnjs.cloudflare.com' },
-          { rel: 'preconnect', href: 'https://fonts.googleapis.com' },
-          { rel: 'preconnect', href: 'https://fonts.gstatic.com', crossorigin: true }
+          { rel: 'dns-prefetch', href: '//cdnjs.cloudflare.com' }
+          // External fonts removed - using local fonts only
         ];
 
         hints.forEach(hint => {

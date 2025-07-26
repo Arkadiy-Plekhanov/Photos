@@ -99,13 +99,14 @@ const LocalFontOptimizer = () => {
         };
 
         // Load critical fonts immediately
-        loadFont('Playfair Display Local', '/fonts/playfair-display.woff2', '400');
-        loadFont('Inter Local', '/fonts/inter.woff2', '400');
+        loadFont('Playfair Display', '/fonts/playfair-display.woff2', '400');
+        loadFont('Inter', '/fonts/inter.woff2', '400');
+        loadFont('Dancing Script', '/fonts/dancing-script.woff2', '400');
         
         // Load additional weights after critical path
         setTimeout(() => {
-          loadFont('Playfair Display Local', '/fonts/playfair-display-bold.woff2', '700');
-          loadFont('Inter Local', '/fonts/inter-bold.woff2', '700');
+          loadFont('Playfair Display', '/fonts/playfair-display-bold.woff2', '700');
+          loadFont('Inter', '/fonts/inter-bold.woff2', '700');
         }, 1000);
       };
 

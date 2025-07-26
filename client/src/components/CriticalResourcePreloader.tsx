@@ -1,11 +1,7 @@
 import { useEffect } from 'react';
 
 const CRITICAL_RESOURCES = [
-  // Preload critical local fonts
-  '/fonts/webfonts/fa-solid-900.woff2',
-  '/fonts/webfonts/fa-regular-400.woff2',
-  '/fonts/webfonts/fa-brands-400.woff2',
-  '/fonts/css/all.min.css'
+  '/fonts/fonts.css'  // Local fonts only - no external dependencies
 ];
 
 const HERO_IMAGES = [
@@ -56,10 +52,9 @@ export default function CriticalResourcePreloader() {
       }).catch(() => {});
     }
 
-    // DNS prefetch for external domains
+    // DNS prefetch only for CDN (no external fonts needed)
     const dnsPrefetchDomains = [
-      'https://fonts.googleapis.com',
-      'https://fonts.gstatic.com'
+      'https://cdnjs.cloudflare.com'
     ];
 
     dnsPrefetchDomains.forEach(domain => {
