@@ -15,17 +15,29 @@ app.use(compression({
   }
 }));
 
-// Performance-optimized headers
+// Ultra-performance headers with resource hints
 app.use((req, res, next) => {
   // Aggressive caching for static assets
   if (req.url.match(/\.(css|js|png|jpg|jpeg|gif|ico|svg|woff|woff2|ttf|eot)$/)) {
     res.set('Cache-Control', 'public, max-age=31536000, immutable'); // 1 year
-    res.set('ETag', `"${Date.now()}-${req.url}"`);
+    res.set('ETag', `"v2-${Date.now()}-${req.url}"`);
+    
+    // Preload hints for critical resources
+    if (req.url.includes('wedding.jpg')) {
+      res.set('Link', '</images/services/real-estate.jpg>; rel=prefetch, </images/services/family.jpg>; rel=prefetch');
+    }
   } else if (req.url.endsWith('.html') || req.url === '/') {
-    res.set('Cache-Control', 'public, max-age=3600'); // 1 hour for HTML
+    res.set('Cache-Control', 'public, max-age=1800'); // 30 minutes for HTML
+    
+    // Critical resource preload headers
+    res.set('Link', [
+      '</images/services/wedding.jpg>; rel=preload; as=image; fetchpriority=high',
+      '</assets/index-BPfKS6Xo.js>; rel=preload; as=script',
+      '</assets/index-zQ2Q43Ey.css>; rel=preload; as=style'
+    ].join(', '));
   }
   
-  // Security and performance headers
+  // Performance and security headers
   res.set('X-Content-Type-Options', 'nosniff');
   res.set('X-Frame-Options', 'DENY');
   res.set('X-XSS-Protection', '1; mode=block');

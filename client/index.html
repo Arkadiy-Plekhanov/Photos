@@ -25,12 +25,38 @@
     <link rel="dns-prefetch" href="//fonts.googleapis.com" />
     <link rel="dns-prefetch" href="//cdnjs.cloudflare.com" />
     
-    <!-- Async font and icon loading with fallbacks -->
-    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@400;600&display=swap" onload="this.onload=null;this.rel='stylesheet'">
-    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@400;600&display=swap"></noscript>
+    <!-- Ultra-fast critical font loading -->
+    <style>
+      /* Critical font faces with immediate display */
+      @font-face {
+        font-family: 'Playfair Display';
+        font-style: normal;
+        font-weight: 400;
+        font-display: block;
+        src: url('https://fonts.gstatic.com/s/playfairdisplay/v36/nuFvD-vYSZviVYUb_rj3ij__anPXJzDwcbmjWBN2PKdFvXDYbtXK-F2qC0s.woff2') format('woff2');
+        unicode-range: U+0000-00FF;
+      }
+      @font-face {
+        font-family: 'Inter';
+        font-style: normal;
+        font-weight: 400;
+        font-display: block;
+        src: url('https://fonts.gstatic.com/s/inter/v13/UcC73FwrK3iLTeHuS_fvQtMwCp50KnMa1ZL7W0Q5nw.woff2') format('woff2');
+        unicode-range: U+0000-00FF;
+      }
+    </style>
     
-    <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" onload="this.onload=null;this.rel='stylesheet'">
-    <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"></noscript>
+    <!-- Defer non-critical fonts -->
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;600&display=swap" onload="this.onload=null;this.rel='stylesheet'">
+    
+    <!-- Critical icons only -->
+    <style>
+      .fa-moon::before { content: "\f186"; }
+      .fa-sun::before { content: "\f185"; }
+      .fa-bars::before { content: "\f0c9"; }
+      .fa-times::before { content: "\f00d"; }
+      .fa, .fas { font-family: "Font Awesome 6 Free"; font-weight: 900; }
+    </style>
     
     <!-- Critical CSS for instant loading -->
     <style>
