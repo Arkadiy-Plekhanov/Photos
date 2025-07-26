@@ -79,7 +79,7 @@ const ContactSection = () => {
       <div
         className="absolute inset-0 opacity-10 dark:opacity-5"
         style={{
-          backgroundImage: `url('https://images.unsplash.com/photo-1439066615861-d1af74d74000?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80')`,
+          backgroundImage: `url('/images/landscape-hero.jpg')`,
           backgroundSize: 'cover',
           backgroundPosition: 'center',
         }}
