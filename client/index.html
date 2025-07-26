@@ -11,42 +11,41 @@
     <meta name="theme-color" content="#D4AF37" />
     <link rel="apple-touch-icon" href="/icon-192.png" />
     
-    <!-- Resource Hints for Performance -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-
-    <link rel="preload" href="/fonts/playfair-display-v30-latin-regular.woff2" as="font" type="font/woff2" crossorigin />
+    <!-- Local Font Preloading for Maximum Performance -->
+    <link rel="preload" href="/fonts/playfair-display.woff2" as="font" type="font/woff2" crossorigin fetchpriority="high" />
+    <link rel="preload" href="/fonts/inter.woff2" as="font" type="font/woff2" crossorigin fetchpriority="high" />
+    
     <!-- Critical Performance Optimization -->
     <link rel="preload" as="image" href="/images/services/wedding.jpg" fetchpriority="high" />
-    <link rel="preload" as="font" href="https://fonts.gstatic.com/s/playfairdisplay/v36/nuFvD-vYSZviVYUb_rj3ij__anPXJzDwcbmjWBN2PKdFvXDYbtXK-F2qC0s.woff2" type="font/woff2" crossorigin />
-    <link rel="preload" as="font" href="https://fonts.gstatic.com/s/inter/v13/UcC73FwrK3iLTeHuS_fvQtMwCp50KnMa1ZL7W0Q5nw.woff2" type="font/woff2" crossorigin />
     
-    <!-- Ultra-optimized external resource loading -->
-    <link rel="dns-prefetch" href="//fonts.googleapis.com" />
+    <!-- Local Fonts CSS -->
+    <link rel="stylesheet" href="/fonts/fonts.css" />
+    
+    <!-- Ultra-optimized resource loading -->
     <link rel="dns-prefetch" href="//cdnjs.cloudflare.com" />
     
-    <!-- Ultra-fast critical font loading -->
+    <!-- Ultra-fast local font loading -->
     <style>
-      /* Critical font faces with immediate display */
+      /* Critical font faces with immediate display from local files */
       @font-face {
         font-family: 'Playfair Display';
         font-style: normal;
         font-weight: 400;
-        font-display: block;
-        src: url('https://fonts.gstatic.com/s/playfairdisplay/v36/nuFvD-vYSZviVYUb_rj3ij__anPXJzDwcbmjWBN2PKdFvXDYbtXK-F2qC0s.woff2') format('woff2');
+        font-display: swap;
+        src: url('/fonts/playfair-display.woff2') format('woff2');
         unicode-range: U+0000-00FF;
       }
       @font-face {
         font-family: 'Inter';
         font-style: normal;
         font-weight: 400;
-        font-display: block;
-        src: url('https://fonts.gstatic.com/s/inter/v13/UcC73FwrK3iLTeHuS_fvQtMwCp50KnMa1ZL7W0Q5nw.woff2') format('woff2');
+        font-display: swap;
+        src: url('/fonts/inter.woff2') format('woff2');
         unicode-range: U+0000-00FF;
       }
     </style>
     
-    <!-- Defer non-critical fonts -->
+    <!-- Dancing Script remains external but deferred -->
     <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;600&display=swap" onload="this.onload=null;this.rel='stylesheet'">
     
     <!-- Critical icons only -->

@@ -1,3 +1,6 @@
+/* Local fonts for optimal performance */
+/* Note: fonts.css is loaded via link tag in HTML for better performance */
+
 /* Critical CSS inline - fonts loaded async */
 
 @tailwind base;

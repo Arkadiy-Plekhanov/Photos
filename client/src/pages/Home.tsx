@@ -8,6 +8,7 @@ import SuperiorPerformanceOptimizer from '../components/SuperiorPerformanceOptim
 import AdvancedImageOptimizer from '../components/AdvancedImageOptimizer';
 import UltraFastCacheOptimizer from '../components/UltraFastCacheOptimizer';
 import TurboModeOptimizer from '../components/TurboModeOptimizer';
+import LocalFontOptimizer from '../components/LocalFontOptimizer';
 
 // Lazy load non-critical sections for faster initial load
 const ServicesSection = lazy(() => import('../components/ServicesSection'));
@@ -51,6 +52,7 @@ const Home = () => {
       <AdvancedImageOptimizer />
       <UltraFastCacheOptimizer />
       <TurboModeOptimizer />
+      <LocalFontOptimizer />
       <Navigation />
       <HeroSection />
       <Suspense fallback={<SectionLoader />}>
