@@ -3,6 +3,7 @@ import Navigation from '../components/Navigation';
 import HeroSection from '../components/HeroSection';
 import PerformanceOptimizer from '../components/PerformanceOptimizer';
 import CriticalImageOptimizer from '../components/CriticalImageOptimizer';
+import UltraPerformanceBooster from '../components/UltraPerformanceBooster';
 
 // Lazy load non-critical sections for faster initial load
 const ServicesSection = lazy(() => import('../components/ServicesSection'));
@@ -41,6 +42,7 @@ const Home = () => {
     <div className="min-h-screen bg-warm-white text-charcoal overflow-x-hidden">
       <PerformanceOptimizer />
       <CriticalImageOptimizer />
+      <UltraPerformanceBooster />
       <Navigation />
       <HeroSection />
       <Suspense fallback={<SectionLoader />}>

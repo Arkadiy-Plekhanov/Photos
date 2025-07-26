@@ -29,11 +29,13 @@ app.use((req, res, next) => {
   } else if (req.url.endsWith('.html') || req.url === '/') {
     res.set('Cache-Control', 'public, max-age=1800'); // 30 minutes for HTML
     
-    // Critical resource preload headers
+    // Ultra-priority resource preload headers
     res.set('Link', [
       '</images/services/wedding.jpg>; rel=preload; as=image; fetchpriority=high',
-      '</assets/index-BPfKS6Xo.js>; rel=preload; as=script',
-      '</assets/index-zQ2Q43Ey.css>; rel=preload; as=style'
+      '</assets/index-BPfKS6Xo.js>; rel=preload; as=script; fetchpriority=high',
+      '</assets/index-zQ2Q43Ey.css>; rel=preload; as=style; fetchpriority=high',
+      '</images/services/real-estate.jpg>; rel=prefetch; fetchpriority=low',
+      '</images/services/family.jpg>; rel=prefetch; fetchpriority=low'
     ].join(', '));
   }
   
