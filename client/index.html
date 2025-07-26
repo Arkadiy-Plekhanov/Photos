@@ -24,7 +24,7 @@
     <!-- Ultra-optimized resource loading -->
     <link rel="dns-prefetch" href="//cdnjs.cloudflare.com" />
     
-    <!-- Ultra-fast local font loading -->
+    <!-- Ultra-fast local font loading + Critical CSS -->
     <style>
       /* Critical font faces with immediate display from local files */
       @font-face {
@@ -42,6 +42,48 @@
         font-display: swap;
         src: url('/fonts/inter.woff2') format('woff2');
         unicode-range: U+0000-00FF;
+      }
+      
+      /* Critical CSS inline to eliminate 744ms TTFB blocking */
+      body { font-family: Inter, system-ui, sans-serif; margin: 0; background: #fefefe; color: #2d3748; }
+      .min-h-screen { min-height: 100vh; }
+      .bg-warm-white { background-color: #fefefe; }
+      .text-charcoal { color: #2d3748; }
+      .font-playfair { font-family: 'Playfair Display', serif; }
+      .font-inter { font-family: 'Inter', sans-serif; }
+      .hero-section { position: relative; min-height: 100vh; display: flex; align-items: center; justify-content: center; }
+      .hero-content { text-align: center; color: white; z-index: 10; }
+      .navigation { position: fixed; top: 0; width: 100%; z-index: 50; transition: all 0.3s; }
+      .container { max-width: 1200px; margin: 0 auto; padding: 0 1rem; }
+      .flex { display: flex; }
+      .items-center { align-items: center; }
+      .justify-center { justify-content: center; }
+      .justify-between { justify-content: space-between; }
+      .text-center { text-align: center; }
+      .relative { position: relative; }
+      .absolute { position: absolute; }
+      .fixed { position: fixed; }
+      .hidden { display: none; }
+      .block { display: block; }
+      .w-full { width: 100%; }
+      .h-full { height: 100%; }
+      .object-cover { object-fit: cover; }
+      .inset-0 { top: 0; right: 0; bottom: 0; left: 0; }
+      .bg-black { background-color: black; }
+      .bg-opacity-50 { background-color: rgba(0,0,0,0.5); }
+      .text-white { color: white; }
+      .text-4xl { font-size: 2.25rem; line-height: 1.2; }
+      .text-xl { font-size: 1.25rem; line-height: 1.75; }
+      .font-bold { font-weight: 700; }
+      .mb-4 { margin-bottom: 1rem; }
+      .mb-6 { margin-bottom: 1.5rem; }
+      .px-4 { padding-left: 1rem; padding-right: 1rem; }
+      .py-2 { padding-top: 0.5rem; padding-bottom: 0.5rem; }
+      .py-4 { padding-top: 1rem; padding-bottom: 1rem; }
+      @media (max-width: 768px) {
+        .md\\:hidden { display: none; }
+        .md\\:block { display: block; }
+        .text-4xl { font-size: 1.875rem; }
       }
     </style>
     
